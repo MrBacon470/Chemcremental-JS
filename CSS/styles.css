@@ -8,3 +8,13 @@
     font-family: 'Monospace Typewriter';
     src: url('MonospaceTypewriter.ttf');
 }
+
+button {
+    border: 3px solid lightslategray;
+}
+
+.flexBox {
+    display: flex;
+    align-items: center;
+    place-content: center;
+}
