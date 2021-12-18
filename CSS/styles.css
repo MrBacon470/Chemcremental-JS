@@ -1,3 +1,9 @@
 * {
     background-color: #444444;
+    font-family: 'Monospace Typewriter';
+}
+
+@font-face {
+    font-family: 'Monospace Typewriter';
+    src: url('MonospaceTypewriter.ttf');
 }
