@@ -1,2 +1,2 @@
 # Chemcremental-JS
-Chemcremental Java Script Time
+You are allowed to submit PRs once the base game is complete thanks for understanding
