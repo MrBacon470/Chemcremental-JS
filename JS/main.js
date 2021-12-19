@@ -12,4 +12,5 @@ function mainLoop(){
 }
 
 window.setInterval(function(){
+    mainLoop()
 }, 10);

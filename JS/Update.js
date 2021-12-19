@@ -1,7 +1,7 @@
 // region element declarations
 const elementButtons = [];
 const elementNames = ['Hydrogen','Carbon','Oxygen','Fluorine','Sulfur','Chlorine','Iron','Lead']
-for (let i=1; i<data.derivs.length; i++){
+for (let i=0; i<8; i++){
     elementButtons[i] = document.getElementById(`${elementNames[i]}`)
 }
 const tabs = [];

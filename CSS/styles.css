@@ -28,6 +28,12 @@
     align-items: center;
     place-content:center
 }
+.elementButton {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 20em;
+    height: 5em;
+}
 /* change this to row so it can hold multiple columns in a row lineup, if that makes sense */
 .elementHolder {
     margin-top: 50px;
