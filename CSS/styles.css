@@ -72,3 +72,19 @@
     background-color: #b04192;
     color: darkslategrey;
 }
+
+#eB:hover {
+    background-color: #3c9f45;
+}
+#cB:hover {
+    background-color: #3a5b99;
+}
+#pB:hover {
+    background-color: #b0b835;
+}
+#mB:hover {
+    background-color: #68368a;
+}
+#sB:hover {
+    background-color: gray;
+}
