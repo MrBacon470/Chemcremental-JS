@@ -8,16 +8,16 @@ function getDefaultObject() {
         hasTab: [false, false, false, false],
         time: Date.now(),
         currentTab: 1,
-        currentUpdate: 'In Dev Version',
+        currentUpdate: 'α0',
     }
 }
 let data = getDefaultObject()
 //saving and loading
 function save(){
-    window.localStorage.setItem('ucRemakeSave', JSON.stringify(data))
+    window.localStorage.setItem('chemJSSave', JSON.stringify(data))
 }
 function load() {
-    let savedata = JSON.parse(window.localStorage.getItem('ucRemakeSave'))
+    let savedata = JSON.parse(window.localStorage.getItem('chemJSSave'))
     if (savedata !== undefined) fixSave(data, savedata)
     fixOldSaves()
 }
@@ -39,8 +39,8 @@ function fixSave(main=getDefaultObject(), data) {
 }
 function fixOldSaves(){
     //fix important things from old versions
-    if (data.currentUpdate==='v0.0.14') data.currentUpdate='v0.0.15'
-    if (data.currentUpdate==='v0.0.15'){
+    if (data.currentUpdate==='α0') data.currentUpdate='α0'
+    if (data.currentUpdate==='α0'){
         //deleteSave()
     }
 }
@@ -70,11 +70,11 @@ window.onload = function (){
 //full reset
 function fullReset(){
     exportSave()
-    window.localStorage.removeItem('ucRemakeSave')
+    window.localStorage.removeItem('chemJSSave')
     location.reload()
 }
 function deleteSave(){
-    window.localStorage.removeItem('ucRemakeSave')
+    window.localStorage.removeItem('chemJSSave')
     location.reload()
 }
 

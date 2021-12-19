@@ -40,15 +40,8 @@ function updateHTML(){
     }
     tabChangeHTML()
 }
-function theoryTextUpdate(x){
-    let i = x-1
-    document.getElementById("theoriesText").innerHTML = `${theoryDescriptions[i]()}<br>Effects are only shown once you've unlocked the Theory!`
-}
 function unlockTabs(){
     data.hasTab[0] = data.elements[1].amt > 0 || data.hasTab[0]
-    data.hasTab[1] = data.upgrades[3].amt.gte(1) || data.hasTab[1]
-    data.hasTab[2] = data.hasTheory[9] || data.hasTab[2]
-    data.hasTab[3] = data.derivs[4].amt.gte(1) || data.hasTab[3]
 }
 const derivStuff = document.getElementById("bigDerivativeContainer")
 const buyMax = document.getElementById("buymaxContainer")
