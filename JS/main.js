@@ -9,6 +9,7 @@ function mainLoop(){
     let diff = (Date.now()-data.time)/1000
     data.time = Date.now()
     updateHTML()
+    elementProduction()
 }
 
 function elementProduction(){
