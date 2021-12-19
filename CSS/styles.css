@@ -17,13 +17,19 @@
     font-family: 'Monospace Typewriter';
     src: url('MonospaceTypewriter.ttf');
 }
-
 .flexBox {
     display: flex;
     align-items: center;
-    place-content: center;
+    place-content:center
 }
-
-.elementHolder {  
+/* change this to row so it can hold multiple columns in a row lineup, if that makes sense */
+.elementHolder {
+    margin-top: 50px;
+    flex-direction: row;
+}
+/* elements you want to be in a column will be contained in one of these */
+.elementColumn{
+    /* margin is used here to separate columns */
+    margin-right: 8px;
     flex-direction: column;
 }
