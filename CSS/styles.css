@@ -3,18 +3,27 @@
     font-family: 'Monospace Typewriter';
     color: whitesmoke;
 }
-
+.header {
+    margin-right: 30px;
+    margin-left: 30px;
+    font-size: 30px;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+}
 @font-face {
     font-family: 'Monospace Typewriter';
     src: url('MonospaceTypewriter.ttf');
-}
-
-button {
-    border: 3px solid lightslategray;
 }
 
 .flexBox {
     display: flex;
     align-items: center;
     place-content: center;
+}
+
+.elementHolder {  
+    flex-direction: column;
 }
