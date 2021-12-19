@@ -17,6 +17,13 @@
     font-family: 'Monospace Typewriter';
     src: url('MonospaceTypewriter.ttf');
 }
+.tabButton {
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px solid gray;
+    width: 7em;
+    height: 4em;
+}
 .flexBox {
     display: flex;
     align-items: center;
