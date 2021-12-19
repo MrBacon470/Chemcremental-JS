@@ -1,7 +1,7 @@
 // region element declarations
 const elementButtons = [];
 const elementNames = ['Hydrogen','Carbon','Oxygen','Fluorine','Sulfur','Chlorine','Iron','Lead']
-const shortElement = ['H','C','O','F','S','C','Fe','Pb']
+const shortElement = ['H','C','O','F','S','Cl','Fe','Pb']
 for (let i=0; i<8; i++){
     elementButtons[i] = document.getElementById(`${elementNames[i]}`)
 }
