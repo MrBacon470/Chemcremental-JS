@@ -39,3 +39,36 @@
     margin-right: 8px;
     flex-direction: column;
 }
+/* Hover Actions */
+#Hydrogen:hover {
+    background-color: #adadad;
+    color: darkslategrey;
+}
+#Carbon:hover {
+    background-color: #ad4242;
+    color: darkslategrey;
+}
+#Oxygen:hover {
+    background-color: #ae8042;
+    color: darkslategrey;
+}
+#Fluorine:hover {
+    background-color: #abaf42;
+    color: darkslategrey;
+}
+#Sulfur:hover {
+    background-color: #62af41;
+    color: darkslategrey;
+}
+#Chlorine:hover {
+    background-color: #4182af;
+    color: darkslategrey;
+}
+#Iron:hover {
+    background-color: #9541af;
+    color: darkslategrey;
+}
+#Lead:hover {
+    background-color: #b04192;
+    color: darkslategrey;
+}
