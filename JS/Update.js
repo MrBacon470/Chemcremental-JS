@@ -27,6 +27,10 @@ function updateHTML(){
 function unlockTabs(){
     data.hasTab[0] = data.elements[1].amt > 0 || data.hasTab[0]
 }
+const elementTab = document.getElementById("elementHolder")
+const compoundTab = document.getElementById("compoundHolder")
+
 function tabChangeHTML(){
-    
+    elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
+    elementTab.style.display = data.currentTab === 2 ? 'flex': 'none'   
 }
