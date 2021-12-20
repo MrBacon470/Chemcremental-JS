@@ -35,7 +35,7 @@
     height: 5em;
 }
 /* change this to row so it can hold multiple columns in a row lineup, if that makes sense */
-.elementHolder {
+.holder {
     margin-top: 50px;
     flex-direction: row;
 }
@@ -46,6 +46,7 @@
     flex-direction: column;
 }
 .compoundButton {
+    margin-top: 50px;
     margin-left: 10px;
     margin-right: 10px;
     width: 10em;
@@ -60,35 +61,27 @@
 /* Hover Actions */
 #Hydrogen:hover {
     background-color: #adadad;
-    color: darkslategrey;
 }
 #Carbon:hover {
     background-color: #ad4242;
-    color: darkslategrey;
 }
 #Oxygen:hover {
     background-color: #ae8042;
-    color: darkslategrey;
 }
 #Fluorine:hover {
     background-color: #abaf42;
-    color: darkslategrey;
 }
 #Sulfur:hover {
     background-color: #62af41;
-    color: darkslategrey;
 }
 #Chlorine:hover {
     background-color: #4182af;
-    color: darkslategrey;
 }
 #Iron:hover {
     background-color: #9541af;
-    color: darkslategrey;
 }
 #Lead:hover {
     background-color: #b04192;
-    color: darkslategrey;
 }
 
 #eB:hover {
