@@ -20,7 +20,7 @@
         <button id="mB" class="tabButton" style="border: 4px solid #68368a;">Melting</button>
         <button id="sB" class="tabButton" style="border: 4px solid gray;">Settings</button>
     </div>
-    <div id="elementHolder" class="flexBox elementHolder">
+    <div id="elementHolder" class="flexBox elementHolder" style="display:none;">
         <div class="flexBox elementColumn" id="elementColumn1">
             <button id="Hydrogen" class="elementButton" onclick="purchaseElement(0)" style="border: 3px solid #adadad">
                 Hydrogen Generator<br>Cost: 10 Hydrogen | Level: 0
@@ -49,6 +49,15 @@
                 Lead Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
         </div>
+    </div>
+    <div id="compoundHolder" class="flexBox elementHolder">
+        <div id="compoundButtonHolder" class="flexBox" style="flex-direction: column;">
+            <button id="Propane" style="border: 4px solid #3a5b99; font-size: 15px;">
+                Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
+            </button>
+            <button style="border: 4px solid #3a5b99; font-size: 15px;">Buy Max</button>
+        </div>
+        
     </div>
     
 </body>

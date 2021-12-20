@@ -12,12 +12,12 @@ function updateHTML(){
     if (data.currentTab === 1){
         for(let i = 0;i < 8;i++) {
             if(i == 0)
-                elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]})<br>Cost: 10 Hydrogen | Level:0`
+                elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]})<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
             else if(i == 1)
-            elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | 1.00x)<br>Cost: 10 Hydrogen | Level:0`
+            elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(1 + Decimal.sqrt(data.elements[i].max))}x)<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
 
             else
-                elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | 1.00x)<br>Cost: 10 ${data.elements[i - 1].name} | Level:0`
+                elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(1 + Decimal.sqrt(data.elements[i].max))}x)<br>Cost: ${format(elementCost[i])} ${data.elements[i - 1].name} | Level:${format(data.elements[i].level)}`
         }
         
     }

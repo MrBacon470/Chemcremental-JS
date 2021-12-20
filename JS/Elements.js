@@ -7,16 +7,20 @@ for(let i = 0; i < elementBase.length; i++) {
 }
 
 function purchaseElement(i) {
+    for(let i = 0; i < elementBase.length; i++) {
+        elementCost[i] = elementBase[i].times(Decimal.pow(elementScale[i], data.elements[i].level))
+    }
+
     if(i == 0 || i == 1) {
         if(data.elements[0].amt >= elementCost[i]) {
-            data.elements[i].level.add(1)
-            data.elements[0].amt.minus(elementCost[i])
+            data.elements[i].level = data.elements[i].level.add(1)
+            data.elements[0].amt = data.elements[0].amt.sub(elementCost[i])
         }
     }
     else {
         if(data.elements[i - 1].amt >= elementCost[i]) {
-            data.elements[i].level.add(1)
-            data.elements[i - 1].amt.minus(elementCost[i])
+            data.elements[i].level = data.elements[i].level.add(1)
+            data.elements[i - 1].amt = data.elements[0].amt.sub(elementCost[i])
         }
     }
 }
