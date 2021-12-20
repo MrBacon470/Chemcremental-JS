@@ -1,15 +1,20 @@
 // region element declarations
-const elementButtons = [];
+const elementButtons = []
 const elementNames = ['Hydrogen','Carbon','Oxygen','Fluorine','Sulfur','Chlorine','Iron','Lead']
 const shortElement = ['H','C','O','F','S','Cl','Fe','Pb']
+const compoundButtons = []
+const compoundBoost = ['Element Boost: ','Power Boost: ','Battery Boost: ','Lead Boost: ','Melt Boost: ']
 for (let i=0; i<8; i++){
     elementButtons[i] = document.getElementById(`${elementNames[i]}`)
+}
+for(let i = 0; i < 5; i++) {
+    compoundButtons[i] = document.getElementById(`${data.compounds[i].name}`)
 }
 const tabs = [];
 
 // endregion
 function updateHTML(){
-    if (data.currentTab === 1){
+    if (data.currentTab === 1) {
         for(let i = 0;i < 8;i++) {
             if(i == 0)
                 elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]})<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
@@ -20,6 +25,11 @@ function updateHTML(){
                 elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(1 + Decimal.sqrt(data.elements[i].max))}x)<br>Cost: ${format(elementCost[i])} ${data.elements[i - 1].name} | Level:${format(data.elements[i].level)}`
         }
         
+    }
+    else if(data.currentTab === 2) {
+        for(let i = 0; i < 5; i++) {
+            compoundButtons[i].innerHTML = `${data.compounds[i].name}<br>${data.compounds[i].cost}<br>Total: ${format(data.compounds[i].amt)}<br>${compoundBoost[i]} ${format(1 + Decimal.sqrt(data.compounds[i].amt / 4))}x`
+        }
     }
     unlockTabs()
     tabChangeHTML()

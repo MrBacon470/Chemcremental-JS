@@ -45,6 +45,18 @@
     margin-right: 8px;
     flex-direction: column;
 }
+.compoundButton {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 10em;
+    height: 12em;
+}
+.buyMax {
+    width: 10em;
+}
+.compound:hover {
+    background-color: #3a5b99;
+}
 /* Hover Actions */
 #Hydrogen:hover {
     background-color: #adadad;
