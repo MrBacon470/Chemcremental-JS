@@ -1,3 +1,5 @@
+
+
 function switchTab(i){
     data.currentTab = i
     let x=i-2
@@ -10,6 +12,7 @@ function mainLoop(){
     data.time = Date.now()
     updateHTML()
     elementProduction()
+    updateCosts()
 }
 
 function elementProduction(){

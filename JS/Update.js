@@ -21,6 +21,7 @@ function updateHTML(){
         }
         
     }
+    unlockTabs()
     tabChangeHTML()
 }
 
@@ -32,5 +33,5 @@ const compoundTab = document.getElementById("compoundHolder")
 
 function tabChangeHTML(){
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
-    elementTab.style.display = data.currentTab === 2 ? 'flex': 'none'   
+    compoundTab.style.display = data.currentTab === 2 ? 'flex': 'none'   
 }
