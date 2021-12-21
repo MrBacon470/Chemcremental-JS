@@ -12,13 +12,13 @@ function purchaseElement(i) {
     updateCosts()
 
     if(i == 0 || i == 1) {
-        if(data.elements[0].amt >= elementCost[i]) {
+        if(data.elements[0].amt.gte(elementCost[i])) {
             data.elements[i].level = data.elements[i].level.add(1)
             data.elements[0].amt = data.elements[0].amt.sub(elementCost[i])
         }
     }
     else {
-        if(data.elements[i - 1].amt >= elementCost[i]) {
+        if(data.elements[i - 1].amt.gte(elementCost[i])) {
             data.elements[i].level = data.elements[i].level.add(1)
             data.elements[i - 1].amt = data.elements[0].amt.sub(elementCost[i])
         }
