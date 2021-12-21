@@ -58,6 +58,13 @@
 .compound:hover {
     background-color: #3a5b99;
 }
+.power:hover {
+    background-color: #abaf42;
+}
+.powerUp {
+    width: 12em;
+    height: 10em;
+}
 /* Hover Actions */
 #Hydrogen:hover {
     background-color: #adadad;
