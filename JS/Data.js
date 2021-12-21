@@ -10,6 +10,9 @@ function getDefaultObject() {
         compounds: [{amt:D(0),name:"Propane",cost:"C<sub>3</sub>H<sub>8</sub>"},{amt:D(0),name:"Water",cost:"H<sub>2</sub>0"},
         {amt:D(0),name:"Sulfuric Acid",cost:"H<sub>2</sub>SO<sub>4</sub>"},{amt:D(0),name:"Steel",cost:"FeC"},
         {amt:D(0),name:"Chlorine Trifluoride",cost:"ClF<sub>3</sub>"}],
+        power: 0,
+        powerUps: [0,0,0],
+        
         hasTab: [false, false, false, false],
         time: Date.now(),
         currentTab: 1,
