@@ -1,10 +1,10 @@
 function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
         if(i === 7) {
-            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.divide(4)).times(Decimal.sqrt(D(1).plus(data.compounds[0].amt.divide(4)))).times(Decimal.sqrt(D(1).plus(data.compounds[4].amt.divide(4)))))
+            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.divide(4)).times(Decimal.sqrt(D(1).plus(data.compounds[0].amt.divide(4)))).times(D(1).plus(Decimal.sqrt((data.compounds[4].amt.divide(4))))))
         }
         else {
-            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max.divide(4)))).divide(4)).times(Decimal.sqrt(D(1).plus(data.compounds[0].amt.divide(4)))))
+            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max.divide(4)))).divide(4)).times(D(1).plus(Decimal.sqrt((data.compounds[0].amt.divide(4))))))
         }
     }
 }
@@ -32,17 +32,9 @@ function mainLoop(){
     calculateElementGain()
     for(let i = 0; i < 8; i++)
         increaseElements(data.elementGain[i].times(diff), i)
-    powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(D(1).plus(Decimal.sqrt(data.compounds[1].amt / 8))))
+    powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(D(1).plus(Decimal.sqrt(data.compounds[1].amt / 4))))
 }
 
-function maxElements() {
-    for(let i = 7; i > -1; i--) {
-        if(i === 0)
-            buyMax(data.elements[i].amt,elementBase[i],elementScale[i],data.elements[i].level)
-        else
-            buyMax(data.elements[i - 1].amt,elementBase[i],elementScale[i],data.elements[i].level)
-    }
-}
 
 function toggleBuyAmount(i) {
     if(data.buyAmounts[i] === 1)
