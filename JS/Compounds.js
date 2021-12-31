@@ -1,4 +1,5 @@
 function buyCompound(i) {
+    for(let x = 0; x < data.buyAmounts[1]; x++) {
     switch(i) {
         case 0:
             if(data.elements[1].level.gte(3) && data.elements[0].level.gte(8)) {
@@ -35,6 +36,7 @@ function buyCompound(i) {
                 data.elements[3].level = data.elements[3].level.sub(3)
                 data.compounds[i].amt = data.compounds[i].amt.add(1)
             }
-        break
+            break
+        }
     }
 }

@@ -45,15 +45,13 @@ function maxElements() {
 
 function toggleBuyAmount(i) {
     if(data.buyAmounts[i] === 1)
-        data.buyAmounts[i] === 10
+        data.buyAmounts[i] = 10
     else if(data.buyAmounts[i] === 10)
-        data.buyAmounts[i] === 100
+        data.buyAmounts[i] = 100
     else if(data.buyAmounts[i] === 100)
-        data.buyAmounts[i] === 1000
+        data.buyAmounts[i] = 1000
     else if(data.buyAmounts[i] === 1000)
-        data.buyAmounts[i] === 1
-    
-    document.getElementById(`bA${i}`).innerHTML = `Buy Amount: ${data.buyAmounts[i]}`
+        data.buyAmounts[i] = 1
 }
 
 /* Didn't Work

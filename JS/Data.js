@@ -17,7 +17,7 @@ function getDefaultObject() {
         hasTab: [false, false, false, false],
         time: Date.now(),
         currentTab: 1,
-        currentUpdate: 'α0',
+        currentUpdate: 'v0.0.0',
     }
 }
 let data = getDefaultObject()
