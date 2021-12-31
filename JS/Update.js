@@ -21,7 +21,7 @@ for(let i=0; i < 3; i++) {
 function updateHTML(){
     for(let i = 0; i < 3; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
-        tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
+        tabs[i].style.backgroundColor = !data.hasTab[i] ? '' : 'none'
         tabs[i].style.border = !data.hasTab[i] ? '4px solid gray' : `4px solid #${colors[i]}`
     }
 

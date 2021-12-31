@@ -1,10 +1,10 @@
-const elementBase = [D(10), D(1e2), D(1e3), D(1e4), D(1e5), D(1e6), D(1e7), D(1e8)]
+const elementBase = [D(10), D(1e5), D(1e8), D(1e12), D(1e14), D(1e16), D(1e18), D(1e20)]
 const elementScale = [D(1.10), D(1.15), D(1.20), D(1.25), D(1.35), D(1.40), D(1.45), D(1.50)]
 let elementCost = []
 
 function updateCosts() {
     for(let i = 0; i < elementBase.length; i++) {
-        elementCost[i] = elementBase[i].times(Decimal.pow(elementScale[i], data.elements[i].level))
+        elementCost[i] = elementBase[i].times(Decimal.pow(D(2.5), data.elements[i].level))
     }
 }
 
