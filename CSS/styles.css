@@ -65,7 +65,14 @@
     width: 12em;
     height: 10em;
 }
+.buyAmount {
+    margin-right: 10px;
+    border: 3px solid #adadad;
+}
 /* Hover Actions */
+.buyAmount:hover {
+    background-color: #adadad;
+}
 #Hydrogen:hover {
     background-color: #adadad;
 }
