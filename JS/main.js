@@ -33,6 +33,30 @@ function mainLoop(){
     for(let i = 0; i < 8; i++)
         increaseElements(data.elementGain[i].times(diff), i)
 }
+
+function maxElements() {
+    for(let i = 7; i > -1; i--) {
+        if(i === 0)
+            buyMax(data.elements[i].amt,elementBase[i],elementScale[i],data.elements[i].level)
+        else
+            buyMax(data.elements[i - 1].amt,elementBase[i],elementScale[i],data.elements[i].level)
+    }
+}
+
+function buyMax(c,b,s,l) {
+    //c == Currency | b == base cost | s == rate/cost scale | l == levels to be increased
+    //Converted from C# made by Cryptogrounds
+    //var n = Floor(Log((c * (s - 1) / (b * Pow(s, l))) + 1, s));
+    let n = Decimal.floor(Decimal.log(c.times(s.sub(1)).divide(b.times(Decimal.pow(s, l))).plus(1), s))
+    // var cost = b * (Pow(s, l) * (Pow(s, n) - 1) / (s - 1));
+    let cost = b.times(Decimal.pow(s,l)).times(Decimal.pow(s,n).sub(1)).divide(s.sub(1))
+    console.log(cost)
+    if(c.gte(cost)) {
+        l = l.plus(n)
+        c = c.minus(cost)
+    }
+}
+
 /*
 function elementProduction(){
     data.elements[0].amt = data.elements[0].amt.add(data.elements[0].level.times((1 + Decimal.sqrt(data.elements[1].max))))
