@@ -19,6 +19,7 @@ for(let i=0; i < 3; i++) {
 }
 // endregion
 function updateHTML(){
+    document.getElementById('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
     for(let i = 0; i < 3; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
@@ -43,6 +44,9 @@ function updateHTML(){
         for(let i = 0; i < 5; i++) {
             compoundButtons[i].innerHTML = `${data.compounds[i].name}<br>${data.compounds[i].cost}<br>Total: ${format(data.compounds[i].amt)}<br>${compoundBoost[i]} ${format(D(1).add(Decimal.sqrt(data.compounds[i].amt / 4)))}x`
         }
+    }
+    else if(data.currentTab === 3) {
+        document.getElementById('generator').innerHTML = `Generate Power<br>Requires 3 Propane & 1 Water<br>+${format(powerGain)} Power`
     }
     unlockTabs()
     tabChangeHTML()

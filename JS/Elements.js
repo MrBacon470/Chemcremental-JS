@@ -1,4 +1,4 @@
-const elementBase = [D(10), D(1e5), D(1e8), D(1e12), D(1e14), D(1e16), D(1e18), D(1e20)]
+const elementBase = [D(10), D(1e5), D(1e7), D(1e11), D(1e13), D(1e15), D(1e17), D(1e19)]
 const elementScale = [D(1.10), D(1.15), D(1.20), D(1.25), D(1.35), D(1.40), D(1.45), D(1.50)]
 let elementCost = []
 
