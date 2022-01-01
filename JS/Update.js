@@ -65,9 +65,11 @@ function unlockTabs(){
 const elementTab = document.getElementById("elementHolder")
 const compoundTab = document.getElementById("compoundHolder")
 const powerTab = document.getElementById("powerHolder")
+const settingTab = document.getElementById("settingsHolder")
 
 function tabChangeHTML(){
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
     compoundTab.style.display = data.currentTab === 2 ? 'flex': 'none'   
     powerTab.style.display = data.currentTab === 3? 'flex' : 'none'
+    settingTab.style.display = data.currentTab === 0? 'flex' : 'none'
 }
