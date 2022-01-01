@@ -78,6 +78,9 @@
 .buyAmount:hover {
     background-color: #adadad;
 }
+#delete:hover {
+    background-color: #ad4242;
+}
 #Hydrogen:hover {
     background-color: #adadad;
 }

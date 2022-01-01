@@ -17,7 +17,7 @@ function getDefaultObject() {
         hasTab: [false, false, false, false],
         time: Date.now(),
         currentTab: 1,
-        currentUpdate: 'α0.0.5',
+        currentUpdate: 'v0.0.5',
     }
 }
 let data = getDefaultObject()
@@ -48,7 +48,7 @@ function fixSave(main=getDefaultObject(), data) {
 }
 function fixOldSaves(){
     //fix important things from old versions
-    if (data.currentUpdate==='α0.0.5') data.currentUpdate='α0.0.5'
+    if (data.currentUpdate==='v0.0.5') data.currentUpdate='v0.0.5'
     if (data.currentUpdate==='v0.0.0'){
         //deleteSave()
     }
@@ -83,7 +83,9 @@ function fullReset(){
     location.reload()
 }
 function deleteSave(){
-    window.localStorage.removeItem('chemJSSave')
-    location.reload()
+    if(confirm("Are you sure you want to delete your save? (This doesn't export)")) {
+        window.localStorage.removeItem('chemJSSave')
+        location.reload()
+    } 
 }
 
