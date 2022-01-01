@@ -28,7 +28,7 @@ function save(){
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem('chemJSSave'))
     if (savedata !== undefined) fixSave(data, savedata)
-    fixOldSaves()
+    //fixOldSaves()
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {
