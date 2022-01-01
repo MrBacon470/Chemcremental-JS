@@ -34,7 +34,7 @@ function mainLoop(){
     for(let i = 0; i < 8; i++)
         increaseElements(data.elementGain[i].times(diff), i)
     
-    powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 2).plus(Decimal.sqrt(data.compounds[1].amt / 2))).times(D(1).plus(Decimal.sqrt(data.compounds[1].amt))))
+    powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 2).plus(Decimal.sqrt(data.compounds[1].amt / 2))).times(D(1).plus(Decimal.sqrt(data.compounds[1].amt) + powerBoosts[2])))
     updateBoosts()
 }
 
