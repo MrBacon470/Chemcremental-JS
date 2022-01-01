@@ -17,7 +17,7 @@ function getDefaultObject() {
         hasTab: [false, false, false, false],
         time: Date.now(),
         currentTab: 1,
-        currentUpdate: 'v0.0.0',
+        currentUpdate: 'α0.0.5',
     }
 }
 let data = getDefaultObject()
@@ -48,8 +48,8 @@ function fixSave(main=getDefaultObject(), data) {
 }
 function fixOldSaves(){
     //fix important things from old versions
-    if (data.currentUpdate==='α0') data.currentUpdate='α0'
-    if (data.currentUpdate==='α0'){
+    if (data.currentUpdate==='α0.0.5') data.currentUpdate='α0.0.5'
+    if (data.currentUpdate==='v0.0.0'){
         //deleteSave()
     }
 }
