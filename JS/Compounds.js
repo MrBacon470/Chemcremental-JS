@@ -1,3 +1,5 @@
+let compoundBoosts = []
+
 function buyCompound(i) {
     for(let x = 0; x < data.buyAmounts[1]; x++) {
     switch(i) {

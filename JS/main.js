@@ -1,10 +1,10 @@
 function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
         if(i === 7) {
-            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.divide(4)).times(Decimal.sqrt(D(1).plus(data.compounds[0].amt.divide(4)))).times(D(1).plus(Decimal.sqrt((data.compounds[4].amt.divide(4))))))
+            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.divide(4)).times(compoundBoosts[0] + compoundBoosts[3]))
         }
         else {
-            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max.divide(4)))).divide(4)).times(D(1).plus(Decimal.sqrt((data.compounds[0].amt.divide(4))))))
+            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0]))
         }
     }
 }
@@ -29,12 +29,24 @@ function mainLoop(){
     data.time = Date.now()
     updateHTML()
     updateCosts()
+    updatePowerCosts()
     calculateElementGain()
     for(let i = 0; i < 8; i++)
         increaseElements(data.elementGain[i].times(diff), i)
-    powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(D(1).plus(Decimal.sqrt(data.compounds[1].amt / 4))))
+    
+    powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 2).plus(Decimal.sqrt(data.compounds[1].amt / 2))).times(D(1).plus(Decimal.sqrt(data.compounds[1].amt))))
+    updateBoosts()
 }
 
+function updateBoosts() {
+    for(let i = 0; i < 5; i++)
+        compoundBoosts[i] = data.compounds[i].amt.gt(0) ? D(1).add(Decimal.sqrt(data.compounds[i].amt / 4)) : D(1)
+
+    powerBoosts[0] = D(2).times(data.powerUps[0])
+    powerBoosts[1] = D(10).times(data.powerUps[1])
+    powerBoosts[2] = D(0.1).times(data.powerUps[2])
+    powerLimit = D(100).plus(powerBoosts[1])
+}
 
 function toggleBuyAmount(i) {
     if(data.buyAmounts[i] === 1)

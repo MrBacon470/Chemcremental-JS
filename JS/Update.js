@@ -17,6 +17,9 @@ const colors = ['3a5b99','b0b835','68368a']
 for(let i=0; i < 3; i++) {
     tabs[i] = document.getElementById(`${tabIDs[i]}`)
 }
+const powerUpButton = []
+for(let i=0; i < 3; i++)
+    powerUpButton[i] = document.getElementById(`pu${i+1}`)
 // endregion
 function updateHTML(){
     document.getElementById('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
@@ -42,11 +45,14 @@ function updateHTML(){
     }
     else if(data.currentTab === 2) {
         for(let i = 0; i < 5; i++) {
-            compoundButtons[i].innerHTML = `${data.compounds[i].name}<br>${data.compounds[i].cost}<br>Total: ${format(data.compounds[i].amt)}<br>${compoundBoost[i]} ${format(D(1).add(Decimal.sqrt(data.compounds[i].amt / 4)))}x`
+            compoundButtons[i].innerHTML = `${data.compounds[i].name}<br>${data.compounds[i].cost}<br>Total: ${format(data.compounds[i].amt)}<br>${compoundBoost[i]} ${format(compoundBoosts[i])}x`
         }
     }
     else if(data.currentTab === 3) {
         document.getElementById('generator').innerHTML = `Generate Power<br>Requires 3 Propane & 1 Water<br>+${format(powerGain)} Power`
+        powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Power<br>Level: ${format(data.powerUps[0])}`
+        powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
+        powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 0.1x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
     }
     unlockTabs()
     tabChangeHTML()
