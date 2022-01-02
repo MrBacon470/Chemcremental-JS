@@ -29,13 +29,13 @@ function mainLoop(){
     data.time = Date.now()
     updateHTML()
     updateCosts()
+    updateBoosts()
     updatePowerCosts()
     calculateElementGain()
     for(let i = 0; i < 8; i++)
         increaseElements(data.elementGain[i].times(diff), i)
     
     powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
-    updateBoosts()
 }
 
 function updateBoosts() {
