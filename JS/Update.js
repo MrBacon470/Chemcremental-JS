@@ -59,17 +59,21 @@ function updateHTML(){
 }
 
 function unlockTabs(){
+    
     data.hasTab[0] = data.elements[1].amt > 0 || data.hasTab[0]
     data.hasTab[1] = data.compounds[0].amt > 0 || data.hasTab[1]
+    data.hasTab[2] = data.elements[6].level > 0 || data.hasTab[2]
 }
 const elementTab = document.getElementById("elementHolder")
 const compoundTab = document.getElementById("compoundHolder")
 const powerTab = document.getElementById("powerHolder")
+const meltingTab = document.getElementById("meltingHolder")
 const settingTab = document.getElementById("settingsHolder")
 
 function tabChangeHTML(){
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
     compoundTab.style.display = data.currentTab === 2 ? 'flex': 'none'   
     powerTab.style.display = data.currentTab === 3? 'flex' : 'none'
+    meltingTab.style.display = data.currentTab === 4? 'flex' : 'none'
     settingTab.style.display = data.currentTab === 0? 'flex' : 'none'
 }

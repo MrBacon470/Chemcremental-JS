@@ -13,7 +13,9 @@ function getDefaultObject() {
         {amt:D(0),name:"Chlorine Trifluoride",cost:"ClF<sub>3</sub>"}],
         power: D(0),
         powerUps: [D(0),D(0),D(0)],
-        
+        corium: D(0),
+        coriumMultUps: [D(0),D(0),D(0)],
+        coriumSingUps: [false,false,false],
         hasTab: [false, false, false, false],
         time: Date.now(),
         currentTab: 1,
