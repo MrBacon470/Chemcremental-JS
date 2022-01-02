@@ -23,19 +23,21 @@ function switchTab(i){
     if (x >= 0) data.hasTab[x] ? data.currentTab=i : data.currentTab=1
     tabChangeHTML()
 }
-
+let sumOfElements = D(0)
 function mainLoop(){
     let diff = (Date.now()-data.time)/1000
     data.time = Date.now()
+    updateBoosts()
     updateHTML()
     updateCosts()
-    updateBoosts()
     updatePowerCosts()
     calculateElementGain()
     for(let i = 0; i < 8; i++)
         increaseElements(data.elementGain[i].times(diff), i)
-    
     powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
+    sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
+    coriumToGet = D(0)
+    coriumToGet = 1 + Decimal.sqrt(sumOfElements / 1e16)
 }
 
 function updateBoosts() {

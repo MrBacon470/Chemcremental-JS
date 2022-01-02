@@ -1,4 +1,5 @@
 // region element declarations
+let elementSum = D(0)
 const elementButtons = []
 const elementNames = ['Hydrogen','Carbon','Oxygen','Fluorine','Sulfur','Chlorine','Iron','Lead']
 const shortElement = ['H','C','O','F','S','Cl','Fe','Pb']
@@ -22,7 +23,10 @@ for(let i=0; i < 3; i++)
     powerUpButton[i] = document.getElementById(`pu${i+1}`)
 // endregion
 function updateHTML(){
+    
+    elementSum = data.elements[0].amt + data.elements[1].amt + data.elements[2].amt + data.elements[3].amt + data.elements[4].amt + data.elements[5].amt + data.elements[6].amt + data.elements[7].amt 
     document.getElementById('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
+    document.getElementById('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(1 + Decimal.sqrt(data.coriumMax))}x`
     for(let i = 0; i < 3; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
@@ -55,10 +59,8 @@ function updateHTML(){
         powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 0.1x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
     }
     else if(data.currentTab === 4) {
-        let elementSum = D(0)
-        for(let i = 0; i < data.elements.length; i++)
-            elementSum = elementSum.plus(data.elements[i].amt)
-        document.getElementById('meltDown').innerHTML = elementSum.gte(1e20) ? "Melt Down<br>Requires 1e20<br>Total Elements" : `Melt Down<br>Create +0.00<br>Corium`
+        
+        document.getElementById('meltDown').innerHTML = elementSum > 1e20 ? "Melt Down<br>Requires 1e20<br>Total Elements" : `Melt Down<br>Create +${format(coriumToGet)}<br>Corium`
     }
     unlockTabs()
     tabChangeHTML()

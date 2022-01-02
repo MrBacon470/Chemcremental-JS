@@ -14,6 +14,7 @@ function getDefaultObject() {
         power: D(0),
         powerUps: [D(0),D(0),D(0)],
         corium: D(0),
+        coriumMax: D(0),
         coriumMultUps: [D(0),D(0),D(0)],
         coriumSingUps: [false,false,false],
         hasTab: [false, false, false, false],
