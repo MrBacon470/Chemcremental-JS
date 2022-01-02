@@ -82,7 +82,7 @@
         
     </div>
     <div id="powerHolder" class="flexBox holder">
-        <button id="generator" onclick="generatePower()" class="power" style="margin-top: 40px; border: 5px solid #b0b835; margin-right: 50px; height: 30em; font-size: 15px;">Generate Power<br>Requires 3 Propane & 1 Water<br>+0.00 Power</button>
+        <button id="generator" onclick="generatePower()" class="power" style="margin-top: 40px; border: 5px solid #b0b835; margin-right: 50px; width:18em; height: 30em; font-size: 15px;">Generate Power<br>Requires 3 Propane & 1 Water<br>+0.00 Power</button>
         <div style="display:flex; flex-direction: column;">
             <div style="display: flex; flex-direction: row; margin-left: 50px; margin-top: 40px;">
                 <button onclick="purchasePowerUp(0)" id="pu1" class="power powerUp" style="border: 5px solid #b0b835; ">Super Charge<br>Increase atom production by 2x<br>Cost: 5.00 Power<br>Level: 0.00</button>
@@ -124,6 +124,7 @@
         <div>
             <button onclick="fullReset()" class="settings" style="border: 3px solid gray;">Export & Delete Savefile</button>
             <button onclick="exportSave()" class="settings" style="border: 3px solid gray;">Export Savefile to clipboard</button>
+            <button onclick="save()" class="settings" style="border: 3px solid gray;">Manually Save</button>
             <button onclick="importSave()" class="settings" style="border: 3px solid gray;">Import Savefile</button>
             <button onclick="deleteSave()" id="delete" style="border: 3px solid #ad4242;">Delete Savefile</button>
         </div>

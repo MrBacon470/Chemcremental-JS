@@ -49,10 +49,16 @@ function updateHTML(){
         }
     }
     else if(data.currentTab === 3) {
-        document.getElementById('generator').innerHTML = `Generate Power<br>Requires 3 Propane & 1 Water<br>+${format(powerGain)} Power`
+        document.getElementById('generator').innerHTML = data.compounds[1].amt.gte(1) ? `Generate Power<br>+${format(powerGain)} Power` : "Generate Power<br>Req: 3 Propane + 1 Water"
         powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Power<br>Level: ${format(data.powerUps[0])}`
         powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
         powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 0.1x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
+    }
+    else if(data.currentTab === 4) {
+        let elementSum = D(0)
+        for(let i = 0; i < data.elements.length; i++)
+            elementSum = elementSum.plus(data.elements[i].amt)
+        document.getElementById('meltDown').innerHTML = elementSum.gte(1e20) ? "Melt Down<br>Requires 1e20<br>Total Elements" : `Melt Down<br>Create +0.00<br>Corium`
     }
     unlockTabs()
     tabChangeHTML()

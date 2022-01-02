@@ -1,7 +1,7 @@
 function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
         if(i === 7) {
-            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.divide(4)).times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0]))
+            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.divide(4)).times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0] + (4 * data.coriumMultUps[0])))
         }
         else {
             data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0] + powerBoosts[0]))
@@ -45,7 +45,7 @@ function updateBoosts() {
     powerBoosts[0] = D(2).times(data.powerUps[0])
     powerBoosts[1] = D(10).times(data.powerUps[1])
     powerBoosts[2] = D(0.1).times(data.powerUps[2])
-    powerLimit = D(100).plus(powerBoosts[1])
+    powerLimit = D(100).plus(powerBoosts[1] * (compoundBoosts[2]))
 }
 
 function toggleBuyAmount(i) {
