@@ -40,7 +40,7 @@ function mainLoop(){
 
 function updateBoosts() {
     for(let i = 0; i < 5; i++)
-        compoundBoosts[i] = data.compounds[i].amt.gt(0) ? D(1).add(Decimal.sqrt(data.compounds[i].amt / 4)) : D(1)
+        compoundBoosts[i] = data.compounds[i].amt.gt(0) ? D(1).add(Decimal.sqrt(data.compounds[i].amt / 8)) : D(1)
 
     powerBoosts[0] = D(2).times(data.powerUps[0])
     powerBoosts[1] = D(10).times(data.powerUps[1])
