@@ -64,7 +64,7 @@ function updateHTML(){
     }
     else if(data.currentTab === 4) {
         
-        document.getElementById('meltDown').innerHTML = elementSum < 1e20 ? "Melt Down<br>Requires 1e20<br>Total Elements" : `Melt Down<br>Create +${format(coriumToGet)}<br>Corium`
+        document.getElementById('meltDown').innerHTML = sumOfElements >= 1e20 ? `Melt Down<br>Create +${format(coriumToGet)}<br>Corium` : "Melt Down<br>Requires 1e20<br>Total Elements"
         for(let i = 0; i < 3; i++) {
             document.getElementById(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${format(coriumMultCosts[i])} Corium<br>Level: ${format(data.coriumMultUps[i])}`
         }

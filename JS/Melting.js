@@ -6,7 +6,8 @@ let coriumMultBoosts = [D(0),D(0),D(0)]
 let coriumBoost = D(0)
 
 function meltDown() {
-    if(elementSum < 1e20) return;
+    sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
+    if(sumOfElements < 1e20) return;
     if(data.confirmPrestige[0])
         if(!confirm('Are you sure you want to prestige? This will reset everything in exchange for corium')) return
     data.corium = data.corium.plus(coriumToGet)
