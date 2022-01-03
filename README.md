@@ -7,6 +7,7 @@ Less Content (As of right now)<br>
 Redone UI<br>
 Different Number Library<br>
 Different Balancing Changes
-# Known Problems
+# Known Problems/Notes
 Background Hover dissapears behind subscripts<br>
-Tab Background remains gray after unlock until refreshed
+Tab Background remains gray after unlock until refreshed<br>
+Note: Game will remain in beta until after the second layer is implemented
