@@ -21,7 +21,7 @@ function getDefaultObject() {
         time: Date.now(),
         currentTab: 1,
         confirmPrestige: [true],
-        currentUpdate: 'v0.0.5',
+        currentUpdate: 'v0.1.1',
     }
 }
 let data = getDefaultObject()
@@ -52,7 +52,7 @@ function fixSave(main=getDefaultObject(), data) {
 }
 function fixOldSaves(){
     //fix important things from old versions
-    if (data.currentUpdate==='v0.0.0') data.currentUpdate='v0.0.5'
+    if (data.currentUpdate==='v0.0.0') data.currentUpdate='v0.1.1'
     if (data.currentUpdate==='v0.0.0'){
         //deleteSave()
     }
