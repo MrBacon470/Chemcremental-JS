@@ -21,12 +21,13 @@ for(let i=0; i < 3; i++) {
 const powerUpButton = []
 for(let i=0; i < 3; i++)
     powerUpButton[i] = document.getElementById(`pu${i+1}`)
+const coriumMultDesc =['Increase Atom Production by 4x','Increase Compounds Created by 1.25x','Increase Corium Produced on Melt']
 // endregion
 function updateHTML(){
     
     elementSum = data.elements[0].amt + data.elements[1].amt + data.elements[2].amt + data.elements[3].amt + data.elements[4].amt + data.elements[5].amt + data.elements[6].amt + data.elements[7].amt 
     document.getElementById('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
-    document.getElementById('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(1 + Decimal.sqrt(data.coriumMax))}x`
+    document.getElementById('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
     for(let i = 0; i < 3; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
@@ -61,6 +62,9 @@ function updateHTML(){
     else if(data.currentTab === 4) {
         
         document.getElementById('meltDown').innerHTML = elementSum > 1e20 ? "Melt Down<br>Requires 1e20<br>Total Elements" : `Melt Down<br>Create +${format(coriumToGet)}<br>Corium`
+        for(let i = 0; i < 3; i++) {
+            document.getElementById(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${format(coriumMultCosts)} Corium<br>Level: ${format(data.coriumMultUps[i])}`
+        }
     }
     unlockTabs()
     tabChangeHTML()
