@@ -96,7 +96,7 @@
         </div>
     </div>
     <div id="meltingHolder" class="flexBox holder">
-        <button id="meltDown" class="melt" style="margin-top: 25px; border: 5px solid #68368a; margin-right: 50px; width:12em; height: 20em; font-size: 23px;">Melt Down<br>Create +0.00<br>Corium</button>
+        <button id="meltDown" onclick="meltDown()" class="melt" style="margin-top: 25px; border: 5px solid #68368a; margin-right: 50px; width:12em; height: 20em; font-size: 23px;">Melt Down<br>Create +0.00<br>Corium</button>
         <div style="display:flex; flex-direction: column;">
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
                 <button onclick="" id="cm1" class="melt powerUp" style="border: 5px solid #68368a; ">Increase Atom Production by 4x<br>Cost: 1.00e3<br>Level: 0.00</button>
@@ -128,17 +128,28 @@
             <button onclick="importSave()" class="settings" style="border: 3px solid gray;">Import Savefile</button>
             <button onclick="deleteSave()" id="delete" style="border: 3px solid #ad4242;">Delete Savefile</button>
         </div>
+        <div style="margin-top: 5px;">
+            <button onclick="toggleConfirmation(0)" id="meltConfirm" class="settings" style="border: 3px solid gray;">Melting Confirmation [ON]</button>
+        </div>
         <br>
         <div style="display:inline;">
+        <br>
+        <h3>Think the game is missing a good feature? Open a new issue on the <a href="https://github.com/MrBacon470/Chemcremental-JS">github repo</a> with the enhancement tag</h3>
+        <h3>Check out more of my games on <a href="https://mrbacon470.github.io/">my website</a></h3>
+        <br>
         <h1>Changelog :D</h1>
         <h3 style="color:#9541af;">Purple Text Indicates Current Version</h3>
         <br>
         <hr>
+        <h3>Early Access Beta</h3>
         <br>
+        <p style="color:#9541af;">β0.1.0 - Early Access Launch</p>
         <hr>
         <h3>Pre-Release Development Alpha</h3>
-        <hr>
-        <p style="color:#9541af;">α0.0.7 - NaN Patch & Corium UI</p>
+        <br>
+        <p>α0.0.9 - Melt Area Display Fixes</p>
+        <p>α0.0.8 - Melt Down & Corium Multi Upgrade Functionality</p>
+        <p>α0.0.7 - NaN Patch & Corium UI</p>
         <p>α0.0.6 - Miscellaneous Changes</p>
         <p>α0.0.5 - Element Rebalanced and Settings Area added</p>
         <p>α0.0.4 - Power Functionality Added and Buy Amount System</p>

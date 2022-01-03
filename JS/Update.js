@@ -25,7 +25,7 @@ const coriumMultDesc =['Increase Atom Production by 4x','Increase Compounds Crea
 // endregion
 function updateHTML(){
     
-    elementSum = data.elements[0].amt + data.elements[1].amt + data.elements[2].amt + data.elements[3].amt + data.elements[4].amt + data.elements[5].amt + data.elements[6].amt + data.elements[7].amt 
+    sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     document.getElementById('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
     document.getElementById('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
     for(let i = 0; i < 3; i++) {
@@ -36,7 +36,10 @@ function updateHTML(){
     for(let i = 0; i < data.buyAmounts.length; i++)
         document.getElementById(`bA${i}`).innerHTML = `Buy Amount<br>${data.buyAmounts[i]}`
 
-    if (data.currentTab === 1) {
+    if(data.currentTab === 0) {
+        document.getElementById('meltConfirm').innerHTML = data.confirmPrestige[0] ? 'Melting Confirmation [ON]' : 'Melting Confirmation [OFF]'
+    }
+    else if (data.currentTab === 1) {
         for(let i = 0;i < 8;i++) {
             if(i == 0)
                 elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]})<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
@@ -61,9 +64,9 @@ function updateHTML(){
     }
     else if(data.currentTab === 4) {
         
-        document.getElementById('meltDown').innerHTML = elementSum > 1e20 ? "Melt Down<br>Requires 1e20<br>Total Elements" : `Melt Down<br>Create +${format(coriumToGet)}<br>Corium`
+        document.getElementById('meltDown').innerHTML = elementSum < 1e20 ? "Melt Down<br>Requires 1e20<br>Total Elements" : `Melt Down<br>Create +${format(coriumToGet)}<br>Corium`
         for(let i = 0; i < 3; i++) {
-            document.getElementById(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${format(coriumMultCosts)} Corium<br>Level: ${format(data.coriumMultUps[i])}`
+            document.getElementById(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${format(coriumMultCosts[i])} Corium<br>Level: ${format(data.coriumMultUps[i])}`
         }
     }
     unlockTabs()

@@ -20,6 +20,7 @@ function getDefaultObject() {
         hasTab: [false, false, false, false],
         time: Date.now(),
         currentTab: 1,
+        confirmPrestige: [true],
         currentUpdate: 'v0.0.5',
     }
 }

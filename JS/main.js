@@ -1,10 +1,10 @@
 function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
         if(i === 7) {
-            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.divide(4)).times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0] + (4 * data.coriumMultUps[0])))
+            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.divide(4)).times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0] + coriumMultBoosts[0]))
         }
         else {
-            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0] + powerBoosts[0]))
+            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0] + powerBoosts[0] + coriumMultBoosts[0]))
         }
     }
 }
@@ -38,7 +38,7 @@ function mainLoop(){
     powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     coriumToGet = D(0)
-    coriumToGet = 1 + Decimal.sqrt(sumOfElements / 1e16)
+    coriumToGet = 1 + (Decimal.sqrt(sumOfElements / 1e16).times(coriumMultBoosts[2] + compoundBoosts[4]))
 }
 
 function updateBoosts() {
@@ -49,6 +49,10 @@ function updateBoosts() {
     powerBoosts[1] = D(10).times(data.powerUps[1])
     powerBoosts[2] = D(0.1).times(data.powerUps[2])
     powerLimit = D(100).plus(powerBoosts[1] * (compoundBoosts[2]))
+
+    coriumMultBoosts[0] = D(4).times(data.coriumMultUps[0])
+    coriumMultBoosts[1] = data.coriumMultUps[1] > 0 ? D(1.25).times(data.coriumMultUps[1]) : D(1)
+    coriumMultBoosts[2] = data.coriumMultUps[2] > 0 ? D(0.5).times(data.coriumMultUps[2]) : D(1)
 }
 
 function toggleBuyAmount(i) {
@@ -60,6 +64,10 @@ function toggleBuyAmount(i) {
         data.buyAmounts[i] = 1000
     else if(data.buyAmounts[i] === 1000)
         data.buyAmounts[i] = 1
+}
+
+function toggleConfirmation(i){
+    data.confirmPrestige[i] = !data.confirmPrestige[i]
 }
 
 /* Didn't Work
