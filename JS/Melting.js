@@ -38,17 +38,17 @@ function updateMeltCost() {
 function purchaseMeltUp(x) {
     switch(x) {
         case 'm1':
-            if(data.corium.lt(coriumMultCosts[0])) return
+            if(data.corium < coriumMultCosts[0]) return
             data.corium = data.corium.minus(coriumMultCosts[0])
             data.coriumMultUps[0] = data.coriumMultUps[0].plus(D(1))
             break;
         case 'm2':
-            if(data.corium.lt(coriumMultCosts[1])) return
+            if(data.corium < coriumMultCosts[1]) return
             data.corium = data.corium.minus(coriumMultCosts[1])
             data.coriumMultUps[1] = data.coriumMultUps[1].plus(D(1))
             break;
         case 'm3':
-            if(data.corium.lt(coriumMultCosts[2])) return
+            if(data.corium < coriumMultCosts[2]) return
             data.corium = data.corium.minus(coriumMultCosts[2])
             data.coriumMultUps[2] = data.coriumMultUps[2].plus(D(1))
             break;

@@ -1,10 +1,10 @@
 function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
         if(i === 7) {
-            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.divide(4)).times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0] + coriumMultBoosts[0]))
+            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.divide(4)).times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax)))
         }
         else {
-            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0] + powerBoosts[0] + coriumMultBoosts[0]))
+            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax)))
         }
     }
 }
