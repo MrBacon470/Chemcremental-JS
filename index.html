@@ -99,13 +99,13 @@
         <button id="meltDown" onclick="meltDown()" class="melt" style="margin-top: 25px; border: 5px solid #68368a; margin-right: 50px; width:12em; height: 20em; font-size: 23px;">Melt Down<br>Create +0.00<br>Corium</button>
         <div style="display:flex; flex-direction: column;">
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
-                <button onclick="purchaseMeltUp(m1)" id="cm1" class="melt powerUp" style="border: 5px solid #68368a; ">Increase Atom Production by 4x<br>Cost: 1.00e3<br>Level: 0.00</button>
+                <button onclick="purchaseMeltUp('m1')" id="cm1" class="melt powerUp" style="border: 5px solid #68368a; ">Increase Atom Production by 4x<br>Cost: 1.00e3<br>Level: 0.00</button>
             </div>
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
-                <button onclick="purchaseMeltUp(m2)" id="cm2" class="melt powerUp" style="border: 5px solid #68368a; ">Increase Compounds Created by 1.25x<br>Cost: 1.00e5<br>Level: 0.00</button>
+                <button onclick="purchaseMeltUp('m2')" id="cm2" class="melt powerUp" style="border: 5px solid #68368a; ">Increase Compounds Created by 1.25x<br>Cost: 1.00e5<br>Level: 0.00</button>
             </div>
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
-                <button onclick="purchaseMeltUp(m3)" id="cm3" class="melt powerUp" style="border: 5px solid #68368a; ">Increase Corium Produced On Melt<br>Cost: 1.00e10<br>Level: 0.00</button>
+                <button onclick="purchaseMeltUp('m3')" id="cm3" class="melt powerUp" style="border: 5px solid #68368a; ">Increase Corium Produced On Melt<br>Cost: 1.00e10<br>Level: 0.00</button>
             </div>
         </div>
         <div style="display:flex; flex-direction: column;">
@@ -119,6 +119,9 @@
                 <button onclick="" id="cs3" class="melt powerUp" style="border: 5px solid #68368a; ">Currently Offline</button>
             </div>
         </div>
+    </div>
+    <div id="forgeHolder" class="flexBox holder">
+
     </div>
     <div id="settingsHolder" class="flexBox holder" style="display:flex; flex-direction: column;">
         <div>
@@ -143,7 +146,8 @@
         <hr>
         <h3>Early Access Beta</h3>
         <br>
-        <p style="color:#9541af;">β0.1.2 - Corium Boost Effect Works + Working on Melt Upgrade Fix</p>
+        <p style="color:#9541af;">β0.1.3 - Melt Upgrades Now Work</p>
+        <p>β0.1.2 - Corium Boost Effect Works + Working on Melt Upgrade Fix</p>
         <p>β0.1.1 - Corium Display and Melt Down Fix</p>
         <p>β0.1.0 - Early Access Launch</p>
         <hr>
