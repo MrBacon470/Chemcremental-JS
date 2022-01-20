@@ -1,14 +1,18 @@
 
 
 function calculateElementGain() {
+    console.log(data.elementGain[0])
     for(let i = 0; i < 8; i++) {
+        
         if(i === 7) {
-            data.elementGain[i] = data.elements[i].level.divide(10000).times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax))
+            data.elementGain[i] = (data.elements[i].level.times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax)))
         }
         else {
-            data.elementGain[i] = (data.elements[i].level.divide(10000).times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax))
+            data.elementGain[i] = ((data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax)))
         }
     }
+    for(let i = 0; i < 8; i++)
+        data.elementGain[i] = data.compounds[0].amt.gt(D(0)) ? data.elementGain[i] : data.elementGain[i].divide(D(10000)) 
 }
 
 function increaseElements(x,i) {
