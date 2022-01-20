@@ -1,5 +1,5 @@
 let coriumToGet = D(0)
-const coriumMultCostBase = [D(1e5),D(1e9),D(1e12)]
+const coriumMultCostBase = [D(1e5),D(1e3),D(1e10)]
 let coriumMultCosts = [D(0),D(0),D(0)]
 const coriumSingCost = [D(1e12),D(1e15),D(1e17)]
 let coriumMultBoosts = [D(0),D(0),D(0)]
@@ -7,7 +7,7 @@ let coriumBoost = D(0)
 
 function meltDown() {
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
-    if(sumOfElements < 1e20) return;
+    if(sumOfElements < 1e8) return;
     if(data.confirmPrestige[0])
         if(!confirm('Are you sure you want to prestige? This will reset everything in exchange for corium')) return
     data.corium = data.corium.plus(coriumToGet)

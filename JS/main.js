@@ -3,10 +3,10 @@
 function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
         if(i === 7) {
-            data.elementGain[i] = data.elements[i].level.divide(4).times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax))
+            data.elementGain[i] = data.elements[i].level.divide(10000).times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax))
         }
         else {
-            data.elementGain[i] = (data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax))
+            data.elementGain[i] = (data.elements[i].level.divide(10000).times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax))
         }
     }
 }
@@ -28,8 +28,6 @@ function switchTab(i){
 let sumOfElements = D(0)
 let diff
 function mainLoop(){
-    //let diff = (Date.now()-data.time)/1000
-    //data.time = Date.now()
     diff = data.settingsToggles[1]?(Date.now()-data.time)*data.devSpeed/1000:getRandom(0.048, 0.053)*data.devSpeed
     data.time = Date.now()
     updateBoosts()
@@ -43,7 +41,7 @@ function mainLoop(){
     powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     coriumToGet = D(0)
-    coriumToGet = 1 + (Decimal.sqrt(sumOfElements / 1e16).times(coriumMultBoosts[2] + compoundBoosts[4]))
+    coriumToGet = 1 + (Decimal.sqrt(sumOfElements).times(coriumMultBoosts[2] + compoundBoosts[4]))
 }
 
 function updateBoosts() {

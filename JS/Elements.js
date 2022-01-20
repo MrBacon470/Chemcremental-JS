@@ -1,5 +1,5 @@
-const elementBase = [D(10), D(1e5), D(1e7), D(5e7), D(1e8), D(5e8), D(1e9), D(5e9)]
-const elementScale = [D(1.0), D(1.15), D(1.20), D(1.25), D(1.35), D(1.40), D(1.45), D(1.50)]
+const elementBase = [D(10), D(1e2), D(1e3), D(1e4), D(1e5), D(1e6), D(1e7), D(1e8)]
+const elementScale = [D(1.1), D(1.15), D(1.20), D(1.25), D(1.35), D(1.40), D(1.45), D(1.50)]
 let elementCost = []
 
 function updateCosts() {

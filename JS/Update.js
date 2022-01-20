@@ -22,7 +22,7 @@ const powerUpButton = []
 for(let i=0; i < 3; i++)
     powerUpButton[i] = document.getElementById(`pu${i+1}`)
 const coriumMultDesc =['Increase Atom Production by 4x','Increase Compounds Created by 1.25x','Increase Corium Produced on Melt']
-const coriumSingDesc = ['Unlock the Forge (Automation)<br>Cost: 1.00e12 Corium','Unlock Passive Power Production<br>Cost: 1.00e15 Corium','Radition Not Implemented']
+const coriumSingDesc = ['Unlock the Forge (Automation)<br>Cost: 1.00e10 Corium','Unlock Passive Power Production<br>Cost: 1.00e15 Corium','Radition Not Implemented']
 // endregion
 function updateHTML(){
     
@@ -66,7 +66,7 @@ function updateHTML(){
     }
     else if(data.currentTab === 4) {
         
-        document.getElementById('meltDown').innerHTML = sumOfElements >= 1e20 ? `Melt Down<br>Create +${format(coriumToGet)}<br>Corium` : "Melt Down<br>Requires 1e20<br>Total Elements"
+        document.getElementById('meltDown').innerHTML = sumOfElements >= 1e8 ? `Melt Down<br>Create +${format(coriumToGet)}<br>Corium` : "Melt Down<br>Requires 1e8<br>Total Elements"
         for(let i = 0; i < 3; i++) {
             document.getElementById(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${format(coriumMultCosts[i])} Corium<br>Level: ${format(data.coriumMultUps[i])}`
             document.getElementById(`cs${i+1}`).innerHTML = data.coriumSingUps[i] ? 'Unlocked' : coriumSingDesc[i]
