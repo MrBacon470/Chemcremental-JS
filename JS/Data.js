@@ -37,8 +37,7 @@ function load() {
         alert(`Welcome Back! The Current Version is v0.2.0, If you are seeing this message this update reset all previous saves due to major changes that affect all gameplay.`)
         data.currentUpdate = 'v0.2.0'
         //Reset only for Beta delete next update
-        window.localStorage.removeItem('chemJSSave')
-        location.reload()
+        noConfirmDelete()
     }
     //fixOldSaves()
 }
@@ -60,7 +59,7 @@ function fixSave(main=getDefaultObject(), data) {
 }
 function fixOldSaves(){
     //fix important things from old versions
-    if (data.currentUpdate==='v0.0.0') data.currentUpdate='v0.1.1'
+    if (data.currentUpdate!=='v0.2.0') data.currentUpdate='v0.1.1'
     if (data.currentUpdate==='v0.0.0'){
         //deleteSave()
     }
@@ -99,5 +98,10 @@ function deleteSave(){
         window.localStorage.removeItem('chemJSSave')
         location.reload()
     } 
+}
+
+function noConfirmDelete(){
+    window.localStorage.removeItem('chemJSSave')
+    location.reload()
 }
 
