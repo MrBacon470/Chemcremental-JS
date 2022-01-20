@@ -1,10 +1,12 @@
+
+
 function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
         if(i === 7) {
-            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.divide(4)).times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax)))
+            data.elementGain[i] = data.elements[i].level.divide(4).times(compoundBoosts[0] + compoundBoosts[3] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax))
         }
         else {
-            data.elementGain[i] = data.elementGain[i].plus((data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax)))
+            data.elementGain[i] = (data.elements[i].level.times((1 + Decimal.sqrt(data.elements[i + 1].max)))).times(compoundBoosts[0] + powerBoosts[0] + coriumMultBoosts[0] + Decimal.sqrt(data.coriumMax))
         }
     }
 }
@@ -24,8 +26,11 @@ function switchTab(i){
     tabChangeHTML()
 }
 let sumOfElements = D(0)
+let diff
 function mainLoop(){
-    let diff = (Date.now()-data.time)/1000
+    //let diff = (Date.now()-data.time)/1000
+    //data.time = Date.now()
+    diff = data.settingsToggles[1]?(Date.now()-data.time)*data.devSpeed/1000:getRandom(0.048, 0.053)*data.devSpeed
     data.time = Date.now()
     updateBoosts()
     updateHTML()
@@ -66,8 +71,8 @@ function toggleBuyAmount(i) {
         data.buyAmounts[i] = 1
 }
 
-function toggleConfirmation(i){
-    data.confirmPrestige[i] = !data.confirmPrestige[i]
+function toggleButton(i){
+    data.settingsToggles[i] = !data.settingsToggles[i]
 }
 
 /* Didn't Work

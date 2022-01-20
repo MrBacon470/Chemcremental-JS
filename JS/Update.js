@@ -12,23 +12,24 @@ for(let i = 0; i < 5; i++) {
     compoundButtons[i] = document.getElementById(`${data.compounds[i].name}`)
 }
 const tabs = []
-const tabIDs = ['cB','pB','mB']
-const tabNames = ['Compounds','Power','Melting']
-const colors = ['3a5b99','b0b835','68368a']
-for(let i=0; i < 3; i++) {
+const tabIDs = ['cB','pB','mB','fB']
+const tabNames = ['Compounds','Power','Melting','Forge']
+const colors = ['3a5b99','b0b835','68368a','9f3c3c']
+for(let i=0; i < 4; i++) {
     tabs[i] = document.getElementById(`${tabIDs[i]}`)
 }
 const powerUpButton = []
 for(let i=0; i < 3; i++)
     powerUpButton[i] = document.getElementById(`pu${i+1}`)
 const coriumMultDesc =['Increase Atom Production by 4x','Increase Compounds Created by 1.25x','Increase Corium Produced on Melt']
+const coriumSingDesc = ['Unlock the Forge (Automation)<br>Cost: 1.00e12 Corium','Unlock Passive Power Production<br>Cost: 1.00e15 Corium','Radition Not Implemented']
 // endregion
 function updateHTML(){
     
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     document.getElementById('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
     document.getElementById('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
-    for(let i = 0; i < 3; i++) {
+    for(let i = 0; i < 4; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
         tabs[i].style.border = !data.hasTab[i] ? '4px solid gray' : `4px solid #${colors[i]}`
@@ -37,7 +38,8 @@ function updateHTML(){
         document.getElementById(`bA${i}`).innerHTML = `Buy Amount<br>${data.buyAmounts[i]}`
 
     if(data.currentTab === 0) {
-        document.getElementById('meltConfirm').innerHTML = data.confirmPrestige[0] ? 'Melting Confirmation [ON]' : 'Melting Confirmation [OFF]'
+        document.getElementById('toggle1').innerHTML = data.settingsToggles[0] ? 'Melting Confirmation [ON]' : 'Melting Confirmation [OFF]'
+        document.getElementById('toggle2').innerHTML = data.settingsToggles[1] ? 'Enable Offline Progress [ON]' : 'Enable Offline Progress [OFF]'
     }
     else if (data.currentTab === 1) {
         for(let i = 0;i < 8;i++) {
@@ -67,6 +69,7 @@ function updateHTML(){
         document.getElementById('meltDown').innerHTML = sumOfElements >= 1e20 ? `Melt Down<br>Create +${format(coriumToGet)}<br>Corium` : "Melt Down<br>Requires 1e20<br>Total Elements"
         for(let i = 0; i < 3; i++) {
             document.getElementById(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${format(coriumMultCosts[i])} Corium<br>Level: ${format(data.coriumMultUps[i])}`
+            document.getElementById(`cs${i+1}`).innerHTML = data.coriumSingUps[i] ? 'Unlocked' : coriumSingDesc[i]
         }
     }
     unlockTabs()

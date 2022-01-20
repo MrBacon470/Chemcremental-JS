@@ -20,8 +20,9 @@ function getDefaultObject() {
         hasTab: [false, false, false, false],
         time: Date.now(),
         currentTab: 1,
-        confirmPrestige: [true],
-        currentUpdate: 'v0.1.1',
+        settingsToggles: [true,true],
+        currentUpdate: 'v0.1.4',
+        devSpeed: 1,
     }
 }
 let data = getDefaultObject()
@@ -32,7 +33,12 @@ function save(){
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem('chemJSSave'))
     if (savedata !== undefined) fixSave(data, savedata)
-    fixOldSaves()
+    if(data.currentUpdate !== 'v0.1.4') {
+        alert(`Welcome Back! The Current Version is v0.1.4`)
+        data.currentUpdate = 'v0.1.4'
+        
+    }
+    //fixOldSaves()
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {

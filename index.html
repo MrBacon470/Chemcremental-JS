@@ -18,7 +18,7 @@
         <button id="cB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid #3a5b99;">Compounds</button>
         <button id="pB" class="tabButton" onclick="switchTab(3)" style="border: 4px solid #b0b835;">Power</button>
         <button id="mB" class="tabButton" onclick="switchTab(4)" style="border: 4px solid #68368a;">Melting</button>
-        <button id="2B" class="tabButton" style="border: 4px solid gray;">N/A</button>
+        <button id="fB" class="tabButton" onclick="switchTab(5)" style="border: 4px solid #9f3c3c;">Forge</button>
         <button id="sB" class="tabButton" onclick="switchTab(0)" style="border: 4px solid gray;">Settings</button>
     </div>
     <div id="elementHolder" class="flexBox holder">
@@ -120,8 +120,9 @@
             </div>
         </div>
     </div>
-    <div id="forgeHolder" class="flexBox holder">
-
+    <div id="forgeHolder" class="flexBox holder" style="display:none;">
+        <button id="fuelTank" style="border: 5px solid #9f3c3c; margin-right: 50px; width:10em; height: 16em; font-size: 20px;">Fuel Avaliable<br>0/100<br>Time Remaining: 00:00:00</button>
+        <button id="forgeAuto1"></button>
     </div>
     <div id="settingsHolder" class="flexBox holder" style="display:flex; flex-direction: column;">
         <div>
@@ -132,7 +133,8 @@
             <button onclick="deleteSave()" id="delete" style="border: 3px solid #ad4242;">Delete Savefile</button>
         </div>
         <div style="margin-top: 5px;">
-            <button onclick="toggleConfirmation(0)" id="meltConfirm" class="settings" style="border: 3px solid gray;">Melting Confirmation [ON]</button>
+            <button onclick="toggleButton(0)" id="toggle1" class="settings" style="border: 3px solid gray;">Melting Confirmation [ON]</button>
+            <button onclick="toggleButton(1)" id="toggle2" class="settings" style="border: 3px solid gray;">Enable Offline Progress [ON]</button>
         </div>
         <br>
         <div style="display:inline;">
@@ -146,7 +148,8 @@
         <hr>
         <h3>Early Access Beta</h3>
         <br>
-        <p style="color:#9541af;">β0.1.3 - Melt Upgrades Now Work</p>
+        <p style="color:#9541af;">β0.1.4 - Misc Changes, Rebalancing Part 1</p>
+        <p>β0.1.3 - Melt Upgrades Now Work</p>
         <p>β0.1.2 - Corium Boost Effect Works + Working on Melt Upgrade Fix</p>
         <p>β0.1.1 - Corium Display and Melt Down Fix</p>
         <p>β0.1.0 - Early Access Launch</p>
@@ -169,6 +172,7 @@
 </body>
 <script src="JS/Internal/BreakEternity.js"></script>
 <script src="JS/Internal/Formatting.js"></script>
+<script src="JS/Internal/MyMath.js"></script>
 <script src="JS/Data.js"></script>
 <script src="JS/Update.js"></script>
 <script src="JS/main.js"></script>
