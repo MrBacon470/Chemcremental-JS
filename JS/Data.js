@@ -33,15 +33,15 @@ function save(){
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem('chemJSSave'))
     if (savedata !== undefined) fixSave(data, savedata)
-    if(data.currentUpdate !== 'v0.2.1' && data.currentUpdate !== 'v0.2.0') {
-        alert(`Welcome Back! The Current Version is v0.2.1, If you are seeing this message this update reset all previous saves due to major changes that affect all gameplay.`)
-        data.currentUpdate = 'v0.2.1'
+    if(data.currentUpdate === 'v0.1.0' || data.currentUpdate === 'v0.1.1' || data.currentUpdate === 'v0.1.2' || data.currentUpdate === 'v0.1.3' || data.currentUpdate === 'v0.1.4') {
+        alert(`Welcome Back! The Current Version is v0.2.2, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
+        data.currentUpdate = 'v0.2.2'
         //Reset only for Beta delete next update
         noConfirmDelete()
     }
-    else if(data.currentUpdate !== 'v0.2.1') {
-        alert(`Welcome Back! The current version is v0.2.1`)
-        data.currentUpdate = 'v0.2.1' 
+    else if(data.currentUpdate !== 'v0.2.2') {
+        alert(`Welcome Back! The current version is v0.2.2`)
+        data.currentUpdate = 'v0.2.2' 
     }
     //fixOldSaves()
 }
