@@ -21,7 +21,7 @@ function getDefaultObject() {
         time: Date.now(),
         currentTab: 1,
         settingsToggles: [true,true],
-        currentUpdate: 'v0.2.1',
+        currentUpdate: 'v0.2.2',
         devSpeed: 1,
     }
 }
