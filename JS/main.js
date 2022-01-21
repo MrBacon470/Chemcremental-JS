@@ -4,10 +4,20 @@ function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
         
         if(i === 7) {
-            data.elementGain[i] = (data.elements[i].level.times(compoundBoosts[0].add(compoundBoosts[3]).add(powerBoosts[0]).add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax))))
+            //data.elementGain[i] = (data.elements[i].level.times(compoundBoosts[0].add(compoundBoosts[3]).add(powerBoosts[0]).add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax))))
+            data.elementGain[i] = data.elements[i].level.times(compoundBoosts[0])
+            data.elementGain[i] = data.elementGain[i].times(compoundBoosts[3])
+            data.elementGain[i] = data.elementGain[i].times(powerBoosts[0])
+            data.elementGain[i] = data.elementGain[i].times(coriumMultBoosts[0])
+            data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
         }
         else {
-            data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
+            //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
+            data.elementGain[i] = data.elements[i].level.times(D(1).add(Decimal.sqrt(data.elements[i + 1].max)))
+            data.elementGain[i] = data.elementGain[i].times(compoundBoosts[0])
+            data.elementGain[i] = data.elementGain[i].times(powerBoosts[0])
+            data.elementGain[i] = data.elementGain[i].times(coriumMultBoosts[0])
+            data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
         }
     }
     //for(let i = 0; i < 8; i++)
@@ -51,14 +61,14 @@ function mainLoop(){
 let elementBoosts
 function updateBoosts() {
     for(let i = 0; i < 5; i++)
-        compoundBoosts[i] = data.compounds[i].amt.gt(0) ? D(1).add(Decimal.sqrt(data.compounds[i].amt / 8)) : D(1)
+        compoundBoosts[i] = data.compounds[i].amt > D(0) ? D(1).add(Decimal.sqrt(data.compounds[i].amt / 8)) : D(1)
 
-    powerBoosts[0] = D(2).times(data.powerUps[0])
+    powerBoosts[0] = data.powerUps[0] === D(0) ? D(1) : D(2).times(data.powerUps[0])
     powerBoosts[1] = D(10).times(data.powerUps[1])
     powerBoosts[2] = D(0.1).times(data.powerUps[2])
     powerLimit = D(100).plus(powerBoosts[1] * (compoundBoosts[2]))
 
-    coriumMultBoosts[0] = D(4).times(data.coriumMultUps[0])
+    coriumMultBoosts[0] = data.coriumMultUps[0] > 0 ? D(4).times(data.coriumMultUps[0]) : D(1)
     coriumMultBoosts[1] = data.coriumMultUps[1] > 0 ? D(1.25).times(data.coriumMultUps[1]) : D(1)
     coriumMultBoosts[2] = data.coriumMultUps[2] > 0 ? D(0.5).times(data.coriumMultUps[2]) : D(1)
     elementBoosts = compoundBoosts[0].add(powerBoosts[0])
