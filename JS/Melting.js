@@ -1,5 +1,5 @@
 let coriumToGet = D(0)
-const coriumMultCostBase = [D(1e5),D(1e3),D(1e10)]
+const coriumMultCostBase = [D(1e3),D(1e5),D(1e10)]
 let coriumMultCosts = [D(0),D(0),D(0)]
 const coriumSingCost = [D(1e10),D(1e15),D(1e38)]
 let coriumMultBoosts = [D(0),D(0),D(0)]
