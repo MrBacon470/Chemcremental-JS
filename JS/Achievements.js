@@ -32,10 +32,16 @@ function unlockAchieves() {
 const descriptionText = document.getElementById("achieveText")
 const achieveDescriptions = ['<hr>[1] - Hydrogenated<br>Buy your first Hydrogen Generator','<hr>[2] - The Element of Life<br>Buy your first Carbon Generator','<hr>[3] - No this is not air<br>Buy your first Oxygen Generator','<hr>[4] - Gimme your electrons<br>Buy your first Fluorine Generator',
 '<hr>[5] - Hey Stinky<br>Buy your first Sulfur Generator','<hr>[6] - Mmm Mustard Gas<br>Buy your first Chlorine Generator','<hr>[7] - Just Iron<br>Buy your first Iron Generator','<hr>[8] - Definitely not Peanut Butter<br>Buy your first Lead Generator',
+//9-16
 '<hr>[9] - There must be more to this game<br>Buy 10 Hydrogen Generators','<hr>[10] - Well you can make graphite at least<br>Buy 10 Carbon Generators','<hr>[11] - Still not air<br>Buy 10 Oxygen Generators','<hr>[12] - DiSulfur <b>DecaFloride</b><br>Buy 10 Fluorine Generators',
-'<hr>[13] - It just stinks more<br>Buy 10 Sulfur Generators','<hr>[14] - Ph+<br>Buy 10 Chlorine Generators','<hr>[15] - Um make steel or something idk<br>Buy 10 Iron Generators','<hr>[16] - X-Ray Protection<br>Buy 10 Lead Generators',
+'<hr>[13] - It just stinks more<br>Buy 10 Sulfur Generators','<hr>[14] - Ph-<br>Buy 10 Chlorine Generators','<hr>[15] - Um make steel or something idk<br>Buy 10 Iron Generators','<hr>[16] - X-Ray Protection<br>Buy 10 Lead Generators',
+//17-24
 '<hr>[17] - Just go get helium already<br>Buy 50 Hydrogen Generators','<hr>[18] - Diamonds<br>Buy 50 Carbon Generators','<hr>[19] - Nitrogen + Oxygen = Air<br>Buy 50 Oxygen Generators','<hr>[20] - Why are you making this stuff<br>Buy 50 Fluorine Generators',
-'<hr>[21] - Reeking Odor<br>Buy 50 Sulfur Generators','<hr>[22] - Ph++<br>Buy 50 Chlorine Generators','<hr>[23] - Steel > Iron<br>Buy 50 Iron Generators','<hr>[24] - ._. Don\'t eat that<br>Buy 50 Lead Generators']
+'<hr>[21] - Reeking Odor<br>Buy 50 Sulfur Generators','<hr>[22] - Ph--<br>Buy 50 Chlorine Generators','<hr>[23] - Steel > Iron<br>Buy 50 Iron Generators','<hr>[24] - ._. Don\'t eat that<br>Buy 50 Lead Generators',
+//25-32
+'<hr>[25] - Saturated<br>Buy 100 Hydrogen Generators','<hr>[26] - Crude Oil<br>Buy 100 Carbon Generators','<hr>[27] - Still need nitrogen<br>Buy 100 Oxygen Generators','<hr>[28] - All the electrons<br>Buy 100 Fluorine Generators',
+'<hr>[29] - Fools Gold<br>Buy 100 Sulfur Generators','<hr>[30] - The pool has had enough<br>Buy 100 Chlorine Generators','<hr>[31] - Solid Investment<br>Buy 100 Iron Generators','<hr>[32] - Lead Paints<br>Buy 100 Lead Generators']
+//33-40
 function changeDescription(id) {
     switch(id) {
         //All Hydrogen IDs
@@ -48,6 +54,9 @@ function changeDescription(id) {
         case 'H3':
             descriptionText.innerHTML = achieveDescriptions[16]
             break;
+        case 'H4':
+            descriptionText.innerHTML = achieveDescriptions[24]
+            break;
         //All Carbon IDs
         case 'C1':
             descriptionText.innerHTML = achieveDescriptions[1]
@@ -57,6 +66,9 @@ function changeDescription(id) {
             break;
         case 'C3':
             descriptionText.innerHTML = achieveDescriptions[17]
+            break;
+        case 'C4':
+            descriptionText.innerHTML = achieveDescriptions[25]
             break;
         //All Oxygen IDs
         case 'O1':
@@ -68,6 +80,9 @@ function changeDescription(id) {
         case 'O3':
             descriptionText.innerHTML = achieveDescriptions[18]
             break;
+        case 'O4':
+            descriptionText.innerHTML = achieveDescriptions[26]
+            break;
         //All Fluorine IDs
         case 'F1':
             descriptionText.innerHTML = achieveDescriptions[3]
@@ -77,6 +92,9 @@ function changeDescription(id) {
             break;
         case 'F3':
             descriptionText.innerHTML = achieveDescriptions[19]
+            break;
+        case 'F4':
+            descriptionText.innerHTML = achieveDescriptions[27]
             break;
         //All Sulfur IDs
         case 'S1':
@@ -88,6 +106,9 @@ function changeDescription(id) {
         case 'S3':
             descriptionText.innerHTML = achieveDescriptions[20]
             break;
+        case 'S4':
+            descriptionText.innerHTML = achieveDescriptions[28]
+            break;
         //All Chlorine IDs
         case 'Cl1':
             descriptionText.innerHTML = achieveDescriptions[5]
@@ -98,6 +119,9 @@ function changeDescription(id) {
         case 'Cl3':
             descriptionText.innerHTML = achieveDescriptions[21]
             break;
+        case 'Cl4':
+            descriptionText.innerHTML = achieveDescriptions[29]
+            break;
         //All Iron IDs
         case 'Fe1':
             descriptionText.innerHTML = achieveDescriptions[6]
@@ -106,7 +130,7 @@ function changeDescription(id) {
             descriptionText.innerHTML = achieveDescriptions[14]
             break;
         case 'Fe3':
-            descriptionText.innerHTML = achieveDescriptions[22]
+            descriptionText.innerHTML = achieveDescriptions[30]
             break;
         //All Lead IDs
         case 'Pb1':
@@ -117,6 +141,9 @@ function changeDescription(id) {
             break;
         case 'Pb3':
             descriptionText.innerHTML = achieveDescriptions[23]
+            break;
+        case 'Pb4':
+            descriptionText.innerHTML = achieveDescriptions[31]
             break;
         //Whatever comes next
     }
