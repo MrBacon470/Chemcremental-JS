@@ -24,7 +24,7 @@ function getDefaultObject() {
         time: Date.now(),
         currentTab: 1,
         settingsToggles: [true,true],
-        currentUpdate: 'v0.3.0',
+        currentUpdate: 'v0.3.1',
         devSpeed: 1,
     }
 }
@@ -37,14 +37,14 @@ function load() {
     let savedata = JSON.parse(window.localStorage.getItem('chemJSSave'))
     if (savedata !== undefined) fixSave(data, savedata)
     if(data.currentUpdate === 'v0.1.0' || data.currentUpdate === 'v0.1.1' || data.currentUpdate === 'v0.1.2' || data.currentUpdate === 'v0.1.3' || data.currentUpdate === 'v0.1.4') {
-        alert(`Welcome Back! The Current Version is v0.3.0, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
-        data.currentUpdate = 'v0.3.0'
+        alert(`Welcome Back! The Current Version is v0.3.1, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
+        data.currentUpdate = 'v0.3.1'
         //Reset only for Beta delete next update
         noConfirmDelete()
     }
     else if(data.currentUpdate !== 'v0.3.0') {
-        alert(`Welcome Back! The current version is v0.3.0`)
-        data.currentUpdate = 'v0.3.0' 
+        alert(`Welcome Back! The current version is v0.3.1`)
+        data.currentUpdate = 'v0.3.1' 
     }
     //fixOldSaves()
 }
