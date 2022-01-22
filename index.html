@@ -15,10 +15,10 @@
     </div>
     <div id="tabHolder" class="flexBox" style="flex-direction: row; margin-top: 20px; ">
         <button id="eB" class="tabButton" onclick="switchTab(1)" style="border: 4px solid #3c9f45;">Elements</button>
-        <button id="cB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid #3a5b99;">Compounds</button>
-        <button id="pB" class="tabButton" onclick="switchTab(3)" style="border: 4px solid #b0b835;">Power</button>
-        <button id="mB" class="tabButton" onclick="switchTab(4)" style="border: 4px solid #68368a;">Melting</button>
-        <button id="fB" class="tabButton" onclick="switchTab(5)" style="border: 4px solid #9f3c3c;">Forge</button>
+        <button id="cB" class="tabButton" onclick="switchTab(3)" style="border: 4px solid #3a5b99;">Compounds</button>
+        <button id="pB" class="tabButton" onclick="switchTab(4)" style="border: 4px solid #b0b835;">Power</button>
+        <button id="mB" class="tabButton" onclick="switchTab(5)" style="border: 4px solid #68368a;">Melting</button>
+        <button id="aB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid aquamarine;">Achievements</button>
         <button id="sB" class="tabButton" onclick="switchTab(0)" style="border: 4px solid gray;">Settings</button>
     </div>
     <div id="elementHolder" class="flexBox holder">
@@ -120,9 +120,92 @@
             </div>
         </div>
     </div>
-    <div id="forgeHolder" class="flexBox holder" style="display:none;">
-        <button id="fuelTank" style="border: 5px solid #9f3c3c; margin-right: 50px; width:10em; height: 16em; font-size: 20px;">Fuel Avaliable<br>0/100<br>Time Remaining: 00:00:00</button>
-        <button id="forgeAuto1"></button>
+    <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
+        <div style="display:flex;flex-direction: row;">
+            <div style="display:flex;flex-direction: column;">
+                <img onmouseover="changeDescription('H1')" id="H1"  src="CHEM Achieves/Hydrogen/H1-Locked.png" alt="" loading="lazy">
+                <img id="H2"  src="CHEM Achieves/Hydrogen/H2-Locked.png" alt="" loading="lazy">
+                <img id="H3"  src="CHEM Achieves/Hydrogen/H3-Locked.png" alt="" loading="lazy">
+                <img id="H4"  src="CHEM Achieves/Hydrogen/H4-Locked.png" alt="" loading="lazy">
+                <img id="H5"  src="CHEM Achieves/Hydrogen/H5-Locked.png" alt="" loading="lazy">
+                <img id="H6"  src="CHEM Achieves/Hydrogen/H6-Locked.png" alt="" loading="lazy">
+                <img id="H7"  src="CHEM Achieves/Hydrogen/H7-Locked.png" alt="" loading="lazy">
+                <img id="H8"  src="CHEM Achieves/Hydrogen/H8-Locked.png" alt="" loading="lazy">
+            </div>
+            <div style="display:flex;flex-direction: column;">
+                <img onmouseover="changeDescription('C1')"  id="C1"  src="CHEM Achieves/Carbon/C1-Locked.png" alt="" loading="lazy">
+                <img id="C2"  src="CHEM Achieves/Carbon/C2-Locked.png" alt="" loading="lazy">
+                <img id="C3"  src="CHEM Achieves/Carbon/C3-Locked.png" alt="" loading="lazy">
+                <img id="C4"  src="CHEM Achieves/Carbon/C4-Locked.png" alt="" loading="lazy">
+                <img id="C5"  src="CHEM Achieves/Carbon/C5-Locked.png" alt="" loading="lazy">
+                <img id="C6"  src="CHEM Achieves/Carbon/C6-Locked.png" alt="" loading="lazy">
+                <img id="C7"  src="CHEM Achieves/Carbon/C7-Locked.png" alt="" loading="lazy">
+                <img id="C8"  src="CHEM Achieves/Carbon/C8-Locked.png" alt="" loading="lazy">
+            </div>
+            <div style="display:flex;flex-direction: column;">
+                <img onmouseover="changeDescription('O1')"  id="O1"  src="CHEM Achieves/Oxygen/O1-Locked.png" alt="" loading="lazy">
+                <img id="O2"  src="CHEM Achieves/Oxygen/O2-Locked.png" alt="" loading="lazy">
+                <img id="O3"  src="CHEM Achieves/Oxygen/O3-Locked.png" alt="" loading="lazy">
+                <img id="O4"  src="CHEM Achieves/Oxygen/O4-Locked.png" alt="" loading="lazy">
+                <img id="O5"  src="CHEM Achieves/Oxygen/O5-Locked.png" alt="" loading="lazy">
+                <img id="O6"  src="CHEM Achieves/Oxygen/O6-Locked.png" alt="" loading="lazy">
+                <img id="O7"  src="CHEM Achieves/Oxygen/O7-Locked.png" alt="" loading="lazy">
+                <img id="O8"  src="CHEM Achieves/Oxygen/O8-Locked.png" alt="" loading="lazy">
+            </div>
+            <div style="display:flex;flex-direction: column;">
+                <img onmouseover="changeDescription('F1')"  id="F1"  src="CHEM Achieves/Fluorine/F1-Locked.png" alt="" loading="lazy">
+                <img id="F2"  src="CHEM Achieves/Fluorine/F2-Locked.png" alt="" loading="lazy">
+                <img id="F3"  src="CHEM Achieves/Fluorine/F3-Locked.png" alt="" loading="lazy">
+                <img id="F4"  src="CHEM Achieves/Fluorine/F4-Locked.png" alt="" loading="lazy">
+                <img id="F5"  src="CHEM Achieves/Fluorine/F5-Locked.png" alt="" loading="lazy">
+                <img id="F6"  src="CHEM Achieves/Fluorine/F6-Locked.png" alt="" loading="lazy">
+                <img id="F7"  src="CHEM Achieves/Fluorine/F7-Locked.png" alt="" loading="lazy">
+                <img id="F8"  src="CHEM Achieves/Fluorine/F8-Locked.png" alt="" loading="lazy">
+            </div>
+            <div style="display:flex;flex-direction: column;">
+                <img onmouseover="changeDescription('S1')"  id="S1"  src="CHEM Achieves/Sulfur/S1-Locked.png" alt="" loading="lazy">
+                <img id="S2"  src="CHEM Achieves/Sulfur/S2-Locked.png" alt="" loading="lazy">
+                <img id="S3"  src="CHEM Achieves/Sulfur/S3-Locked.png" alt="" loading="lazy">
+                <img id="S4"  src="CHEM Achieves/Sulfur/S4-Locked.png" alt="" loading="lazy">
+                <img id="S5"  src="CHEM Achieves/Sulfur/S5-Locked.png" alt="" loading="lazy">
+                <img id="S6"  src="CHEM Achieves/Sulfur/S6-Locked.png" alt="" loading="lazy">
+                <img id="S7"  src="CHEM Achieves/Sulfur/S7-Locked.png" alt="" loading="lazy">
+                <img id="S8"  src="CHEM Achieves/Sulfur/S8-Locked.png" alt="" loading="lazy">
+            </div>
+            <div style="display:flex;flex-direction: column;">
+                <img onmouseover="changeDescription('Cl1')"  id="Cl1"  src="CHEM Achieves/Chlorine/Cl1-Locked.png" loading="lazy">
+                <img id="Cl2"  src="CHEM Achieves/Chlorine/Cl2-Locked.png" loading="lazy">
+                <img id="Cl3"  src="CHEM Achieves/Chlorine/Cl3-Locked.png" loading="lazy">
+                <img id="Cl4"  src="CHEM Achieves/Chlorine/Cl4-Locked.png" loading="lazy">
+                <img id="Cl5"  src="CHEM Achieves/Chlorine/Cl5-Locked.png" loading="lazy">
+                <img id="Cl6"  src="CHEM Achieves/Chlorine/Cl6-Locked.png" loading="lazy">
+                <img id="Cl7"  src="CHEM Achieves/Chlorine/Cl7-Locked.png" loading="lazy">
+                <img id="Cl8"  src="CHEM Achieves/Chlorine/Cl8-Locked.png" loading="lazy">
+            </div>
+            <div style="display:flex;flex-direction: column;">
+                <img onmouseover="changeDescription('Fe1')"  id="Fe1"  src="CHEM Achieves/Iron/I1-Locked.png" loading="lazy">
+                <img id="Fe2"  src="CHEM Achieves/Iron/I2-Locked.png" loading="lazy">
+                <img id="Fe3"  src="CHEM Achieves/Iron/I3-Locked.png" loading="lazy">
+                <img id="Fe4"  src="CHEM Achieves/Iron/I4-Locked.png" loading="lazy">
+                <img id="Fe5"  src="CHEM Achieves/Iron/I5-Locked.png" loading="lazy">
+                <img id="Fe6"  src="CHEM Achieves/Iron/I6-Locked.png" loading="lazy">
+                <img id="Fe7"  src="CHEM Achieves/Iron/I7-Locked.png" loading="lazy">
+                <img id="Fe8"  src="CHEM Achieves/Iron/I8-Locked.png" loading="lazy">
+            </div>
+            <div style="display:flex;flex-direction: column;">
+                <img onmouseover="changeDescription('Pb1')"  id="Pb1"  src="CHEM Achieves/Lead/Pb1-Locked.png" loading="lazy">
+                <img id="Pb2"  src="CHEM Achieves/Lead/Pb2-Locked.png" loading="lazy">
+                <img id="Pb3"  src="CHEM Achieves/Lead/Pb3-Locked.png" loading="lazy">
+                <img id="Pb4"  src="CHEM Achieves/Lead/Pb4-Locked.png" loading="lazy">
+                <img id="Pb5"  src="CHEM Achieves/Lead/Pb5-Locked.png" loading="lazy">
+                <img id="Pb6"  src="CHEM Achieves/Lead/Pb6-Locked.png" loading="lazy">
+                <img id="Pb7"  src="CHEM Achieves/Lead/Pb7-Locked.png" loading="lazy">
+                <img id="Pb8"  src="CHEM Achieves/Lead/Pb8-Locked.png" loading="lazy">
+            </div>
+        </div> 
+        <br>
+        <div id="achieveText" style="text-align: center;"><hr>Hover over achievements to see a description<br></div>
+        <div style="text-align: center;"><p style="color: #6abe30;">Green Background = Unlocked</p>No background = Locked</div>
     </div>
     <div id="settingsHolder" class="flexBox holder" style="display:flex; flex-direction: column;">
         <div>
@@ -148,7 +231,8 @@
         <hr>
         <h3>Early Access Beta</h3>
         <br>
-        <p style="color:#9541af;">β0.2.4 - More Boost Bug Fixing</p>
+        <p style="color:#9541af;">β0.3.0 - Achievements Added along with 8 Descriptions</p>
+        <p>β0.2.4 - More Boost Bug Fixing</p>
         <p>β0.2.3 - All boosts are fully effective and work better</p>
         <p>β0.2.2 - Boosts should now function as intended</p>
         <p>β0.2.1 - Major Compound Production Bug Fixed</p>

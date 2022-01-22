@@ -3,6 +3,12 @@
     font-family: 'Monospace Typewriter';
     color: whitesmoke;
 }
+img {
+    margin-left: 3px;
+    margin-top: 3px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+}
 .header {
     margin-right: 30px;
     margin-left: 30px;
@@ -20,8 +26,9 @@
 .tabButton {
     margin-left: 10px;
     margin-right: 10px;
-    width: 7em;
+    width: 8.5em;
     height: 4em;
+    text-align: center;
 }
 .flexBox {
     display: flex;
@@ -70,6 +77,11 @@
     border: 3px solid #adadad;
     width: 10em;
     height: 5em;
+}
+.achieveHolder {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
 }
 /* Hover Actions */
 .melt:hover {
@@ -126,4 +138,7 @@
 }
 #sB:hover {
     background-color: gray;
+}
+#aB:hover {
+    background-color: aquamarine;
 }

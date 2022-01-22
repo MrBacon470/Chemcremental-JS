@@ -34,8 +34,9 @@ function increaseElements(x,i) {
 
 function switchTab(i){
     data.currentTab = i
-    let x=i-2
+    let x=i-3
     if (x >= 0) data.hasTab[x] ? data.currentTab=i : data.currentTab=1
+    console.log(data.currentTab)
     tabChangeHTML()
 }
 let sumOfElements = D(0)
@@ -43,12 +44,15 @@ let diff
 function mainLoop(){
     diff = data.settingsToggles[1]?(Date.now()-data.time)*data.devSpeed/1000:getRandom(0.048, 0.053)*data.devSpeed
     data.time = Date.now()
+    //Functions Here
     updateBoosts()
     updateHTML()
     updateCosts()
     updateMeltCost()
     updatePowerCosts()
     calculateElementGain()
+    unlockAchieves()
+    //Misc Stuff Here
     for(let i = 0; i < 8; i++)
         increaseElements(data.elementGain[i].times(diff), i)
     powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
