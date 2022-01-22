@@ -58,7 +58,7 @@ function mainLoop(){
     powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     coriumToGet = D(0)
-    coriumToGet = 1 + (Decimal.sqrt(sumOfElements).times(coriumMultBoosts[2] + compoundBoosts[4]))
+    coriumToGet = 1 + (Decimal.sqrt(sumOfElements / D(1e6)).times(coriumMultBoosts[2] + compoundBoosts[4]))
     if(data.elements[0].amt.lt(D(10)) && data.elements[0].level.lt(D(1)))
         data.elements[0].amt = D(10)
 }

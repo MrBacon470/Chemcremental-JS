@@ -132,7 +132,7 @@ function unlockTabs(){
     
     data.hasTab[0] = data.elements[1].amt > 0 || data.hasTab[0]
     data.hasTab[1] = data.compounds[0].amt > 0 || data.hasTab[1]
-    data.hasTab[2] = data.elements[6].level > 0 || data.hasTab[2]
+    data.hasTab[2] = sumOfElements.gte(D(1e8)) || data.hasTab[2]
 }
 const elementTab = document.getElementById("elementHolder")
 const compoundTab = document.getElementById("compoundHolder")
