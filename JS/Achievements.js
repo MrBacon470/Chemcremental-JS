@@ -1,5 +1,5 @@
 let unlockReqs = [D(1),D(10),D(50),D(100),D(500),D(1000),D(10000),D(1000000)]
-
+let prevAmount = D(0)
 function unlockAchieves() {
     for(let i = 0; i < 8; i++) {
         if(data.elements[0].level.gte(unlockReqs[i]) && data.achievements[0].unlocked[i] !== true)
@@ -26,7 +26,18 @@ function unlockAchieves() {
         if(data.elements[7].level.gte(unlockReqs[i]) && data.achievements[7].unlocked[i] !== true)
             data.achievements[7].unlocked[i] = true
     }
-    
+    let amountUnlocked
+    amountUnlocked = D(0)
+    for(let i = 0; i < data.achievements.length; i++) {
+        for(let j = 0; j < 8; j++) {
+            if(data.achievements[i].unlocked[j] === true)
+                amountUnlocked = amountUnlocked.plus(D(1))
+        }
+    }
+    if(amountUnlocked.gt(prevAmount)) {
+        prevAmount = amountUnlocked
+        document.getElementById('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 65)}/64 (${format((prevAmount.divide(D(64)).times(D(100))))}%)`
+    }
 }
 
 const descriptionText = document.getElementById("achieveText")
