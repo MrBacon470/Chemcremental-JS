@@ -20,7 +20,7 @@ function getDefaultObject() {
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"Fe",unlocked:[false,false,false,false,false,false,false,false]},{name:"Pb",unlocked:[false,false,false,false,false,false,false,false]}],
-        hasTab: [false, false, false, false],
+        hasTab: [false, false, false, false, false],
         time: Date.now(),
         currentTab: 1,
         settingsToggles: [true,true],

@@ -24,9 +24,9 @@ img {
     src: url('MonospaceTypewriter.ttf');
 }
 .tabButton {
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 8.5em;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 8.25em;
     height: 4em;
     text-align: center;
 }

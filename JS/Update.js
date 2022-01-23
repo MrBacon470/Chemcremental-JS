@@ -133,14 +133,16 @@ function unlockTabs(){
     data.hasTab[0] = data.elements[1].amt > 0 || data.hasTab[0]
     data.hasTab[1] = data.compounds[0].amt > 0 || data.hasTab[1]
     data.hasTab[2] = sumOfElements.gte(D(1e8)) || data.hasTab[2]
+    data.hasTab[3] = data.coriumSingUps[0] === true || data.hasTab[3]
 }
+const seperator = document.getElementById('tabSeperator')
 const elementTab = document.getElementById("elementHolder")
 const compoundTab = document.getElementById("compoundHolder")
 const powerTab = document.getElementById("powerHolder")
 const meltingTab = document.getElementById("meltingHolder")
 const settingTab = document.getElementById("settingsHolder")
 const achievementTab = document.getElementById("achievementHolder")
-
+const seperatorColors = ['808080','3c9f45','7fffd4','3a5b99','b0b835','68368a','583793']
 function tabChangeHTML(){
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
     compoundTab.style.display = data.currentTab === 3 ? 'flex': 'none'   
@@ -148,4 +150,5 @@ function tabChangeHTML(){
     meltingTab.style.display = data.currentTab === 5 ? 'flex' : 'none'
     settingTab.style.display = data.currentTab === 0? 'flex' : 'none'
     achievementTab.style.display = data.currentTab === 2 ? 'flex' : 'none'
+    seperator.style.color = `#${seperatorColors[data.currentTab]}`
 }

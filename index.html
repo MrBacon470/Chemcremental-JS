@@ -14,13 +14,16 @@
         <div id="coriumText" class="header" style="color: #68368a">Corium: 0.00<br>Boost: 1.00x</div>
     </div>
     <div id="tabHolder" class="flexBox" style="flex-direction: row; margin-top: 20px; ">
+        <button id="2B" class="tabButton" style="border: 4px solid gray;">2?</button>
         <button id="eB" class="tabButton" onclick="switchTab(1)" style="border: 4px solid #3c9f45;">Elements</button>
         <button id="cB" class="tabButton" onclick="switchTab(3)" style="border: 4px solid #3a5b99;">Compounds</button>
         <button id="pB" class="tabButton" onclick="switchTab(4)" style="border: 4px solid #b0b835;">Power</button>
         <button id="mB" class="tabButton" onclick="switchTab(5)" style="border: 4px solid #68368a;">Melting</button>
-        <button id="aB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid aquamarine;">Achievements</button>
-        <button id="sB" class="tabButton" onclick="switchTab(0)" style="border: 4px solid gray;">Settings</button>
+        <button id="rB" class="tabButton" onclick="switchTab(6)" style="border: 4px solid #583793;">Refinery</button>
+        <button id="aB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid #7fffd4;text-align: center;">Achievements</button>
+        <button id="sB" class="tabButton" onclick="switchTab(0)" style="border: 4px solid #808080;">Settings</button>
     </div>
+    <hr id="tabSeperator" style="color: #3a5b99; border:solid 1px;">
     <div id="elementHolder" class="flexBox holder">
         <button onclick="toggleBuyAmount(0)" id="bA0" class="buyAmount">Buy Amount: 1</button>
         <div class="flexBox elementColumn" id="elementColumn1">
@@ -229,7 +232,7 @@
         <h1>Changelog :D</h1>
         <h3 style="color:#9541af;">Purple Text Indicates Current Version</h3>
         <br>
-        <hr>
+        <hr style="border: solid 1px;">
         <h3>Early Access Beta</h3>
         <br>
         <p style="color:#9541af;">β0.3.1 - All achievements descriptions added</p>
@@ -244,7 +247,7 @@
         <p>β0.1.2 - Corium Boost Effect Works + Working on Melt Upgrade Fix</p>
         <p>β0.1.1 - Corium Display and Melt Down Fix</p>
         <p>β0.1.0 - Early Access Launch</p>
-        <hr>
+        <hr style="border: solid 1px;">
         <h3>Pre-Release Development Alpha</h3>
         <br>
         <p>α0.0.9 - Melt Area Display Fixes</p>
