@@ -83,7 +83,7 @@ function updateBoosts() {
             if(data.powerUps[i].gt(D(0)))
                 powerBoosts[0] = boosts[i].times(data.powerUps[i])
             else
-                D(1)
+                powerBoosts[0] = D(1)
     }
     /*
     powerBoosts[0] = data.powerUps[0] === D(0) ? D(1) : D(2).times(data.powerUps[0])
