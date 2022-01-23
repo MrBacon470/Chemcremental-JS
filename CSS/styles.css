@@ -93,6 +93,9 @@ img {
 .buyAmount:hover {
     background-color: #adadad;
 }
+.refinery:hover {
+    background-color: #583793;
+}
 #delete:hover {
     background-color: #ad4242;
 }
@@ -141,4 +144,7 @@ img {
 }
 #aB:hover {
     background-color: aquamarine;
+}
+#rB:hover {
+    background-color: #583793;
 }

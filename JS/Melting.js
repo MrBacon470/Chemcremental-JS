@@ -53,6 +53,9 @@ function purchaseMeltUp(x) {
             data.coriumMultUps[2] = data.coriumMultUps[2].plus(D(1))
             break;
         case 's1':
+            if(data.corium.lt(coriumSingCost[0]) || data.coriumSingUps[0] === true) return
+            data.corium = data.corium.minus(coriumSingCost[0])
+            data.coriumSingUps[0] = true
             break;
         case 's2':
             break;

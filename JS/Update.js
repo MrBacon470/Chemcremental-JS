@@ -12,9 +12,9 @@ for(let i = 0; i < 5; i++) {
     compoundButtons[i] = document.getElementById(`${data.compounds[i].name}`)
 }
 const tabs = []
-const tabIDs = ['cB','pB','mB']
-const tabNames = ['Compounds','Power','Melting']
-const colors = ['3a5b99','b0b835','68368a']
+const tabIDs = ['cB','pB','mB','rB']
+const tabNames = ['Compounds','Power','Melting','Refinery']
+const colors = ['3a5b99','b0b835','68368a','583793']
 for(let i=0; i < 4; i++) {
     tabs[i] = document.getElementById(`${tabIDs[i]}`)
 }
@@ -22,8 +22,13 @@ const powerUpButton = []
 for(let i=0; i < 3; i++)
     powerUpButton[i] = document.getElementById(`pu${i+1}`)
 const coriumMultDesc =['Increase Atom Production by 4x','Increase Compounds Created by 1.25x','Increase Corium Produced on Melt']
-const coriumSingDesc = ['Unlock the Forge (Automation)<br>Cost: 1.00e10 Corium','Unlock Passive Power Production<br>Cost: 1.00e15 Corium','Radition Not Implemented']
-// endregion
+const coriumSingDesc = ['Unlock the Refinery<br>Cost: 1.00e10 Corium','Not Avalible','Not Avalible']
+//'Unlock Passive Power Production<br>Cost: 1.00e15 Corium','Radition Not Implemented'
+// Refinery Area
+const refineryIDs = ['shard', 'mold', 'mint']
+const refineryNames = ['Sharding','Molding','Minting']
+const refineryDescriptions = ['Produces Kuaka Shards','Produces Kuaka Fragments','Produces Kuaka Coins']
+const currencyNames = ['Shards','Fragments','Coins']
 ///Achievements Area
 let imgIds = ['H','C','O','F','S','Cl','I','Pb']
 let aIds = ['H','C','O','F','S','Cl','Fe','Pb']
@@ -54,7 +59,7 @@ function updateHTML(){
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     document.getElementById('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
     document.getElementById('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
-    for(let i = 0; i < 3; i++) {
+    for(let i = 0; i < 4; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
         tabs[i].style.border = !data.hasTab[i] ? '4px solid gray' : `4px solid #${colors[i]}`
@@ -121,8 +126,13 @@ function updateHTML(){
         document.getElementById('meltDown').innerHTML = sumOfElements >= 1e8 ? `Melt Down<br>Create +${format(coriumToGet)}<br>Corium` : "Melt Down<br>Requires 1e8<br>Total Elements"
         for(let i = 0; i < 3; i++) {
             document.getElementById(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${format(coriumMultCosts[i])} Corium<br>Level: ${format(data.coriumMultUps[i])}`
-            document.getElementById(`cs${i+1}`).innerHTML = data.coriumSingUps[i] ? 'Unlocked' : 'Not Avalible'
+            document.getElementById(`cs${i+1}`).innerHTML = data.coriumSingUps[i] ? 'Unlocked' : `${coriumSingDesc[i]}`
         }
+    }
+    else if(data.currentTab === 6) {
+        document.getElementById(`${refineryIDs[0]}`).innerHTML = `${refineryNames[0]}<br><br>${refineryDescriptions[0]}<br><br>+${format(shardsToGet)} ${currencyNames[0]}<br><br>${format(data.refineryCurrencies[0])} ${currencyNames[0]} Avalible`
+        document.getElementById(`${refineryIDs[1]}`).innerHTML = `${refineryNames[1]}<br><br>${refineryDescriptions[1]}<br><br>+${format(fragmentsToGet)} ${currencyNames[1]}<br><br>${format(data.refineryCurrencies[1])} ${currencyNames[1]} Avalible`
+        document.getElementById(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format(Decimal.sqrt(data.refineryCurrencies[2]))}x Boost`
     }
     unlockTabs()
     tabChangeHTML()
@@ -142,6 +152,7 @@ const powerTab = document.getElementById("powerHolder")
 const meltingTab = document.getElementById("meltingHolder")
 const settingTab = document.getElementById("settingsHolder")
 const achievementTab = document.getElementById("achievementHolder")
+const refineryTab = document.getElementById("refineryHolder")
 const seperatorColors = ['808080','3c9f45','7fffd4','3a5b99','b0b835','68368a','583793']
 function tabChangeHTML(){
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
@@ -150,5 +161,6 @@ function tabChangeHTML(){
     meltingTab.style.display = data.currentTab === 5 ? 'flex' : 'none'
     settingTab.style.display = data.currentTab === 0? 'flex' : 'none'
     achievementTab.style.display = data.currentTab === 2 ? 'flex' : 'none'
+    refineryTab.style.display = data.currentTab === 6 ? 'flex' : 'none'
     seperator.style.color = `#${seperatorColors[data.currentTab]}`
 }

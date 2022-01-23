@@ -10,8 +10,8 @@
 </head>
 <body>
     <div id="currenciesHolder" class="flexBox">
-        <div id="powerText" class="header" style="color: #b0b835">Power: 0.00 / 100.00 </div>
-        <div id="coriumText" class="header" style="color: #68368a">Corium: 0.00<br>Boost: 1.00x</div>
+        <div id="powerText" class="header" style="color: #b0b835; text-align: center;">Power: 0.00 / 100.00 </div>
+        <div id="coriumText" class="header" style="color: #68368a; text-align: center;">Corium: 0.00<br>Boost: 1.00x</div>
     </div>
     <div id="tabHolder" class="flexBox" style="flex-direction: row; margin-top: 20px; ">
         <button id="2B" class="tabButton" style="border: 4px solid gray;">2?</button>
@@ -19,7 +19,7 @@
         <button id="cB" class="tabButton" onclick="switchTab(3)" style="border: 4px solid #3a5b99;">Compounds</button>
         <button id="pB" class="tabButton" onclick="switchTab(4)" style="border: 4px solid #b0b835;">Power</button>
         <button id="mB" class="tabButton" onclick="switchTab(5)" style="border: 4px solid #68368a;">Melting</button>
-        <button id="rB" class="tabButton" onclick="switchTab(6)" style="display:none;border: 4px solid #583793;">Refinery</button>
+        <button id="rB" class="tabButton" onclick="switchTab(6)" style="border: 4px solid #583793;">Refinery</button>
         <button id="aB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid #7fffd4;text-align: center;">Achievements</button>
         <button id="sB" class="tabButton" onclick="switchTab(0)" style="border: 4px solid #808080;">Settings</button>
     </div>
@@ -113,7 +113,7 @@
         </div>
         <div style="display:flex; flex-direction: column;">
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
-                <button onclick="" id="cs1" class="melt powerUp" style="border: 5px solid #68368a; ">Currently Offline</button>
+                <button onclick="purchaseMeltUp('s1')" id="cs1" class="melt powerUp" style="border: 5px solid #68368a; ">Currently Offline</button>
             </div>
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
                 <button onclick="" id="cs2" class="melt powerUp" style="border: 5px solid #68368a; ">Currently Offline</button>
@@ -122,6 +122,11 @@
                 <button onclick="" id="cs3" class="melt powerUp" style="border: 5px solid #68368a; ">Currently Offline</button>
             </div>
         </div>
+    </div>
+    <div id="refineryHolder" class="flexBox holder">
+        <button id="shard" onclick="refine(0)" class="refinery" style="margin-top: 40px; border: 5px solid #583793; margin-right: 50px; width:12em; height: 20em; font-size: 15px;">Sharding<br><br>Produces Kuaka Shards<br><br>+0.00 Shards<br><br>0.00 Shards Avalible</button>
+        <button id="mold" onclick="refine(1)" class="refinery" style="margin-top: 40px; border: 5px solid #583793; margin-right: 50px; width:12em; height: 20em; font-size: 15px;">Molding<br><br>Produces Kuaka Fragments<br><br>+0.00 Fragments<br><br>0.00 Fragments Avalible</button>
+        <button id="mint" onclick="refine(2)" class="refinery" style="margin-top: 40px; border: 5px solid #583793; margin-right: 50px; width:12em; height: 20em; font-size: 15px;">Minting<br><br>Produces Kuaka Coins<br><br>+0.00 Coins<br>0.00 Coins<br><br>1.00x Boost</button>
     </div>
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="percentageText">Achievements Unlocked: 42/64 (22.22%)</div>
@@ -235,7 +240,8 @@
         <hr style="border: solid 1px;">
         <h3>Early Access Beta</h3>
         <br>
-        <p style="color:#9541af;">β0.3.1 - All achievements descriptions added</p>
+        <p style="color:#9541af;">β0.3.2 - Kuaka Refinery Added</p>
+        <p>β0.3.1 - All achievements descriptions added</p>
         <p>β0.3.0 - Achievements Added along with 8 Descriptions</p>
         <p>β0.2.4 - More Boost Bug Fixing</p>
         <p>β0.2.3 - All boosts are fully effective and work better</p>
