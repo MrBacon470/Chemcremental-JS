@@ -10,7 +10,7 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(powerBoosts[0])
             data.elementGain[i] = data.elementGain[i].times(coriumMultBoosts[0])
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
-            data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2])))
+            data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
@@ -19,7 +19,7 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(D(1).add(powerBoosts[0]))
             data.elementGain[i] = data.elementGain[i].times(D(1).add(coriumMultBoosts[0]))
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
-            data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2])))
+            data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
         }
     }
     //for(let i = 0; i < 8; i++)
@@ -66,7 +66,7 @@ function mainLoop(){
         data.elements[0].amt = D(10)
     shardsToGet = Decimal.sqrt(sumOfElements.divide(D(1e8)))
     fragmentsToGet = Decimal.sqrt(data.refineryCurrencies[0].divide(D(1e5)))
-    coinsToGet = Decimal.sqrt(data.refineryCurrencies[1].divide(D(1e5)))
+    coinsToGet = Decimal.sqrt(data.refineryCurrencies[1].divide(D(1e3)))
 }
 function updateBoosts() {
     for(let i = 0; i < 5; i++) {
@@ -132,7 +132,7 @@ function refine(i) {
             }
             break;
         case 2:
-            if(data.refineryCurrencies[1].gte(D(1e5))) {
+            if(data.refineryCurrencies[1].gte(D(1e3))) {
                 data.refineryCurrencies[2] = data.refineryCurrencies[2].plus(coinsToGet)
                 data.refineryCurrencies[1] = D(0)
                 coinsToGet = D(0)
