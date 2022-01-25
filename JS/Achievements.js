@@ -27,7 +27,6 @@ for(let i = 0; i < 8; i++) {
     ClAchieves[i] = document.getElementById(`Cl${i+1}`)
     FeAchieves[i] = document.getElementById(`Fe${i+1}`)
     PbAchieves[i] = document.getElementById(`Pb${i+1}`)
-    console.log(HAchieves)
 }
 for(let i = 0; i < 4; i++) {
     PrAchieves[i] = document.getElementById(`Pr${i+1}`)
@@ -67,7 +66,8 @@ function unlockAchieves() {
         if(data.elements[7].level.gte(unlockReqs[i]) && data.achievements[7].unlocked[i] !== true)
             data.achievements[7].unlocked[i] = true
         //Compounds
-        if(i < 4) {
+    }
+    for(let i = 0; i < 4; i++) {
             if(data.compounds[0].amt.gte(unlockReqs[i]) && data.achievements[8].unlocked[i] !== true)
             data.achievements[8].unlocked[i] = true
         
@@ -82,7 +82,6 @@ function unlockAchieves() {
 
             if(data.compounds[4].amt.gte(unlockReqs[i]) && data.achievements[12].unlocked[i] !== true)
             data.achievements[12].unlocked[i] = true
-        }
     }
     let amountUnlocked
     amountUnlocked = D(0)
