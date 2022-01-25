@@ -29,45 +29,7 @@ const refineryIDs = ['shard', 'mold', 'mint']
 const refineryNames = ['Sharding','Molding','Minting']
 const refineryDescriptions = ['Produces Kuaka Shards','Produces Kuaka Fragments','Produces Kuaka Coins']
 const currencyNames = ['Shards','Fragments','Coins']
-///Achievements Area
-let imgIds = ['H','C','O','F','S','Cl','I','Pb']
-let aIds = ['H','C','O','F','S','Cl','Fe','Pb']
-let caIds = ['Pr','Wt','Sa','Sl','Cf']
-//Elements
-const HAchieves = []
-const CAchieves = []
-const OAchieves = []
-const FAchieves = []
-const SAchieves = []
-const ClAchieves = []
-const FeAchieves = []
-const PbAchieves = []
-//Compounds
-const PrAchieves = []
-const WtAchieves = []
-const SaAchieves = []
-const SlAchieves = []
-const CfAchieves = []
 
-for(let i = 0; i < 8; i++) {
-    HAchieves[i] = document.getElementById(`H${i+1}`)
-    CAchieves[i] = document.getElementById(`C${i+1}`)
-    OAchieves[i] = document.getElementById(`O${i+1}`)
-    FAchieves[i] = document.getElementById(`F${i+1}`)
-    SAchieves[i] = document.getElementById(`S${i+1}`)
-    ClAchieves[i] = document.getElementById(`Cl${i+1}`)
-    FeAchieves[i] = document.getElementById(`Fe${i+1}`)
-    PbAchieves[i] = document.getElementById(`Pb${i+1}`)
-    console.log(HAchieves)
-}
-for(let i = 0; i < 4; i++) {
-    PrAchieves[i] = document.getElementById[`Pr${i+1}`]
-    WtAchieves[i] = document.getElementById[`Wt${i+1}`]
-    SaAchieves[i] = document.getElementById[`Sa${i+1}`]
-    SlAchieves[i] = document.getElementById[`Sl${i+1}`]
-    CfAchieves[i] = document.getElementById[`Cf${i+1}`]
-    console.log(PrAchieves)
-}
 
 
 function updateHTML(){
@@ -100,48 +62,7 @@ function updateHTML(){
         
     }
     else if(data.currentTab === 2) {
-        for(let i = 0; i < 8; i++) {
-            if((HAchieves[i].getAttribute('src') !== `CHEM Achieves/Hydrogen/H${i+1}-Locked.png` && data.achievements[0].unlocked[i] === false) || (HAchieves[i].getAttribute('src') !== `CHEM Achieves/Hydrogen/H${i+1}-UnLocked.png` && data.achievements[0].unlocked[i] === true))
-                HAchieves[i].src = data.achievements[0].unlocked[i] === false ? `CHEM Achieves/Hydrogen/H${i+1}-Locked.png` : `CHEM Achieves/Hydrogen/H${i+1}-UnLocked.png`
-
-            if((CAchieves[i].getAttribute('src') !== `CHEM Achieves/Carbon/C${i+1}-Locked.png` && data.achievements[1].unlocked[i] === false) || (CAchieves[i].getAttribute('src') !== `CHEM Achieves/Carbon/C${i+1}-UnLocked.png` && data.achievements[1].unlocked[i] === true))
-                CAchieves[i].src = data.achievements[1].unlocked[i] === false ? `CHEM Achieves/Carbon/C${i+1}-Locked.png` : `CHEM Achieves/Carbon/C${i+1}-UnLocked.png`
-
-            if((OAchieves[i].getAttribute('src') !== `CHEM Achieves/Oxygen/O${i+1}-Locked.png` && data.achievements[2].unlocked[i] === false) || (OAchieves[i].getAttribute('src') !== `CHEM Achieves/Oxygen/O${i+1}-UnLocked.png` && data.achievements[2].unlocked[i] === true))
-                OAchieves[i].src = data.achievements[2].unlocked[i] === false ? `CHEM Achieves/Oxygen/O${i+1}-Locked.png` : `CHEM Achieves/Oxygen/O${i+1}-UnLocked.png`
-
-            if((FAchieves[i].getAttribute('src') !== `CHEM Achieves/Fluorine/F${i+1}-Locked.png` && data.achievements[3].unlocked[i] === false) || (FAchieves[i].getAttribute('src') !== `CHEM Achieves/Fluorine/F${i+1}-UnLocked.png` && data.achievements[3].unlocked[i] === true))
-                FAchieves[i].src = data.achievements[3].unlocked[i] === false ? `CHEM Achieves/Fluorine/F${i+1}-Locked.png` : `CHEM Achieves/Fluorine/F${i+1}-UnLocked.png`
-
-            if((SAchieves[i].getAttribute('src') !== `CHEM Achieves/Sulfur/S${i+1}-Locked.png` && data.achievements[4].unlocked[i] === false) || (SAchieves[i].getAttribute('src') !== `CHEM Achieves/Sulfur/S${i+1}-UnLocked.png` && data.achievements[4].unlocked[i] === true))
-                SAchieves[i].src = data.achievements[4].unlocked[i] === false ? `CHEM Achieves/Sulfur/S${i+1}-Locked.png` : `CHEM Achieves/Sulfur/S${i+1}-UnLocked.png`
-
-            if((ClAchieves[i].getAttribute('src') !== `CHEM Achieves/Chlorine/Cl${i+1}-Locked.png` && data.achievements[5].unlocked[i] === false) || (ClAchieves[i].getAttribute('src') !== `CHEM Achieves/Chlorine/Cl${i+1}-UnLocked.png` && data.achievements[5].unlocked[i] === true))
-                ClAchieves[i].src = data.achievements[5].unlocked[i] === false ? `CHEM Achieves/Chlorine/Cl${i+1}-Locked.png` : `CHEM Achieves/Chlorine/Cl${i+1}-UnLocked.png`
-
-            if((FeAchieves[i].getAttribute('src') !== `CHEM Achieves/Iron/I${i+1}-Locked.png` && data.achievements[6].unlocked[i] === false) || (FeAchieves[i].getAttribute('src') !== `CHEM Achieves/Iron/I${i+1}-UnLocked.png` && data.achievements[6].unlocked[i] === true))
-                FeAchieves[i].src = data.achievements[6].unlocked[i] === false ? `CHEM Achieves/Iron/I${i+1}-Locked.png` : `CHEM Achieves/Iron/I${i+1}-UnLocked.png`
-
-            if((PbAchieves[i].getAttribute('src') !== `CHEM Achieves/Lead/Pb${i+1}-Locked.png` && data.achievements[7].unlocked[i] === false) || (PbAchieves[i].getAttribute('src') !== `CHEM Achieves/Lead/Pb${i+1}-UnLocked.png` && data.achievements[7].unlocked[i] === true))
-                PbAchieves[i].src = data.achievements[7].unlocked[i] === false ? `CHEM Achieves/Lead/Pb${i+1}-Locked.png` : `CHEM Achieves/Lead/Pb${i+1}-UnLocked.png`
-            
-        }
-        for(let i = 0; i < 4; i++) {
-            if((PrAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Pr${i+1}-Locked.png` && data.achievements[8].unlocked[i] === false) || (PrAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Pr${i+1}-UnLocked.png` && data.achievements[8].unlocked[i] === true))
-                    PrAchieves[i].src = data.achievements[8].unlocked[i] === false ? `CHEM Achieves/Compounds/Pr${i+1}-Locked.png` : `CHEM Achieves/Compounds/Pr${i+1}-UnLocked.png`
-
-                if((WtAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Wt${i+1}-Locked.png` && data.achievements[9].unlocked[i] === false) || (WtAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Cl${i+1}-UnLocked.png` && data.achievements[9].unlocked[i] === true))
-                    WtAchieves[i].src = data.achievements[9].unlocked[i] === false ? `CHEM Achieves/Compounds/Wt${i+1}-Locked.png` : `CHEM Achieves/Compounds/Wt${i+1}-UnLocked.png`
-
-                if((SaAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Sa${i+1}-Locked.png` && data.achievements[10].unlocked[i] === false) || (SaAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Sa${i+1}-UnLocked.png` && data.achievements[10].unlocked[i] === true))
-                    SaAchieves[i].src = data.achievements[10].unlocked[i] === false ? `CHEM Achieves/Compounds/Sa${i+1}-Locked.png` : `CHEM Achieves/Compounds/Sa${i+1}-UnLocked.png`
-
-                if((SlAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Sl${i+1}-Locked.png` && data.achievements[11].unlocked[i] === false) || (SlAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Sl${i+1}-UnLocked.png` && data.achievements[11].unlocked[i] === true))
-                    SlAchieves[i].src = data.achievements[11].unlocked[i] === false ? `CHEM Achieves/Compounds/Sl${i+1}-Locked.png` : `CHEM Achieves/Compounds/Sl${i+1}-UnLocked.png`
-                
-                if((CfAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Cf${i+1}-Locked.png` && data.achievements[12].unlocked[i] === false) || (CfAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Cf${i+1}-UnLocked.png` && data.achievements[12].unlocked[i] === true))
-                    CfAchieves[i].src = data.achievements[12].unlocked[i] === false ? `CHEM Achieves/Compounds/Cf${i+1}-Locked.png` : `CHEM Achieves/Compounds/Cf${i+1}-UnLocked.png`
-        }
+        //Moved
     }
     else if(data.currentTab === 3) {
         for(let i = 0; i < 5; i++) {

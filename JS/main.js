@@ -50,6 +50,7 @@ function mainLoop(){
     //Functions Here
     updateBoosts()
     updateHTML()
+    updateAchievementHTML()
     updateCosts()
     updateMeltCost()
     updatePowerCosts()
