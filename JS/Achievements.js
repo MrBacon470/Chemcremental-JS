@@ -34,8 +34,6 @@ for(let i = 0; i < 4; i++) {
     SaAchieves[i] = document.getElementById(`Sa${i+1}`)
     SlAchieves[i] = document.getElementById(`Sl${i+1}`)
     CfAchieves[i] = document.getElementById(`Cf${i+1}`)
-    console.log(PrAchieves)
-    console.log(WtAchieves)
 }
 
 let unlockReqs = [D(1),D(10),D(50),D(100),D(500),D(1000),D(10000),D(1000000)]
