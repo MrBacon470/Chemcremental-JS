@@ -25,6 +25,23 @@ function unlockAchieves() {
 
         if(data.elements[7].level.gte(unlockReqs[i]) && data.achievements[7].unlocked[i] !== true)
             data.achievements[7].unlocked[i] = true
+        //Compounds
+        if(i < 4) {
+            if(data.compounds[0].amt.gte(unlockReqs[i]) && data.achievements[8].unlocked[i] !== true)
+            data.achievements[8].unlocked[i] = true
+        
+            if(data.compounds[1].amt.gte(unlockReqs[i]) && data.achievements[9].unlocked[i] !== true)
+            data.achievements[9].unlocked[i] = true
+        
+            if(data.compounds[2].amt.gte(unlockReqs[i]) && data.achievements[10].unlocked[i] !== true)
+            data.achievements[10].unlocked[i] = true
+        
+            if(data.compounds[3].amt.gte(unlockReqs[i]) && data.achievements[11].unlocked[i] !== true)
+            data.achievements[11].unlocked[i] = true
+
+            if(data.compounds[4].amt.gte(unlockReqs[i]) && data.achievements[12].unlocked[i] !== true)
+            data.achievements[12].unlocked[i] = true
+        }
     }
     let amountUnlocked
     amountUnlocked = D(0)
