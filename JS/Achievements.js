@@ -30,13 +30,11 @@ for(let i = 0; i < 8; i++) {
     console.log(HAchieves)
 }
 for(let i = 0; i < 4; i++) {
-    PrAchieves[i] = document.getElementById[`Pr${i+1}`]
-    WtAchieves[i] = document.getElementById[`Wt${i+1}`]
-    SaAchieves[i] = document.getElementById[`Sa${i+1}`]
-    SlAchieves[i] = document.getElementById[`Sl${i+1}`]
-    CfAchieves[i] = document.getElementById[`Cf${i+1}`]
-    console.log(PrAchieves)
-    console.log(WtAchieves)
+    PrAchieves[i] = document.getElementById(`Pr${i+1}`)
+    WtAchieves[i] = document.getElementById(`Wt${i+1}`)
+    SaAchieves[i] = document.getElementById(`Sa${i+1}`)
+    SlAchieves[i] = document.getElementById(`Sl${i+1}`)
+    CfAchieves[i] = document.getElementById(`Cf${i+1}`)
 }
 
 let unlockReqs = [D(1),D(10),D(50),D(100),D(500),D(1000),D(10000),D(1000000)]
