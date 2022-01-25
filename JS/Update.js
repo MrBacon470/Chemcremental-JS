@@ -98,6 +98,9 @@ function unlockTabs(){
     data.hasTab[1] = data.compounds[0].amt > 0 || data.hasTab[1]
     data.hasTab[2] = sumOfElements.gte(D(1e8)) || data.hasTab[2]
     data.hasTab[3] = data.coriumSingUps[0] === true || data.hasTab[3]
+
+    for(let i = 0; i < 4; i++)
+        tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
 }
 const seperator = document.getElementById('tabSeperator')
 const elementTab = document.getElementById("elementHolder")
