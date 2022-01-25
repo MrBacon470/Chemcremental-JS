@@ -1,3 +1,41 @@
+///Achievements Area
+let imgIds = ['H','C','O','F','S','Cl','I','Pb']
+let aIds = ['H','C','O','F','S','Cl','Fe','Pb']
+let caIds = ['Pr','Wt','Sa','Sl','Cf']
+//Elements
+const HAchieves = []
+const CAchieves = []
+const OAchieves = []
+const FAchieves = []
+const SAchieves = []
+const ClAchieves = []
+const FeAchieves = []
+const PbAchieves = []
+//Compounds
+const PrAchieves = []
+const WtAchieves = []
+const SaAchieves = []
+const SlAchieves = []
+const CfAchieves = []
+
+for(let i = 0; i < 8; i++) {
+    HAchieves[i] = document.getElementById(`H${i+1}`)
+    CAchieves[i] = document.getElementById(`C${i+1}`)
+    OAchieves[i] = document.getElementById(`O${i+1}`)
+    FAchieves[i] = document.getElementById(`F${i+1}`)
+    SAchieves[i] = document.getElementById(`S${i+1}`)
+    ClAchieves[i] = document.getElementById(`Cl${i+1}`)
+    FeAchieves[i] = document.getElementById(`Fe${i+1}`)
+    PbAchieves[i] = document.getElementById(`Pb${i+1}`)
+}
+for(let i = 0; i < 4; i++) {
+    PrAchieves[i] = document.getElementById(`Pr${i+1}`)
+    WtAchieves[i] = document.getElementById(`Wt${i+1}`)
+    SaAchieves[i] = document.getElementById(`Sa${i+1}`)
+    SlAchieves[i] = document.getElementById(`Sl${i+1}`)
+    CfAchieves[i] = document.getElementById(`Cf${i+1}`)
+}
+
 let unlockReqs = [D(1),D(10),D(50),D(100),D(500),D(1000),D(10000),D(1000000)]
 let prevAmount = D(0)
 function unlockAchieves() {
@@ -25,18 +63,88 @@ function unlockAchieves() {
 
         if(data.elements[7].level.gte(unlockReqs[i]) && data.achievements[7].unlocked[i] !== true)
             data.achievements[7].unlocked[i] = true
+        //Compounds
+    }
+    for(let i = 0; i < 4; i++) {
+            if(data.compounds[0].amt.gte(unlockReqs[i]) && data.achievements[8].unlocked[i] !== true)
+            data.achievements[8].unlocked[i] = true
+        
+            if(data.compounds[1].amt.gte(unlockReqs[i]) && data.achievements[9].unlocked[i] !== true)
+            data.achievements[9].unlocked[i] = true
+        
+            if(data.compounds[2].amt.gte(unlockReqs[i]) && data.achievements[10].unlocked[i] !== true)
+            data.achievements[10].unlocked[i] = true
+        
+            if(data.compounds[3].amt.gte(unlockReqs[i]) && data.achievements[11].unlocked[i] !== true)
+            data.achievements[11].unlocked[i] = true
+
+            if(data.compounds[4].amt.gte(unlockReqs[i]) && data.achievements[12].unlocked[i] !== true)
+            data.achievements[12].unlocked[i] = true
     }
     let amountUnlocked
     amountUnlocked = D(0)
-    for(let i = 0; i < data.achievements.length; i++) {
+    for(let i = 0; i < 8; i++) {
         for(let j = 0; j < 8; j++) {
             if(data.achievements[i].unlocked[j] === true)
                 amountUnlocked = amountUnlocked.plus(D(1))
         }
     }
+    for(let i = 0; i < 4; i++) {
+        for(let j = 0; j < 4; j++) {
+            if(data.achievements[i+8].unlocked[j] === true)
+                amountUnlocked = amountUnlocked.plus(D(1))
+        }
+    }
     if(amountUnlocked.gt(prevAmount)) {
         prevAmount = amountUnlocked
-        document.getElementById('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 65)}/64 (${format((prevAmount.divide(D(64)).times(D(100))))}%)`
+        document.getElementById('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 54)}/84 (${format((prevAmount.divide(D(84)).times(D(100))))}%)`
+    }
+}
+
+function updateAchievementHTML() {
+    if(data.currentTab === 2) {
+        for(let i = 0; i < 8; i++) {
+            if((HAchieves[i].getAttribute('src') !== `CHEM Achieves/Hydrogen/H${i+1}-Locked.png` && data.achievements[0].unlocked[i] === false) || (HAchieves[i].getAttribute('src') !== `CHEM Achieves/Hydrogen/H${i+1}-UnLocked.png` && data.achievements[0].unlocked[i] === true))
+                HAchieves[i].src = data.achievements[0].unlocked[i] === false ? `CHEM Achieves/Hydrogen/H${i+1}-Locked.png` : `CHEM Achieves/Hydrogen/H${i+1}-UnLocked.png`
+
+            if((CAchieves[i].getAttribute('src') !== `CHEM Achieves/Carbon/C${i+1}-Locked.png` && data.achievements[1].unlocked[i] === false) || (CAchieves[i].getAttribute('src') !== `CHEM Achieves/Carbon/C${i+1}-UnLocked.png` && data.achievements[1].unlocked[i] === true))
+                CAchieves[i].src = data.achievements[1].unlocked[i] === false ? `CHEM Achieves/Carbon/C${i+1}-Locked.png` : `CHEM Achieves/Carbon/C${i+1}-UnLocked.png`
+
+            if((OAchieves[i].getAttribute('src') !== `CHEM Achieves/Oxygen/O${i+1}-Locked.png` && data.achievements[2].unlocked[i] === false) || (OAchieves[i].getAttribute('src') !== `CHEM Achieves/Oxygen/O${i+1}-UnLocked.png` && data.achievements[2].unlocked[i] === true))
+                OAchieves[i].src = data.achievements[2].unlocked[i] === false ? `CHEM Achieves/Oxygen/O${i+1}-Locked.png` : `CHEM Achieves/Oxygen/O${i+1}-UnLocked.png`
+
+            if((FAchieves[i].getAttribute('src') !== `CHEM Achieves/Fluorine/F${i+1}-Locked.png` && data.achievements[3].unlocked[i] === false) || (FAchieves[i].getAttribute('src') !== `CHEM Achieves/Fluorine/F${i+1}-UnLocked.png` && data.achievements[3].unlocked[i] === true))
+                FAchieves[i].src = data.achievements[3].unlocked[i] === false ? `CHEM Achieves/Fluorine/F${i+1}-Locked.png` : `CHEM Achieves/Fluorine/F${i+1}-UnLocked.png`
+
+            if((SAchieves[i].getAttribute('src') !== `CHEM Achieves/Sulfur/S${i+1}-Locked.png` && data.achievements[4].unlocked[i] === false) || (SAchieves[i].getAttribute('src') !== `CHEM Achieves/Sulfur/S${i+1}-UnLocked.png` && data.achievements[4].unlocked[i] === true))
+                SAchieves[i].src = data.achievements[4].unlocked[i] === false ? `CHEM Achieves/Sulfur/S${i+1}-Locked.png` : `CHEM Achieves/Sulfur/S${i+1}-UnLocked.png`
+
+            if((ClAchieves[i].getAttribute('src') !== `CHEM Achieves/Chlorine/Cl${i+1}-Locked.png` && data.achievements[5].unlocked[i] === false) || (ClAchieves[i].getAttribute('src') !== `CHEM Achieves/Chlorine/Cl${i+1}-UnLocked.png` && data.achievements[5].unlocked[i] === true))
+                ClAchieves[i].src = data.achievements[5].unlocked[i] === false ? `CHEM Achieves/Chlorine/Cl${i+1}-Locked.png` : `CHEM Achieves/Chlorine/Cl${i+1}-UnLocked.png`
+
+            if((FeAchieves[i].getAttribute('src') !== `CHEM Achieves/Iron/I${i+1}-Locked.png` && data.achievements[6].unlocked[i] === false) || (FeAchieves[i].getAttribute('src') !== `CHEM Achieves/Iron/I${i+1}-UnLocked.png` && data.achievements[6].unlocked[i] === true))
+                FeAchieves[i].src = data.achievements[6].unlocked[i] === false ? `CHEM Achieves/Iron/I${i+1}-Locked.png` : `CHEM Achieves/Iron/I${i+1}-UnLocked.png`
+
+            if((PbAchieves[i].getAttribute('src') !== `CHEM Achieves/Lead/Pb${i+1}-Locked.png` && data.achievements[7].unlocked[i] === false) || (PbAchieves[i].getAttribute('src') !== `CHEM Achieves/Lead/Pb${i+1}-UnLocked.png` && data.achievements[7].unlocked[i] === true))
+                PbAchieves[i].src = data.achievements[7].unlocked[i] === false ? `CHEM Achieves/Lead/Pb${i+1}-Locked.png` : `CHEM Achieves/Lead/Pb${i+1}-UnLocked.png`
+            
+        }
+        for(let i = 0; i < 4; i++) {
+            if((PrAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Pr${i+1}-Locked.png` && data.achievements[8].unlocked[i] === false) || (PrAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Pr${i+1}-UnLocked.png` && data.achievements[8].unlocked[i] === true))
+                    PrAchieves[i].src = data.achievements[8].unlocked[i] === false ? `CHEM Achieves/Compounds/Pr${i+1}-Locked.png` : `CHEM Achieves/Compounds/Pr${i+1}-UnLocked.png`
+
+                if((WtAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Wt${i+1}-Locked.png` && data.achievements[9].unlocked[i] === false) || (WtAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Cl${i+1}-UnLocked.png` && data.achievements[9].unlocked[i] === true))
+                    WtAchieves[i].src = data.achievements[9].unlocked[i] === false ? `CHEM Achieves/Compounds/Wt${i+1}-Locked.png` : `CHEM Achieves/Compounds/Wt${i+1}-UnLocked.png`
+
+                if((SaAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Sa${i+1}-Locked.png` && data.achievements[10].unlocked[i] === false) || (SaAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Sa${i+1}-UnLocked.png` && data.achievements[10].unlocked[i] === true))
+                    SaAchieves[i].src = data.achievements[10].unlocked[i] === false ? `CHEM Achieves/Compounds/Sa${i+1}-Locked.png` : `CHEM Achieves/Compounds/Sa${i+1}-UnLocked.png`
+
+                if((SlAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Sl${i+1}-Locked.png` && data.achievements[11].unlocked[i] === false) || (SlAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Sl${i+1}-UnLocked.png` && data.achievements[11].unlocked[i] === true))
+                    SlAchieves[i].src = data.achievements[11].unlocked[i] === false ? `CHEM Achieves/Compounds/Sl${i+1}-Locked.png` : `CHEM Achieves/Compounds/Sl${i+1}-UnLocked.png`
+                
+                if((CfAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Cf${i+1}-Locked.png` && data.achievements[12].unlocked[i] === false) || (CfAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Cf${i+1}-UnLocked.png` && data.achievements[12].unlocked[i] === true))
+                    CfAchieves[i].src = data.achievements[12].unlocked[i] === false ? `CHEM Achieves/Compounds/Cf${i+1}-Locked.png` : `CHEM Achieves/Compounds/Cf${i+1}-UnLocked.png`
+        }
     }
 }
 
@@ -64,7 +172,15 @@ const achieveDescriptions = ['<hr>[1] - Hydrogenated<br>Buy your first Hydrogen 
 '<hr>[39] - Oh the stench<br>Buy 1e4 Sulfur Generators','<hr>[47] - Out of Bounds Exception: Ph below 0<br>Buy 1e4 Chlorine Generators','<hr>[55] - Carnegie<br>Buy 100 Iron Generators','<hr>[63] - Lotta Lead<br>Buy 1e4 Lead Generators',
 //EA 8
 '<hr>[8] - Millionaire I<br>Buy 1e6 Hydrogen Generators','<hr>[16] - Millionaire II<br>Buy 1e6 Carbon Generators','<hr>[24] - Millionaire III<br>Buy 1e6 Oxygen Generators','<hr>[32] - Millionaire IV<br>Buy 1e6 Fluorine Generators',
-'<hr>[40] - Millionaire V<br>Buy 1e6 Sulfur Generators','<hr>[48] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[56] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[64] - Millionaire VIII<br>Buy 1e6 Lead Generators']
+'<hr>[40] - Millionaire V<br>Buy 1e6 Sulfur Generators','<hr>[48] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[56] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[64] - Millionaire VIII<br>Buy 1e6 Lead Generators',
+//CA 1
+'<hr>[65] - A new chapter<br>Create your first Propane','<hr>[66] - Do you sell propane?<br>Create 10 Propane','<hr>[67] - What about propane accessories?<br>Create Propane','<hr>[68] - Strickland Propane<br>Create 1e3 Propane',
+'<hr>[69] - Dihydrogen Monoxide (also funni number)<br>Create your first Water','<hr>[70] - Unlimited Power<br>Create 10 Water','<hr>[71] - Moar Water<br>Create 100 Water','<hr>[72] - Hydroelectric<br>Create 1e3 Water',
+//CA 2
+'<hr>[73] - Battery<br>Create your first Sulfuric Acid','<hr>[74] - Energizer Battery<br>Create 10 Sulfuric Acid','<hr>[75] - Energizer Max<br>Create 100 Sulfuric Acid','<hr>[76] - Energizer Pro Max<br>Create 1e3 Sulfuric Acid',
+'<hr>[77] - Follow the iron trail<br>Create your first Steel','<hr>[78] - Carnegie Steel<br>Create 10 Steel','<hr>[79] - What do you even do with this?<br>Create 100 Steel','<hr>[80] - All the steel<br>Create 1e3 Steel',
+//CA 3
+'<hr>[81] - The last compound<br>Create your first Chlorine Trifluoride','<hr>[82] - A terrible idea<br>Create 10 Chlorine Trifluoride','<hr>[83] - You need to stop<br>Create 100 Chlorine Trifluoride','<hr>[84] - Burning Asbestos?!?<br>Create 1e3 Chlorine Trifluoride']
 function changeDescription(id) {
     switch(id) {
         //All Hydrogen IDs
@@ -267,6 +383,66 @@ function changeDescription(id) {
         case 'Pb8':
             descriptionText.innerHTML = achieveDescriptions[63]
             break;
-        //Whatever comes next
+        //Compounds
+        case 'Pr1':
+            descriptionText.innerHTML = achieveDescriptions[64]
+            break;
+        case 'Pr2':
+            descriptionText.innerHTML = achieveDescriptions[65]
+            break;
+        case 'Pr3':
+            descriptionText.innerHTML = achieveDescriptions[66]
+            break;
+        case 'Pr4':
+            descriptionText.innerHTML = achieveDescriptions[67]
+            break;
+        case 'Wt1':
+            descriptionText.innerHTML = achieveDescriptions[68]
+            break;
+        case 'Wt2':
+            descriptionText.innerHTML = achieveDescriptions[69]
+            break;
+        case 'Wt3':
+            descriptionText.innerHTML = achieveDescriptions[70]
+            break;
+        case 'Wt4':
+            descriptionText.innerHTML = achieveDescriptions[71]
+            break;
+        case 'Sa1':
+            descriptionText.innerHTML = achieveDescriptions[72]
+            break;
+        case 'Sa2':
+            descriptionText.innerHTML = achieveDescriptions[73]
+            break;
+        case 'Sa3':
+            descriptionText.innerHTML = achieveDescriptions[74]
+            break;
+        case 'Sa4':
+            descriptionText.innerHTML = achieveDescriptions[75]
+            break;
+        case 'Sl1':
+            descriptionText.innerHTML = achieveDescriptions[76]
+            break;
+        case 'Sl2':
+            descriptionText.innerHTML = achieveDescriptions[77]
+            break;
+        case 'Sl3':
+            descriptionText.innerHTML = achieveDescriptions[78]
+            break;
+        case 'Sl4':
+            descriptionText.innerHTML = achieveDescriptions[79]
+            break;
+        case 'Cf1':
+            descriptionText.innerHTML = achieveDescriptions[80]
+            break;
+        case 'Cf2':
+            descriptionText.innerHTML = achieveDescriptions[81]
+            break;
+        case 'Cf3':
+            descriptionText.innerHTML = achieveDescriptions[82]
+            break;
+        case 'Cf4':
+            descriptionText.innerHTML = achieveDescriptions[83]
+            break;
     }
 }
