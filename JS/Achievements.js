@@ -27,7 +27,6 @@ for(let i = 0; i < 8; i++) {
     ClAchieves[i] = document.getElementById(`Cl${i+1}`)
     FeAchieves[i] = document.getElementById(`Fe${i+1}`)
     PbAchieves[i] = document.getElementById(`Pb${i+1}`)
-    console.log(HAchieves)
 }
 for(let i = 0; i < 4; i++) {
     PrAchieves[i] = document.getElementById(`Pr${i+1}`)
@@ -65,7 +64,8 @@ function unlockAchieves() {
         if(data.elements[7].level.gte(unlockReqs[i]) && data.achievements[7].unlocked[i] !== true)
             data.achievements[7].unlocked[i] = true
         //Compounds
-        if(i < 4) {
+    }
+    for(let i = 0; i < 4; i++) {
             if(data.compounds[0].amt.gte(unlockReqs[i]) && data.achievements[8].unlocked[i] !== true)
             data.achievements[8].unlocked[i] = true
         
@@ -80,7 +80,6 @@ function unlockAchieves() {
 
             if(data.compounds[4].amt.gte(unlockReqs[i]) && data.achievements[12].unlocked[i] !== true)
             data.achievements[12].unlocked[i] = true
-        }
     }
     let amountUnlocked
     amountUnlocked = D(0)
@@ -92,7 +91,7 @@ function unlockAchieves() {
     }
     if(amountUnlocked.gt(prevAmount)) {
         prevAmount = amountUnlocked
-        document.getElementById('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 65)}/64 (${format((prevAmount.divide(D(64)).times(D(100))))}%)`
+        document.getElementById('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 89)}/88 (${format((prevAmount.divide(D(88)).times(D(100))))}%)`
     }
 }
 
@@ -167,7 +166,15 @@ const achieveDescriptions = ['<hr>[1] - Hydrogenated<br>Buy your first Hydrogen 
 '<hr>[39] - Oh the stench<br>Buy 1e4 Sulfur Generators','<hr>[47] - Out of Bounds Exception: Ph below 0<br>Buy 1e4 Chlorine Generators','<hr>[55] - Carnegie<br>Buy 100 Iron Generators','<hr>[63] - Lotta Lead<br>Buy 1e4 Lead Generators',
 //EA 8
 '<hr>[8] - Millionaire I<br>Buy 1e6 Hydrogen Generators','<hr>[16] - Millionaire II<br>Buy 1e6 Carbon Generators','<hr>[24] - Millionaire III<br>Buy 1e6 Oxygen Generators','<hr>[32] - Millionaire IV<br>Buy 1e6 Fluorine Generators',
-'<hr>[40] - Millionaire V<br>Buy 1e6 Sulfur Generators','<hr>[48] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[56] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[64] - Millionaire VIII<br>Buy 1e6 Lead Generators']
+'<hr>[40] - Millionaire V<br>Buy 1e6 Sulfur Generators','<hr>[48] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[56] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[64] - Millionaire VIII<br>Buy 1e6 Lead Generators',
+//CA 1
+'<hr>[65] - A New Chapter<br>Create 1 Propane','<hr>[66] - Millionaire II<br>Buy 1e6 Carbon Generators','<hr>[67] - Millionaire III<br>Buy 1e6 Oxygen Generators','<hr>[68] - Millionaire IV<br>Buy 1e6 Fluorine Generators',
+'<hr>[69] - Dihydrogen Monoxide<br>Create 1 Water','<hr>[70] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[71] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[72] - Millionaire VIII<br>Buy 1e6 Lead Generators',
+//CA 2
+'<hr>[73] - I got the power<br>Create 1 Sulfuric Acid','<hr>[74] - Millionaire II<br>Buy 1e6 Carbon Generators','<hr>[75] - Millionaire III<br>Buy 1e6 Oxygen Generators','<hr>[76] - Millionaire IV<br>Buy 1e6 Fluorine Generators',
+'<hr>[77] - Oh so this is why you keep mentioning steel<br>Create 1 Steel','<hr>[78] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[79] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[80] - Millionaire VIII<br>Buy 1e6 Lead Generators',
+//CA 3
+'<hr>[81] - Um not a great idea<br>Create 1 Chlorine Trifluoride','<hr>[82] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[83] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[84] - Millionaire VIII<br>Buy 1e6 Lead Generators']
 function changeDescription(id) {
     switch(id) {
         //All Hydrogen IDs
