@@ -90,6 +90,7 @@ function updateHTML(){
     }
     unlockTabs()
     tabChangeHTML()
+    subTabChangeHTML()
 }
 
 function unlockTabs(){
@@ -120,4 +121,10 @@ function tabChangeHTML(){
     achievementTab.style.display = data.currentTab === 2 ? 'flex' : 'none'
     refineryTab.style.display = data.currentTab === 6 ? 'flex' : 'none'
     seperator.style.color = `#${seperatorColors[data.currentTab]}`
+}
+const regularElementHolder = document.getElementById('regularElementsHolder')
+const isotopeElementHolder = document.getElementById('isotopeElementsHolder')
+function subTabChangeHTML() {
+    regularElementHolder.style.display = data.currentSubTab[0] === 0 ? 'flex' : 'none'
+    isotopeElementHolder.style.display = data.currentSubTab[0] === 1 ? 'flex' : 'none'
 }

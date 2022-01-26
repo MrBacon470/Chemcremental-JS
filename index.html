@@ -26,8 +26,8 @@
     <hr id="tabSeperator" style="color: #3a5b99; border:solid 1px;">
     <div id="elementHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="subTabHolder">
-            <button id="ReE" class="subTabButton" onclick="" style="border: 3px solid #3c9f45;">Regular</button>
-            <button id="RaE" class="subTabButton" onclick="" style="border: 3px solid #3c9f45;">Isotopes</button>
+            <button id="ReE" class="subTabButton" onclick="switchSubTab(0,0)" style="border: 3px solid #3c9f45;">Regular</button>
+            <button id="RaE" class="subTabButton" onclick="switchSubTab(1,0)" style="border: 3px solid #307e35;">Isotopes</button>
         </div>
         
         <div id="regularElementsHolder" class="flexBox" style="margin-top: 2em;">
@@ -61,8 +61,8 @@
             </button>
         </div>
         </div>
-        <div id="radioactiveElementsHolder" class="flexBox" style="margin-top: 2em;">
-            <button onclick="toggleBuyAmount(0)" id="bA0" class="buyAmount">Buy Amount: 1</button>
+        <div id="isotopeElementsHolder" class="flexBox" style="margin-top: 2em;">
+            <button onclick="toggleBuyAmount(2)" id="bA2" class="buyAmount">Buy Amount: 1</button>
         <div class="flexBox elementColumn" id="elementColumn1">
             <button id="Hydrogen3" class="elementButton" onclick="purchaseElement(0)" style="border: 3px solid #636363">
                 H-3 Generator<br>Cost: 10 Lead | Level: 0

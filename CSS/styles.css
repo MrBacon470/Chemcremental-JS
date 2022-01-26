@@ -134,6 +134,31 @@ img {
     background-color: #b04192;
 }
 
+#Hydrogen3:hover {
+    background-color: #636363;
+}
+#Carbon14:hover {
+    background-color: #742c2c;
+}
+#Oxygen15:hover {
+    background-color: #694d27;
+}
+#Fluorine18:hover {
+    background-color: #5f6123;
+}
+#Sulfur35:hover {
+    background-color: #2a4b1c;
+}
+#Chlorine37:hover {
+    background-color: #21435c;
+}
+#Iron60:hover {
+    background-color: #4b2058;
+}
+#Lead212:hover {
+    background-color: #632452;
+}
+
 #eB:hover {
     background-color: #3c9f45;
 }

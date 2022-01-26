@@ -38,8 +38,13 @@ function switchTab(i){
     data.currentTab = i
     let x=i-3
     if (x >= 0) data.hasTab[x] ? data.currentTab=i : data.currentTab=1
-    console.log(data.currentTab)
     tabChangeHTML()
+}
+function switchSubTab(i,x){
+    data.currentSubTab[x] = i
+    //let x=i-3
+    //if (i >= 0) data.hasTab[x] ? data.currentSubTab[x]=i : data.currentSubTab[x] = 1
+    subTabChangeHTML()
 }
 let sumOfElements = D(0)
 let shardsToGet = D(0), fragmentsToGet = D(0), coinsToGet = D(0)
