@@ -17,6 +17,9 @@ const WtAchieves = []
 const SaAchieves = []
 const SlAchieves = []
 const CfAchieves = []
+//Resources
+const PwAchieves = []
+const CoAchieves = []
 
 for(let i = 0; i < 8; i++) {
     HAchieves[i] = document.getElementById(`H${i+1}`)
@@ -34,6 +37,8 @@ for(let i = 0; i < 4; i++) {
     SaAchieves[i] = document.getElementById(`Sa${i+1}`)
     SlAchieves[i] = document.getElementById(`Sl${i+1}`)
     CfAchieves[i] = document.getElementById(`Cf${i+1}`)
+    PwAchieves[i] = document.getElementById(`Pw${i+1}`)
+    CoAchieves[i] = document.getElementById(`Co${i+1}`)
 }
 
 let unlockReqs = [D(1),D(10),D(50),D(100),D(500),D(1000),D(10000),D(1000000)]
@@ -80,6 +85,12 @@ function unlockAchieves() {
 
             if(data.compounds[4].amt.gte(unlockReqs[i]) && data.achievements[12].unlocked[i] !== true)
             data.achievements[12].unlocked[i] = true
+
+            if(data.power.gte(unlockReqs[i]) && data.achievements[13].unlocked[i] !== true)
+            data.achievements[13].unlocked[i] = true
+            
+            if(data.corium.gte(unlockReqs[i+4]) && data.achievements[14].unlocked[i] !== true)
+            data.achievements[14].unlocked[i] = true
     }
     let amountUnlocked
     amountUnlocked = D(0)
@@ -89,7 +100,7 @@ function unlockAchieves() {
                 amountUnlocked = amountUnlocked.plus(D(1))
         }
     }
-    for(let i = 0; i < 4; i++) {
+    for(let i = 0; i < 6; i++) {
         for(let j = 0; j < 4; j++) {
             if(data.achievements[i+8].unlocked[j] === true)
                 amountUnlocked = amountUnlocked.plus(D(1))
@@ -97,7 +108,7 @@ function unlockAchieves() {
     }
     if(amountUnlocked.gt(prevAmount)) {
         prevAmount = amountUnlocked
-        document.getElementById('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 54)}/84 (${format((prevAmount.divide(D(84)).times(D(100))))}%)`
+        document.getElementById('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 93)}/92 (${format((prevAmount.divide(D(92)).times(D(100))))}%)`
     }
 }
 
@@ -144,6 +155,12 @@ function updateAchievementHTML() {
                 
                 if((CfAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Cf${i+1}-Locked.png` && data.achievements[12].unlocked[i] === false) || (CfAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Cf${i+1}-UnLocked.png` && data.achievements[12].unlocked[i] === true))
                     CfAchieves[i].src = data.achievements[12].unlocked[i] === false ? `CHEM Achieves/Compounds/Cf${i+1}-Locked.png` : `CHEM Achieves/Compounds/Cf${i+1}-UnLocked.png`
+                
+                if((PwAchieves[i].getAttribute('src') !== `CHEM Achieves/Resources/Power${i+1}-Locked.png` && data.achievements[13].unlocked[i] === false) || (PwAchieves[i].getAttribute('src') !== `CHEM Achieves/Resources/Power${i+1}-UnLocked.png` && data.achievements[13].unlocked[i] === true))
+                    PwAchieves[i].src = data.achievements[11].unlocked[i] === false ? `CHEM Achieves/Resources/Power${i+1}-Locked.png` : `CHEM Achieves/Resources/Power${i+1}-UnLocked.png`
+                
+                if((CoAchieves[i].getAttribute('src') !== `CHEM Achieves/Compounds/Corium${i+1}-Locked.png` && data.achievements[14].unlocked[i] === false) || (CoAchieves[i].getAttribute('src') !== `CHEM Achieves/Resources/Corium${i+1}-UnLocked.png` && data.achievements[14].unlocked[i] === true))
+                    CoAchieves[i].src = data.achievements[12].unlocked[i] === false ? `CHEM Achieves/Resources/Corium${i+1}-Locked.png` : `CHEM Achieves/Resources/Corium${i+1}-UnLocked.png`
         }
     }
 }
@@ -169,7 +186,7 @@ const achieveDescriptions = ['<hr>[1] - Hydrogenated<br>Buy your first Hydrogen 
 '<hr>[38] - Stanky Leg<br>Buy 1e3 Sulfur Generators','<hr>[46] - Spicy Air<br>Buy 1e3 Chlorine Generators','<hr>[54] - The might of German... Iron?<br>Buy 1e3 Iron Generators','<hr>[62] - Powder it too<br>Buy 1e3 Lead Generators',
 //EA 7
 '<hr>[7] - Hindenberg 2.0<br>Buy 1e4 Hydrogen Generators','<hr>[15] -  All life<br>Buy 1e4 Carbon Generators','<hr>[23] - Bottled Air<br>Buy 1e4 Oxygen Generators','<hr>[31] - Fluorinating<br>Buy 1e4 Fluorine Generators',
-'<hr>[39] - Oh the stench<br>Buy 1e4 Sulfur Generators','<hr>[47] - Out of Bounds Exception: Ph below 0<br>Buy 1e4 Chlorine Generators','<hr>[55] - Carnegie<br>Buy 100 Iron Generators','<hr>[63] - Lotta Lead<br>Buy 1e4 Lead Generators',
+'<hr>[39] - Oh the stench<br>Buy 1e4 Sulfur Generators','<hr>[47] - Out of Bounds Exception: Ph below 0<br>Buy 1e4 Chlorine Generators','<hr>[55] - Carnegie<br>Buy 1e4 Iron Generators','<hr>[63] - Lotta Lead<br>Buy 1e4 Lead Generators',
 //EA 8
 '<hr>[8] - Millionaire I<br>Buy 1e6 Hydrogen Generators','<hr>[16] - Millionaire II<br>Buy 1e6 Carbon Generators','<hr>[24] - Millionaire III<br>Buy 1e6 Oxygen Generators','<hr>[32] - Millionaire IV<br>Buy 1e6 Fluorine Generators',
 '<hr>[40] - Millionaire V<br>Buy 1e6 Sulfur Generators','<hr>[48] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[56] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[64] - Millionaire VIII<br>Buy 1e6 Lead Generators',
@@ -180,7 +197,10 @@ const achieveDescriptions = ['<hr>[1] - Hydrogenated<br>Buy your first Hydrogen 
 '<hr>[73] - Battery<br>Create your first Sulfuric Acid','<hr>[74] - Energizer Battery<br>Create 10 Sulfuric Acid','<hr>[75] - Energizer Max<br>Create 100 Sulfuric Acid','<hr>[76] - Energizer Pro Max<br>Create 1e3 Sulfuric Acid',
 '<hr>[77] - Follow the iron trail<br>Create your first Steel','<hr>[78] - Carnegie Steel<br>Create 10 Steel','<hr>[79] - What do you even do with this?<br>Create 100 Steel','<hr>[80] - All the steel<br>Create 1e3 Steel',
 //CA 3
-'<hr>[81] - The last compound<br>Create your first Chlorine Trifluoride','<hr>[82] - A terrible idea<br>Create 10 Chlorine Trifluoride','<hr>[83] - You need to stop<br>Create 100 Chlorine Trifluoride','<hr>[84] - Burning Asbestos?!?<br>Create 1e3 Chlorine Trifluoride']
+'<hr>[81] - The last compound<br>Create your first Chlorine Trifluoride','<hr>[82] - A terrible idea<br>Create 10 Chlorine Trifluoride','<hr>[83] - You need to stop<br>Create 100 Chlorine Trifluoride','<hr>[84] - Burning Asbestos?!?<br>Create 1e3 Chlorine Trifluoride',
+// RA 1
+'<hr>[85] - New tabs?!?<br>Generate 1 Power','<hr>[86] - I got the power<br>Generate 10 Power','<hr>[87] - The power of the steam engine<br>Generate 100 Power','<hr>[88] - It never changes<br>Generate 1e3 Power',
+'<hr>[89] - Three Mile Island<br>Melt for 500 Corium','<hr>[90] - Fukushima<br>Melt for 1e3 Corium','<hr>[91] - Chernobyl<br>Melt for 1e4 Corium','<hr>[92] - The elephants foot<br>Melt for 1e6 Corium']
 function changeDescription(id) {
     switch(id) {
         //All Hydrogen IDs
@@ -443,6 +463,31 @@ function changeDescription(id) {
             break;
         case 'Cf4':
             descriptionText.innerHTML = achieveDescriptions[83]
+            break;
+        //Resources
+        case 'Pw1':
+            descriptionText.innerHTML = achieveDescriptions[84]
+            break;
+        case 'Pw2':
+            descriptionText.innerHTML = achieveDescriptions[85]
+            break;
+        case 'Pw3':
+            descriptionText.innerHTML = achieveDescriptions[86]
+            break;
+        case 'Pw4':
+            descriptionText.innerHTML = achieveDescriptions[87]
+            break;
+        case 'Co1':
+            descriptionText.innerHTML = achieveDescriptions[88]
+            break;
+        case 'Co2':
+            descriptionText.innerHTML = achieveDescriptions[89]
+            break;
+        case 'Co3':
+            descriptionText.innerHTML = achieveDescriptions[90]
+            break;
+        case 'Co4':
+            descriptionText.innerHTML = achieveDescriptions[91]
             break;
     }
 }
