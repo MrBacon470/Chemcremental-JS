@@ -3,6 +3,9 @@
     font-family: 'Monospace Typewriter';
     color: whitesmoke;
 }
+hr {
+    border: 1px solid;
+}
 img {
     margin-left: 3px;
     margin-top: 3px;
@@ -43,7 +46,7 @@ img {
 }
 /* change this to row so it can hold multiple columns in a row lineup, if that makes sense */
 .holder {
-    margin-top: 50px;
+    margin-top: 25px;
     flex-direction: row;
 }
 /* elements you want to be in a column will be contained in one of these */
