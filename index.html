@@ -26,11 +26,11 @@
     <hr id="tabSeperator" style="color: #3a5b99; border:solid 1px;">
     <div id="elementHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="subTabHolder">
-            <button id="ReE" class="subTabButton" onclick="" style="border: 3px solid #3c9f45;">Regular Elements</button>
-            <button id="RaE" class="subTabButton" onclick="" style="border: 3px solid #3c9f45;">Radioactive Elements</button>
+            <button id="ReE" class="subTabButton" onclick="" style="border: 3px solid #3c9f45;">Regular</button>
+            <button id="RaE" class="subTabButton" onclick="" style="border: 3px solid #3c9f45;">Isotopes</button>
         </div>
         
-        <div class="flexBox" style="margin-top: 2em;">
+        <div id="regularElementsHolder" class="flexBox" style="margin-top: 2em;">
             <button onclick="toggleBuyAmount(0)" id="bA0" class="buyAmount">Buy Amount: 1</button>
         <div class="flexBox elementColumn" id="elementColumn1">
             <button id="Hydrogen" class="elementButton" onclick="purchaseElement(0)" style="border: 3px solid #adadad">
@@ -61,7 +61,37 @@
             </button>
         </div>
         </div>
-        
+        <div id="radioactiveElementsHolder" class="flexBox" style="margin-top: 2em;">
+            <button onclick="toggleBuyAmount(0)" id="bA0" class="buyAmount">Buy Amount: 1</button>
+        <div class="flexBox elementColumn" id="elementColumn1">
+            <button id="Hydrogen3" class="elementButton" onclick="purchaseElement(0)" style="border: 3px solid #636363">
+                H-3 Generator<br>Cost: 10 Lead | Level: 0
+            </button>
+            <button id="Carbon14" class="elementButton" onclick="purchaseElement(1)" style="border: 3px solid #742c2c">
+                C-14 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+            <button id="Oxygen15" class="elementButton" onclick="purchaseElement(2)" style="border: 3px solid #694d27">
+                O-15 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+            <button id="Fluorine18" class="elementButton" onclick="purchaseElement(3)" style="border: 3px solid #5f6123">
+                F-18 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+        </div>
+        <div class="flexBox elementColumn" id="elementColumn2">
+            <button id="Sulfur35" class="elementButton" onclick="purchaseElement(4)" style="border: 3px solid #2a4b1c">
+                S-35 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+            <button id="Chlorine37" class="elementButton" onclick="purchaseElement(5)" style="border: 3px solid #21435c">
+                Cl-37 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+            <button id="Iron60" class="elementButton" onclick="purchaseElement(6)" style="border: 3px solid #4b2058">
+                Fe-60 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+            <button id="Lead212" class="elementButton" onclick="purchaseElement(7)" style="border: 3px solid #632452">
+                Pb-212 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+        </div>
+        </div>
     </div>
     <div id="compoundHolder" class="flexBox holder">
         <button onclick="toggleBuyAmount(1)" id="bA1" class="buyAmount">Buy Amount: 1</button>

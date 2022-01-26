@@ -33,6 +33,13 @@ img {
     height: 4em;
     text-align: center;
 }
+.subTabButton {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 6em;
+    height: 3em;
+    text-align: center;
+}
 .flexBox {
     display: flex;
     align-items: center;
