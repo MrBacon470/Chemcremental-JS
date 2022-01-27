@@ -1,12 +1,15 @@
 // region element declarations
 let elementSum = D(0)
 const elementButtons = []
+const isotopeButtons = []
 const elementNames = ['Hydrogen','Carbon','Oxygen','Fluorine','Sulfur','Chlorine','Iron','Lead']
+const isotopeIds = ['Hydrogen3','Carbon14','Oxygen15','Fluorine18','Sulfur35','Chlorine37','Iron60','Lead212',]
 const shortElement = ['H','C','O','F','S','Cl','Fe','Pb']
 const compoundButtons = []
 const compoundBoost = ['Element Boost: ','Power Boost: ','Battery Boost: ','Lead Boost: ','Melt Boost: ']
 for (let i=0; i<8; i++){
     elementButtons[i] = document.getElementById(`${elementNames[i]}`)
+    isotopeButtons[i] = document.getElementById(`${isotopeIds[i]}`)
 }
 for(let i = 0; i < 5; i++) {
     compoundButtons[i] = document.getElementById(`${data.compounds[i].name}`)
@@ -50,16 +53,24 @@ function updateHTML(){
         document.getElementById('toggle2').innerHTML = data.settingsToggles[1] ? 'Enable Offline Progress [ON]' : 'Enable Offline Progress [OFF]'
     }
     else if (data.currentTab === 1) {
-        for(let i = 0;i < 8;i++) {
-            if(i == 0)
-                elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]})<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
-            else if(i == 1)
-            elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
-
-            else
-                elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${format(elementCost[i])} ${data.elements[i - 1].name} | Level:${format(data.elements[i].level)}`
+        if(data.currentSubTab[0] === 0) {
+            for(let i = 0;i < 8;i++) {
+                if(i == 0)
+                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]})<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
+                else if(i == 1)
+                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
+                else
+                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${format(elementCost[i])} ${data.elements[i - 1].name} | Level:${format(data.elements[i].level)}`
+            }
         }
-        
+        else if(data.currentSubTab[0] === 1) {
+            for(let i = 0;i < 8;i++) {
+                if(i == 0)
+                    isotopeButtons[i].innerHTML = `${data.isotopes[i].name}  Generator (${format(data.isotopes[i].amt)} ${data.isotopes[i].name})<br>Cost: ${format(elementCost[i])}  | Level:${format(data.isotopes[i].level)}`
+                else
+                isotopeButtons[i].innerHTML = `${data.isotopes[i].name}  Generator (${format(data.isotopes[i].amt)} ${data.isotopes[i].name} | ${format(D(1).add(Decimal.sqrt(data.isotopes[i].max)))}x)<br>Cost: ${format(isotopeCost[i])} ${data.isotopes[i - 1].name} | Level:${format(data.isotopes[i].level)}`
+            }
+        }
     }
     else if(data.currentTab === 2) {
         //Moved

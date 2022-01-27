@@ -8,7 +8,7 @@ function getDefaultObject() {
         level:D(0),max:D(0)},{amt:D(0),name:"Fluorine",level:D(0),max:D(0)},{amt:D(0),name:"Sulfur",level:D(0),max:D(0)},{amt:D(0),name:"Chlorine",
         level:D(0),max:D(0)},{amt:D(0),name:"Iron",level:D(0),max:D(0)},{amt:D(0),name:"Lead",level:D(0),max:D(0)}],
         elementGain: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
-        elements: [{amt:D(10),name:"H-3",level:D(0),max:D(0)},{amt:D(0),name:"C-14",level:D(0),max:D(0)},{amt:D(0),name:"O-15",
+        isotopes: [{amt:D(0),name:"H-3",level:D(0),max:D(0)},{amt:D(0),name:"C-14",level:D(0),max:D(0)},{amt:D(0),name:"O-15",
         level:D(0),max:D(0)},{amt:D(0),name:"F-18",level:D(0),max:D(0)},{amt:D(0),name:"S-35",level:D(0),max:D(0)},{amt:D(0),name:"Cl-37",
         level:D(0),max:D(0)},{amt:D(0),name:"Fe-60",level:D(0),max:D(0)},{amt:D(0),name:"Pb-212",level:D(0),max:D(0)}],
         compounds: [{amt:D(0),name:"Propane",cost:"C<sub>3</sub>H<sub>8</sub>"},{amt:D(0),name:"Water",cost:"H<sub>2</sub>0"},
