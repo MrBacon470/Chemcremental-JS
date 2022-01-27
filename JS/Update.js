@@ -53,6 +53,8 @@ function updateHTML(){
         document.getElementById('toggle2').innerHTML = data.settingsToggles[1] ? 'Enable Offline Progress [ON]' : 'Enable Offline Progress [OFF]'
     }
     else if (data.currentTab === 1) {
+        document.getElementById('RaE').style.display = data.coriumSingUps[2] ? 'flex' : 'none'
+        document.getElementById('ReE').style.display = data.coriumSingUps[2] ? 'flex' : 'none'
         if(data.currentSubTab[0] === 0) {
             for(let i = 0;i < 8;i++) {
                 if(i == 0)
@@ -66,7 +68,7 @@ function updateHTML(){
         else if(data.currentSubTab[0] === 1) {
             for(let i = 0;i < 8;i++) {
                 if(i == 0)
-                    isotopeButtons[i].innerHTML = `${data.isotopes[i].name}  Generator (${format(data.isotopes[i].amt)} ${data.isotopes[i].name})<br>Cost: ${format(elementCost[i])}  | Level:${format(data.isotopes[i].level)}`
+                    isotopeButtons[i].innerHTML = `${data.isotopes[i].name}  Generator (${format(data.isotopes[i].amt)} ${data.isotopes[i].name})<br>Cost: ${format(isotopeCost[i])} Lead | Level:${format(data.isotopes[i].level)}`
                 else
                 isotopeButtons[i].innerHTML = `${data.isotopes[i].name}  Generator (${format(data.isotopes[i].amt)} ${data.isotopes[i].name} | ${format(D(1).add(Decimal.sqrt(data.isotopes[i].max)))}x)<br>Cost: ${format(isotopeCost[i])} ${data.isotopes[i - 1].name} | Level:${format(data.isotopes[i].level)}`
             }
@@ -110,7 +112,7 @@ function unlockTabs(){
     data.hasTab[1] = data.compounds[0].amt > 0 || data.hasTab[1]
     data.hasTab[2] = sumOfElements.gte(D(1e8)) || data.hasTab[2]
     data.hasTab[3] = data.coriumSingUps[0] === true || data.hasTab[3]
-
+    
     for(let i = 0; i < 4; i++)
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
 }
@@ -122,7 +124,7 @@ const meltingTab = document.getElementById("meltingHolder")
 const settingTab = document.getElementById("settingsHolder")
 const achievementTab = document.getElementById("achievementHolder")
 const refineryTab = document.getElementById("refineryHolder")
-const seperatorColors = ['808080','3c9f45','7fffd4','3a5b99','b0b835','68368a','583793']
+const seperatorColors = ['808080','3c9f45','7fccff','3a5b99','b0b835','68368a','583793']
 function tabChangeHTML(){
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
     compoundTab.style.display = data.currentTab === 3 ? 'flex': 'none'   
@@ -136,6 +138,6 @@ function tabChangeHTML(){
 const regularElementHolder = document.getElementById('regularElementsHolder')
 const isotopeElementHolder = document.getElementById('isotopeElementsHolder')
 function subTabChangeHTML() {
-    regularElementHolder.style.display = data.currentSubTab[0] === 0 ? 'flex' : 'none'
-    isotopeElementHolder.style.display = data.currentSubTab[0] === 1 ? 'flex' : 'none'
+        regularElementHolder.style.display = data.currentSubTab[0] === 0 ? 'flex' : 'none'
+        isotopeElementHolder.style.display = data.currentSubTab[0] === 1 ? 'flex' : 'none'
 }

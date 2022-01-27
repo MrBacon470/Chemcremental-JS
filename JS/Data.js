@@ -11,6 +11,7 @@ function getDefaultObject() {
         isotopes: [{amt:D(0),name:"H-3",level:D(0),max:D(0)},{amt:D(0),name:"C-14",level:D(0),max:D(0)},{amt:D(0),name:"O-15",
         level:D(0),max:D(0)},{amt:D(0),name:"F-18",level:D(0),max:D(0)},{amt:D(0),name:"S-35",level:D(0),max:D(0)},{amt:D(0),name:"Cl-37",
         level:D(0),max:D(0)},{amt:D(0),name:"Fe-60",level:D(0),max:D(0)},{amt:D(0),name:"Pb-212",level:D(0),max:D(0)}],
+        isotopeGain: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
         compounds: [{amt:D(0),name:"Propane",cost:"C<sub>3</sub>H<sub>8</sub>"},{amt:D(0),name:"Water",cost:"H<sub>2</sub>0"},
         {amt:D(0),name:"Sulfuric Acid",cost:"H<sub>2</sub>SO<sub>4</sub>"},{amt:D(0),name:"Steel",cost:"FeC"},
         {amt:D(0),name:"Chlorine Trifluoride",cost:"ClF<sub>3</sub>"}],

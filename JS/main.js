@@ -21,6 +21,18 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
         }
+
+        if(i === 7) {
+            //data.elementGain[i] = (data.elements[i].level.times(compoundBoosts[0].add(compoundBoosts[3]).add(powerBoosts[0]).add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax))))
+            data.isotopeGain[i] = data.isotopes[i].level.times(D(1).add(Decimal.sqrt(data.coriumMax)))
+            data.isotopeGain[i] = data.isotopeGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
+        }
+        else {
+            //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
+            data.isotopeGain[i] = data.isotopes[i].level.times(D(1).add(Decimal.sqrt(data.isotopes[i + 1].max)))
+            data.isotopeGain[i] = data.isotopeGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
+            data.isotopeGain[i] = data.isotopeGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
+        }
     }
     //for(let i = 0; i < 8; i++)
         //data.elementGain[i] = data.compounds[0].amt.gt(D(0)) ? data.elementGain[i] : data.elementGain[i].divide(D(10000)) 
@@ -31,6 +43,14 @@ function increaseElements(x,i) {
         if(i != 0) {
             data.elements[i].max = data.elements[i].max.plus(x);
         }
+
+}
+
+function increaseIsotopes(x,i) {
+    data.isotopes[i].amt = data.isotopes[i].amt.plus(x);
+    if(i != 0) {
+        data.isotopes[i].max = data.isotopes[i].max.plus(x);
+    }
 
 }
 
@@ -62,8 +82,11 @@ function mainLoop(){
     calculateElementGain()
     unlockAchieves()
     //Misc Stuff Here
-    for(let i = 0; i < 8; i++)
+    for(let i = 0; i < 8; i++) {
         increaseElements(data.elementGain[i].times(diff), i)
+        increaseIsotopes(data.isotopeGain[i].times(diff), i)
+    }
+        
     powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     coriumToGet = D(0)
