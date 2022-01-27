@@ -15,10 +15,10 @@ for(let i = 0; i < 5; i++) {
     compoundButtons[i] = document.getElementById(`${data.compounds[i].name}`)
 }
 const tabs = []
-const tabIDs = ['cB','pB','mB','rB']
-const tabNames = ['Compounds','Power','Melting','Refinery']
-const colors = ['3a5b99','b0b835','68368a','583793']
-for(let i=0; i < 4; i++) {
+const tabIDs = ['cB','pB','mB','rB','acB']
+const tabNames = ['Compounds','Power','Melting','Refinery','Accelerators']
+const colors = ['3a5b99','b0b835','68368a','583793','37936d']
+for(let i=0; i < 5; i++) {
     tabs[i] = document.getElementById(`${tabIDs[i]}`)
 }
 const powerUpButton = []
@@ -40,7 +40,7 @@ function updateHTML(){
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     document.getElementById('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
     document.getElementById('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
-    for(let i = 0; i < 4; i++) {
+    for(let i = 0; i < 5; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
         tabs[i].style.border = !data.hasTab[i] ? '4px solid gray' : `4px solid #${colors[i]}`
@@ -101,9 +101,65 @@ function updateHTML(){
         document.getElementById(`${refineryIDs[1]}`).innerHTML = `${refineryNames[1]}<br><br>${refineryDescriptions[1]}<br><br>+${format(fragmentsToGet)} ${currencyNames[1]}<br><br>${format(data.refineryCurrencies[1])} ${currencyNames[1]} Avalible`
         document.getElementById(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format(Decimal.sqrt(data.refineryCurrencies[2].times(D(2))))}x Boost`
     }
+    else if(data.currentTab === 7) {
+        if(data.currentSubTab[1] === 0) {
+            switch(data.currentElement) {
+                case 0:
+                    leftButton.style.border = `3px solid #${buttonColors[7]}`
+                    rightButton.style.border = `3px solid #${buttonColors[2]}`
+                    currentDisplay.innerHTML = "Hydrogen"
+                    splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 1:
+                    leftButton.style.border = `3px solid #${buttonColors[0]}`
+                    rightButton.style.border = `3px solid #${buttonColors[2]}`
+                    currentDisplay.innerHTML = "Carbon"
+                    splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 2:
+                    leftButton.style.border = `3px solid #${buttonColors[1]}`
+                    rightButton.style.border = `3px solid #${buttonColors[3]}`
+                    currentDisplay.innerHTML = "Oxygen"
+                    splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 3:
+                    leftButton.style.border = `3px solid #${buttonColors[2]}`
+                    rightButton.style.border = `3px solid #${buttonColors[4]}`
+                    currentDisplay.innerHTML = "Fluorine"
+                    splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 4:
+                    leftButton.style.border = `3px solid #${buttonColors[3]}`
+                    rightButton.style.border = `3px solid #${buttonColors[5]}`
+                    currentDisplay.innerHTML = "Sulfur"
+                    splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 5:
+                    leftButton.style.border = `3px solid #${buttonColors[4]}`
+                    rightButton.style.border = `3px solid #${buttonColors[6]}`
+                    currentDisplay.innerHTML = "Chlorine"
+                    splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 6:
+                    leftButton.style.border = `3px solid #${buttonColors[5]}`
+                    rightButton.style.border = `3px solid #${buttonColors[7]}`
+                    currentDisplay.innerHTML = "Iron"
+                    splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 7:
+                    leftButton.style.border = `3px solid #${buttonColors[6]}`
+                    rightButton.style.border = `3px solid #${buttonColors[0]}`
+                    currentDisplay.innerHTML = "Lead"
+                    splitImage.src = splitImgSources[data.currentElement]
+                    break;
+            }
+        }
+    }
     unlockTabs()
     tabChangeHTML()
     subTabChangeHTML()
+
+    
 }
 
 function unlockTabs(){
@@ -112,7 +168,7 @@ function unlockTabs(){
     data.hasTab[1] = data.compounds[0].amt > 0 || data.hasTab[1]
     data.hasTab[2] = sumOfElements.gte(D(1e8)) || data.hasTab[2]
     data.hasTab[3] = data.coriumSingUps[0] === true || data.hasTab[3]
-    
+    data.hasTab[4] = data.coriumSingUps[1] === true || data.hasTab[4]
     for(let i = 0; i < 4; i++)
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
 }
@@ -124,7 +180,8 @@ const meltingTab = document.getElementById("meltingHolder")
 const settingTab = document.getElementById("settingsHolder")
 const achievementTab = document.getElementById("achievementHolder")
 const refineryTab = document.getElementById("refineryHolder")
-const seperatorColors = ['808080','3c9f45','7fccff','3a5b99','b0b835','68368a','583793']
+const acceleratorTab = document.getElementById("acceleratorHolder")
+const seperatorColors = ['808080','3c9f45','7fccff','3a5b99','b0b835','68368a','583793','37936d']
 function tabChangeHTML(){
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
     compoundTab.style.display = data.currentTab === 3 ? 'flex': 'none'   
@@ -133,6 +190,7 @@ function tabChangeHTML(){
     settingTab.style.display = data.currentTab === 0? 'flex' : 'none'
     achievementTab.style.display = data.currentTab === 2 ? 'flex' : 'none'
     refineryTab.style.display = data.currentTab === 6 ? 'flex' : 'none'
+    acceleratorTab.style.display = data.currentTab === 7 ? 'flex' : 'none'
     seperator.style.color = `#${seperatorColors[data.currentTab]}`
 }
 const regularElementHolder = document.getElementById('regularElementsHolder')

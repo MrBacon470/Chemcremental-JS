@@ -167,6 +167,18 @@
         <button id="mold" onclick="refine(1)" class="refinery" style="margin-top: 40px; border: 5px solid #583793; margin-right: 50px; width:12em; height: 20em; font-size: 15px;">Molding<br><br>Produces Kuaka Fragments<br><br>+0.00 Fragments<br><br>0.00 Fragments Avalible</button>
         <button id="mint" onclick="refine(2)" class="refinery" style="margin-top: 40px; border: 5px solid #583793; margin-right: 50px; width:12em; height: 20em; font-size: 15px;">Minting<br><br>Produces Kuaka Coins<br><br>+0.00 Coins<br>0.00 Coins<br><br>1.00x Boost</button>
     </div>
+    <div id="acceleratorHolder" class="flexBox holder" style="flex-direction: column;">
+        <div id="subTabHolder">
+            <button id="ReE" class="subTabButton" onclick="switchSubTab(0,0)" style="border: 3px solid #3c9f45;">Regular</button>
+            <button id="RaE" class="subTabButton" onclick="switchSubTab(1,0)" style="border: 3px solid #307e35;">Isotopes</button>
+        </div>
+        <div id="currentSplit" style="margin-top: 20px;">Hydrogen</div>
+        <div id="splitterHolder" style="display: flex; flex-direction: row; margin-top: 10px;"> 
+            <button id="leftSplit" onclick="changeElement(1)" style="border: solid 3px #b04192;"><<</button>
+            <img id="imageSplit" style="width: 5em; height: 5em; margin-left: 10px; margin-right: 10px;" src="CHEM Achieves/Hydrogen/H1-Locked.png">
+            <button id="rightSplit" onclick="changeElement(0)" style="border: solid 3px #ad4242;">>></button>
+        </div>
+    </div>
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="percentageText">Achievements Unlocked: 42/64 (22.22%)</div>
         <div style="display:flex;flex-direction: row;">
@@ -357,5 +369,6 @@
 <script src="JS/Power.js"></script>
 <script src="JS/Melting.js"></script>
 <script src="JS/Achievements.js"></script>
+<script src="JS/Accelerators.js"></script>
 </html>
 
