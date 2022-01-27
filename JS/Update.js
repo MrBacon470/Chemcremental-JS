@@ -106,7 +106,7 @@ function updateHTML(){
             switch(data.currentElement) {
                 case 0:
                     leftButton.style.border = `3px solid #${buttonColors[7]}`
-                    rightButton.style.border = `3px solid #${buttonColors[2]}`
+                    rightButton.style.border = `3px solid #ad4242`
                     currentDisplay.innerHTML = "Hydrogen"
                     splitImage.src = splitImgSources[data.currentElement]
                     break;

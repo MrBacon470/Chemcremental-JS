@@ -20,7 +20,7 @@
         <button id="pB" class="tabButton" onclick="switchTab(4)" style="border: 4px solid #b0b835;">Power</button>
         <button id="mB" class="tabButton" onclick="switchTab(5)" style="border: 4px solid #68368a;">Melting</button>
         <button id="rB" class="tabButton" onclick="switchTab(6)" style="border: 4px solid #583793;">Refinery</button>
-        <button id="acB" class="tabButton" onclick="switchTab(7)" style="border: 4px solid #37936d;">Accelerators</button>
+        <button id="acB" class="tabButton" onclick="switchTab(7)" style="border: 4px solid #37936d;">Accelerator</button>
         <button id="aB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid #7fccff;text-align: center;">Achievements</button>
         <button id="sB" class="tabButton" onclick="switchTab(0)" style="border: 4px solid #808080;">Settings</button>
     </div>
@@ -169,14 +169,20 @@
     </div>
     <div id="acceleratorHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="subTabHolder">
-            <button id="ReE" class="subTabButton" onclick="switchSubTab(0,1)" style="border: 3px solid #37936d;">Regular</button>
-            <button id="RaE" class="subTabButton" onclick="switchSubTab(1,1)" style="border: 3px solid #37936d;">Isotopes</button>
+            <button id="sA`" class="subTabButton" onclick="switchSubTab(0,1)" style="border: 3px solid #37936d;">Splitter</button>
+            <button id="aA" class="subTabButton" onclick="switchSubTab(1,1)" style="border: 3px solid #37936d;">Accelerator</button>
         </div>
         <div id="currentSplit" style="margin-top: 20px;">Hydrogen</div>
         <div id="splitterHolder" style="display: flex; flex-direction: row; margin-top: 10px;"> 
             <button id="leftSplit" onclick="changeElement(1)" style="border: solid 3px #b04192;"><<</button>
             <img id="imageSplit" style="width: 5em; height: 5em; margin-left: 10px; margin-right: 10px;" src="CHEM Achieves/Hydrogen/H1-Locked.png">
             <button id="rightSplit" onclick="changeElement(0)" style="border: solid 3px #ad4242;">>></button>
+        </div>
+        <div id="particleText" style="margin-top: 5px;">
+            <hr>Particle Gain
+            <p id="protonGain" style="color: #379337;">+1.00 Protons</p>
+            <p id="neutronGain" style="color: #45568f;">+1.00 Neutrons</p>
+            <p id="electronGain" style="color: #934237;">+1.00 Electrons</p>
         </div>
     </div>
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
