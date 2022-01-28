@@ -16,3 +16,7 @@ function changeElement(i) {
     }
 }
 
+function splitElement(i) {
+    
+}
+
