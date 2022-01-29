@@ -170,7 +170,31 @@ function refine(i) {
             break;
     }
 }
+/*
+function confirmVariable(i) {
+    switch(i) {
+        case 'prestigeY':
+            meltConfirmed = true;
+            document.getElementById('confirmWrapper').style.display = 'none'
+            break;
+        case 'prestigeN':
+            meltConfirmed = false;
+            document.getElementById('confirmWrapper').style.display = 'none'
+            break;
+    }
+}
 
+function callConfirmation(i) {
+    switch(i) {
+        case 'prestige':
+            document.getElementById('confirm').innerHTML = 'Are you sure you want to prestige?'
+            document.getElementById('confirmWrapper').style.display = 'flex'
+            document.getElementById('confirmB').addEventListener('click', confirmVariable('prestigeY')) 
+            document.getElementById('cancelB').onclick = function() { confirmVariable('prestigeN') }
+            break;
+    }
+}
+*/
 /* Didn't Work
 function buyMax(c,b,s,l) {
     //c == Currency | b == base cost | s == rate/cost scale | l == levels to be increased

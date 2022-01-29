@@ -32,8 +32,12 @@ const refineryIDs = ['shard', 'mold', 'mint']
 const refineryNames = ['Sharding','Molding','Minting']
 const refineryDescriptions = ['Produces Kuaka Shards','Produces Kuaka Fragments','Produces Kuaka Coins']
 const currencyNames = ['Shards','Fragments','Coins']
-
-
+//Accelerator stuf
+const particleTexts = []
+const particleTextIds = ['protonsText','neutronsText','electronsText']
+const particleNames = ['Protons', 'Neutrons', 'Electrons']
+for(let i = 0; i < 3; i++)
+    particleTexts[i] = document.getElementById(`${particleTextIds[i]}`)
 
 function updateHTML(){
     
@@ -164,6 +168,10 @@ function updateHTML(){
             protonGainText.innerHTML = `+${protonGainStr[data.currentElement]}.00 Protons`
             neutronGainText.innerHTML = `+${neutronGainStr[data.currentElement]}.00 Neutrons`
             electronGainText.innerHTML = `+${electronGainStr[data.currentElement]}.00 Electrons`
+        }
+        else if(data.currentSubTab[1] === 1) {
+            for(let i = 0; i < 3; i++)
+                particleTexts[i].innerHTML = `${format(data.particles[i])} ${particleNames[i]}`
         }
     }
     unlockTabs()

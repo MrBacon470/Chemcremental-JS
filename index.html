@@ -9,6 +9,15 @@
     <link rel="shortcut icon" type="image/jpg" href="ChemLOGO.png"/>
 </head>
 <body>
+    <div id="confirmWrapper" style="display: none;">
+        <div id="confirm" style="display: flex; flex-direction: column; align-items: center;">
+            Are you sure you want to prestige
+            <div style="flex-direction: row; background: #646464; margin-top: 10px;">
+                <button id="cancelB" style="border: 2px solid red;">Cancel</button>
+                <button id="confirmB" style="border: 2px solid green;">Confirm</button>
+            </div>
+        </div>
+    </div>
     <div id="currenciesHolder" class="flexBox">
         <div id="powerText" class="header" style="color: #b0b835; text-align: center;">Power: 0.00 / 100.00 </div>
         <div id="coriumText" class="header" style="color: #68368a; text-align: center;">Corium: 0.00<br>Boost: 1.00x</div>
@@ -187,15 +196,15 @@
             </div>
         </div>
         <div id="particleHolder" style="display:flex; flex-direction: column;">
-            <div id="particleRow" style="display:flex; flex-direction:row;">
+            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
                 <p id="protonsText" style="color: #379337; margin-left: 10px; margin-right: 10px;">1.00 Protons</p>
                 <p id="neutronsText" style="color: #45568f; margin-left: 10px; margin-right: 10px;">1.00 Neutrons</p>
                 <p id="electronsText" style="color: #934237; margin-left: 10px; margin-right: 10px;">1.00 Electrons</p>
             </div>
             <div id="acceleratorRow" class="flexBox" style="display:flex; flex-direction:row;">
-                <img id="accel1" src="CHEM Achieves/Resources/Corium1-Locked.png" style="width: 100px; height: 100px; margin-left: 10px; margin-right: 10px">
-                <img id="accel2" src="CHEM Achieves/Resources/Power1-Locked.png" style="width: 100px; height: 100px; margin-left: 10px; margin-right: 10px">
-                <img id="accel3" src="CHEM Achieves/Compounds/Pr1-Locked.png" style="width: 100px; height: 100px; margin-left: 10px; margin-right: 10px">
+                <img id="accel1" src="CHEM Achieves/Proton.png" style="width: 100px; height: 100px; margin-left: 10px; margin-right: 10px">
+                <img id="accel2" src="CHEM Achieves/Neutron.png" style="width: 100px; height: 100px; margin-left: 10px; margin-right: 10px">
+                <img id="accel3" src="CHEM Achieves/Electron.png" style="width: 100px; height: 100px; margin-left: 10px; margin-right: 10px">
             </div>
         </div>
         
