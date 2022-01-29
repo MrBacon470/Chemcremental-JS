@@ -1,21 +1,24 @@
 // region element declarations
 let elementSum = D(0)
 const elementButtons = []
+const isotopeButtons = []
 const elementNames = ['Hydrogen','Carbon','Oxygen','Fluorine','Sulfur','Chlorine','Iron','Lead']
+const isotopeIds = ['Hydrogen3','Carbon14','Oxygen15','Fluorine18','Sulfur35','Chlorine37','Iron60','Lead212',]
 const shortElement = ['H','C','O','F','S','Cl','Fe','Pb']
 const compoundButtons = []
 const compoundBoost = ['Element Boost: ','Power Boost: ','Battery Boost: ','Lead Boost: ','Melt Boost: ']
 for (let i=0; i<8; i++){
     elementButtons[i] = DOMCacheGetOrSet(`${elementNames[i]}`)
+    isotopeButtons[i] = DOMCacheGetOrSet(`${isotopeIds[i]}`)
 }
 for(let i = 0; i < 5; i++) {
     compoundButtons[i] = DOMCacheGetOrSet(`${data.compounds[i].name}`)
 }
 const tabs = []
-const tabIDs = ['cB','pB','mB','rB']
-const tabNames = ['Compounds','Power','Melting','Refinery']
-const colors = ['3a5b99','b0b835','68368a','583793']
-for(let i=0; i < 4; i++) {
+const tabIDs = ['cB','pB','mB','rB','acB']
+const tabNames = ['Compounds','Power','Melting','Refinery','Accelerators']
+const colors = ['3a5b99','b0b835','68368a','583793','37936d']
+for(let i=0; i < 5; i++) {
     tabs[i] = DOMCacheGetOrSet(`${tabIDs[i]}`)
 }
 const powerUpButton = []
@@ -29,15 +32,19 @@ const refineryIDs = ['shard', 'mold', 'mint']
 const refineryNames = ['Sharding','Molding','Minting']
 const refineryDescriptions = ['Produces Kuaka Shards','Produces Kuaka Fragments','Produces Kuaka Coins']
 const currencyNames = ['Shards','Fragments','Coins']
-
-
+//Accelerator stuf
+const particleTexts = []
+const particleTextIds = ['protonsText','neutronsText','electronsText']
+const particleNames = ['Protons', 'Neutrons', 'Electrons']
+for(let i = 0; i < 3; i++)
+    particleTexts[i] = document.getElementById(`${particleTextIds[i]}`)
 
 function updateHTML(){
     
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     DOMCacheGetOrSet('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
     DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
-    for(let i = 0; i < 4; i++) {
+    for(let i = 0; i < 5; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
         tabs[i].style.border = !data.hasTab[i] ? '4px solid gray' : `4px solid #${colors[i]}`
@@ -50,16 +57,26 @@ function updateHTML(){
         DOMCacheGetOrSet('toggle2').innerHTML = data.settingsToggles[1] ? 'Enable Offline Progress [ON]' : 'Enable Offline Progress [OFF]'
     }
     else if (data.currentTab === 1) {
-        for(let i = 0;i < 8;i++) {
-            if(i == 0)
-                elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]})<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
-            else if(i == 1)
-            elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
-
-            else
-                elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${format(elementCost[i])} ${data.elements[i - 1].name} | Level:${format(data.elements[i].level)}`
+        document.getElementById('RaE').style.display = data.coriumSingUps[2] ? 'flex' : 'none'
+        document.getElementById('ReE').style.display = data.coriumSingUps[2] ? 'flex' : 'none'
+        if(data.currentSubTab[0] === 0) {
+            for(let i = 0;i < 8;i++) {
+                if(i == 0)
+                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]})<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
+                else if(i == 1)
+                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
+                else
+                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${format(elementCost[i])} ${data.elements[i - 1].name} | Level:${format(data.elements[i].level)}`
+            }
         }
-        
+        else if(data.currentSubTab[0] === 1) {
+            for(let i = 0;i < 8;i++) {
+                if(i == 0)
+                    isotopeButtons[i].innerHTML = `${data.isotopes[i].name}  Generator (${format(data.isotopes[i].amt)} ${data.isotopes[i].name})<br>Cost: ${format(isotopeCost[i])} Lead | Level:${format(data.isotopes[i].level)}`
+                else
+                isotopeButtons[i].innerHTML = `${data.isotopes[i].name}  Generator (${format(data.isotopes[i].amt)} ${data.isotopes[i].name} | ${format(D(1).add(Decimal.sqrt(data.isotopes[i].max)))}x)<br>Cost: ${format(isotopeCost[i])} ${data.isotopes[i - 1].name} | Level:${format(data.isotopes[i].level)}`
+            }
+        }
     }
     else if(data.currentTab === 2) {
         //Moved
@@ -88,8 +105,80 @@ function updateHTML(){
         DOMCacheGetOrSet(`${refineryIDs[1]}`).innerHTML = `${refineryNames[1]}<br><br>${refineryDescriptions[1]}<br><br>+${format(fragmentsToGet)} ${currencyNames[1]}<br><br>${format(data.refineryCurrencies[1])} ${currencyNames[1]} Avalible`
         DOMCacheGetOrSet(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format(Decimal.sqrt(data.refineryCurrencies[2].times(D(2))))}x Boost`
     }
+    else if(data.currentTab === 7) {
+        if(data.currentSubTab[1] === 0) {
+            switch(data.currentElement) {
+                case 0:
+                    leftButton.style.border = `3px solid #${buttonColors[7]}`
+                    rightButton.style.border = `3px solid #ad4242`
+                    currentDisplay.innerHTML = "Hydrogen"
+                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
+                        splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 1:
+                    leftButton.style.border = `3px solid #${buttonColors[0]}`
+                    rightButton.style.border = `3px solid #${buttonColors[2]}`
+                    currentDisplay.innerHTML = "Carbon"
+                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
+                        splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 2:
+                    leftButton.style.border = `3px solid #${buttonColors[1]}`
+                    rightButton.style.border = `3px solid #${buttonColors[3]}`
+                    currentDisplay.innerHTML = "Oxygen"
+                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
+                        splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 3:
+                    leftButton.style.border = `3px solid #${buttonColors[2]}`
+                    rightButton.style.border = `3px solid #${buttonColors[4]}`
+                    currentDisplay.innerHTML = "Fluorine"
+                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
+                        splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 4:
+                    leftButton.style.border = `3px solid #${buttonColors[3]}`
+                    rightButton.style.border = `3px solid #${buttonColors[5]}`
+                    currentDisplay.innerHTML = "Sulfur"
+                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
+                        splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 5:
+                    leftButton.style.border = `3px solid #${buttonColors[4]}`
+                    rightButton.style.border = `3px solid #${buttonColors[6]}`
+                    currentDisplay.innerHTML = "Chlorine"
+                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
+                        splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 6:
+                    leftButton.style.border = `3px solid #${buttonColors[5]}`
+                    rightButton.style.border = `3px solid #${buttonColors[7]}`
+                    currentDisplay.innerHTML = "Iron"
+                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
+                        splitImage.src = splitImgSources[data.currentElement]
+                    break;
+                case 7:
+                    leftButton.style.border = `3px solid #${buttonColors[6]}`
+                    rightButton.style.border = `3px solid #${buttonColors[0]}`
+                    currentDisplay.innerHTML = "Lead"
+                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
+                        splitImage.src = splitImgSources[data.currentElement]
+                    break;
+            }
+            protonGainText.innerHTML = `+${protonGainStr[data.currentElement]}.00 Protons`
+            neutronGainText.innerHTML = `+${neutronGainStr[data.currentElement]}.00 Neutrons`
+            electronGainText.innerHTML = `+${electronGainStr[data.currentElement]}.00 Electrons`
+        }
+        else if(data.currentSubTab[1] === 1) {
+            for(let i = 0; i < 3; i++)
+                particleTexts[i].innerHTML = `${format(data.particles[i])} ${particleNames[i]}`
+        }
+    }
     unlockTabs()
     tabChangeHTML()
+    subTabChangeHTML()
+
+    
 }
 
 function unlockTabs(){
@@ -98,7 +187,7 @@ function unlockTabs(){
     data.hasTab[1] = data.compounds[0].amt > 0 || data.hasTab[1]
     data.hasTab[2] = sumOfElements.gte(D(1e8)) || data.hasTab[2]
     data.hasTab[3] = data.coriumSingUps[0] === true || data.hasTab[3]
-
+    data.hasTab[4] = data.coriumSingUps[1] === true || data.hasTab[4]
     for(let i = 0; i < 4; i++)
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
 }
@@ -109,8 +198,8 @@ const powerTab = DOMCacheGetOrSet("powerHolder")
 const meltingTab = DOMCacheGetOrSet("meltingHolder")
 const settingTab = DOMCacheGetOrSet("settingsHolder")
 const achievementTab = DOMCacheGetOrSet("achievementHolder")
-const refineryTab = DOMCacheGetOrSet("refineryHolder")
-const seperatorColors = ['808080','3c9f45','7fffd4','3a5b99','b0b835','68368a','583793']
+const acceleratorTab = DOMCacheGetOrSet("acceleratorHolder")
+const seperatorColors = ['808080','3c9f45','7fccff','3a5b99','b0b835','68368a','583793','37936d']
 function tabChangeHTML(){
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
     compoundTab.style.display = data.currentTab === 3 ? 'flex': 'none'   
@@ -119,5 +208,17 @@ function tabChangeHTML(){
     settingTab.style.display = data.currentTab === 0? 'flex' : 'none'
     achievementTab.style.display = data.currentTab === 2 ? 'flex' : 'none'
     refineryTab.style.display = data.currentTab === 6 ? 'flex' : 'none'
+    acceleratorTab.style.display = data.currentTab === 7 ? 'flex' : 'none'
     seperator.style.color = `#${seperatorColors[data.currentTab]}`
+}
+const regularElementHolder = document.getElementById('regularElementsHolder')
+const isotopeElementHolder = document.getElementById('isotopeElementsHolder')
+const splitterHolder = document.getElementById('splitterHolder')
+const particleHolder = document.getElementById('particleHolder')
+function subTabChangeHTML() {
+        regularElementHolder.style.display = data.currentSubTab[0] === 0 ? 'flex' : 'none'
+        isotopeElementHolder.style.display = data.currentSubTab[0] === 1 ? 'flex' : 'none'
+
+        splitterHolder.style.display = data.currentSubTab[1] === 0 ? 'flex' : 'none'
+        particleHolder.style.display = data.currentSubTab[1] === 1 ? 'flex' : 'none'
 }
