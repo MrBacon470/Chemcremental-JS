@@ -9,6 +9,15 @@
     <link rel="shortcut icon" type="image/jpg" href="ChemLOGO.png"/>
 </head>
 <body>
+    <div id="confirmWrapper" style="display: none;">
+        <div id="confirm" style="display: flex; flex-direction: column; align-items: center;">
+            Are you sure you want to prestige
+            <div style="flex-direction: row; background: #646464; margin-top: 10px;">
+                <button id="cancelB" style="border: 2px solid red;">Cancel</button>
+                <button id="confirmB" style="border: 2px solid green;">Confirm</button>
+            </div>
+        </div>
+    </div>
     <div id="currenciesHolder" class="flexBox">
         <div id="powerText" class="header" style="color: #b0b835; text-align: center;">Power: 0.00 / 100.00 </div>
         <div id="coriumText" class="header" style="color: #68368a; text-align: center;">Corium: 0.00<br>Boost: 1.00x</div>
@@ -20,12 +29,19 @@
         <button id="pB" class="tabButton" onclick="switchTab(4)" style="border: 4px solid #b0b835;">Power</button>
         <button id="mB" class="tabButton" onclick="switchTab(5)" style="border: 4px solid #68368a;">Melting</button>
         <button id="rB" class="tabButton" onclick="switchTab(6)" style="border: 4px solid #583793;">Refinery</button>
-        <button id="aB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid #7fffd4;text-align: center;">Achievements</button>
+        <button id="acB" class="tabButton" onclick="switchTab(7)" style="border: 4px solid #37936d;">Accelerator</button>
+        <button id="aB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid #7fccff;text-align: center;">Achievements</button>
         <button id="sB" class="tabButton" onclick="switchTab(0)" style="border: 4px solid #808080;">Settings</button>
     </div>
     <hr id="tabSeperator" style="color: #3a5b99; border:solid 1px;">
-    <div id="elementHolder" class="flexBox holder">
-        <button onclick="toggleBuyAmount(0)" id="bA0" class="buyAmount">Buy Amount: 1</button>
+    <div id="elementHolder" class="flexBox holder" style="flex-direction: column;">
+        <div id="subTabHolder">
+            <button id="ReE" class="subTabButton" onclick="switchSubTab(0,0)" style="border: 3px solid #3c9f45;">Regular</button>
+            <button id="RaE" class="subTabButton" onclick="switchSubTab(1,0)" style="border: 3px solid #307e35;">Isotopes</button>
+        </div>
+        
+        <div id="regularElementsHolder" class="flexBox" style="margin-top: 2em;">
+            <button onclick="toggleBuyAmount(0)" id="bA0" class="buyAmount">Buy Amount: 1</button>
         <div class="flexBox elementColumn" id="elementColumn1">
             <button id="Hydrogen" class="elementButton" onclick="purchaseElement(0)" style="border: 3px solid #adadad">
                 Hydrogen Generator<br>Cost: 10 Hydrogen | Level: 0
@@ -53,6 +69,38 @@
             <button id="Lead" class="elementButton" onclick="purchaseElement(7)" style="border: 3px solid #b04192">
                 Lead Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
+        </div>
+        </div>
+        <div id="isotopeElementsHolder" class="flexBox" style="margin-top: 2em;">
+            <button onclick="toggleBuyAmount(2)" id="bA2" class="buyAmount">Buy Amount: 1</button>
+        <div class="flexBox elementColumn" id="elementColumn1">
+            <button id="Hydrogen3" class="elementButton" onclick="purchaseIsotope(0)" style="border: 3px solid #636363">
+                H-3 Generator<br>Cost: 10 Lead | Level: 0
+            </button>
+            <button id="Carbon14" class="elementButton" onclick="purchaseIsotope(1)" style="border: 3px solid #742c2c">
+                C-14 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+            <button id="Oxygen15" class="elementButton" onclick="purchaseIsotope(2)" style="border: 3px solid #694d27">
+                O-15 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+            <button id="Fluorine18" class="elementButton" onclick="purchaseIsotope(3)" style="border: 3px solid #5f6123">
+                F-18 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+        </div>
+        <div class="flexBox elementColumn" id="elementColumn2">
+            <button id="Sulfur35" class="elementButton" onclick="purchaseIsotope(4)" style="border: 3px solid #2a4b1c">
+                S-35 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+            <button id="Chlorine37" class="elementButton" onclick="purchaseIsotope(5)" style="border: 3px solid #21435c">
+                Cl-37 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+            <button id="Iron60" class="elementButton" onclick="purchaseIsotope(6)" style="border: 3px solid #4b2058">
+                Fe-60 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+            <button id="Lead212" class="elementButton" onclick="purchaseIsotope(7)" style="border: 3px solid #632452">
+                Pb-212 Generator<br>Cost: 10 Hydrogen | Level: 0
+            </button>
+        </div>
         </div>
     </div>
     <div id="compoundHolder" class="flexBox holder">
@@ -127,6 +175,39 @@
         <button id="shard" onclick="refine(0)" class="refinery" style="margin-top: 40px; border: 5px solid #583793; margin-right: 50px; width:12em; height: 20em; font-size: 15px;">Sharding<br><br>Produces Kuaka Shards<br><br>+0.00 Shards<br><br>0.00 Shards Avalible</button>
         <button id="mold" onclick="refine(1)" class="refinery" style="margin-top: 40px; border: 5px solid #583793; margin-right: 50px; width:12em; height: 20em; font-size: 15px;">Molding<br><br>Produces Kuaka Fragments<br><br>+0.00 Fragments<br><br>0.00 Fragments Avalible</button>
         <button id="mint" onclick="refine(2)" class="refinery" style="margin-top: 40px; border: 5px solid #583793; margin-right: 50px; width:12em; height: 20em; font-size: 15px;">Minting<br><br>Produces Kuaka Coins<br><br>+0.00 Coins<br>0.00 Coins<br><br>1.00x Boost</button>
+    </div>
+    <div id="acceleratorHolder" class="flexBox holder" style="flex-direction: column;">
+        <div id="subTabHolder">
+            <button id="sA`" class="subTabButton acB" onclick="switchSubTab(0,1)" style="border: 3px solid #37936d;">Splitter</button>
+            <button id="aA" class="subTabButton acB" onclick="switchSubTab(1,1)" style="border: 3px solid #37936d;">Accelerator</button>
+        </div>
+        <div id="splitterHolder" class="holder" style="flex-direction: column;">
+            <div id="currentSplit" style="margin-top: 20px; text-align: center;">Hydrogen</div>
+            <div style="display: flex; flex-direction: row; margin-top: 10px;"> 
+                <button id="leftSplit" onclick="changeElement(1)" style="border: solid 3px #b04192;"><<</button>
+                <img id="imageSplit" style="width: 5em; height: 5em; margin-left: 10px; margin-right: 10px;" src="CHEM Achieves/Hydrogen/H1-Locked.png">
+                <button id="rightSplit" onclick="changeElement(0)" style="border: solid 3px #ad4242;">>></button>
+            </div>
+            <div id="particleText" style="margin-top: 5px;">
+                <hr>Particle Gain
+                <p id="protonGain" style="color: #379337;">+1.00 Protons</p>
+                <p id="neutronGain" style="color: #45568f;">+1.00 Neutrons</p>
+                <p id="electronGain" style="color: #934237;">+1.00 Electrons</p>
+            </div>
+        </div>
+        <div id="particleHolder" style="display:flex; flex-direction: column;">
+            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
+                <p id="protonsText" style="color: #379337; margin-left: 10px; margin-right: 10px;">1.00 Protons</p>
+                <p id="neutronsText" style="color: #45568f; margin-left: 10px; margin-right: 10px;">1.00 Neutrons</p>
+                <p id="electronsText" style="color: #934237; margin-left: 10px; margin-right: 10px;">1.00 Electrons</p>
+            </div>
+            <div id="acceleratorRow" class="flexBox" style="display:flex; flex-direction:row;">
+                <img id="accel1" src="CHEM Achieves/Proton.png" style="width: 100px; height: 100px; margin-left: 10px; margin-right: 10px">
+                <img id="accel2" src="CHEM Achieves/Neutron.png" style="width: 100px; height: 100px; margin-left: 10px; margin-right: 10px">
+                <img id="accel3" src="CHEM Achieves/Electron.png" style="width: 100px; height: 100px; margin-left: 10px; margin-right: 10px">
+            </div>
+        </div>
+        
     </div>
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="percentageText">Achievements Unlocked: 42/64 (22.22%)</div>
@@ -318,5 +399,6 @@
 <script src="JS/Power.js"></script>
 <script src="JS/Melting.js"></script>
 <script src="JS/Achievements.js"></script>
+<script src="JS/Accelerators.js"></script>
 </html>
 
