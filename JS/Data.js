@@ -2,12 +2,16 @@ const D = x => new Decimal(x)
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
-        buyAmounts: [1,1],
+        buyAmounts: [1,1,1],
         //Elements
         elements: [{amt:D(10),name:"Hydrogen",level:D(0),max:D(0)},{amt:D(0),name:"Carbon",level:D(0),max:D(0)},{amt:D(0),name:"Oxygen",
         level:D(0),max:D(0)},{amt:D(0),name:"Fluorine",level:D(0),max:D(0)},{amt:D(0),name:"Sulfur",level:D(0),max:D(0)},{amt:D(0),name:"Chlorine",
         level:D(0),max:D(0)},{amt:D(0),name:"Iron",level:D(0),max:D(0)},{amt:D(0),name:"Lead",level:D(0),max:D(0)}],
         elementGain: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
+        isotopes: [{amt:D(0),name:"H-3",level:D(0),max:D(0)},{amt:D(0),name:"C-14",level:D(0),max:D(0)},{amt:D(0),name:"O-15",
+        level:D(0),max:D(0)},{amt:D(0),name:"F-18",level:D(0),max:D(0)},{amt:D(0),name:"S-35",level:D(0),max:D(0)},{amt:D(0),name:"Cl-37",
+        level:D(0),max:D(0)},{amt:D(0),name:"Fe-60",level:D(0),max:D(0)},{amt:D(0),name:"Pb-212",level:D(0),max:D(0)}],
+        isotopeGain: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
         compounds: [{amt:D(0),name:"Propane",cost:"C<sub>3</sub>H<sub>8</sub>"},{amt:D(0),name:"Water",cost:"H<sub>2</sub>0"},
         {amt:D(0),name:"Sulfuric Acid",cost:"H<sub>2</sub>SO<sub>4</sub>"},{amt:D(0),name:"Steel",cost:"FeC"},
         {amt:D(0),name:"Chlorine Trifluoride",cost:"ClF<sub>3</sub>"}],
@@ -18,14 +22,17 @@ function getDefaultObject() {
         coriumMultUps: [D(0),D(0),D(0)],
         coriumSingUps: [false,false,false],
         refineryCurrencies: [D(0), D(0), D(0)],
+        particles: [D(0),D(0),D(0)],
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"Fe",unlocked:[false,false,false,false,false,false,false,false]},{name:"Pb",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"Pr",unlocked:[false,false,false,false]},{name:"Wt",unlocked:[false,false,false,false]},{name:"Sa",unlocked:[false,false,false,false]},{name:"Sl",unlocked:[false,false,false,false]},{name:"Cf",unlocked:[false,false,false,false]},
         {name:"Pw",unlocked:[false,false,false,false]},{name:"Co",unlocked:[false,false,false,false]}],
-        hasTab: [false, false, false, false],
+        hasTab: [false, false, false, false, false],
         time: Date.now(),
         currentTab: 1,
+        currentSubTab: [0,0],
+        currentElement: 0,
         settingsToggles: [true,true],
         currentUpdate: 'v0.3.3',
         devSpeed: 1,
@@ -96,6 +103,8 @@ window.setInterval(function(){
 }, 10000);
 window.onload = function (){
     load()
+    generateEventHandlers()
+    console.log("EventListeners Initialized.")
 }
 //full reset
 function fullReset(){

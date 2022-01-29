@@ -21,6 +21,18 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
         }
+
+        if(i === 7) {
+            //data.elementGain[i] = (data.elements[i].level.times(compoundBoosts[0].add(compoundBoosts[3]).add(powerBoosts[0]).add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax))))
+            data.isotopeGain[i] = data.isotopes[i].level.times(D(1).add(Decimal.sqrt(data.coriumMax)))
+            data.isotopeGain[i] = data.isotopeGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
+        }
+        else {
+            //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
+            data.isotopeGain[i] = data.isotopes[i].level.times(D(1).add(Decimal.sqrt(data.isotopes[i + 1].max)))
+            data.isotopeGain[i] = data.isotopeGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
+            data.isotopeGain[i] = data.isotopeGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
+        }
     }
     //for(let i = 0; i < 8; i++)
         //data.elementGain[i] = data.compounds[0].amt.gt(D(0)) ? data.elementGain[i] : data.elementGain[i].divide(D(10000)) 
@@ -34,12 +46,25 @@ function increaseElements(x,i) {
 
 }
 
+function increaseIsotopes(x,i) {
+    data.isotopes[i].amt = data.isotopes[i].amt.plus(x);
+    if(i != 0) {
+        data.isotopes[i].max = data.isotopes[i].max.plus(x);
+    }
+
+}
+
 function switchTab(i){
     data.currentTab = i
     let x=i-3
     if (x >= 0) data.hasTab[x] ? data.currentTab=i : data.currentTab=1
-    console.log(data.currentTab)
     tabChangeHTML()
+}
+function switchSubTab(i,x){
+    data.currentSubTab[x] = i
+    //let x=i-3
+    //if (i >= 0) data.hasTab[x] ? data.currentSubTab[x]=i : data.currentSubTab[x] = 1
+    subTabChangeHTML()
 }
 let sumOfElements = D(0)
 let shardsToGet = D(0), fragmentsToGet = D(0), coinsToGet = D(0)
@@ -57,8 +82,11 @@ function mainLoop(){
     calculateElementGain()
     unlockAchieves()
     //Misc Stuff Here
-    for(let i = 0; i < 8; i++)
+    for(let i = 0; i < 8; i++) {
         increaseElements(data.elementGain[i].times(diff), i)
+        increaseIsotopes(data.isotopeGain[i].times(diff), i)
+    }
+        
     powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     coriumToGet = D(0)
@@ -142,7 +170,31 @@ function refine(i) {
             break;
     }
 }
+/*
+function confirmVariable(i) {
+    switch(i) {
+        case 'prestigeY':
+            meltConfirmed = true;
+            document.getElementById('confirmWrapper').style.display = 'none'
+            break;
+        case 'prestigeN':
+            meltConfirmed = false;
+            document.getElementById('confirmWrapper').style.display = 'none'
+            break;
+    }
+}
 
+function callConfirmation(i) {
+    switch(i) {
+        case 'prestige':
+            document.getElementById('confirm').innerHTML = 'Are you sure you want to prestige?'
+            document.getElementById('confirmWrapper').style.display = 'flex'
+            document.getElementById('confirmB').addEventListener('click', confirmVariable('prestigeY')) 
+            document.getElementById('cancelB').onclick = function() { confirmVariable('prestigeN') }
+            break;
+    }
+}
+*/
 /* Didn't Work
 function buyMax(c,b,s,l) {
     //c == Currency | b == base cost | s == rate/cost scale | l == levels to be increased

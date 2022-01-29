@@ -22,23 +22,23 @@ const PwAchieves = []
 const CoAchieves = []
 
 for(let i = 0; i < 8; i++) {
-    HAchieves[i] = document.getElementById(`H${i+1}`)
-    CAchieves[i] = document.getElementById(`C${i+1}`)
-    OAchieves[i] = document.getElementById(`O${i+1}`)
-    FAchieves[i] = document.getElementById(`F${i+1}`)
-    SAchieves[i] = document.getElementById(`S${i+1}`)
-    ClAchieves[i] = document.getElementById(`Cl${i+1}`)
-    FeAchieves[i] = document.getElementById(`Fe${i+1}`)
-    PbAchieves[i] = document.getElementById(`Pb${i+1}`)
+    HAchieves[i] = DOMCacheGetOrSet(`H${i+1}`)
+    CAchieves[i] = DOMCacheGetOrSet(`C${i+1}`)
+    OAchieves[i] = DOMCacheGetOrSet(`O${i+1}`)
+    FAchieves[i] = DOMCacheGetOrSet(`F${i+1}`)
+    SAchieves[i] = DOMCacheGetOrSet(`S${i+1}`)
+    ClAchieves[i] = DOMCacheGetOrSet(`Cl${i+1}`)
+    FeAchieves[i] = DOMCacheGetOrSet(`Fe${i+1}`)
+    PbAchieves[i] = DOMCacheGetOrSet(`Pb${i+1}`)
 }
 for(let i = 0; i < 4; i++) {
-    PrAchieves[i] = document.getElementById(`Pr${i+1}`)
-    WtAchieves[i] = document.getElementById(`Wt${i+1}`)
-    SaAchieves[i] = document.getElementById(`Sa${i+1}`)
-    SlAchieves[i] = document.getElementById(`Sl${i+1}`)
-    CfAchieves[i] = document.getElementById(`Cf${i+1}`)
-    PwAchieves[i] = document.getElementById(`Pw${i+1}`)
-    CoAchieves[i] = document.getElementById(`Co${i+1}`)
+    PrAchieves[i] = DOMCacheGetOrSet(`Pr${i+1}`)
+    WtAchieves[i] = DOMCacheGetOrSet(`Wt${i+1}`)
+    SaAchieves[i] = DOMCacheGetOrSet(`Sa${i+1}`)
+    SlAchieves[i] = DOMCacheGetOrSet(`Sl${i+1}`)
+    CfAchieves[i] = DOMCacheGetOrSet(`Cf${i+1}`)
+    PwAchieves[i] = DOMCacheGetOrSet(`Pw${i+1}`)
+    CoAchieves[i] = DOMCacheGetOrSet(`Co${i+1}`)
 }
 
 let unlockReqs = [D(1),D(10),D(50),D(100),D(500),D(1000),D(10000),D(1000000)]
@@ -108,7 +108,7 @@ function unlockAchieves() {
     }
     if(amountUnlocked.gt(prevAmount)) {
         prevAmount = amountUnlocked
-        document.getElementById('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 93)}/92 (${format((prevAmount.divide(D(92)).times(D(100))))}%)`
+        DOMCacheGetOrSet('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 93)}/92 (${format((prevAmount.divide(D(92)).times(D(100))))}%)`
     }
 }
 
@@ -165,329 +165,30 @@ function updateAchievementHTML() {
     }
 }
 
-const descriptionText = document.getElementById("achieveText")
-// Element Achieves Row 1
-const achieveDescriptions = ['<hr>[1] - Hydrogenated<br>Buy your first Hydrogen Generator','<hr>[9] - The Element of Life<br>Buy your first Carbon Generator','<hr>[17] - No this is not air<br>Buy your first Oxygen Generator','<hr>[25] - Gimme your electrons<br>Buy your first Fluorine Generator',
-'<hr>[33] - Hey Stinky<br>Buy your first Sulfur Generator','<hr>[41] - Mmm Mustard Gas<br>Buy your first Chlorine Generator','<hr>[49] - Just Iron<br>Buy your first Iron Generator','<hr>[57] - Definitely not Peanut Butter<br>Buy your first Lead Generator',
-//EA 2
-'<hr>[2] - There must be more to this game<br>Buy 10 Hydrogen Generators','<hr>[10] - Well you can make graphite at least<br>Buy 10 Carbon Generators','<hr>[18] - Still not air<br>Buy 10 Oxygen Generators','<hr>[26] - DiSulfur <b>DecaFluoride</b><br>Buy 10 Fluorine Generators',
-'<hr>[34] - It just stinks more<br>Buy 10 Sulfur Generators','<hr>[42] - Ph-<br>Buy 10 Chlorine Generators','<hr>[50] - Um make steel or something idk<br>Buy 10 Iron Generators','<hr>[58] - X-Ray Protection<br>Buy 10 Lead Generators',
-//EA 3
-'<hr>[3] - Just go get helium already<br>Buy 50 Hydrogen Generators','<hr>[11] - Diamonds<br>Buy 50 Carbon Generators','<hr>[19] - Nitrogen + Oxygen = Air<br>Buy 50 Oxygen Generators','<hr>[27] - Why are you making this stuff<br>Buy 50 Fluorine Generators',
-'<hr>[35] - Reeking Odor<br>Buy 50 Sulfur Generators','<hr>[43] - Ph--<br>Buy 50 Chlorine Generators','<hr>[51] - Steel > Iron<br>Buy 50 Iron Generators','<hr>[59] - ._. Don\'t eat that<br>Buy 50 Lead Generators',
-//EA 4
-'<hr>[4] - Saturated<br>Buy 100 Hydrogen Generators','<hr>[12] - Crude Oil<br>Buy 100 Carbon Generators','<hr>[20] - Still need nitrogen<br>Buy 100 Oxygen Generators','<hr>[28] - All the electrons<br>Buy 100 Fluorine Generators',
-'<hr>[36] - Fools Gold<br>Buy 100 Sulfur Generators','<hr>[44] - The pool has had enough<br>Buy 100 Chlorine Generators','<hr>[52] - Solid Investment<br>Buy 100 Iron Generators','<hr>[60] - Lead Paints<br>Buy 100 Lead Generators',
-//EA 5
-'<hr>[5] - The Hydrogen Strikes Back<br>Buy 500 Hydrogen Generators','<hr>[13] - Ubër Oil<br>Buy 500 Carbon Generators','<hr>[21] - More O<sub>2</sub> Please<br>Buy 500 Oxygen Generators','<hr>[29] - Burning Concrete<br>Buy 500 Fluorine Generators',
-'<hr>[37] - You\'ve been struck by you\'ve been hit by, Sulfur<br>Buy 500 Sulfur Generators','<hr>[45] - Not Alkaline<br>Buy 500 Chlorine Generators','<hr>[53] - Kaiser Steel<br>Buy 500 Iron Generators','<hr>[61] - Mad Hatters Disease<br>Buy 500 Lead Generators',
-//EA 6
-'<hr>[6] - Return of the Hydrogen<br>Buy 1e3 Hydrogen Generators','<hr>[14] - Lucrative<br>Buy 1e3 Carbon Generators','<hr>[22] - Air Monopoly<br>Buy 1e3 Oxygen Generators','<hr>[30] - Disintegrated<br>Buy 1e3 Fluorine Generators',
-'<hr>[38] - Stanky Leg<br>Buy 1e3 Sulfur Generators','<hr>[46] - Spicy Air<br>Buy 1e3 Chlorine Generators','<hr>[54] - The might of German... Iron?<br>Buy 1e3 Iron Generators','<hr>[62] - Powder it too<br>Buy 1e3 Lead Generators',
-//EA 7
-'<hr>[7] - Hindenberg 2.0<br>Buy 1e4 Hydrogen Generators','<hr>[15] -  All life<br>Buy 1e4 Carbon Generators','<hr>[23] - Bottled Air<br>Buy 1e4 Oxygen Generators','<hr>[31] - Fluorinating<br>Buy 1e4 Fluorine Generators',
-'<hr>[39] - Oh the stench<br>Buy 1e4 Sulfur Generators','<hr>[47] - Out of Bounds Exception: Ph below 0<br>Buy 1e4 Chlorine Generators','<hr>[55] - Carnegie<br>Buy 1e4 Iron Generators','<hr>[63] - Lotta Lead<br>Buy 1e4 Lead Generators',
-//EA 8
-'<hr>[8] - Millionaire I<br>Buy 1e6 Hydrogen Generators','<hr>[16] - Millionaire II<br>Buy 1e6 Carbon Generators','<hr>[24] - Millionaire III<br>Buy 1e6 Oxygen Generators','<hr>[32] - Millionaire IV<br>Buy 1e6 Fluorine Generators',
-'<hr>[40] - Millionaire V<br>Buy 1e6 Sulfur Generators','<hr>[48] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[56] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[64] - Millionaire VIII<br>Buy 1e6 Lead Generators',
-//CA 1
-'<hr>[65] - A new chapter<br>Create your first Propane','<hr>[66] - Do you sell propane?<br>Create 10 Propane','<hr>[67] - What about propane accessories?<br>Create Propane','<hr>[68] - Strickland Propane<br>Create 1e3 Propane',
-'<hr>[69] - Dihydrogen Monoxide (also funni number)<br>Create your first Water','<hr>[70] - Unlimited Power<br>Create 10 Water','<hr>[71] - Moar Water<br>Create 100 Water','<hr>[72] - Hydroelectric<br>Create 1e3 Water',
-//CA 2
-'<hr>[73] - Battery<br>Create your first Sulfuric Acid','<hr>[74] - Energizer Battery<br>Create 10 Sulfuric Acid','<hr>[75] - Energizer Max<br>Create 100 Sulfuric Acid','<hr>[76] - Energizer Pro Max<br>Create 1e3 Sulfuric Acid',
-'<hr>[77] - Follow the iron trail<br>Create your first Steel','<hr>[78] - Carnegie Steel<br>Create 10 Steel','<hr>[79] - What do you even do with this?<br>Create 100 Steel','<hr>[80] - All the steel<br>Create 1e3 Steel',
-//CA 3
-'<hr>[81] - The last compound<br>Create your first Chlorine Trifluoride','<hr>[82] - A terrible idea<br>Create 10 Chlorine Trifluoride','<hr>[83] - You need to stop<br>Create 100 Chlorine Trifluoride','<hr>[84] - Burning Asbestos?!?<br>Create 1e3 Chlorine Trifluoride',
-// RA 1
-'<hr>[85] - New tabs?!?<br>Generate 1 Power','<hr>[86] - I got the power<br>Generate 10 Power','<hr>[87] - The power of the steam engine<br>Generate 100 Power','<hr>[88] - It never changes<br>Generate 1e3 Power',
-'<hr>[89] - Three Mile Island<br>Melt for 500 Corium','<hr>[90] - Fukushima<br>Melt for 1e3 Corium','<hr>[91] - Chernobyl<br>Melt for 1e4 Corium','<hr>[92] - The elephants foot<br>Melt for 1e6 Corium']
+const descriptionText = DOMCacheGetOrSet("achieveText")
+const achieveDescriptions = ['<hr>[1] - Hydrogenated<br>Buy your first Hydrogen Generator','<hr>[2] - There must be more to this game<br>Buy 10 Hydrogen Generators','<hr>[3] - Just go get helium already<br>Buy 50 Hydrogen Generators','<hr>[4] - Saturated<br>Buy 100 Hydrogen Generators',
+    '<hr>[5] - The Hydrogen Strikes Back<br>Buy 500 Hydrogen Generators','<hr>[6] - Return of the Hydrogen<br>Buy 1e3 Hydrogen Generators','<hr>[7] - Hindenberg 2.0<br>Buy 1e4 Hydrogen Generators','<hr>[8] - Millionaire I<br>Buy 1e6 Hydrogen Generators',
+    '<hr>[9] - The Element of Life<br>Buy your first Carbon Generator', '<hr>[10] - Well you can make graphite at least<br>Buy 10 Carbon Generators','<hr>[11] - Diamonds<br>Buy 50 Carbon Generators','<hr>[12] - Crude Oil<br>Buy 100 Carbon Generators',
+    '<hr>[13] - Ubër Oil<br>Buy 500 Carbon Generators', '<hr>[14] - Lucrative<br>Buy 1e3 Carbon Generators','<hr>[15] -  All life<br>Buy 1e4 Carbon Generators','<hr>[16] - Millionaire II<br>Buy 1e6 Carbon Generators', '<hr>[17] - No this is not air<br>Buy your first Oxygen Generator',
+    '<hr>[18] - Still not air<br>Buy 10 Oxygen Generators','<hr>[19] - Nitrogen + Oxygen = Air<br>Buy 50 Oxygen Generators','<hr>[20] - Still need nitrogen<br>Buy 100 Oxygen Generators','<hr>[21] - More O<sub>2</sub> Please<br>Buy 500 Oxygen Generators',
+    '<hr>[22] - Air Monopoly<br>Buy 1e3 Oxygen Generators','<hr>[23] - Bottled Air<br>Buy 1e4 Oxygen Generators','<hr>[24] - Millionaire III<br>Buy 1e6 Oxygen Generators', '<hr>[25] - Gimme your electrons<br>Buy your first Fluorine Generator',
+    '<hr>[26] - DiSulfur <b>DecaFluoride</b><br>Buy 10 Fluorine Generators','<hr>[27] - Why are you making this stuff<br>Buy 50 Fluorine Generators','<hr>[28] - All the electrons<br>Buy 100 Fluorine Generators','<hr>[29] - Burning Concrete<br>Buy 500 Fluorine Generators',
+    '<hr>[30] - Disintegrated<br>Buy 1e3 Fluorine Generators','<hr>[31] - Fluorinating<br>Buy 1e4 Fluorine Generators','<hr>[32] - Millionaire IV<br>Buy 1e6 Fluorine Generators','<hr>[33] - Hey Stinky<br>Buy your first Sulfur Generator',
+    '<hr>[34] - It just stinks more<br>Buy 10 Sulfur Generators','<hr>[35] - Reeking Odor<br>Buy 50 Sulfur Generators','<hr>[36] - Fools Gold<br>Buy 100 Sulfur Generators','<hr>[37] - You\'ve been struck by you\'ve been hit by, Sulfur<br>Buy 500 Sulfur Generators',
+    '<hr>[38] - Stanky Leg<br>Buy 1e3 Sulfur Generators','<hr>[39] - Oh the stench<br>Buy 1e4 Sulfur Generators','<hr>[40] - Millionaire V<br>Buy 1e6 Sulfur Generators', '<hr>[41] - Mmm Mustard Gas<br>Buy your first Chlorine Generator',
+    '<hr>[42] - Ph-<br>Buy 10 Chlorine Generators','<hr>[43] - Ph--<br>Buy 50 Chlorine Generators','<hr>[44] - The pool has had enough<br>Buy 100 Chlorine Generators','<hr>[45] - Not Alkaline<br>Buy 500 Chlorine Generators',
+    '<hr>[46] - Spicy Air<br>Buy 1e3 Chlorine Generators','<hr>[47] - Out of Bounds Exception: Ph below 0<br>Buy 1e4 Chlorine Generators','<hr>[48] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[49] - Just Iron<br>Buy your first Iron Generator',
+    '<hr>[50] - Um make steel or something idk<br>Buy 10 Iron Generators','<hr>[51] - Steel > Iron<br>Buy 50 Iron Generators','<hr>[52] - Solid Investment<br>Buy 100 Iron Generators','<hr>[53] - Kaiser Steel<br>Buy 500 Iron Generators',
+    '<hr>[54] - The might of German... Iron?<br>Buy 1e3 Iron Generators','<hr>[55] - Carnegie<br>Buy 1e4 Iron Generators','<hr>[56] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[57] - Definitely not Peanut Butter<br>Buy your first Lead Generator',
+    '<hr>[58] - X-Ray Protection<br>Buy 10 Lead Generators','<hr>[59] - ._. Don\'t eat that<br>Buy 50 Lead Generators', '<hr>[60] - Lead Paints<br>Buy 100 Lead Generators', '<hr>[61] - Mad Hatters Disease<br>Buy 500 Lead Generators',
+    '<hr>[62] - Powder it too<br>Buy 1e3 Lead Generators', '<hr>[63] - Lotta Lead<br>Buy 1e4 Lead Generators', '<hr>[64] - Millionaire VIII<br>Buy 1e6 Lead Generators', '<hr>[65] - A new chapter<br>Create your first Propane','<hr>' +
+    '[66] - Do you sell propane?<br>Create 10 Propane','<hr>[67] - What about propane accessories?<br>Create Propane','<hr>[68] - Strickland Propane<br>Create 1e3 Propane',
+    '<hr>[69] - Dihydrogen Monoxide (also funni number)<br>Create your first Water','<hr>[70] - Unlimited Power<br>Create 10 Water','<hr>[71] - Moar Water<br>Create 100 Water','<hr>[72] - Hydroelectric<br>Create 1e3 Water',
+    '<hr>[73] - Battery<br>Create your first Sulfuric Acid','<hr>[74] - Energizer Battery<br>Create 10 Sulfuric Acid','<hr>[75] - Energizer Max<br>Create 100 Sulfuric Acid','<hr>[76] - Energizer Pro Max<br>Create 1e3 Sulfuric Acid',
+    '<hr>[77] - Follow the iron trail<br>Create your first Steel','<hr>[78] - Carnegie Steel<br>Create 10 Steel','<hr>[79] - What do you even do with this?<br>Create 100 Steel','<hr>[80] - All the steel<br>Create 1e3 Steel',
+    '<hr>[81] - The last compound<br>Create your first Chlorine Trifluoride','<hr>[82] - A terrible idea<br>Create 10 Chlorine Trifluoride','<hr>[83] - You need to stop<br>Create 100 Chlorine Trifluoride','<hr>[84] - Burning Asbestos?!?<br>Create 1e3 Chlorine Trifluoride',
+    '<hr>[85] - New tabs?!?<br>Generate 1 Power','<hr>[86] - I got the power<br>Generate 10 Power','<hr>[87] - The power of the steam engine<br>Generate 100 Power','<hr>[88] - It never changes<br>Generate 1e3 Power',
+    '<hr>[89] - Three Mile Island<br>Melt for 500 Corium','<hr>[90] - Fukushima<br>Melt for 1e3 Corium','<hr>[91] - Chernobyl<br>Melt for 1e4 Corium','<hr>[92] - The elephants foot<br>Melt for 1e6 Corium']
 function changeDescription(id) {
-    switch(id) {
-        //All Hydrogen IDs
-        case 'H1':
-            descriptionText.innerHTML = achieveDescriptions[0]
-            break;
-        case 'H2':
-            descriptionText.innerHTML = achieveDescriptions[8]
-            break;
-        case 'H3':
-            descriptionText.innerHTML = achieveDescriptions[16]
-            break;
-        case 'H4':
-            descriptionText.innerHTML = achieveDescriptions[24]
-            break;
-        case 'H5':
-            descriptionText.innerHTML = achieveDescriptions[32]
-            break;
-        case 'H6':
-            descriptionText.innerHTML = achieveDescriptions[40]
-            break;
-        case 'H7':
-            descriptionText.innerHTML = achieveDescriptions[48]
-            break;
-        case 'H8':
-            descriptionText.innerHTML = achieveDescriptions[56]
-            break;
-        //All Carbon IDs
-        case 'C1':
-            descriptionText.innerHTML = achieveDescriptions[1]
-            break;
-        case 'C2':
-            descriptionText.innerHTML = achieveDescriptions[9]
-            break;
-        case 'C3':
-            descriptionText.innerHTML = achieveDescriptions[17]
-            break;
-        case 'C4':
-            descriptionText.innerHTML = achieveDescriptions[25]
-            break;
-        case 'C5':
-            descriptionText.innerHTML = achieveDescriptions[33]
-            break;
-        case 'C6':
-            descriptionText.innerHTML = achieveDescriptions[41]
-            break;
-        case 'C7':
-            descriptionText.innerHTML = achieveDescriptions[49]
-            break;
-        case 'C8':
-            descriptionText.innerHTML = achieveDescriptions[57]
-            break;
-        //All Oxygen IDs
-        case 'O1':
-            descriptionText.innerHTML = achieveDescriptions[2]
-            break;
-        case 'O2':
-            descriptionText.innerHTML = achieveDescriptions[10]
-            break;
-        case 'O3':
-            descriptionText.innerHTML = achieveDescriptions[18]
-            break;
-        case 'O4':
-            descriptionText.innerHTML = achieveDescriptions[26]
-            break;
-        case 'O5':
-            descriptionText.innerHTML = achieveDescriptions[34]
-            break;
-        case 'O6':
-            descriptionText.innerHTML = achieveDescriptions[42]
-            break;
-        case 'O7':
-            descriptionText.innerHTML = achieveDescriptions[50]
-            break;
-        case 'O8':
-            descriptionText.innerHTML = achieveDescriptions[58]
-            break;
-        //All Fluorine IDs
-        case 'F1':
-            descriptionText.innerHTML = achieveDescriptions[3]
-            break;
-        case 'F2':
-            descriptionText.innerHTML = achieveDescriptions[11]
-            break;
-        case 'F3':
-            descriptionText.innerHTML = achieveDescriptions[19]
-            break;
-        case 'F4':
-            descriptionText.innerHTML = achieveDescriptions[27]
-            break;
-        case 'F5':
-            descriptionText.innerHTML = achieveDescriptions[35]
-            break;
-        case 'F6':
-            descriptionText.innerHTML = achieveDescriptions[43]
-            break;
-        case 'F7':
-            descriptionText.innerHTML = achieveDescriptions[51]
-            break;
-        case 'F8':
-            descriptionText.innerHTML = achieveDescriptions[59]
-            break;
-        //All Sulfur IDs
-        case 'S1':
-            descriptionText.innerHTML = achieveDescriptions[4]
-            break;
-        case 'S2':
-            descriptionText.innerHTML = achieveDescriptions[12]
-            break;
-        case 'S3':
-            descriptionText.innerHTML = achieveDescriptions[20]
-            break;
-        case 'S4':
-            descriptionText.innerHTML = achieveDescriptions[28]
-            break;
-        case 'S5':
-            descriptionText.innerHTML = achieveDescriptions[36]
-            break;
-        case 'S6':
-            descriptionText.innerHTML = achieveDescriptions[44]
-            break;
-        case 'S7':
-            descriptionText.innerHTML = achieveDescriptions[52]
-            break;
-        case 'S8':
-            descriptionText.innerHTML = achieveDescriptions[60]
-            break;
-        //All Chlorine IDs
-        case 'Cl1':
-            descriptionText.innerHTML = achieveDescriptions[5]
-            break;
-        case 'Cl2':
-            descriptionText.innerHTML = achieveDescriptions[13]
-            break;
-        case 'Cl3':
-            descriptionText.innerHTML = achieveDescriptions[21]
-            break;
-        case 'Cl4':
-            descriptionText.innerHTML = achieveDescriptions[29]
-            break;
-        case 'Cl5':
-            descriptionText.innerHTML = achieveDescriptions[37]
-            break;
-        case 'Cl6':
-            descriptionText.innerHTML = achieveDescriptions[45]
-            break;
-        case 'Cl7':
-            descriptionText.innerHTML = achieveDescriptions[53]
-            break;
-        case 'Cl8':
-            descriptionText.innerHTML = achieveDescriptions[61]
-            break;
-        //All Iron IDs
-        case 'Fe1':
-            descriptionText.innerHTML = achieveDescriptions[6]
-            break;
-        case 'Fe2':
-            descriptionText.innerHTML = achieveDescriptions[14]
-            break;
-        case 'Fe3':
-            descriptionText.innerHTML = achieveDescriptions[22]
-            break;
-        case 'Fe4':
-            descriptionText.innerHTML = achieveDescriptions[30]
-            break;
-        case 'Fe5':
-            descriptionText.innerHTML = achieveDescriptions[38]
-            break;
-        case 'Fe6':
-            descriptionText.innerHTML = achieveDescriptions[46]
-            break;
-        case 'Fe7':
-            descriptionText.innerHTML = achieveDescriptions[54]
-            break;
-        case 'Fe8':
-            descriptionText.innerHTML = achieveDescriptions[62]
-            break;
-        //All Lead IDs
-        case 'Pb1':
-            descriptionText.innerHTML = achieveDescriptions[7]
-            break;
-        case 'Pb2':
-            descriptionText.innerHTML = achieveDescriptions[15]
-            break;
-        case 'Pb3':
-            descriptionText.innerHTML = achieveDescriptions[23]
-            break;
-        case 'Pb4':
-            descriptionText.innerHTML = achieveDescriptions[31]
-            break;
-        case 'Pb5':
-            descriptionText.innerHTML = achieveDescriptions[39]
-            break;
-        case 'Pb6':
-            descriptionText.innerHTML = achieveDescriptions[47]
-            break;
-        case 'Pb7':
-            descriptionText.innerHTML = achieveDescriptions[55]
-            break;
-        case 'Pb8':
-            descriptionText.innerHTML = achieveDescriptions[63]
-            break;
-        //Compounds
-        case 'Pr1':
-            descriptionText.innerHTML = achieveDescriptions[64]
-            break;
-        case 'Pr2':
-            descriptionText.innerHTML = achieveDescriptions[65]
-            break;
-        case 'Pr3':
-            descriptionText.innerHTML = achieveDescriptions[66]
-            break;
-        case 'Pr4':
-            descriptionText.innerHTML = achieveDescriptions[67]
-            break;
-        case 'Wt1':
-            descriptionText.innerHTML = achieveDescriptions[68]
-            break;
-        case 'Wt2':
-            descriptionText.innerHTML = achieveDescriptions[69]
-            break;
-        case 'Wt3':
-            descriptionText.innerHTML = achieveDescriptions[70]
-            break;
-        case 'Wt4':
-            descriptionText.innerHTML = achieveDescriptions[71]
-            break;
-        case 'Sa1':
-            descriptionText.innerHTML = achieveDescriptions[72]
-            break;
-        case 'Sa2':
-            descriptionText.innerHTML = achieveDescriptions[73]
-            break;
-        case 'Sa3':
-            descriptionText.innerHTML = achieveDescriptions[74]
-            break;
-        case 'Sa4':
-            descriptionText.innerHTML = achieveDescriptions[75]
-            break;
-        case 'Sl1':
-            descriptionText.innerHTML = achieveDescriptions[76]
-            break;
-        case 'Sl2':
-            descriptionText.innerHTML = achieveDescriptions[77]
-            break;
-        case 'Sl3':
-            descriptionText.innerHTML = achieveDescriptions[78]
-            break;
-        case 'Sl4':
-            descriptionText.innerHTML = achieveDescriptions[79]
-            break;
-        case 'Cf1':
-            descriptionText.innerHTML = achieveDescriptions[80]
-            break;
-        case 'Cf2':
-            descriptionText.innerHTML = achieveDescriptions[81]
-            break;
-        case 'Cf3':
-            descriptionText.innerHTML = achieveDescriptions[82]
-            break;
-        case 'Cf4':
-            descriptionText.innerHTML = achieveDescriptions[83]
-            break;
-        //Resources
-        case 'Pw1':
-            descriptionText.innerHTML = achieveDescriptions[84]
-            break;
-        case 'Pw2':
-            descriptionText.innerHTML = achieveDescriptions[85]
-            break;
-        case 'Pw3':
-            descriptionText.innerHTML = achieveDescriptions[86]
-            break;
-        case 'Pw4':
-            descriptionText.innerHTML = achieveDescriptions[87]
-            break;
-        case 'Co1':
-            descriptionText.innerHTML = achieveDescriptions[88]
-            break;
-        case 'Co2':
-            descriptionText.innerHTML = achieveDescriptions[89]
-            break;
-        case 'Co3':
-            descriptionText.innerHTML = achieveDescriptions[90]
-            break;
-        case 'Co4':
-            descriptionText.innerHTML = achieveDescriptions[91]
-            break;
-    }
+    descriptionText.innerHTML = achieveDescriptions[id]
 }
