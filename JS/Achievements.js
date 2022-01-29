@@ -166,41 +166,29 @@ function updateAchievementHTML() {
 }
 
 const descriptionText = DOMCacheGetOrSet("achieveText")
-// Element Achieves Row 1
-const achieveDescriptions = ['<hr>[1] - Hydrogenated<br>Buy your first Hydrogen Generator','<hr>[9] - The Element of Life<br>Buy your first Carbon Generator','<hr>[17] - No this is not air<br>Buy your first Oxygen Generator','<hr>[25] - Gimme your electrons<br>Buy your first Fluorine Generator',
-'<hr>[33] - Hey Stinky<br>Buy your first Sulfur Generator','<hr>[41] - Mmm Mustard Gas<br>Buy your first Chlorine Generator','<hr>[49] - Just Iron<br>Buy your first Iron Generator','<hr>[57] - Definitely not Peanut Butter<br>Buy your first Lead Generator',
-//EA 2
-'<hr>[2] - There must be more to this game<br>Buy 10 Hydrogen Generators','<hr>[10] - Well you can make graphite at least<br>Buy 10 Carbon Generators','<hr>[18] - Still not air<br>Buy 10 Oxygen Generators','<hr>[26] - DiSulfur <b>DecaFluoride</b><br>Buy 10 Fluorine Generators',
-'<hr>[34] - It just stinks more<br>Buy 10 Sulfur Generators','<hr>[42] - Ph-<br>Buy 10 Chlorine Generators','<hr>[50] - Um make steel or something idk<br>Buy 10 Iron Generators','<hr>[58] - X-Ray Protection<br>Buy 10 Lead Generators',
-//EA 3
-'<hr>[3] - Just go get helium already<br>Buy 50 Hydrogen Generators','<hr>[11] - Diamonds<br>Buy 50 Carbon Generators','<hr>[19] - Nitrogen + Oxygen = Air<br>Buy 50 Oxygen Generators','<hr>[27] - Why are you making this stuff<br>Buy 50 Fluorine Generators',
-'<hr>[35] - Reeking Odor<br>Buy 50 Sulfur Generators','<hr>[43] - Ph--<br>Buy 50 Chlorine Generators','<hr>[51] - Steel > Iron<br>Buy 50 Iron Generators','<hr>[59] - ._. Don\'t eat that<br>Buy 50 Lead Generators',
-//EA 4
-'<hr>[4] - Saturated<br>Buy 100 Hydrogen Generators','<hr>[12] - Crude Oil<br>Buy 100 Carbon Generators','<hr>[20] - Still need nitrogen<br>Buy 100 Oxygen Generators','<hr>[28] - All the electrons<br>Buy 100 Fluorine Generators',
-'<hr>[36] - Fools Gold<br>Buy 100 Sulfur Generators','<hr>[44] - The pool has had enough<br>Buy 100 Chlorine Generators','<hr>[52] - Solid Investment<br>Buy 100 Iron Generators','<hr>[60] - Lead Paints<br>Buy 100 Lead Generators',
-//EA 5
-'<hr>[5] - The Hydrogen Strikes Back<br>Buy 500 Hydrogen Generators','<hr>[13] - Ubër Oil<br>Buy 500 Carbon Generators','<hr>[21] - More O<sub>2</sub> Please<br>Buy 500 Oxygen Generators','<hr>[29] - Burning Concrete<br>Buy 500 Fluorine Generators',
-'<hr>[37] - You\'ve been struck by you\'ve been hit by, Sulfur<br>Buy 500 Sulfur Generators','<hr>[45] - Not Alkaline<br>Buy 500 Chlorine Generators','<hr>[53] - Kaiser Steel<br>Buy 500 Iron Generators','<hr>[61] - Mad Hatters Disease<br>Buy 500 Lead Generators',
-//EA 6
-'<hr>[6] - Return of the Hydrogen<br>Buy 1e3 Hydrogen Generators','<hr>[14] - Lucrative<br>Buy 1e3 Carbon Generators','<hr>[22] - Air Monopoly<br>Buy 1e3 Oxygen Generators','<hr>[30] - Disintegrated<br>Buy 1e3 Fluorine Generators',
-'<hr>[38] - Stanky Leg<br>Buy 1e3 Sulfur Generators','<hr>[46] - Spicy Air<br>Buy 1e3 Chlorine Generators','<hr>[54] - The might of German... Iron?<br>Buy 1e3 Iron Generators','<hr>[62] - Powder it too<br>Buy 1e3 Lead Generators',
-//EA 7
-'<hr>[7] - Hindenberg 2.0<br>Buy 1e4 Hydrogen Generators','<hr>[15] -  All life<br>Buy 1e4 Carbon Generators','<hr>[23] - Bottled Air<br>Buy 1e4 Oxygen Generators','<hr>[31] - Fluorinating<br>Buy 1e4 Fluorine Generators',
-'<hr>[39] - Oh the stench<br>Buy 1e4 Sulfur Generators','<hr>[47] - Out of Bounds Exception: Ph below 0<br>Buy 1e4 Chlorine Generators','<hr>[55] - Carnegie<br>Buy 1e4 Iron Generators','<hr>[63] - Lotta Lead<br>Buy 1e4 Lead Generators',
-//EA 8
-'<hr>[8] - Millionaire I<br>Buy 1e6 Hydrogen Generators','<hr>[16] - Millionaire II<br>Buy 1e6 Carbon Generators','<hr>[24] - Millionaire III<br>Buy 1e6 Oxygen Generators','<hr>[32] - Millionaire IV<br>Buy 1e6 Fluorine Generators',
-'<hr>[40] - Millionaire V<br>Buy 1e6 Sulfur Generators','<hr>[48] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[56] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[64] - Millionaire VIII<br>Buy 1e6 Lead Generators',
-//CA 1
-'<hr>[65] - A new chapter<br>Create your first Propane','<hr>[66] - Do you sell propane?<br>Create 10 Propane','<hr>[67] - What about propane accessories?<br>Create Propane','<hr>[68] - Strickland Propane<br>Create 1e3 Propane',
-'<hr>[69] - Dihydrogen Monoxide (also funni number)<br>Create your first Water','<hr>[70] - Unlimited Power<br>Create 10 Water','<hr>[71] - Moar Water<br>Create 100 Water','<hr>[72] - Hydroelectric<br>Create 1e3 Water',
-//CA 2
-'<hr>[73] - Battery<br>Create your first Sulfuric Acid','<hr>[74] - Energizer Battery<br>Create 10 Sulfuric Acid','<hr>[75] - Energizer Max<br>Create 100 Sulfuric Acid','<hr>[76] - Energizer Pro Max<br>Create 1e3 Sulfuric Acid',
-'<hr>[77] - Follow the iron trail<br>Create your first Steel','<hr>[78] - Carnegie Steel<br>Create 10 Steel','<hr>[79] - What do you even do with this?<br>Create 100 Steel','<hr>[80] - All the steel<br>Create 1e3 Steel',
-//CA 3
-'<hr>[81] - The last compound<br>Create your first Chlorine Trifluoride','<hr>[82] - A terrible idea<br>Create 10 Chlorine Trifluoride','<hr>[83] - You need to stop<br>Create 100 Chlorine Trifluoride','<hr>[84] - Burning Asbestos?!?<br>Create 1e3 Chlorine Trifluoride',
-// RA 1
-'<hr>[85] - New tabs?!?<br>Generate 1 Power','<hr>[86] - I got the power<br>Generate 10 Power','<hr>[87] - The power of the steam engine<br>Generate 100 Power','<hr>[88] - It never changes<br>Generate 1e3 Power',
-'<hr>[89] - Three Mile Island<br>Melt for 500 Corium','<hr>[90] - Fukushima<br>Melt for 1e3 Corium','<hr>[91] - Chernobyl<br>Melt for 1e4 Corium','<hr>[92] - The elephants foot<br>Melt for 1e6 Corium']
+const achieveDescriptions = ['<hr>[1] - Hydrogenated<br>Buy your first Hydrogen Generator','<hr>[2] - There must be more to this game<br>Buy 10 Hydrogen Generators','<hr>[3] - Just go get helium already<br>Buy 50 Hydrogen Generators','<hr>[4] - Saturated<br>Buy 100 Hydrogen Generators',
+    '<hr>[5] - The Hydrogen Strikes Back<br>Buy 500 Hydrogen Generators','<hr>[6] - Return of the Hydrogen<br>Buy 1e3 Hydrogen Generators','<hr>[7] - Hindenberg 2.0<br>Buy 1e4 Hydrogen Generators','<hr>[8] - Millionaire I<br>Buy 1e6 Hydrogen Generators',
+    '<hr>[9] - The Element of Life<br>Buy your first Carbon Generator', '<hr>[10] - Well you can make graphite at least<br>Buy 10 Carbon Generators','<hr>[11] - Diamonds<br>Buy 50 Carbon Generators','<hr>[12] - Crude Oil<br>Buy 100 Carbon Generators',
+    '<hr>[13] - Ubër Oil<br>Buy 500 Carbon Generators', '<hr>[14] - Lucrative<br>Buy 1e3 Carbon Generators','<hr>[15] -  All life<br>Buy 1e4 Carbon Generators','<hr>[16] - Millionaire II<br>Buy 1e6 Carbon Generators', '<hr>[17] - No this is not air<br>Buy your first Oxygen Generator',
+    '<hr>[18] - Still not air<br>Buy 10 Oxygen Generators','<hr>[19] - Nitrogen + Oxygen = Air<br>Buy 50 Oxygen Generators','<hr>[20] - Still need nitrogen<br>Buy 100 Oxygen Generators','<hr>[21] - More O<sub>2</sub> Please<br>Buy 500 Oxygen Generators',
+    '<hr>[22] - Air Monopoly<br>Buy 1e3 Oxygen Generators','<hr>[23] - Bottled Air<br>Buy 1e4 Oxygen Generators','<hr>[24] - Millionaire III<br>Buy 1e6 Oxygen Generators', '<hr>[25] - Gimme your electrons<br>Buy your first Fluorine Generator',
+    '<hr>[26] - DiSulfur <b>DecaFluoride</b><br>Buy 10 Fluorine Generators','<hr>[27] - Why are you making this stuff<br>Buy 50 Fluorine Generators','<hr>[28] - All the electrons<br>Buy 100 Fluorine Generators','<hr>[29] - Burning Concrete<br>Buy 500 Fluorine Generators',
+    '<hr>[30] - Disintegrated<br>Buy 1e3 Fluorine Generators','<hr>[31] - Fluorinating<br>Buy 1e4 Fluorine Generators','<hr>[32] - Millionaire IV<br>Buy 1e6 Fluorine Generators','<hr>[33] - Hey Stinky<br>Buy your first Sulfur Generator',
+    '<hr>[34] - It just stinks more<br>Buy 10 Sulfur Generators','<hr>[35] - Reeking Odor<br>Buy 50 Sulfur Generators','<hr>[36] - Fools Gold<br>Buy 100 Sulfur Generators','<hr>[37] - You\'ve been struck by you\'ve been hit by, Sulfur<br>Buy 500 Sulfur Generators',
+    '<hr>[38] - Stanky Leg<br>Buy 1e3 Sulfur Generators','<hr>[39] - Oh the stench<br>Buy 1e4 Sulfur Generators','<hr>[40] - Millionaire V<br>Buy 1e6 Sulfur Generators', '<hr>[41] - Mmm Mustard Gas<br>Buy your first Chlorine Generator',
+    '<hr>[42] - Ph-<br>Buy 10 Chlorine Generators','<hr>[43] - Ph--<br>Buy 50 Chlorine Generators','<hr>[44] - The pool has had enough<br>Buy 100 Chlorine Generators','<hr>[45] - Not Alkaline<br>Buy 500 Chlorine Generators',
+    '<hr>[46] - Spicy Air<br>Buy 1e3 Chlorine Generators','<hr>[47] - Out of Bounds Exception: Ph below 0<br>Buy 1e4 Chlorine Generators','<hr>[48] - Millionaire VI<br>Buy 1e6 Chlorine Generators','<hr>[49] - Just Iron<br>Buy your first Iron Generator',
+    '<hr>[50] - Um make steel or something idk<br>Buy 10 Iron Generators','<hr>[51] - Steel > Iron<br>Buy 50 Iron Generators','<hr>[52] - Solid Investment<br>Buy 100 Iron Generators','<hr>[53] - Kaiser Steel<br>Buy 500 Iron Generators',
+    '<hr>[54] - The might of German... Iron?<br>Buy 1e3 Iron Generators','<hr>[55] - Carnegie<br>Buy 1e4 Iron Generators','<hr>[56] - Millionaire VII<br>Buy 1e6 Iron Generators','<hr>[57] - Definitely not Peanut Butter<br>Buy your first Lead Generator',
+    '<hr>[58] - X-Ray Protection<br>Buy 10 Lead Generators','<hr>[59] - ._. Don\'t eat that<br>Buy 50 Lead Generators', '<hr>[60] - Lead Paints<br>Buy 100 Lead Generators', '<hr>[61] - Mad Hatters Disease<br>Buy 500 Lead Generators',
+    '<hr>[62] - Powder it too<br>Buy 1e3 Lead Generators', '<hr>[63] - Lotta Lead<br>Buy 1e4 Lead Generators', '<hr>[64] - Millionaire VIII<br>Buy 1e6 Lead Generators', '<hr>[65] - A new chapter<br>Create your first Propane','<hr>' +
+    '[66] - Do you sell propane?<br>Create 10 Propane','<hr>[67] - What about propane accessories?<br>Create Propane','<hr>[68] - Strickland Propane<br>Create 1e3 Propane',
+    '<hr>[69] - Dihydrogen Monoxide (also funni number)<br>Create your first Water','<hr>[70] - Unlimited Power<br>Create 10 Water','<hr>[71] - Moar Water<br>Create 100 Water','<hr>[72] - Hydroelectric<br>Create 1e3 Water',
+    '<hr>[73] - Battery<br>Create your first Sulfuric Acid','<hr>[74] - Energizer Battery<br>Create 10 Sulfuric Acid','<hr>[75] - Energizer Max<br>Create 100 Sulfuric Acid','<hr>[76] - Energizer Pro Max<br>Create 1e3 Sulfuric Acid',
+    '<hr>[77] - Follow the iron trail<br>Create your first Steel','<hr>[78] - Carnegie Steel<br>Create 10 Steel','<hr>[79] - What do you even do with this?<br>Create 100 Steel','<hr>[80] - All the steel<br>Create 1e3 Steel',
+    '<hr>[81] - The last compound<br>Create your first Chlorine Trifluoride','<hr>[82] - A terrible idea<br>Create 10 Chlorine Trifluoride','<hr>[83] - You need to stop<br>Create 100 Chlorine Trifluoride','<hr>[84] - Burning Asbestos?!?<br>Create 1e3 Chlorine Trifluoride',
+    '<hr>[85] - New tabs?!?<br>Generate 1 Power','<hr>[86] - I got the power<br>Generate 10 Power','<hr>[87] - The power of the steam engine<br>Generate 100 Power','<hr>[88] - It never changes<br>Generate 1e3 Power',
+    '<hr>[89] - Three Mile Island<br>Melt for 500 Corium','<hr>[90] - Fukushima<br>Melt for 1e3 Corium','<hr>[91] - Chernobyl<br>Melt for 1e4 Corium','<hr>[92] - The elephants foot<br>Melt for 1e6 Corium']
 function changeDescription(id) {
-    descriptionText.innerText = achieveDescriptions[id]
+    descriptionText.innerHTML = achieveDescriptions[id]
 }

@@ -96,6 +96,8 @@ window.setInterval(function(){
 }, 10000);
 window.onload = function (){
     load()
+    generateEventHandlers()
+    console.log("EventListeners Initialized.")
 }
 //full reset
 function fullReset(){
