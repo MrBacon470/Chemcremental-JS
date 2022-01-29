@@ -39,6 +39,7 @@ const particleNames = ['Protons', 'Neutrons', 'Electrons']
 for(let i = 0; i < 3; i++)
     particleTexts[i] = document.getElementById(`${particleTextIds[i]}`)
 
+
 function updateHTML(){
     
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
@@ -46,7 +47,8 @@ function updateHTML(){
     DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
     for(let i = 0; i < 5; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
-        tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
+        if(!data.hasTab[i])
+            tabs[i].style.backgroundColor = 'gray'
         tabs[i].style.border = !data.hasTab[i] ? '4px solid gray' : `4px solid #${colors[i]}`
     }
     for(let i = 0; i < data.buyAmounts.length; i++)
@@ -212,14 +214,19 @@ function tabChangeHTML(){
     acceleratorTab.style.display = data.currentTab === 7 ? 'flex' : 'none'
     seperator.style.color = `#${seperatorColors[data.currentTab]}`
 }
-const regularElementHolder = document.getElementById('regularElementsHolder')
-const isotopeElementHolder = document.getElementById('isotopeElementsHolder')
-const splitterHolder = document.getElementById('splitterHolder')
-const particleHolder = document.getElementById('particleHolder')
+const regularElementHolder = DOMCacheGetOrSet('regularElementsHolder')
+const isotopeElementHolder = DOMCacheGetOrSet('isotopeElementsHolder')
+const splitterHolder = DOMCacheGetOrSet('splitterHolder')
+const particleHolder = DOMCacheGetOrSet('particleHolder')
+const settingsArea = DOMCacheGetOrSet("settingsArea")
+const creditsArea = DOMCacheGetOrSet("creditsArea")
 function subTabChangeHTML() {
         regularElementHolder.style.display = data.currentSubTab[0] === 0 ? 'flex' : 'none'
         isotopeElementHolder.style.display = data.currentSubTab[0] === 1 ? 'flex' : 'none'
 
         splitterHolder.style.display = data.currentSubTab[1] === 0 ? 'flex' : 'none'
         particleHolder.style.display = data.currentSubTab[1] === 1 ? 'flex' : 'none'
+
+        settingsArea.style.display = data.currentSubTab[2] === 0 ? 'flex' : 'none'
+        creditsArea.style.display = data.currentSubTab[2] === 1 ? 'flex' : 'none'
 }
