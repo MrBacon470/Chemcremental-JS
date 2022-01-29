@@ -43,6 +43,27 @@ for(let i = 0; i < 4; i++) {
 
 let unlockReqs = [D(1),D(10),D(50),D(100),D(500),D(1000),D(10000),D(1000000)]
 let prevAmount = D(0)
+//Add event listeners
+for(let i = 0; i < 8; i++) {
+    HAchieves[i].addEventListener('mouseover', () => changeDescription(i))
+    CAchieves[i].addEventListener('mouseover', () => changeDescription(i+8))
+    OAchieves[i].addEventListener('mouseover', () => changeDescription(i+16))
+    FAchieves[i].addEventListener('mouseover', () => changeDescription(i+24))
+    SAchieves[i].addEventListener('mouseover', () => changeDescription(i+32))
+    ClAchieves[i].addEventListener('mouseover', () => changeDescription(i+40))
+    FeAchieves[i].addEventListener('mouseover', () => changeDescription(i+48))
+    PbAchieves[i].addEventListener('mouseover', () => changeDescription(i+56))
+}
+for(let i = 0; i < 4; i++) {
+    PrAchieves[i].addEventListener('mouseover', () => changeDescription(i+64))
+    WtAchieves[i].addEventListener('mouseover', () => changeDescription(i+68))
+    SaAchieves[i].addEventListener('mouseover', () => changeDescription(i+72))
+    SlAchieves[i].addEventListener('mouseover', () => changeDescription(i+76))
+    CfAchieves[i].addEventListener('mouseover', () => changeDescription(i+80))
+    PwAchieves[i].addEventListener('mouseover', () => changeDescription(i+84))
+    CoAchieves[i].addEventListener('mouseover', () => changeDescription(i+88))
+}
+
 function unlockAchieves() {
     for(let i = 0; i < 8; i++) {
         if(data.elements[0].level.gte(unlockReqs[i]) && data.achievements[0].unlocked[i] !== true)
