@@ -53,7 +53,7 @@ function load() {
         noConfirmDelete()
     }
     else if(data.currentUpdate !== 'v0.3.3') {
-        alert(`Welcome Back! The current version is v0.3.3`)
+        alert(`Welcome Back! The current version is v0.3.3. Some recent changes were accidentally merged but you won't be able to access them yet`)
         data.currentUpdate = 'v0.3.3' 
     }
     //fixOldSaves()
