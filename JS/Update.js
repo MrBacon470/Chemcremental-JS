@@ -197,6 +197,7 @@ const compoundTab = DOMCacheGetOrSet("compoundHolder")
 const powerTab = DOMCacheGetOrSet("powerHolder")
 const meltingTab = DOMCacheGetOrSet("meltingHolder")
 const settingTab = DOMCacheGetOrSet("settingsHolder")
+const refineryTab = DOMCacheGetOrSet("refineryHolder")
 const achievementTab = DOMCacheGetOrSet("achievementHolder")
 const acceleratorTab = DOMCacheGetOrSet("acceleratorHolder")
 const seperatorColors = ['808080','3c9f45','7fccff','3a5b99','b0b835','68368a','583793','37936d']
