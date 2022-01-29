@@ -22,23 +22,23 @@ const PwAchieves = []
 const CoAchieves = []
 
 for(let i = 0; i < 8; i++) {
-    HAchieves[i] = document.getElementById(`H${i+1}`)
-    CAchieves[i] = document.getElementById(`C${i+1}`)
-    OAchieves[i] = document.getElementById(`O${i+1}`)
-    FAchieves[i] = document.getElementById(`F${i+1}`)
-    SAchieves[i] = document.getElementById(`S${i+1}`)
-    ClAchieves[i] = document.getElementById(`Cl${i+1}`)
-    FeAchieves[i] = document.getElementById(`Fe${i+1}`)
-    PbAchieves[i] = document.getElementById(`Pb${i+1}`)
+    HAchieves[i] = DOMCacheGetOrSet(`H${i+1}`)
+    CAchieves[i] = DOMCacheGetOrSet(`C${i+1}`)
+    OAchieves[i] = DOMCacheGetOrSet(`O${i+1}`)
+    FAchieves[i] = DOMCacheGetOrSet(`F${i+1}`)
+    SAchieves[i] = DOMCacheGetOrSet(`S${i+1}`)
+    ClAchieves[i] = DOMCacheGetOrSet(`Cl${i+1}`)
+    FeAchieves[i] = DOMCacheGetOrSet(`Fe${i+1}`)
+    PbAchieves[i] = DOMCacheGetOrSet(`Pb${i+1}`)
 }
 for(let i = 0; i < 4; i++) {
-    PrAchieves[i] = document.getElementById(`Pr${i+1}`)
-    WtAchieves[i] = document.getElementById(`Wt${i+1}`)
-    SaAchieves[i] = document.getElementById(`Sa${i+1}`)
-    SlAchieves[i] = document.getElementById(`Sl${i+1}`)
-    CfAchieves[i] = document.getElementById(`Cf${i+1}`)
-    PwAchieves[i] = document.getElementById(`Pw${i+1}`)
-    CoAchieves[i] = document.getElementById(`Co${i+1}`)
+    PrAchieves[i] = DOMCacheGetOrSet(`Pr${i+1}`)
+    WtAchieves[i] = DOMCacheGetOrSet(`Wt${i+1}`)
+    SaAchieves[i] = DOMCacheGetOrSet(`Sa${i+1}`)
+    SlAchieves[i] = DOMCacheGetOrSet(`Sl${i+1}`)
+    CfAchieves[i] = DOMCacheGetOrSet(`Cf${i+1}`)
+    PwAchieves[i] = DOMCacheGetOrSet(`Pw${i+1}`)
+    CoAchieves[i] = DOMCacheGetOrSet(`Co${i+1}`)
 }
 
 let unlockReqs = [D(1),D(10),D(50),D(100),D(500),D(1000),D(10000),D(1000000)]
@@ -108,7 +108,7 @@ function unlockAchieves() {
     }
     if(amountUnlocked.gt(prevAmount)) {
         prevAmount = amountUnlocked
-        document.getElementById('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 93)}/92 (${format((prevAmount.divide(D(92)).times(D(100))))}%)`
+        DOMCacheGetOrSet('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 93)}/92 (${format((prevAmount.divide(D(92)).times(D(100))))}%)`
     }
 }
 
@@ -165,7 +165,7 @@ function updateAchievementHTML() {
     }
 }
 
-const descriptionText = document.getElementById("achieveText")
+const descriptionText = DOMCacheGetOrSet("achieveText")
 // Element Achieves Row 1
 const achieveDescriptions = ['<hr>[1] - Hydrogenated<br>Buy your first Hydrogen Generator','<hr>[9] - The Element of Life<br>Buy your first Carbon Generator','<hr>[17] - No this is not air<br>Buy your first Oxygen Generator','<hr>[25] - Gimme your electrons<br>Buy your first Fluorine Generator',
 '<hr>[33] - Hey Stinky<br>Buy your first Sulfur Generator','<hr>[41] - Mmm Mustard Gas<br>Buy your first Chlorine Generator','<hr>[49] - Just Iron<br>Buy your first Iron Generator','<hr>[57] - Definitely not Peanut Butter<br>Buy your first Lead Generator',

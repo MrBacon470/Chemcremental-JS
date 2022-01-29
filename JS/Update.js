@@ -6,21 +6,21 @@ const shortElement = ['H','C','O','F','S','Cl','Fe','Pb']
 const compoundButtons = []
 const compoundBoost = ['Element Boost: ','Power Boost: ','Battery Boost: ','Lead Boost: ','Melt Boost: ']
 for (let i=0; i<8; i++){
-    elementButtons[i] = document.getElementById(`${elementNames[i]}`)
+    elementButtons[i] = DOMCacheGetOrSet(`${elementNames[i]}`)
 }
 for(let i = 0; i < 5; i++) {
-    compoundButtons[i] = document.getElementById(`${data.compounds[i].name}`)
+    compoundButtons[i] = DOMCacheGetOrSet(`${data.compounds[i].name}`)
 }
 const tabs = []
 const tabIDs = ['cB','pB','mB','rB']
 const tabNames = ['Compounds','Power','Melting','Refinery']
 const colors = ['3a5b99','b0b835','68368a','583793']
 for(let i=0; i < 4; i++) {
-    tabs[i] = document.getElementById(`${tabIDs[i]}`)
+    tabs[i] = DOMCacheGetOrSet(`${tabIDs[i]}`)
 }
 const powerUpButton = []
 for(let i=0; i < 3; i++)
-    powerUpButton[i] = document.getElementById(`pu${i+1}`)
+    powerUpButton[i] = DOMCacheGetOrSet(`pu${i+1}`)
 const coriumMultDesc =['Increase Atom Production by 4x','Increase Compounds Created by 1.25x','Increase Corium Produced on Melt']
 const coriumSingDesc = ['Unlock the Refinery<br>Cost: 1.00e10 Corium','Not Avalible','Not Avalible']
 //'Unlock Passive Power Production<br>Cost: 1.00e15 Corium','Radition Not Implemented'
@@ -35,19 +35,19 @@ const currencyNames = ['Shards','Fragments','Coins']
 function updateHTML(){
     
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
-    document.getElementById('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
-    document.getElementById('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
+    DOMCacheGetOrSet('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
+    DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
     for(let i = 0; i < 4; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
         tabs[i].style.border = !data.hasTab[i] ? '4px solid gray' : `4px solid #${colors[i]}`
     }
     for(let i = 0; i < data.buyAmounts.length; i++)
-        document.getElementById(`bA${i}`).innerHTML = `Buy Amount<br>${data.buyAmounts[i]}`
+        DOMCacheGetOrSet(`bA${i}`).innerHTML = `Buy Amount<br>${data.buyAmounts[i]}`
 
     if(data.currentTab === 0) {
-        document.getElementById('toggle1').innerHTML = data.settingsToggles[0] ? 'Melting Confirmation [ON]' : 'Melting Confirmation [OFF]'
-        document.getElementById('toggle2').innerHTML = data.settingsToggles[1] ? 'Enable Offline Progress [ON]' : 'Enable Offline Progress [OFF]'
+        DOMCacheGetOrSet('toggle1').innerHTML = data.settingsToggles[0] ? 'Melting Confirmation [ON]' : 'Melting Confirmation [OFF]'
+        DOMCacheGetOrSet('toggle2').innerHTML = data.settingsToggles[1] ? 'Enable Offline Progress [ON]' : 'Enable Offline Progress [OFF]'
     }
     else if (data.currentTab === 1) {
         for(let i = 0;i < 8;i++) {
@@ -70,23 +70,23 @@ function updateHTML(){
         }
     }
     else if(data.currentTab === 4) {
-        document.getElementById('generator').innerHTML = data.compounds[1].amt.gte(1) ? `Generate Power<br>+${format(powerGain)} Power` : "Generate Power<br>Req: 3 Propane + 1 Water"
+        DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) ? `Generate Power<br>+${format(powerGain)} Power` : "Generate Power<br>Req: 3 Propane + 1 Water"
         powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Power<br>Level: ${format(data.powerUps[0])}`
         powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
         powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 0.1x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
     }
     else if(data.currentTab === 5) {
         
-        document.getElementById('meltDown').innerHTML = sumOfElements >= 1e8 ? `Melt Down<br>Create +${format(coriumToGet)}<br>Corium` : "Melt Down<br>Requires 1e8<br>Total Elements"
+        DOMCacheGetOrSet('meltDown').innerHTML = sumOfElements >= 1e8 ? `Melt Down<br>Create +${format(coriumToGet)}<br>Corium` : "Melt Down<br>Requires 1e8<br>Total Elements"
         for(let i = 0; i < 3; i++) {
-            document.getElementById(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${format(coriumMultCosts[i])} Corium<br>Level: ${format(data.coriumMultUps[i])}`
-            document.getElementById(`cs${i+1}`).innerHTML = data.coriumSingUps[i] ? 'Unlocked' : `${coriumSingDesc[i]}`
+            DOMCacheGetOrSet(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${format(coriumMultCosts[i])} Corium<br>Level: ${format(data.coriumMultUps[i])}`
+            DOMCacheGetOrSet(`cs${i+1}`).innerHTML = data.coriumSingUps[i] ? 'Unlocked' : `${coriumSingDesc[i]}`
         }
     }
     else if(data.currentTab === 6) {
-        document.getElementById(`${refineryIDs[0]}`).innerHTML = `${refineryNames[0]}<br><br>${refineryDescriptions[0]}<br><br>+${format(shardsToGet)} ${currencyNames[0]}<br><br>${format(data.refineryCurrencies[0])} ${currencyNames[0]} Avalible`
-        document.getElementById(`${refineryIDs[1]}`).innerHTML = `${refineryNames[1]}<br><br>${refineryDescriptions[1]}<br><br>+${format(fragmentsToGet)} ${currencyNames[1]}<br><br>${format(data.refineryCurrencies[1])} ${currencyNames[1]} Avalible`
-        document.getElementById(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format(Decimal.sqrt(data.refineryCurrencies[2].times(D(2))))}x Boost`
+        DOMCacheGetOrSet(`${refineryIDs[0]}`).innerHTML = `${refineryNames[0]}<br><br>${refineryDescriptions[0]}<br><br>+${format(shardsToGet)} ${currencyNames[0]}<br><br>${format(data.refineryCurrencies[0])} ${currencyNames[0]} Avalible`
+        DOMCacheGetOrSet(`${refineryIDs[1]}`).innerHTML = `${refineryNames[1]}<br><br>${refineryDescriptions[1]}<br><br>+${format(fragmentsToGet)} ${currencyNames[1]}<br><br>${format(data.refineryCurrencies[1])} ${currencyNames[1]} Avalible`
+        DOMCacheGetOrSet(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format(Decimal.sqrt(data.refineryCurrencies[2].times(D(2))))}x Boost`
     }
     unlockTabs()
     tabChangeHTML()
@@ -102,14 +102,14 @@ function unlockTabs(){
     for(let i = 0; i < 4; i++)
         tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
 }
-const seperator = document.getElementById('tabSeperator')
-const elementTab = document.getElementById("elementHolder")
-const compoundTab = document.getElementById("compoundHolder")
-const powerTab = document.getElementById("powerHolder")
-const meltingTab = document.getElementById("meltingHolder")
-const settingTab = document.getElementById("settingsHolder")
-const achievementTab = document.getElementById("achievementHolder")
-const refineryTab = document.getElementById("refineryHolder")
+const seperator = DOMCacheGetOrSet('tabSeperator')
+const elementTab = DOMCacheGetOrSet("elementHolder")
+const compoundTab = DOMCacheGetOrSet("compoundHolder")
+const powerTab = DOMCacheGetOrSet("powerHolder")
+const meltingTab = DOMCacheGetOrSet("meltingHolder")
+const settingTab = DOMCacheGetOrSet("settingsHolder")
+const achievementTab = DOMCacheGetOrSet("achievementHolder")
+const refineryTab = DOMCacheGetOrSet("refineryHolder")
 const seperatorColors = ['808080','3c9f45','7fffd4','3a5b99','b0b835','68368a','583793']
 function tabChangeHTML(){
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
