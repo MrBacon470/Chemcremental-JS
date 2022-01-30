@@ -1,4 +1,4 @@
-let accelUpCosts = [{a:D(3e3),b:D(5e3),c:D(0),d:D(0)},{a:D(5e3),b:D(1e4),c:D(5e3),d:D(0)},{a:D(1e4),b:D(3e4),c:D(1e4),d:D(5e3)}]
+let accelUpCosts = [{a:D(5e3),b:D(1e4),c:D(0),d:D(0)},{a:D(1e4),b:D(5e4),c:D(1e4),d:D(0)},{a:D(5e4),b:D(1e5),c:D(5e4),d:D(1e4)}]
 let accelCosts = [D(0),D(0),D(0)]
 let accelCostBase = [D(1e3),D(1e4),D(5e3)]
 let accelBoosts = [{a:D(0),b:D(0),c:D(0),d:D(0)},{a:D(0),b:D(0),c:D(0),d:D(0)},{a:D(0),b:D(0),c:D(0),d:D(0)}]
@@ -19,7 +19,7 @@ function updateAccelStuff() {
    }
 
    for(let i = 0; i < 3; i++) {
-        accelCosts[i] = accelCostBase[i].times(Decimal.pow(1.5, data.accelerators[i].level))
+        accelCosts[i] = accelCostBase[i].times(Decimal.pow(1.15, data.accelerators[i].level))
         accelBoosts[i].a = D(1).plus(Decimal.sqrt(data.accelerators[i].level.times(D(2))))
         accelBoosts[i].b = D(1).plus(Decimal.sqrt(data.accelerators[i].level.times(D(3))))
         accelBoosts[i].c = D(1).plus(Decimal.sqrt(data.accelerators[i].level.times(D(4))))
