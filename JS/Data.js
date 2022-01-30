@@ -2,7 +2,7 @@ const D = x => new Decimal(x)
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
-        buyAmounts: [1,1,1],
+        buyAmounts: [1,1,1,1,1],
         //Elements
         elements: [{amt:D(10),name:"Hydrogen",level:D(0),max:D(0)},{amt:D(0),name:"Carbon",level:D(0),max:D(0)},{amt:D(0),name:"Oxygen",
         level:D(0),max:D(0)},{amt:D(0),name:"Fluorine",level:D(0),max:D(0)},{amt:D(0),name:"Sulfur",level:D(0),max:D(0)},{amt:D(0),name:"Chlorine",
@@ -37,7 +37,7 @@ function getDefaultObject() {
         currentSubTab: [0,0,0],
         currentElement: 0,
         settingsToggles: [true,true,true],
-        currentUpdate: 'v0.4.1',
+        currentUpdate: 'v0.4.2',
         devSpeed: 1,
     }
 }
@@ -50,14 +50,14 @@ function load() {
     let savedata = JSON.parse(window.localStorage.getItem('chemJSSave'))
     if (savedata !== undefined) fixSave(data, savedata)
     if(data.currentUpdate === 'v0.1.0' || data.currentUpdate === 'v0.1.1' || data.currentUpdate === 'v0.1.2' || data.currentUpdate === 'v0.1.3' || data.currentUpdate === 'v0.1.4') {
-        alert(`Welcome Back! The Current Version is v0.4.1, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
-        data.currentUpdate = 'v0.4.1'
+        alert(`Welcome Back! The Current Version is v0.4.2, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
+        data.currentUpdate = 'v0.4.2'
         //Reset only for Beta delete next update
         noConfirmDelete()
     }
-    else if(data.currentUpdate !== 'v0.4.1') {
-        alert(`Welcome Back! The current version is v0.4.1.`)
-        data.currentUpdate = 'v0.4.1' 
+    else if(data.currentUpdate !== 'v0.4.2') {
+        alert(`Welcome Back! The current version is v0.4.2`)
+        data.currentUpdate = 'v0.4.2' 
     }
     //fixOldSaves()
 }

@@ -40,19 +40,27 @@ function updateMeltCost() {
 function purchaseMeltUp(x) {
     switch(x) {
         case 'm1':
+            for(let x = 0; x < data.buyAmounts[4]; x++){
             if(data.corium.lt(coriumMultCosts[0])) return
             data.corium = data.corium.minus(coriumMultCosts[0])
             data.coriumMultUps[0] = data.coriumMultUps[0].plus(D(1))
+            updateMeltCost()
+            }
             break;
         case 'm2':
-            if(data.corium.lt(coriumMultCosts[1])) return
-            data.corium = data.corium.minus(coriumMultCosts[1])
-            data.coriumMultUps[1] = data.coriumMultUps[1].plus(D(1))
-            break;
+            for(let x = 0; x < data.buyAmounts[4]; x++){
+                if(data.corium.lt(coriumMultCosts[1])) return
+                data.corium = data.corium.minus(coriumMultCosts[1])
+                data.coriumMultUps[1] = data.coriumMultUps[1].plus(D(1))
+                updateMeltCost()
+                }
         case 'm3':
-            if(data.corium.lt(coriumMultCosts[2])) return
-            data.corium = data.corium.minus(coriumMultCosts[2])
-            data.coriumMultUps[2] = data.coriumMultUps[2].plus(D(1))
+            for(let x = 0; x < data.buyAmounts[4]; x++){
+                if(data.corium.lt(coriumMultCosts[2])) return
+                data.corium = data.corium.minus(coriumMultCosts[2])
+                data.coriumMultUps[2] = data.coriumMultUps[2].plus(D(1))
+                updateMeltCost()
+                }
             break;
         case 's1':
             if(data.corium.lt(coriumSingCost[0]) || data.coriumSingUps[0] === true) return

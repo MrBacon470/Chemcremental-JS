@@ -23,22 +23,31 @@ function updatePowerCosts() {
 function purchasePowerUp(i) {
     switch(i) {
         case 0:
+            for(let x = 0; x < data.buyAmounts[3]; x++){
             if(data.power.lt(powerCosts[0])) return
 
             data.power = data.power.sub(powerCosts[0])
             data.powerUps[0] = data.powerUps[0].plus(1)
+            updatePowerCosts()
+            }
             break;
         case 1:
+            for(let x = 0; x < data.buyAmounts[3]; x++){
             if(data.compounds[2].amt.lt(powerCosts[1])) return
 
             data.compounds[2].amt = data.compounds[2].amt.sub(powerCosts[1])
             data.powerUps[1] = data.powerUps[1].plus(1)
+            updatePowerCosts()
+            }
             break;
         case 2:
+            for(let x = 0; x < data.buyAmounts[3]; x++){
             if(data.elements[2].level.lt(powerCosts[1])) return
 
             data.compounds[2].amt = data.compounds[2].amt.sub(powerCosts[1])
             data.powerUps[1] = data.powerUps[1].plus(1)
+            updatePowerCosts()
+            }
             break;
     }
 }

@@ -133,6 +133,7 @@
         
     </div>
     <div id="powerHolder" class="flexBox holder">
+        <button onclick="toggleBuyAmount(3)" id="bA3" class="buyAmount">Buy Amount: 1</button>
         <button id="generator" onclick="generatePower()" class="power" style="margin-top: 40px; border: 5px solid #b0b835; margin-right: 50px; width:18em; height: 30em; font-size: 15px;">Generate Power<br>Requires 3 Propane & 1 Water<br>+0.00 Power</button>
         <div style="display:flex; flex-direction: column;">
             <div style="display: flex; flex-direction: row; margin-left: 50px; margin-top: 40px;">
@@ -147,6 +148,7 @@
         </div>
     </div>
     <div id="meltingHolder" class="flexBox holder">
+        <button onclick="toggleBuyAmount(4)" id="bA4" class="buyAmount">Buy Amount: 1</button>
         <button id="meltDown" onclick="meltDown()" class="melt" style="margin-top: 25px; border: 5px solid #68368a; margin-right: 50px; width:12em; height: 20em; font-size: 23px;">Melt Down<br>Create +0.00<br>Corium</button>
         <div style="display:flex; flex-direction: column;">
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
@@ -382,7 +384,8 @@
         <hr style="border: solid 1px;">
         <h3>Early Access Beta</h3>
         <br>
-        <p style="color:#9541af;">β0.4.1 - Major balancing to new area</p>
+        <p style="color:#9541af;">β0.4.2 - QoL Changes</p>
+        <p>β0.4.1 - Major balancing to new area</p>
         <p>β0.4.0 - New Area aka 2nd Corium Upgrade</p>
         <p>β0.3.4 - Flame's Optimization Update, Credits Area, Sub Tabs</p>
         <p>β0.3.3 - 92 Achievements now in game</p>
