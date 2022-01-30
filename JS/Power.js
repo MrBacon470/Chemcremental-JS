@@ -45,7 +45,7 @@ function purchasePowerUp(i) {
             if(data.elements[2].level.lt(powerCosts[1])) return
 
             data.compounds[2].amt = data.compounds[2].amt.sub(powerCosts[1])
-            data.powerUps[1] = data.powerUps[1].plus(1)
+            data.powerUps[2] = data.powerUps[2].plus(1)
             updatePowerCosts()
             }
             break;
