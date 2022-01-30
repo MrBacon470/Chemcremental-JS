@@ -26,6 +26,8 @@ function meltDown() {
     data.power = D(0)
     for(let i = 0; i < data.powerUps.length; i++)
         data.powerUps[i] = D(0)
+
+    data.previousSum = D(1)
 }
 
 function updateMeltCost() {
@@ -58,6 +60,9 @@ function purchaseMeltUp(x) {
             data.coriumSingUps[0] = true
             break;
         case 's2':
+            if(data.corium.lt(coriumSingCost[1]) || data.coriumSingUps[1] === true) return
+            data.corium = data.corium.minus(coriumSingCost[1])
+            data.coriumSingUps[1] = true
             break;
         case 's3':
             break;

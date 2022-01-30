@@ -25,7 +25,7 @@ const powerUpButton = []
 for(let i=0; i < 3; i++)
     powerUpButton[i] = DOMCacheGetOrSet(`pu${i+1}`)
 const coriumMultDesc =['Increase Atom Production by 4x','Increase Compounds Created by 1.25x','Increase Corium Produced on Melt']
-const coriumSingDesc = ['Unlock the Refinery<br>Cost: 1.00e10 Corium','Not Avalible','Not Avalible']
+const coriumSingDesc = ['Unlock ???<br>Cost: 1.00e10 Corium','Unlock ???<br>Cost: 1.00e15 Corium','Not Avalible']
 //'Unlock Passive Power Production<br>Cost: 1.00e15 Corium','Radition Not Implemented'
 // Refinery Area
 const refineryIDs = ['shard', 'mold', 'mint']
@@ -38,8 +38,10 @@ const particleTextIds = ['protonsText','neutronsText','electronsText']
 const particleNames = ['Protons', 'Neutrons', 'Electrons']
 for(let i = 0; i < 3; i++)
     particleTexts[i] = document.getElementById(`${particleTextIds[i]}`)
-
-
+    const protonGainText = document.getElementById('protonGain')
+    const neutronGainText = document.getElementById('neutronGain')
+    const electronGainText = document.getElementById('electronGain')
+const accelColors = ['808080','379337','45568f','934237']
 function updateHTML(){
     
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
@@ -57,6 +59,7 @@ function updateHTML(){
     if(data.currentTab === 0) {
         DOMCacheGetOrSet('toggle1').innerHTML = data.settingsToggles[0] ? 'Melting Confirmation [ON]' : 'Melting Confirmation [OFF]'
         DOMCacheGetOrSet('toggle2').innerHTML = data.settingsToggles[1] ? 'Enable Offline Progress [ON]' : 'Enable Offline Progress [OFF]'
+        DOMCacheGetOrSet('toggle3').innerHTML = data.settingsToggles[2] ? 'Splitter Confirmation [ON]' : 'Splitter Confirmation [OFF]'
     }
     else if (data.currentTab === 1) {
         document.getElementById('RaE').style.display = data.coriumSingUps[2] ? 'flex' : 'none'
@@ -105,75 +108,65 @@ function updateHTML(){
     else if(data.currentTab === 6) {
         DOMCacheGetOrSet(`${refineryIDs[0]}`).innerHTML = `${refineryNames[0]}<br><br>${refineryDescriptions[0]}<br><br>+${format(shardsToGet)} ${currencyNames[0]}<br><br>${format(data.refineryCurrencies[0])} ${currencyNames[0]} Avalible`
         DOMCacheGetOrSet(`${refineryIDs[1]}`).innerHTML = `${refineryNames[1]}<br><br>${refineryDescriptions[1]}<br><br>+${format(fragmentsToGet)} ${currencyNames[1]}<br><br>${format(data.refineryCurrencies[1])} ${currencyNames[1]} Avalible`
-        DOMCacheGetOrSet(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format(Decimal.sqrt(data.refineryCurrencies[2].times(D(2))))}x Boost`
+        if(data.accelerators[2].level.gt(D(0)) && data.accelerators[2].upgradeLevel.gte(D(3)))
+            DOMCacheGetOrSet(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format((Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))).times(accelBoosts[2].d))}x Boost`
+        else
+            DOMCacheGetOrSet(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format(Decimal.sqrt(data.refineryCurrencies[2].times(D(2))))}x Boost`
     }
     else if(data.currentTab === 7) {
         if(data.currentSubTab[1] === 0) {
-            switch(data.currentElement) {
-                case 0:
-                    leftButton.style.border = `3px solid #${buttonColors[7]}`
-                    rightButton.style.border = `3px solid #ad4242`
-                    currentDisplay.innerHTML = "Hydrogen"
-                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
-                        splitImage.src = splitImgSources[data.currentElement]
-                    break;
-                case 1:
-                    leftButton.style.border = `3px solid #${buttonColors[0]}`
-                    rightButton.style.border = `3px solid #${buttonColors[2]}`
-                    currentDisplay.innerHTML = "Carbon"
-                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
-                        splitImage.src = splitImgSources[data.currentElement]
-                    break;
-                case 2:
-                    leftButton.style.border = `3px solid #${buttonColors[1]}`
-                    rightButton.style.border = `3px solid #${buttonColors[3]}`
-                    currentDisplay.innerHTML = "Oxygen"
-                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
-                        splitImage.src = splitImgSources[data.currentElement]
-                    break;
-                case 3:
-                    leftButton.style.border = `3px solid #${buttonColors[2]}`
-                    rightButton.style.border = `3px solid #${buttonColors[4]}`
-                    currentDisplay.innerHTML = "Fluorine"
-                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
-                        splitImage.src = splitImgSources[data.currentElement]
-                    break;
-                case 4:
-                    leftButton.style.border = `3px solid #${buttonColors[3]}`
-                    rightButton.style.border = `3px solid #${buttonColors[5]}`
-                    currentDisplay.innerHTML = "Sulfur"
-                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
-                        splitImage.src = splitImgSources[data.currentElement]
-                    break;
-                case 5:
-                    leftButton.style.border = `3px solid #${buttonColors[4]}`
-                    rightButton.style.border = `3px solid #${buttonColors[6]}`
-                    currentDisplay.innerHTML = "Chlorine"
-                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
-                        splitImage.src = splitImgSources[data.currentElement]
-                    break;
-                case 6:
-                    leftButton.style.border = `3px solid #${buttonColors[5]}`
-                    rightButton.style.border = `3px solid #${buttonColors[7]}`
-                    currentDisplay.innerHTML = "Iron"
-                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
-                        splitImage.src = splitImgSources[data.currentElement]
-                    break;
-                case 7:
-                    leftButton.style.border = `3px solid #${buttonColors[6]}`
-                    rightButton.style.border = `3px solid #${buttonColors[0]}`
-                    currentDisplay.innerHTML = "Lead"
-                    if(splitImage.getAttribute('src') !== splitImgSources[data.currentElement])
-                        splitImage.src = splitImgSources[data.currentElement]
-                    break;
-            }
-            protonGainText.innerHTML = `+${protonGainStr[data.currentElement]}.00 Protons`
-            neutronGainText.innerHTML = `+${neutronGainStr[data.currentElement]}.00 Neutrons`
-            electronGainText.innerHTML = `+${electronGainStr[data.currentElement]}.00 Electrons`
+            DOMCacheGetOrSet('gainMult').innerHTML = `${format(gainMult)}x`
+            protonGainText.innerHTML = `+${format(data.particlesToGet[0])} Protons`
+            neutronGainText.innerHTML = `+${format(data.particlesToGet[1])} Neutrons`
+            electronGainText.innerHTML = `+${format(data.particlesToGet[2])} Electrons`
+            DOMCacheGetOrSet('splitImage').style.backgroundColor = gainMult.gt(D(1)) ? '#379337' : '#934237'
         }
         else if(data.currentSubTab[1] === 1) {
-            for(let i = 0; i < 3; i++)
+            for(let i = 0; i < 3; i++) {
                 particleTexts[i].innerHTML = `${format(data.particles[i])} ${particleNames[i]}`
+                DOMCacheGetOrSet(`accel${i+1}`).style.border = `4px solid #${accelColors[data.accelerators[i].upgradeLevel]}`
+                
+                
+            }
+            //Proton Text
+            if(data.accelerators[0].upgradeLevel.eq(D(0)))
+            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Boost: ${format(accelBoosts[0].a)}x`
+            if(data.accelerators[0].upgradeLevel.eq(D(1)))
+            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Boost: ${format(accelBoosts[0].a)}x
+            <br>Lead Boost: ${format(accelBoosts[0].b)}x`
+            if(data.accelerators[0].upgradeLevel.eq(D(2)))
+            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Boost: ${format(accelBoosts[0].a)}x
+            <br>Lead Boost: ${format(accelBoosts[0].b)}x<br>Compound Boost: ${format(accelBoosts[0].c)}x`
+            if(data.accelerators[0].upgradeLevel.eq(D(3)))
+            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Boost: ${format(accelBoosts[0].a)}x
+            <br>Lead Boost: ${format(accelBoosts[0].b)}x<br>Compound Boost: ${format(accelBoosts[0].c)}x
+            <br>Another Element Boost: ${format(accelBoosts[0].d)}x`
+            //Neutron Text
+            if(data.accelerators[1].upgradeLevel.eq(D(0)))
+            DOMCacheGetOrSet(`accel2Text`).innerHTML = `Level: ${format(data.accelerators[1].level)}/${format(data.accelerators[1].lvlCap)}<br><br>Effects<br>Corium Gain Boost: ${format(accelBoosts[1].a)}x`
+            if(data.accelerators[1].upgradeLevel.eq(D(1)))
+            DOMCacheGetOrSet(`accel2Text`).innerHTML = `Level: ${format(data.accelerators[1].level)}/${format(data.accelerators[1].lvlCap)}<br><br>Effects<br>Corium Gain Boost: ${format(accelBoosts[1].a)}x
+            <br>Melt Upgrade I Boost: ${format(accelBoosts[1].b)}x`
+            if(data.accelerators[1].upgradeLevel.eq(D(2)))
+            DOMCacheGetOrSet(`accel2Text`).innerHTML = `Level: ${format(data.accelerators[1].level)}/${format(data.accelerators[1].lvlCap)}<br><br>Effects<br>Corium Gain Boost: ${format(accelBoosts[1].a)}x
+            <br>Melt Upgrade I Boost: ${format(accelBoosts[1].b)}x<br>Melt Upgrade II Boost: ${format(accelBoosts[1].c)}x`
+            if(data.accelerators[1].upgradeLevel.eq(D(3)))
+            DOMCacheGetOrSet(`accel2Text`).innerHTML = `Level: ${format(data.accelerators[1].level)}/${format(data.accelerators[1].lvlCap)}<br><br>Effects<br>Corium Gain Boost: ${format(accelBoosts[1].a)}x
+            <br>Melt Upgrade I Boost: ${format(accelBoosts[1].b)}x<br>Melt Upgrade II Boost: ${format(accelBoosts[1].c)}x
+            <br>Melt Upgrade III Boost: ${format(accelBoosts[1].d)}x`
+            //Electron Text
+            if(data.accelerators[2].upgradeLevel.eq(D(0)))
+            DOMCacheGetOrSet(`accel3Text`).innerHTML = `Level: ${format(data.accelerators[2].level)}/${format(data.accelerators[2].lvlCap)}<br><br>Effects<br>Power Gain Boost: ${format(accelBoosts[2].a)}x`
+            if(data.accelerators[2].upgradeLevel.eq(D(1)))
+            DOMCacheGetOrSet(`accel3Text`).innerHTML = `Level: ${format(data.accelerators[2].level)}/${format(data.accelerators[2].lvlCap)}<br><br>Effects<br>Power Gain Boost: ${format(accelBoosts[2].a)}x
+            <br>Refinery Gain Boost: ${format(accelBoosts[2].b)}x`
+            if(data.accelerators[2].upgradeLevel.eq(D(2)))
+            DOMCacheGetOrSet(`accel3Text`).innerHTML = `Level: ${format(data.accelerators[2].level)}/${format(data.accelerators[2].lvlCap)}<br><br>Effects<br>Power Gain Boost: ${format(accelBoosts[2].a)}x
+            <br>Refinery Gain Boost: ${format(accelBoosts[2].b)}x<br>Power Upgrade I Boost: ${format(accelBoosts[2].c)}x`
+            if(data.accelerators[2].upgradeLevel.eq(D(3)))
+            DOMCacheGetOrSet(`accel3Text`).innerHTML = `Level: ${format(data.accelerators[2].level)}/${format(data.accelerators[2].lvlCap)}<br><br>Effects<br>Power Gain Boost: ${format(accelBoosts[2].a)}x
+            <br>Refinery Gain Boost: ${format(accelBoosts[2].b)}x<br>Power Upgrade I Boost: ${format(accelBoosts[2].c)}x
+            <br>Minting BoostBoost: ${format(accelBoosts[2].d)}x`
         }
     }
     unlockTabs()
