@@ -226,3 +226,15 @@ img {
 #RaE:hover {
     background-color: #307e35;
 }
+#accel1UpB:hover, #accel2UpB:hover, #accel3UpB:hover {
+    background-color: #939137;
+}
+#accel1B:hover {
+   background-color: #379337; 
+}
+#accel2B:hover {
+    background-color: #45568f;
+}
+#accel3B:hover {
+    background-color: #934237;
+}
