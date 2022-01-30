@@ -42,9 +42,9 @@ function purchasePowerUp(i) {
             break;
         case 2:
             for(let x = 0; x < data.buyAmounts[3]; x++){
-            if(data.elements[2].level.lt(powerCosts[1])) return
+            if(data.elements[7].level.lt(powerCosts[2])) return
 
-            data.compounds[2].amt = data.compounds[2].amt.sub(powerCosts[1])
+            data.elements[7].level = data.elements[7].level.sub(powerCosts[2])
             data.powerUps[2] = data.powerUps[2].plus(1)
             updatePowerCosts()
             }
