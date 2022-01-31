@@ -73,13 +73,15 @@ function upgradeAccel(i) {
 }
 
 for(let i = 0; i < 3; i++) {
-    DOMCacheGetOrSet(`accel${i+1}UpB`).addEventListener('mouseover', () => acceleratorHover(`up${i+1}`))
+    DOMCacheGetOrSet(`accel${i+1}UpB`).addEventListener('mouseover', () => acceleratorHover(i+4))
     DOMCacheGetOrSet(`accel${i+1}UpB`).addEventListener('click', () => upgradeAccel(i))
-    DOMCacheGetOrSet(`accel${i+1}B`).addEventListener('mouseover', () => acceleratorHover(`ac${i+1}`))
+    DOMCacheGetOrSet(`accel${i+1}B`).addEventListener('mouseover', () => acceleratorHover(i+1))
     DOMCacheGetOrSet(`accel${i+1}B`).addEventListener('click', () => accelerate(i))
 }
 
 function acceleratorHover(i) {
+    currencyDisplayIndex = i
+    /*
     switch(i) {
         case 'ac1':
             DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[0].level.eq(data.accelerators[0].lvlCap) ? `Max Level` :`Accelerate Cost<br>${format(accelCosts[0])} Protons`
@@ -91,7 +93,7 @@ function acceleratorHover(i) {
             DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[2].level.eq(data.accelerators[2].lvlCap) ? `Max Level` :`Accelerate Cost<br>${format(accelCosts[2])} Electrons`
             break
         case 'up1':
-            DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[0].upgradeLevel.eq(D(3)) ? 'Maxed Out' : `Upgrade Cost<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].a)} Steel<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].b)} Protons<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].c)} Neutrons<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].d)} Electrons`
+            DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[0].upgradeLevel.eq(D(3)) ? 'Maxed Out' : `Current Level: ${toPlaces()}/4Upgrade Cost<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].a)} Steel<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].b)} Protons<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].c)} Neutrons<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].d)} Electrons`
             break
         case 'up2':
             DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[1].upgradeLevel.eq(D(3)) ? 'Maxed Out' : `Upgrade Cost<br>${format(accelUpCosts[data.accelerators[1].upgradeLevel].a)} Steel<br>${format(accelUpCosts[data.accelerators[1].upgradeLevel].b)} Protons<br>${format(accelUpCosts[data.accelerators[1].upgradeLevel].c)} Neutrons<br>${format(accelUpCosts[data.accelerators[1].upgradeLevel].d)} Electrons`
@@ -100,4 +102,5 @@ function acceleratorHover(i) {
             DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[0].upgradeLevel.eq(D(3)) ? 'Maxed Out' : `Upgrade Cost<br>${format(accelUpCosts[data.accelerators[2].upgradeLevel].a)} Steel<br>${format(accelUpCosts[data.accelerators[2].upgradeLevel].b)} Protons<br>${format(accelUpCosts[data.accelerators[2].upgradeLevel].c)} Neutrons<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].d)} Electrons`
             break
     }    
+    */
 }

@@ -25,7 +25,7 @@ const powerUpButton = []
 for(let i=0; i < 3; i++)
     powerUpButton[i] = DOMCacheGetOrSet(`pu${i+1}`)
 const coriumMultDesc =['Increase Atom Production by 4x','Increase Compounds Created by 1.25x','Increase Corium Produced on Melt']
-const coriumSingDesc = ['Unlock ???<br>Cost: 1.00e10 Corium','Unlock ???<br>Cost: 1.00e15 Corium','Not Avalible']
+const coriumSingDesc = ['Unlock The Refinery<br>Cost: 1.00e10 Corium','Unlock Accelerators<br>Cost: 1.00e15 Corium','Not Available']
 //'Unlock Passive Power Production<br>Cost: 1.00e15 Corium','Radition Not Implemented'
 // Refinery Area
 const refineryIDs = ['shard', 'mold', 'mint']
@@ -42,17 +42,20 @@ for(let i = 0; i < 3; i++)
     const neutronGainText = document.getElementById('neutronGain')
     const electronGainText = document.getElementById('electronGain')
 const accelColors = ['808080','379337','45568f','934237']
+let currencyDisplayIndex = 0
 function updateHTML(){
-    
-    sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
-    DOMCacheGetOrSet('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}`
-    DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
     for(let i = 0; i < 5; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
         if(!data.hasTab[i])
             tabs[i].style.backgroundColor = 'gray'
+        else if(data.hasTab[i] && tabs[i].style.backgroundColor === 'gray')
+            tabs[i].style.backgroundColor = 'rgba(0,0,0,0)'
         tabs[i].style.border = !data.hasTab[i] ? '4px solid gray' : `4px solid #${colors[i]}`
     }
+    sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
+    DOMCacheGetOrSet('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}<br>Excess Power: ${format(data.powerStored)}`
+    DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
+    
     for(let i = 0; i < data.buyAmounts.length; i++)
         DOMCacheGetOrSet(`bA${i}`).innerHTML = `Buy Amount<br>${data.buyAmounts[i]}`
 
@@ -92,7 +95,7 @@ function updateHTML(){
         }
     }
     else if(data.currentTab === 4) {
-        DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) ? `Generate Power<br>+${format(powerGain)} Power` : "Generate Power<br>Req: 3 Propane + 1 Water"
+        DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain)} Power` : "Generate Power<br>Req: 3 Propane + 1 Water"
         powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Power<br>Level: ${format(data.powerUps[0])}`
         powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
         powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 0.1x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
@@ -111,7 +114,7 @@ function updateHTML(){
         if(data.accelerators[2].level.gt(D(0)) && data.accelerators[2].upgradeLevel.gte(D(3)))
             DOMCacheGetOrSet(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format((Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))).times(accelBoosts[2].d))}x Boost`
         else
-            DOMCacheGetOrSet(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format(Decimal.sqrt(data.refineryCurrencies[2].times(D(2))))}x Boost`
+            DOMCacheGetOrSet(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format(Decimal.sqrt(data.refineryCurrencies[2].times(D(2))))}x Element Boost`
     }
     else if(data.currentTab === 7) {
         if(data.currentSubTab[1] === 0) {
@@ -128,45 +131,51 @@ function updateHTML(){
                 
                 
             }
+            if(currencyDisplayIndex === 0)
+                DOMCacheGetOrSet('accelUpgradeText').innerHTML = `Hover over a button to see some info`
+            else if(currencyDisplayIndex <= 3 && currencyDisplayIndex !== 0)
+                DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[currencyDisplayIndex-1].level.eq(data.accelerators[currencyDisplayIndex-1].lvlCap) ? `Accelerate Cost<br>Max Level` :`Accelerate Cost<br>${format(accelCosts[currencyDisplayIndex-1])} ${data.accelerators[currencyDisplayIndex-1].name}`
+            else if(currencyDisplayIndex >= 4 && currencyDisplayIndex <= 6)
+                DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[currencyDisplayIndex-4].upgradeLevel.eq(D(3)) ? 'Upgrades Maxed Out' : `Current Level: ${toPlaces(data.accelerators[currencyDisplayIndex-4].upgradeLevel,0,4)}/4<br>Upgrade Cost<br>${format(accelUpCosts[data.accelerators[currencyDisplayIndex-4].upgradeLevel].a)} Steel<br>${format(accelUpCosts[data.accelerators[currencyDisplayIndex-4].upgradeLevel].b)} Protons<br>${format(accelUpCosts[data.accelerators[currencyDisplayIndex-4].upgradeLevel].c)} Neutrons<br>${format(accelUpCosts[data.accelerators[currencyDisplayIndex-4].upgradeLevel].d)} Electrons`
             //Proton Text
             if(data.accelerators[0].upgradeLevel.eq(D(0)))
-            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Boost: ${format(accelBoosts[0].a)}x`
+            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Production Boost: ${format(accelBoosts[0].a)}x<br><br><br>`
             if(data.accelerators[0].upgradeLevel.eq(D(1)))
-            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Boost: ${format(accelBoosts[0].a)}x
-            <br>Lead Boost: ${format(accelBoosts[0].b)}x`
+            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Production Boost: ${format(accelBoosts[0].a)}x
+            <br>Lead Boost: ${format(accelBoosts[0].b)}x<br><br>`
             if(data.accelerators[0].upgradeLevel.eq(D(2)))
-            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Boost: ${format(accelBoosts[0].a)}x
-            <br>Lead Boost: ${format(accelBoosts[0].b)}x<br>Compound Boost: ${format(accelBoosts[0].c)}x`
+            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Production Boost: ${format(accelBoosts[0].a)}x
+            <br>Lead Boost: ${format(accelBoosts[0].b)}x<br>Compounds Boost: ${format(accelBoosts[0].c)}x<br>`
             if(data.accelerators[0].upgradeLevel.eq(D(3)))
-            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Boost: ${format(accelBoosts[0].a)}x
-            <br>Lead Boost: ${format(accelBoosts[0].b)}x<br>Compound Boost: ${format(accelBoosts[0].c)}x
-            <br>Another Element Boost: ${format(accelBoosts[0].d)}x`
+            DOMCacheGetOrSet(`accel1Text`).innerHTML = `Level: ${format(data.accelerators[0].level)}/${format(data.accelerators[0].lvlCap)}<br><br>Effects<br>Element Production Boost: ${format(accelBoosts[0].a)}x
+            <br>Lead Boost: ${format(accelBoosts[0].b)}x<br>Compounds Boost: ${format(accelBoosts[0].c)}x
+            <br>Another Element Production Boost: ${format(accelBoosts[0].d)}x`
             //Neutron Text
             if(data.accelerators[1].upgradeLevel.eq(D(0)))
-            DOMCacheGetOrSet(`accel2Text`).innerHTML = `Level: ${format(data.accelerators[1].level)}/${format(data.accelerators[1].lvlCap)}<br><br>Effects<br>Corium Gain Boost: ${format(accelBoosts[1].a)}x`
+            DOMCacheGetOrSet(`accel2Text`).innerHTML = `Level: ${format(data.accelerators[1].level)}/${format(data.accelerators[1].lvlCap)}<br><br>Effects<br>Corium Gain Boost: ${format(accelBoosts[1].a)}x<br><br><br>`
             if(data.accelerators[1].upgradeLevel.eq(D(1)))
             DOMCacheGetOrSet(`accel2Text`).innerHTML = `Level: ${format(data.accelerators[1].level)}/${format(data.accelerators[1].lvlCap)}<br><br>Effects<br>Corium Gain Boost: ${format(accelBoosts[1].a)}x
-            <br>Melt Upgrade I Boost: ${format(accelBoosts[1].b)}x`
+            <br>4x Production Upgrade Boost: ${format(accelBoosts[1].b)}x<br><br>`
             if(data.accelerators[1].upgradeLevel.eq(D(2)))
             DOMCacheGetOrSet(`accel2Text`).innerHTML = `Level: ${format(data.accelerators[1].level)}/${format(data.accelerators[1].lvlCap)}<br><br>Effects<br>Corium Gain Boost: ${format(accelBoosts[1].a)}x
-            <br>Melt Upgrade I Boost: ${format(accelBoosts[1].b)}x<br>Melt Upgrade II Boost: ${format(accelBoosts[1].c)}x`
+            <br>4x Production Upgrade Boost: ${format(accelBoosts[1].b)}x<br>Compound Creation Upgrade Boost: ${format(accelBoosts[1].c)}x<br>`
             if(data.accelerators[1].upgradeLevel.eq(D(3)))
             DOMCacheGetOrSet(`accel2Text`).innerHTML = `Level: ${format(data.accelerators[1].level)}/${format(data.accelerators[1].lvlCap)}<br><br>Effects<br>Corium Gain Boost: ${format(accelBoosts[1].a)}x
-            <br>Melt Upgrade I Boost: ${format(accelBoosts[1].b)}x<br>Melt Upgrade II Boost: ${format(accelBoosts[1].c)}x
-            <br>Melt Upgrade III Boost: ${format(accelBoosts[1].d)}x`
+            <br>4x Production Upgrade Boost: ${format(accelBoosts[1].b)}x<br>Compound Creation Upgrade Boost: ${format(accelBoosts[1].c)}x
+            <br>Corium Gain Upgrade Boost: ${format(accelBoosts[1].d)}x`
             //Electron Text
             if(data.accelerators[2].upgradeLevel.eq(D(0)))
-            DOMCacheGetOrSet(`accel3Text`).innerHTML = `Level: ${format(data.accelerators[2].level)}/${format(data.accelerators[2].lvlCap)}<br><br>Effects<br>Power Gain Boost: ${format(accelBoosts[2].a)}x`
+            DOMCacheGetOrSet(`accel3Text`).innerHTML = `Level: ${format(data.accelerators[2].level)}/${format(data.accelerators[2].lvlCap)}<br><br>Effects<br>Power Gain Boost: ${format(accelBoosts[2].a)}x<br><br><br>`
             if(data.accelerators[2].upgradeLevel.eq(D(1)))
             DOMCacheGetOrSet(`accel3Text`).innerHTML = `Level: ${format(data.accelerators[2].level)}/${format(data.accelerators[2].lvlCap)}<br><br>Effects<br>Power Gain Boost: ${format(accelBoosts[2].a)}x
-            <br>Refinery Gain Boost: ${format(accelBoosts[2].b)}x`
+            <br>Refinery Production Boost: ${format(accelBoosts[2].b)}x<br><br>`
             if(data.accelerators[2].upgradeLevel.eq(D(2)))
             DOMCacheGetOrSet(`accel3Text`).innerHTML = `Level: ${format(data.accelerators[2].level)}/${format(data.accelerators[2].lvlCap)}<br><br>Effects<br>Power Gain Boost: ${format(accelBoosts[2].a)}x
-            <br>Refinery Gain Boost: ${format(accelBoosts[2].b)}x<br>Power Upgrade I Boost: ${format(accelBoosts[2].c)}x`
+            <br>Refinery Production Boost: ${format(accelBoosts[2].b)}x<br>Super Charge Boost: ${format(accelBoosts[2].c)}x<br>`
             if(data.accelerators[2].upgradeLevel.eq(D(3)))
             DOMCacheGetOrSet(`accel3Text`).innerHTML = `Level: ${format(data.accelerators[2].level)}/${format(data.accelerators[2].lvlCap)}<br><br>Effects<br>Power Gain Boost: ${format(accelBoosts[2].a)}x
-            <br>Refinery Gain Boost: ${format(accelBoosts[2].b)}x<br>Power Upgrade I Boost: ${format(accelBoosts[2].c)}x
-            <br>Minting BoostBoost: ${format(accelBoosts[2].d)}x`
+            <br>Refinery Production Boost: ${format(accelBoosts[2].b)}x<br>Super Charge Boost: ${format(accelBoosts[2].c)}x
+            <br>Coins Boost: ${format(accelBoosts[2].d)}x`
         }
     }
     unlockTabs()

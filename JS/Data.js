@@ -16,6 +16,7 @@ function getDefaultObject() {
         {amt:D(0),name:"Sulfuric Acid",cost:"H<sub>2</sub>SO<sub>4</sub>"},{amt:D(0),name:"Steel",cost:"FeC"},
         {amt:D(0),name:"Chlorine Trifluoride",cost:"ClF<sub>3</sub>"}],
         power: D(0),
+        powerStored: D(0),
         powerUps: [D(0),D(0),D(0)],
         corium: D(0),
         coriumMax: D(0),
@@ -25,7 +26,7 @@ function getDefaultObject() {
         particlesToGet: [D(0),D(0),D(0)],
         particles: [D(0),D(0),D(0)],
         previousSum: D(1),
-        accelerators: [{level:D(0),upgradeLevel:D(0),lvlCap:D(25)},{level:D(0),upgradeLevel:D(0),lvlCap:D(25)},{level:D(0),upgradeLevel:D(0),lvlCap:D(25)}],
+        accelerators: [{name:'Protons',level:D(0),upgradeLevel:D(0),lvlCap:D(25)},{name:'Neutrons',level:D(0),upgradeLevel:D(0),lvlCap:D(25)},{name:'Electrons',level:D(0),upgradeLevel:D(0),lvlCap:D(25)}],
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"Fe",unlocked:[false,false,false,false,false,false,false,false]},{name:"Pb",unlocked:[false,false,false,false,false,false,false,false]},
@@ -37,7 +38,7 @@ function getDefaultObject() {
         currentSubTab: [0,0,0],
         currentElement: 0,
         settingsToggles: [true,true,true],
-        currentUpdate: 'v0.4.2',
+        currentUpdate: 'v0.4.3a',
         devSpeed: 1,
     }
 }
@@ -50,14 +51,14 @@ function load() {
     let savedata = JSON.parse(window.localStorage.getItem('chemJSSave'))
     if (savedata !== undefined) fixSave(data, savedata)
     if(data.currentUpdate === 'v0.1.0' || data.currentUpdate === 'v0.1.1' || data.currentUpdate === 'v0.1.2' || data.currentUpdate === 'v0.1.3' || data.currentUpdate === 'v0.1.4') {
-        alert(`Welcome Back! The Current Version is v0.4.2, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
-        data.currentUpdate = 'v0.4.2'
+        alert(`Welcome Back! The Current Version is v0.4.3a, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
+        data.currentUpdate = 'v0.4.3a'
         //Reset only for Beta delete next update
         noConfirmDelete()
     }
-    else if(data.currentUpdate !== 'v0.4.2') {
-        alert(`Welcome Back! The current version is v0.4.2`)
-        data.currentUpdate = 'v0.4.2' 
+    else if(data.currentUpdate !== 'v0.4.3a') {
+        alert(`Welcome Back! The current version is v0.4.3a`)
+        data.currentUpdate = 'v0.4.3a' 
     }
     //fixOldSaves()
 }
