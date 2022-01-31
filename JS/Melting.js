@@ -23,6 +23,7 @@ function meltDown() {
     for(let i = 0; i < data.compounds.length; i++) {
         data.compounds[i].amt = D(0)
     }
+    data.powerStored = D(0)
     data.power = D(0)
     for(let i = 0; i < data.powerUps.length; i++)
         data.powerUps[i] = D(0)
