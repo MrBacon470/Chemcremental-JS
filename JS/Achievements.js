@@ -161,20 +161,20 @@ function updateAchievementHTML() {
                 PbAchieves[i].style.backgroundColor = data.achievements[7].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
         }
         for(let i = 0; i < 4; i++) {
-            if((PrAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[8].unlocked[i] === false) || (PrAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[9].unlocked[i] === true))
+            if((PrAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[8].unlocked[i] === false) || (PrAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[8].unlocked[i] === true))
                 PrAchieves[i].style.backgroundColor = data.achievements[8].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
-            
+
             if((WtAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[9].unlocked[i] === false) || (WtAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[9].unlocked[i] === true))
                 WtAchieves[i].style.backgroundColor = data.achievements[9].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
-            
+
             if((SaAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[10].unlocked[i] === false) || (SaAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[10].unlocked[i] === true))
                 SaAchieves[i].style.backgroundColor = data.achievements[10].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
             
             if((SlAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[11].unlocked[i] === false) || (SlAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[11].unlocked[i] === true))
                 SlAchieves[i].style.backgroundColor = data.achievements[11].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
-            
-            if((ClAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[12].unlocked[i] === false) || (ClAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[12].unlocked[i] === true))
-                ClAchieves[i].style.backgroundColor = data.achievements[12].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
+
+            if((CfAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[12].unlocked[i] === false) || (CfAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[12].unlocked[i] === true))
+                CfAchieves[i].style.backgroundColor = data.achievements[12].unlocked[12] === false ? 'rgba(0,0,0,0)' : '#23a338'
             
             if((PwAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[13].unlocked[i] === false) || (PwAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[13].unlocked[i] === true))
                 PwAchieves[i].style.backgroundColor = data.achievements[13].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
