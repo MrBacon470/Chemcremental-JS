@@ -7,7 +7,8 @@ function generatePower() {
     if(data.compounds[0].amt.lt(3) || data.compounds[1].amt.lt(1)) return
 
     data.power = data.power.plus(powerGain)
-    data.powerStored = data.powerStored.plus(powerGain.minus(powerLimit))
+    if(powerGain.gt(powerLimit))
+        data.powerStored = data.powerStored.plus(powerGain.minus(powerLimit))
     data.compounds[0].amt = D(0)
     data.compounds[1].amt = D(0)
 
@@ -23,7 +24,8 @@ function updatePowerCosts() {
             data.power = powerLimit
         data.powerStored = data.powerStored.minus(powerNeeded)
     }
-        
+    if(data.powerStored.lt(D(0)))
+        data.powerStored = D(0)
     for(let x = 0; x < 3; x++) {
         powerCosts[x] = D(5).plus(Decimal.pow(D(2), data.powerUps[x]) - 1)
     }
