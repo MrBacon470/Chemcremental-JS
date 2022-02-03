@@ -122,7 +122,24 @@ function updateHTML(){
             DOMCacheGetOrSet('splitImage').style.backgroundColor = gainMult.gt(D(1)) ? '#379337' : '#934237'
         }
         else if(data.currentSubTab[1] === 1) {
-            
+                particleTexts[0].innerHTML = `${format(data.particles[0].protons)} ${particleNames[0]}(+)`
+                particleTexts[1].innerHTML = `${format(data.particles[0].neutrons)} ${particleNames[1]}(0)`
+                particleTexts[2].innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color: #934237">-</sup>)`
+        }
+        else if(data.currentSubTab[1] === 2) {
+                DOMCacheGetOrSet('electronsText2').innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color: #934237">-</sup>)`
+                DOMCacheGetOrSet('muonsText').innerHTML = `${format(data.particles[1].muons)} Muons(μ<sup style="color: #8f6945">-</sup>)`
+                DOMCacheGetOrSet('tausText').innerHTML = `${format(data.particles[1].taus)} Taus(τ<sup style="color: #8d9337">-</sup>)`
+        }
+        else if(data.currentSubTab[1] === 3) {
+            //row1
+                DOMCacheGetOrSet('upQuarkText').innerHTML = `${format(data.particles[2].quarks[0])} Up Quarks`
+                DOMCacheGetOrSet('charmQuarkText').innerHTML = `${format(data.particles[2].quarks[1])} Charm Quarks`
+                DOMCacheGetOrSet('topQuarkText').innerHTML = `${format(data.particles[2].quarks[2])} Top Quarks`
+            //row2
+                DOMCacheGetOrSet('downQuarkText').innerHTML = `${format(data.particles[2].quarks[3])} Down Quarks`
+                DOMCacheGetOrSet('strangeQuarkText').innerHTML = `${format(data.particles[2].quarks[4])} Strange Quarks`
+                DOMCacheGetOrSet('bottomQuarkText').innerHTML = `${format(data.particles[2].quarks[5])} Bottom Quarks`
         }
     }
     unlockTabs()
@@ -163,10 +180,15 @@ function tabChangeHTML(){
     acceleratorTab.style.display = data.currentTab === 7 ? 'flex' : 'none'
     seperator.style.color = `#${seperatorColors[data.currentTab]}`
 }
+//Elements Subs
 const regularElementHolder = DOMCacheGetOrSet('regularElementsHolder')
 const isotopeElementHolder = DOMCacheGetOrSet('isotopeElementsHolder')
+//Particle Subs
 const splitterHolder = DOMCacheGetOrSet('splitterHolder')
-const particleHolder = DOMCacheGetOrSet('particleHolder')
+const fundamentalHolder = DOMCacheGetOrSet('fundamentalHolder')
+const leptonsHolder = DOMCacheGetOrSet('leptonsHolder')
+const quarksHolder = DOMCacheGetOrSet('quarksHolder')
+//Settings Subs
 const settingsArea = DOMCacheGetOrSet("settingsArea")
 const creditsArea = DOMCacheGetOrSet("creditsArea")
 function subTabChangeHTML() {
@@ -174,7 +196,9 @@ function subTabChangeHTML() {
         isotopeElementHolder.style.display = data.currentSubTab[0] === 1 ? 'flex' : 'none'
 
         splitterHolder.style.display = data.currentSubTab[1] === 0 ? 'flex' : 'none'
-        particleHolder.style.display = data.currentSubTab[1] === 1 ? 'flex' : 'none'
+        fundamentalHolder.style.display = data.currentSubTab[1] === 1 ? 'flex' : 'none'
+        leptonsHolder.style.display = data.currentSubTab[1] === 2 ? 'flex' : 'none'
+        quarksHolder.style.display = data.currentSubTab[1] === 3 ? 'flex' : 'none'
 
         settingsArea.style.display = data.currentSubTab[2] === 0 ? 'flex' : 'none'
         creditsArea.style.display = data.currentSubTab[2] === 1 ? 'flex' : 'none'

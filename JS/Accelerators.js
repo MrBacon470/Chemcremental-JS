@@ -25,8 +25,9 @@ function splitElements() {
 
     data.previousSum = sumOfLevels
 
-    for(let i = 0; i < 3; i++)
-        data.particles[i] = data.particles[i].plus(data.particlesToGet[i])
+    data.particles[0].protons = data.particles[0].protons.plus(data.particlesToGet[0])
+    data.particles[0].neutrons = data.particles[0].neutrons.plus(data.particlesToGet[1])
+    data.particles[0].electrons = data.particles[0].electrons.plus(data.particlesToGet[2])
     
     for(let i = 7; i > -1; i--) {
         data.elements[i].level = D(0)

@@ -24,7 +24,7 @@ function getDefaultObject() {
         coriumSingUps: [false,false,false],
         refineryCurrencies: [D(0), D(0), D(0)],
         particlesToGet: [D(0),D(0),D(0)],
-        particles: [D(0),D(0),D(0)],
+        particles: [{name:'theBigThree',protons:D(0),neutrons:D(0),electrons:D(0)},{name:'muons',muons:D(0),taus:D(0)},{name:'quarks',quarks:[D(0),D(0),D(0),D(0),D(0),D(0)]}],
         previousSum: D(1),
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
