@@ -16,8 +16,6 @@ for(let i = 0; i < 5; i++) {
 }
 const tabs = []
 const tabIDs = ['cB','pB','mB','rB','acB']
-const tabNames = ['Compounds','Power','Melting','Refinery','Particles']
-const colors = ['3a5b99','b0b835','68368a','583793','37936d']
 for(let i=0; i < 5; i++) {
     tabs[i] = DOMCacheGetOrSet(`${tabIDs[i]}`)
 }
@@ -41,16 +39,10 @@ for(let i = 0; i < 3; i++)
     const protonGainText = document.getElementById('protonGain')
     const neutronGainText = document.getElementById('neutronGain')
     const electronGainText = document.getElementById('electronGain')
-const accelColors = ['808080','379337','45568f','934237']
 let currencyDisplayIndex = 0
 function updateHTML(){
     for(let i = 0; i < 5; i++) {
-        tabs[i].innerHTML = data.hasTab[i] ? `${tabNames[i]}` : '???'
-        if(!data.hasTab[i])
-            tabs[i].style.backgroundColor = 'gray'
-        else if(data.hasTab[i] && tabs[i].style.backgroundColor === 'gray')
-            tabs[i].style.backgroundColor = 'rgba(0,0,0,0)'
-        tabs[i].style.border = !data.hasTab[i] ? '4px solid gray' : `4px solid #${colors[i]}`
+        tabs[i].style.display = data.hasTab[i] ? 'inline' : 'none'
     }
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     DOMCacheGetOrSet('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}<br>Excess Power: ${format(data.powerStored)}`
