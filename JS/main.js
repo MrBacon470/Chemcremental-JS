@@ -98,9 +98,6 @@ function mainLoop(){
     shardsToGet = Decimal.sqrt(sumOfElements.divide(D(1e8)))
     fragmentsToGet = Decimal.sqrt(data.refineryCurrencies[0].divide(D(1e5)))
     coinsToGet = Decimal.sqrt(data.refineryCurrencies[1].divide(D(1e3)))
-    for(let i = 0; i < 3; i++) {
-        data.accelerators[i].lvlCap = D(25).plus(D(25).times(data.accelerators[i].upgradeLevel))
-    }
 }
 function updateBoosts() {
     for(let i = 0; i < 5; i++) {
