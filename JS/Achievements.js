@@ -129,7 +129,7 @@ function unlockAchieves() {
     }
     if(amountUnlocked.gt(prevAmount)) {
         prevAmount = amountUnlocked
-        DOMCacheGetOrSet('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 93)}/92 (${format((prevAmount.divide(D(92)).times(D(100))))}%)`
+       
     }
 }
 
@@ -174,7 +174,7 @@ function updateAchievementHTML() {
                 SlAchieves[i].style.backgroundColor = data.achievements[11].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
 
             if((CfAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[12].unlocked[i] === false) || (CfAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[12].unlocked[i] === true))
-                CfAchieves[i].style.backgroundColor = data.achievements[12].unlocked[12] === false ? 'rgba(0,0,0,0)' : '#23a338'
+                CfAchieves[i].style.backgroundColor = data.achievements[12].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
             
             if((PwAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[13].unlocked[i] === false) || (PwAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[13].unlocked[i] === true))
                 PwAchieves[i].style.backgroundColor = data.achievements[13].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
@@ -183,6 +183,7 @@ function updateAchievementHTML() {
                 CoAchieves[i].style.backgroundColor = data.achievements[14].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
         }
     }
+        DOMCacheGetOrSet('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 93)}/92 (${format((prevAmount.divide(D(92)).times(D(100))))}%)`
 }
 
 const descriptionText = DOMCacheGetOrSet("achieveText")
