@@ -95,6 +95,7 @@ function updateHTML(){
         }
     }
     else if(data.currentTab === 4) {
+        DOMCacheGetOrSet('gA').style.display = data.coriumSingUps[0] ? 'inline' : 'none'
         DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain)} Power` : "Generate Power<br>Req: 3 Propane + 1 Water"
         powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Power<br>Level: ${format(data.powerUps[0])}`
         powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
@@ -156,8 +157,6 @@ function unlockTabs(){
     data.hasTab[2] = sumOfElements.gte(D(1e8)) || data.hasTab[2]
     data.hasTab[3] = data.coriumSingUps[0] === true || data.hasTab[3]
     data.hasTab[4] = data.coriumSingUps[1] === true || data.hasTab[4]
-    for(let i = 0; i < 4; i++)
-        tabs[i].style.backgroundColor = !data.hasTab[i] ? 'gray' : 'none'
 }
 const seperator = DOMCacheGetOrSet('tabSeperator')
 const elementTab = DOMCacheGetOrSet("elementHolder")

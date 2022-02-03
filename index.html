@@ -133,18 +133,24 @@
         </div>
         
     </div>
-    <div id="powerHolder" class="flexBox holder">
-        <button onclick="toggleBuyAmount(3)" id="bA3" class="buyAmount">Buy Amount: 1</button>
-        <button id="generator" onclick="generatePower()" class="power" style="margin-top: 40px; border: 5px solid #b0b835; margin-right: 50px; width:18em; height: 30em; font-size: 15px;">Generate Power<br>Requires 3 Propane & 1 Water<br>+0.00 Power</button>
-        <div style="display:flex; flex-direction: column;">
-            <div style="display: flex; flex-direction: row; margin-left: 50px; margin-top: 40px;">
-                <button onclick="purchasePowerUp(0)" id="pu1" class="power powerUp" style="border: 5px solid #b0b835; ">Super Charge<br>Increase atom production by 2x<br>Cost: 5.00 Power<br>Level: 0.00</button>
-            </div>
-            <div style="display: flex; flex-direction: row; margin-left: 50px; margin-top: 40px;">
-                <button onclick="purchasePowerUp(1)" id="pu2" class="power powerUp" style="border: 5px solid #b0b835; ">Battery<br>Increase power capacity by 10<br>Cost: 5 Sulfuric Acid<br>Level: 0.00</button>
-            </div>
-            <div style="display: flex; flex-direction: row; margin-left: 50px; margin-top: 40px;">
-                <button onclick="purchasePowerUp(2)" id="pu3" class="power powerUp" style="border: 5px solid #b0b835; ">Heat Shields<br>Increase power production by 0.1x<br>Cost: 5 Lead Gens<br>Level: 0.00</button>
+    <div id="powerHolder" class="flexBox holder" style="flex-direction: column;">
+        <div id="subTabHolder">
+            <button id="pA`" class="subTabButton pcB" onclick="switchSubTab(0,3)" style="border: 3px solid #b0b835;">Power</button>
+            <button id="gA" class="subTabButton pcB" onclick="switchSubTab(1,3)" style="border: 3px solid #b0b835;">Generators</button>
+        </div>
+        <div id="powerArea" class="flexBox" style="flex-direction: row;">
+            <button onclick="toggleBuyAmount(3)" id="bA3" class="buyAmount">Buy Amount: 1</button>
+            <button id="generator" onclick="generatePower()" class="power" style="margin-top: 40px; border: 5px solid #b0b835; width:18em; height: 30em; font-size: 15px;">Generate Power<br>Requires 3 Propane & 1 Water<br>+0.00 Power</button>
+            <div style="display:flex; flex-direction: column;">
+                <div style="display: flex; flex-direction: row; margin-left: 30px; margin-top: 40px;">
+                    <button onclick="purchasePowerUp(0)" id="pu1" class="power powerUp" style="border: 5px solid #b0b835; ">Super Charge<br>Increase atom production by 2x<br>Cost: 5.00 Power<br>Level: 0.00</button>
+                </div>
+                <div style="display: flex; flex-direction: row; margin-left: 30px; margin-top: 40px;">
+                    <button onclick="purchasePowerUp(1)" id="pu2" class="power powerUp" style="border: 5px solid #b0b835; ">Battery<br>Increase power capacity by 10<br>Cost: 5 Sulfuric Acid<br>Level: 0.00</button>
+                </div>
+                <div style="display: flex; flex-direction: row; margin-left: 30px; margin-top: 40px;">
+                    <button onclick="purchasePowerUp(2)" id="pu3" class="power powerUp" style="border: 5px solid #b0b835; ">Heat Shields<br>Increase power production by 0.1x<br>Cost: 5 Lead Gens<br>Level: 0.00</button>
+                </div>
             </div>
         </div>
     </div>
