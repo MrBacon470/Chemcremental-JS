@@ -111,6 +111,7 @@ window.onload = function (){
 function fullReset(){
     exportSave()
     window.localStorage.removeItem('chemJSSave')
+    prevAmount = D(0)
     location.reload()
 }
 function deleteSave(){
