@@ -116,7 +116,7 @@ function updateHTML(){
     }
     else if(data.currentTab === 7) {
         if(data.currentSubTab[1] === 0) {
-            DOMCacheGetOrSet('gainMult').innerHTML = `${format(gainMult)}x`
+            DOMCacheGetOrSet('gainMult').innerHTML = `${format(gainMult)}x more to gain`
             protonGainText.innerHTML = `+${format(data.particlesToGet[0])} Protons`
             neutronGainText.innerHTML = `+${format(data.particlesToGet[1])} Neutrons`
             electronGainText.innerHTML = `+${format(data.particlesToGet[2])} Electrons`
