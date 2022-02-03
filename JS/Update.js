@@ -192,14 +192,14 @@ const quarksHolder = DOMCacheGetOrSet('quarksHolder')
 const settingsArea = DOMCacheGetOrSet("settingsArea")
 const creditsArea = DOMCacheGetOrSet("creditsArea")
 function subTabChangeHTML() {
-        regularElementHolder.style.display = data.currentSubTab[0] === 0 ? 'flex' : 'none'
-        isotopeElementHolder.style.display = data.currentSubTab[0] === 1 ? 'flex' : 'none'
+        regularElementHolder.style.display = data.currentSubTab[0] === 0  && data.currentTab === 1 ? 'flex' : 'none'
+        isotopeElementHolder.style.display = data.currentSubTab[0] === 1  && data.currentTab === 1 ? 'flex' : 'none'
 
-        splitterHolder.style.display = data.currentSubTab[1] === 0 ? 'flex' : 'none'
-        fundamentalHolder.style.display = data.currentSubTab[1] === 1 ? 'flex' : 'none'
-        leptonsHolder.style.display = data.currentSubTab[1] === 2 ? 'flex' : 'none'
-        quarksHolder.style.display = data.currentSubTab[1] === 3 ? 'flex' : 'none'
+        splitterHolder.style.display = data.currentSubTab[1] === 0 && data.currentTab === 7 ? 'flex' : 'none'
+        fundamentalHolder.style.display = data.currentSubTab[1] === 1 && data.currentTab === 7 ? 'flex' : 'none'
+        leptonsHolder.style.display = data.currentSubTab[1] === 2 && data.currentTab === 7 ? 'flex' : 'none'
+        quarksHolder.style.display = data.currentSubTab[1] === 3 && data.currentTab === 7 ? 'flex' : 'none'
 
-        settingsArea.style.display = data.currentSubTab[2] === 0 ? 'flex' : 'none'
-        creditsArea.style.display = data.currentSubTab[2] === 1 ? 'flex' : 'none'
+        settingsArea.style.display = data.currentSubTab[2] === 0 && data.currentTab === 0 ? 'flex' : 'none'
+        creditsArea.style.display = data.currentSubTab[2] === 1  && data.currentTab === 0 ? 'flex' : 'none'
 }
