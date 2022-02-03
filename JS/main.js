@@ -8,16 +8,7 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(powerBoosts[0])
             data.elementGain[i] = data.elementGain[i].times(coriumMultBoosts[0])
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
-            if(data.accelerators[2].level.gt(D(0)) && data.accelerators[2].upgradeLevel.gte(D(3)))
-                data.elementGain[i] = data.elementGain[i].times(D(1).add((Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))).times(accelBoosts[2].d)))
-            else
                 data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
-            if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(0)))
-                data.elementGain[i] = data.elementGain[i].times(accelBoosts[0].a)
-            if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(1)))
-                data.elementGain[i] = data.elementGain[i].times(accelBoosts[0].b)
-            if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(3)))
-                data.elementGain[i] = data.elementGain[i].times(accelBoosts[0].d)
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
@@ -27,10 +18,6 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(D(1).add(coriumMultBoosts[0]))
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
-            if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(3)))
-                data.elementGain[i] = data.elementGain[i].times(accelBoosts[0].d)
-            if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(0)))
-                data.elementGain[i] = data.elementGain[i].times(accelBoosts[0].a)
         }
 
         if(i === 7) {
@@ -100,26 +87,17 @@ function mainLoop(){
     }
         
     powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(0)))
-        powerGain = powerGain.times(accelBoosts[2].a)
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Corium
     coriumToGet = D(0)
     coriumToGet = D(1).add(Decimal.sqrt(sumOfElements / D(1e6)).times(coriumMultBoosts[2]))
     coriumToGet = coriumToGet.times(compoundBoosts[4])
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(0)))
-        coriumToGet = coriumToGet.times(accelBoosts[1].a)
     //Misc stuff
     if(data.elements[0].amt.lt(D(10)) && data.elements[0].level.lt(D(1)))
         data.elements[0].amt = D(10)
     shardsToGet = Decimal.sqrt(sumOfElements.divide(D(1e8)))
     fragmentsToGet = Decimal.sqrt(data.refineryCurrencies[0].divide(D(1e5)))
     coinsToGet = Decimal.sqrt(data.refineryCurrencies[1].divide(D(1e3)))
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(1))) {
-        shardsToGet = shardsToGet.times(accelBoosts[2].b)
-        fragmentsToGet = fragmentsToGet.times(accelBoosts[2].b)
-        coinsToGet = coinsToGet.times(accelBoosts[2].b)
-    }
     for(let i = 0; i < 3; i++) {
         data.accelerators[i].lvlCap = D(25).plus(D(25).times(data.accelerators[i].upgradeLevel))
     }
@@ -130,9 +108,6 @@ function updateBoosts() {
             compoundBoosts[i] = D(1).add(Decimal.sqrt(data.compounds[i].amt / 8)) 
         else
         compoundBoosts[i] = D(1)
-
-        if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(2)))
-            compoundBoosts[i] = compoundBoosts[i].times(accelBoosts[0].c)
     }
     for(let i = 0; i < 3; i++) {
         let boosts = [D(2), D(10), D(0.1)]
@@ -144,8 +119,6 @@ function updateBoosts() {
             else
                 powerBoosts[0] = D(1)
     }
-    if(data.accelerators[2].level.gt(D(0)) && data.accelerators[2].upgradeLevel.gte(D(2)))
-        powerBoosts[0] = powerBoosts[0].times(accelBoosts[2].c)
     /*
     powerBoosts[0] = data.powerUps[0] === D(0) ? D(1) : D(2).times(data.powerUps[0])
     powerBoosts[1] = D(10).times(data.powerUps[1])
@@ -158,14 +131,7 @@ function updateBoosts() {
             coriumMultBoosts[i] = boosts[i].times(data.coriumMultUps[i])
         else
             coriumMultBoosts[i] = D(1)
-
     }
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(1)))
-        coriumMultBoosts[0] = coriumMultBoosts[0].times(accelBoosts[1].b)
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(2)))
-        coriumMultBoosts[1] = coriumMultBoosts[1].times(accelBoosts[1].c)
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(3)))
-        coriumMultBoosts[2] = coriumMultBoosts[2].times(accelBoosts[1].d)
 }
 
 function toggleBuyAmount(i) {

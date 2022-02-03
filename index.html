@@ -30,7 +30,7 @@
         <button id="pB" class="tabButton" onclick="switchTab(4)" style="border: 4px solid #b0b835;">Power</button>
         <button id="mB" class="tabButton" onclick="switchTab(5)" style="border: 4px solid #68368a;">Melting</button>
         <button id="rB" class="tabButton" onclick="switchTab(6)" style="border: 4px solid #583793;">Refinery</button>
-        <button id="acB" class="tabButton" onclick="switchTab(7)" style="border: 4px solid #37936d;">Accelerator</button>
+        <button id="acB" class="tabButton" onclick="switchTab(7)" style="border: 4px solid #37936d;">Particles</button>
         <button id="aB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid #7fccff;text-align: center;">Achievements</button>
         <button id="sB" class="tabButton" onclick="switchTab(0)" style="border: 4px solid #808080;">Settings</button>
     </div>
@@ -182,7 +182,9 @@
     <div id="acceleratorHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="subTabHolder">
             <button id="sA`" class="subTabButton acB" onclick="switchSubTab(0,1)" style="border: 3px solid #37936d;">Splitter</button>
-            <button id="aA" class="subTabButton acB" onclick="switchSubTab(1,1)" style="border: 3px solid #37936d;">Accelerator</button>
+            <button id="fA" class="subTabButton acB" onclick="switchSubTab(1,1)" style="border: 3px solid #37936d;">Fundamental</button>
+            <button id="lpA" class="subTabButton acB" onclick="switchSubTab(2,1)" style="border: 3px solid #37936d;">Leptons</button>
+            <button id="quA" class="subTabButton acB" onclick="switchSubTab(3,1)" style="border: 3px solid #37936d;">Quarks</button>
         </div>
         <div id="splitterHolder" class="holder" style="flex-direction: row;">
             
@@ -205,24 +207,6 @@
                 <p id="electronsText" style="color: #934237; margin-left: 25px; margin-right: 25px;">1.00 Electrons</p>
             </div>
             <div id="acceleratorRow" class="flexBox">
-                <div id="accelHolder" style="display: flex;flex-direction: column; margin-left: 25px; margin-right: 25px; align-items: center;">
-                    <img id="accel1" src="CHEM Achieves/Proton.png" style="width: 75px; height: 75px; border: 4px solid #808080; margin-bottom: 10px;">
-                    <div id="accel1Text" style="text-align: center; margin-bottom: 10px;">Level 0 / 25<br>Effects<br></div>
-                    <button id="accel1B" style=" margin-bottom: 10px; border: 2px solid #379337">Accelerate</button>
-                    <button id="accel1UpB" style=" margin-bottom: 10px; border: 2px solid #939137">Upgrade</button>
-                </div>
-                <div id="accelHolder" style="display: flex;flex-direction: column; margin-left: 25px; margin-right: 25px; align-items: center;">
-                    <img id="accel2" src="CHEM Achieves/Neutron.png" style="width: 75px; height: 75px; border: 4px solid gray; margin-bottom: 10px;">
-                    <div id="accel2Text" style="text-align: center; margin-bottom: 10px;">Level 0 / 25<br>Effects<br></div>
-                    <button id="accel2B" style=" margin-bottom: 10px; border: 2px solid #45568f">Accelerate</button>
-                    <button id="accel2UpB" style=" margin-bottom: 10px; border: 2px solid #939137">Upgrade</button>
-                </div>
-                <div id="accelHolder" style="display: flex;flex-direction: column; margin-left: 25px; margin-right: 25px; align-items: center;">
-                    <img id="accel3" src="CHEM Achieves/Electron.png" style="width: 75px; height: 75px; border: 4px solid gray; margin-bottom: 10px;">
-                    <div id="accel3Text" style="text-align: center; margin-bottom: 10px;">Level 0 / 25<br>Effects<br></div>
-                    <button id="accel3B" style=" margin-bottom: 10px; border: 2px solid #934237">Accelerate</button>
-                    <button id="accel3UpB" style=" margin-bottom: 10px; border: 2px solid #939137">Upgrade</button>
-                </div>
             </div>
             <div id="accelUpgradeText" style="text-align: center; margin-top: 10px;">
             </div>

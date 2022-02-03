@@ -26,7 +26,6 @@ function getDefaultObject() {
         particlesToGet: [D(0),D(0),D(0)],
         particles: [D(0),D(0),D(0)],
         previousSum: D(1),
-        accelerators: [{name:'Protons',level:D(0),upgradeLevel:D(0),lvlCap:D(25)},{name:'Neutrons',level:D(0),upgradeLevel:D(0),lvlCap:D(25)},{name:'Electrons',level:D(0),upgradeLevel:D(0),lvlCap:D(25)}],
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"Fe",unlocked:[false,false,false,false,false,false,false,false]},{name:"Pb",unlocked:[false,false,false,false,false,false,false,false]},
