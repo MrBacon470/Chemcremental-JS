@@ -170,6 +170,63 @@ function refine(i) {
             break;
     }
 }
+
+function closeModal(i) {
+    switch(i) {
+        case 0:
+            DOMCacheGetOrSet('alert').style.display = 'none'
+            DOMCacheGetOrSet('modalContainer').style.display = 'none'
+            break
+    }
+}
+
+function createAlert(a,b) {
+    DOMCacheGetOrSet('modalContainer').style.border = '4px solid #ad4242'
+    DOMCacheGetOrSet('alertTitle').innerHTML = a
+    DOMCacheGetOrSet('alertContent').innerHTML = b
+    DOMCacheGetOrSet('alert').style.display = 'block'
+    DOMCacheGetOrSet('modalContainer').style.display = 'block'
+}
+
+function createConfirmation(a) {
+    switch(a) {
+        case 'prestige':
+            DOMCacheGetOrSet('modalContainer').style.border = '4px solid #68368a'
+            DOMCacheGetOrSet('confirmTitle').innerHTML = 'Are you sure you want to prestige?'
+            DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all previous layers in exchange for Corium'
+            DOMCacheGetOrSet('confirm').style.display = 'block'
+            DOMCacheGetOrSet('modalContainer').style.display = 'block'
+            DOMCacheGetOrSet('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            DOMCacheGetOrSet('yesConfirm').addEventListener('click', () => {meltDown(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            break
+        case 'split':
+            DOMCacheGetOrSet('modalContainer').style.border = '4px solid #37936d'
+            DOMCacheGetOrSet('confirmTitle').innerHTML = 'Are you sure you want to split?'
+            DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all element generators'
+            DOMCacheGetOrSet('confirm').style.display = 'block'
+            DOMCacheGetOrSet('modalContainer').style.display = 'block'
+            DOMCacheGetOrSet('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            DOMCacheGetOrSet('yesConfirm').addEventListener('click', () => {splitElements(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+    }
+} 
+
+function prestigeConfirmation(i) {
+    switch(i) {
+        case 'prestige':
+            if(data.settingsToggles[0])
+                createConfirmation('prestige')
+            else
+                meltDown()
+            break
+        case 'split':
+            if(data.settingsToggles[2])
+                createConfirmation('split')
+            else
+                splitElements()
+            break
+    }
+}
+
 /*
 function confirmVariable(i) {
     switch(i) {

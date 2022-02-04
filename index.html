@@ -10,13 +10,21 @@
 </head>
 <body>
     <div style="position: fixed; bottom: 0; right: 0;">Beta 4.3b</div>
-    <div id="confirmWrapper" style="display: none;">
-        <div id="confirm" style="display: flex; flex-direction: column; align-items: center;">
-            Are you sure you want to prestige
-            <div style="flex-direction: row; background: #646464; margin-top: 10px;">
-                <button id="cancelB" style="border: 2px solid red;">Cancel</button>
-                <button id="confirmB" style="border: 2px solid green;">Confirm</button>
+    <div id="modalContainer">
+        <div id="alert">
+            <h3 id="alertTitle">Welcome back gamer!</h3>
+            <p id="alertContent">New things have been added since last time</p>
+            <button id="closeAlert" onclick="closeModal(0)" style="border: 2px solid whitesmoke;">Thanks!</button>
+            <br>
+        </div>
+        <div id="confirm">
+            <h3 id="confirmTitle">Are you sure?</h3>
+            <p id="confirmContent">New things have been added since last time</p>
+            <div style="flex-direction: row;">
+                <button id="noConfirm" style="border: 2px solid rgb(156, 49, 49);">No!</button>
+                <button id="yesConfirm" style="border: 2px solid rgb(37, 170, 77);">Yes!</button>
             </div>
+            <br>
         </div>
     </div>
     <div id="currenciesHolder" class="flexBox">
@@ -156,7 +164,7 @@
     </div>
     <div id="meltingHolder" class="flexBox holder">
         <button onclick="toggleBuyAmount(4)" id="bA4" class="buyAmount">Buy Amount: 1</button>
-        <button id="meltDown" onclick="meltDown()" class="melt" style="margin-top: 25px; border: 5px solid #68368a; margin-right: 50px; width:12em; height: 20em; font-size: 23px;">Melt Down<br>Create +0.00<br>Corium</button>
+        <button id="meltDown" onclick="prestigeConfirmation('prestige')" class="melt" style="margin-top: 25px; border: 5px solid #68368a; margin-right: 50px; width:12em; height: 20em; font-size: 23px;">Melt Down<br>Create +0.00<br>Corium</button>
         <div style="display:flex; flex-direction: column;">
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
                 <button onclick="purchaseMeltUp('m1')" id="cm1" class="melt powerUp" style="border: 5px solid #68368a; ">Increase Atom Production by 4x<br>Cost: 1.00e3<br>Level: 0.00</button>
@@ -202,7 +210,7 @@
                 <p id="electronGain" style="color: #934237;">+1.00 Electrons</p>
             </div>
             <div id="splitButtonHolder" class="flexBox" style="margin-left: 25px; flex-direction: column;">
-                <img id="splitImage" src="CHEM Achieves/Split.png" style="width: 76px; height: 76px;" onclick="splitElements()">
+                <img id="splitImage" src="CHEM Achieves/Split.png" style="width: 76px; height: 76px;" onclick="prestigeConfirmation('split')">
                 <div style="color: #c52424; text-align: center;">Notice<br>Multiplier must be >1.00x<br>to split elements<br><br>Multiplier can be reset by melting down</div>
             </div>
         </div>

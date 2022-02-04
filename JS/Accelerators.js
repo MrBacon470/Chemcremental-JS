@@ -20,8 +20,6 @@ function updateAccelStuff() {
 
 function splitElements() {
     if(sumOfElements.lte(data.previousSum)) return
-    if(data.settingsToggles[2])
-        if(!confirm('Are you sure you want to do this? It will reset all elements generators')) return
 
     data.previousSum = sumOfLevels
 
