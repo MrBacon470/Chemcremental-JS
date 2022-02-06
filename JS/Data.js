@@ -12,25 +12,33 @@ function getDefaultObject() {
         level:D(0),max:D(0)},{amt:D(0),name:"F-18",level:D(0),max:D(0)},{amt:D(0),name:"S-35",level:D(0),max:D(0)},{amt:D(0),name:"Cl-37",
         level:D(0),max:D(0)},{amt:D(0),name:"Fe-60",level:D(0),max:D(0)},{amt:D(0),name:"Pb-212",level:D(0),max:D(0)}],
         isotopeGain: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
+        //Compounds
         compounds: [{amt:D(0),name:"Propane",cost:"C<sub>3</sub>H<sub>8</sub>"},{amt:D(0),name:"Water",cost:"H<sub>2</sub>0"},
         {amt:D(0),name:"Sulfuric Acid",cost:"H<sub>2</sub>SO<sub>4</sub>"},{amt:D(0),name:"Steel",cost:"FeC"},
         {amt:D(0),name:"Chlorine Trifluoride",cost:"ClF<sub>3</sub>"}],
+        //Power
         power: D(0),
         powerStored: D(0),
         powerUps: [D(0),D(0),D(0)],
+        //Melting
         corium: D(0),
         coriumMax: D(0),
         coriumMultUps: [D(0),D(0),D(0)],
         coriumSingUps: [false,false,false],
+        //Refinery
         refineryCurrencies: [D(0), D(0), D(0)],
+        //Particles
         particlesToGet: [D(0),D(0),D(0)],
         particles: [{name:'theBigThree',protons:D(0),neutrons:D(0),electrons:D(0)},{name:'muons',muons:D(0),taus:D(0)},{name:'quarks',quarks:[D(0),D(0),D(0),D(0),D(0),D(0)]}],
         previousSum: D(1),
+        augments: [{unlocked:[false,false,false]},{unlocked:[false,false,false]},{unlocked:[false,false,false]}],
+        //Achievements
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"Fe",unlocked:[false,false,false,false,false,false,false,false]},{name:"Pb",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"Pr",unlocked:[false,false,false,false]},{name:"Wt",unlocked:[false,false,false,false]},{name:"Sa",unlocked:[false,false,false,false]},{name:"Sl",unlocked:[false,false,false,false]},{name:"Cf",unlocked:[false,false,false,false]},
         {name:"Pw",unlocked:[false,false,false,false]},{name:"Co",unlocked:[false,false,false,false]}],
+        //Settings things
         hasTab: [false, false, false, false, false],
         time: Date.now(),
         currentTab: 1,
