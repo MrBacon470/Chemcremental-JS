@@ -1,5 +1,7 @@
 let augmentCosts = [D(2.5e4),D(5e4),D(1.5e5)]
+let unlockCosts = [D(0),D(0),D(0)]
 let augmentBoosts = [{boost:[D(0),D(0),D(0)]},{boost:[D(0),D(0),D(0)]},{boost:[D(0),D(0),D(0)]}]
+let leptonsToGet = [D(0),D(0)]
 const particleGains = [D(1),D(6),D(8),D(9),D(16),D(17),D(26),D(82)]
 let sumOfLevels = data.elements[0].level.plus(data.elements[1].level).plus(data.elements[2].level).plus(data.elements[3].level).plus(data.elements[4].level).plus(data.elements[5].level).plus(data.elements[6].level).plus(data.elements[7].level)
 function updateAccelStuff() {
@@ -15,7 +17,8 @@ function updateAccelStuff() {
             data.particlesToGet[2] = data.particlesToGet[2].plus(particleGains[i].times(data.elements[i].level))
    }
     
-
+   leptonsToGet[0] = Decimal.sqrt(data.particles[0].electrons.divide(D(1e4))).times(D(2))
+   leptonsToGet[1] = Decimal.sqrt(data.particles[0].electrons.divide(D(1e5)))
 }
 const particleDivisor = [D(1e3),D(1e2),D(1e1)]
 function calculateAugmentBoost() {
@@ -51,6 +54,12 @@ function splitElements() {
         data.particlesToGet[i] = D(0)
 }
 
+function shatterElectrons() {
+    if(data.particles[0].electrons.lt(D(1e5))) return
+
+
+}
+
 function buyAugment(a,b) {
     switch(a) {
         case 0:
@@ -64,6 +73,21 @@ function buyAugment(a,b) {
             data.augments[a].unlocked[b] = true
             break
         case 2:
+            if(data.particles[0].electrons.lt(augmentCosts[b]) || data.augments[a].unlocked[b] === true) return
+            data.particles[0].electrons = data.particles[0].electrons.sub(augmentCosts[b])
+            data.augments[a].unlocked[b] = true
+            break
+        case 3:
+            if(data.particles[0].electrons.lt(augmentCosts[b]) || data.augments[a].unlocked[b] === true) return
+            data.particles[0].electrons = data.particles[0].electrons.sub(augmentCosts[b])
+            data.augments[a].unlocked[b] = true
+            break
+        case 4:
+            if(data.particles[0].electrons.lt(augmentCosts[b]) || data.augments[a].unlocked[b] === true) return
+            data.particles[0].electrons = data.particles[0].electrons.sub(augmentCosts[b])
+            data.augments[a].unlocked[b] = true
+            break
+        case 5:
             if(data.particles[0].electrons.lt(augmentCosts[b]) || data.augments[a].unlocked[b] === true) return
             data.particles[0].electrons = data.particles[0].electrons.sub(augmentCosts[b])
             data.augments[a].unlocked[b] = true

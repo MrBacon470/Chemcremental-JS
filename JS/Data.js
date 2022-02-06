@@ -29,7 +29,7 @@ function getDefaultObject() {
         refineryCurrencies: [D(0), D(0), D(0)],
         //Particles
         particlesToGet: [D(0),D(0),D(0)],
-        particles: [{name:'theBigThree',protons:D(0),neutrons:D(0),electrons:D(0)},{name:'muons',muons:D(0),taus:D(0)},{name:'quarks',quarks:[D(0),D(0),D(0),D(0),D(0),D(0)]}],
+        particles: [{name:'theBigThree',protons:D(0),neutrons:D(0),electrons:D(0)},{name:'leptons',muons:D(0),taus:D(0)},{name:'quarks',quarks:[D(0),D(0),D(0),D(0),D(0),D(0)]}],
         previousSum: D(1),
         augments: [{unlocked:[false,false,false]},{unlocked:[false,false,false]},{unlocked:[false,false,false]}],
         //Achievements
@@ -44,7 +44,7 @@ function getDefaultObject() {
         currentTab: 1,
         currentSubTab: [0,0,0],
         currentElement: 0,
-        settingsToggles: [true,true,true],
+        settingsToggles: [true,true,true,true],
         currentUpdate: 'v0.4.3c',
         devSpeed: 1,
     }

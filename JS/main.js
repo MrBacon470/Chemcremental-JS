@@ -215,6 +215,15 @@ function createConfirmation(a) {
             DOMCacheGetOrSet('modalContainer').style.display = 'block'
             DOMCacheGetOrSet('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             DOMCacheGetOrSet('yesConfirm').addEventListener('click', () => {splitElements(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            break
+        case 'shatter':
+            DOMCacheGetOrSet('modalContainer').style.border = '4px solid #934237'
+            DOMCacheGetOrSet('confirmTitle').innerHTML = 'Are you sure you want to shatter?'
+            DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all electrons'
+            DOMCacheGetOrSet('confirm').style.display = 'block'
+            DOMCacheGetOrSet('modalContainer').style.display = 'block'
+            DOMCacheGetOrSet('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            DOMCacheGetOrSet('yesConfirm').addEventListener('click', () => {shatterElectrons(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
     }
 } 
 
@@ -231,6 +240,12 @@ function prestigeConfirmation(i) {
                 createConfirmation('split')
             else
                 splitElements()
+            break
+        case 'shatter':
+            if(data.settingsToggles[3])
+                createConfirmation('shatter')
+            else
+                shatterElectrons()
             break
     }
 }

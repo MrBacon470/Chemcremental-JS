@@ -123,6 +123,21 @@ img {
     margin-right: 5px;
 }
 /* Hover Actions */
+.prB:hover {
+    background-color: #379337;
+}
+.neB:hover {
+    background-color: #45568f;
+}
+.elB:hover {
+    background-color: #934237;
+}
+.muB:hover {
+    background-color: #8f6945;
+}
+.taB:hover {
+    background-color: #8d9337;
+}
 .melt:hover {
     background-color: #68368a;
 }

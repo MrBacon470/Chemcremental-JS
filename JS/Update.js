@@ -57,6 +57,7 @@ function updateHTML(){
         DOMCacheGetOrSet('toggle1').innerHTML = data.settingsToggles[0] ? 'Melting Confirmation [ON]' : 'Melting Confirmation [OFF]'
         DOMCacheGetOrSet('toggle2').innerHTML = data.settingsToggles[1] ? 'Enable Offline Progress [ON]' : 'Enable Offline Progress [OFF]'
         DOMCacheGetOrSet('toggle3').innerHTML = data.settingsToggles[2] ? 'Splitter Confirmation [ON]' : 'Splitter Confirmation [OFF]'
+        DOMCacheGetOrSet('toggle4').innerHTML = data.settingsToggles[3] ? 'Shatter Confirmation [ON]' : 'Shatter Confirmation [OFF]'
     }
     else if (data.currentTab === 1) {
         document.getElementById('RaE').style.display = data.coriumSingUps[2] ? 'flex' : 'none'
@@ -131,6 +132,8 @@ function updateHTML(){
                 DOMCacheGetOrSet('electronsText2').innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color: #934237">-</sup>)`
                 DOMCacheGetOrSet('muonsText').innerHTML = `${format(data.particles[1].muons)} Muons(μ<sup style="color: #8f6945">-</sup>)`
                 DOMCacheGetOrSet('tausText').innerHTML = `${format(data.particles[1].taus)} Taus(τ<sup style="color: #8d9337">-</sup>)`
+                DOMCacheGetOrSet('shatterImage').style.backgroundColor = data.particles[0].electrons.gte(D(1e5)) ? '#379337' : '#934237'
+                DOMCacheGetOrSet('shatterGainText').innerHTML = `+${format(leptonsToGet[0])} Muons<br>+${format(leptonsToGet[1])} Taus<br><br>`
         }
         else if(data.currentSubTab[1] === 3) {
             //row1

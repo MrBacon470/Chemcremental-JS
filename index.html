@@ -223,34 +223,40 @@
             <div>Augments</div>
             <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
                 <div style="display:flex;flex-direction: column; margin-right: 10px;">
-                    <button id="proAug1" onclick="buyAugment(0,0)" style="border: 2px solid #379337; margin-bottom: 10px;">Augment I</button>
-                    <button id="proAug2" onclick="buyAugment(0,1)" style="border: 2px solid #379337; margin-bottom: 10px;">Augment II</button>
-                    <button id="proAug3" onclick="buyAugment(0,2)" style="border: 2px solid #379337; margin-bottom: 10px;">Augment III</button>
+                    <button id="proAug1" onclick="buyAugment(0,0)" class="prB" style="border: 2px solid #379337; margin-bottom: 10px;">Augment I</button>
+                    <button id="proAug2" onclick="buyAugment(0,1)" class="prB" style="border: 2px solid #379337; margin-bottom: 10px;">Augment II</button>
+                    <button id="proAug3" onclick="buyAugment(0,2)" class="prB" style="border: 2px solid #379337; margin-bottom: 10px;">Augment III</button>
                 </div>
                 <div style="display:flex;flex-direction: column;margin-right: 10px;">
-                    <button id="neuAug1" onclick="buyAugment(1,0)" style="border: 2px solid #45568f; margin-bottom: 10px;">Augment I</button>
-                    <button id="neuAug2" onclick="buyAugment(1,1)" style="border: 2px solid #45568f; margin-bottom: 10px;">Augment II</button>
-                    <button id="neuAug3" onclick="buyAugment(1,2)" style="border: 2px solid #45568f; margin-bottom: 10px;">Augment III</button>
+                    <button id="neuAug1" onclick="buyAugment(1,0)" class="neB" style="border: 2px solid #45568f; margin-bottom: 10px;">Augment I</button>
+                    <button id="neuAug2" onclick="buyAugment(1,1)" class="neB" style="border: 2px solid #45568f; margin-bottom: 10px;">Augment II</button>
+                    <button id="neuAug3" onclick="buyAugment(1,2)" class="neB" style="border: 2px solid #45568f; margin-bottom: 10px;">Augment III</button>
                 </div>
                 <div style="display:flex;flex-direction: column;">
-                    <button id="eleAug1" onclick="buyAugment(2,0)" style="border: 2px solid #934237; margin-bottom: 10px;">Augment I</button>
-                    <button id="eleAug2" onclick="buyAugment(2,1)" style="border: 2px solid #934237; margin-bottom: 10px;">Augment II</button>
-                    <button id="eleAug3" onclick="buyAugment(2,2)" style="border: 2px solid #934237; margin-bottom: 10px;">Augment III</button>
+                    <button id="eleAug1" onclick="buyAugment(2,0)" class="elB" style="border: 2px solid #934237; margin-bottom: 10px;">Augment I</button>
+                    <button id="eleAug2" onclick="buyAugment(2,1)" class="elB" style="border: 2px solid #934237; margin-bottom: 10px;">Augment II</button>
+                    <button id="eleAug3" onclick="buyAugment(2,2)" class="elB" style="border: 2px solid #934237; margin-bottom: 10px;">Augment III</button>
                 </div>
             </div>
         </div>
-        <div id="leptonsHolder" style="display:flex; flex-direction: column; align-items: center;">
-            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
-                <p id="electronsText2" style="color: #934237; margin-left: 25px; margin-right: 25px;">1.00 Electrons(e<sup style="color: #934237">-</sup>)</p>
-                <p id="muonsText" style="color: #8f6945; margin-left: 25px; margin-right: 25px;">1.00 Muons(μ<sup style="color: #8f6945">-</sup>)</p>
-                <p id="tausText" style="color: #8d9337; margin-left: 25px; margin-right: 25px;">1.00 Tau(τ<sup style="color: #8d9337">-</sup>)</p>
+        <div id="leptonsHolder" style="display:flex; flex-direction: row;">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
+                    <p id="electronsText2" style="color: #934237; margin-left: 25px; margin-right: 25px;">1.00 Electrons(e<sup style="color: #934237">-</sup>)</p>
+                    <p id="muonsText" style="color: #8f6945; margin-left: 25px; margin-right: 25px;">1.00 Muons(μ<sup style="color: #8f6945">-</sup>)</p>
+                    <p id="tausText" style="color: #8d9337; margin-left: 25px; margin-right: 25px;">1.00 Tau(τ<sup style="color: #8d9337">-</sup>)</p>
+                </div>
+                <div style="display:flex;flex-direction: row;">
+                    <button id="lepUnlock1" onclick="buyAugment(2,0)" class="elB" style="border: 2px solid #934237; margin-right: 10px;">Unlock Generators</button>
+                    <button id="lepUnlock1" onclick="buyAugment(2,1)" class="muB" style="border: 2px solid #8f6945; margin-right: 10px;">Unlock Petroleum Generator</button>
+                    <button id="lepUnlock1" onclick="buyAugment(2,2)" class="taB" style="border: 2px solid #8d9337; margin-right: 10px;">Unlock Natural Gas Generator</button>
+                </div>
             </div>
-            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
-                <img src="CHEM Achieves/Electron.png" style="width: 32px; height: 32px;">
-                <img src="CHEM Achieves/muon.png" style="width: 32px; height: 32px;">
-                <img src="CHEM Achieves/tau.png" style="width: 32px; height: 32px;">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <img id="shatterImage" src="CHEM Achieves/ElectronShatter.png" onclick="" style="height: 76px; width: 76px;">
+                <div id="shatterGainText" style="text-align: center;">+0.00 Muons<br>+0.00 Taus<br><br></div>
+                <div style="text-align: center;">Electron Shattering<br>Requires at least 100,000 Electrons<br>Yes I know this isn't how muons and taus are made</div>
             </div>
-            
         </div>
         <div id="quarksHolder" style="display:flex; flex-direction: column; align-items: center;">
             <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
@@ -407,6 +413,7 @@
         <div style="margin-top: 5px; align-items: center;">
             <button onclick="toggleButton(0)" id="toggle1" class="settings" style="border: 3px solid gray;">Melting Confirmation [ON]</button>
             <button onclick="toggleButton(2)" id="toggle3" class="settings" style="border: 3px solid gray;">Splitter Confirmation [ON]</button>
+            <button onclick="toggleButton(3)" id="toggle4" class="settings" style="border: 3px solid gray;">Splitter Confirmation [ON]</button>
             <button onclick="toggleButton(1)" id="toggle2" class="settings" style="border: 3px solid gray;">Enable Offline Progress [ON]</button>
         </div>
         <br>
