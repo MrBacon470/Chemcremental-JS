@@ -109,6 +109,7 @@ function updateHTML(){
             DOMCacheGetOrSet(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format(Decimal.sqrt(data.refineryCurrencies[2].times(D(2))))}x Element Boost`
     }
     else if(data.currentTab === 7) {
+        DOMCacheGetOrSet('lpA').style.display = data.augments[2].unlocked[0] === true ? 'flex' : 'none'
         if(data.currentSubTab[1] === 0) {
             DOMCacheGetOrSet('gainMult').innerHTML = `${format(gainMult)}x more to gain`
             protonGainText.innerHTML = `+${format(data.particlesToGet[0])} Protons`
