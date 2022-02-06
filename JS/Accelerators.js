@@ -17,16 +17,16 @@ function updateAccelStuff() {
     
 
 }
-
+const particleDivisor = [D(1e3),D(1e2),D(1e1)]
 function calculateAugmentBoost() {
     for(let i = 0; i < 3; i++) {
         for(let j = 0; j < 3; j++) {
             if(i === 0)
-                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].protons.divide(D(1e3)))) : D(1)
+                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].protons.divide(particleDivisor[j]))) : D(1)
             if(i === 1)
-                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].neutrons.divide(D(1e3)))) : D(1)
+                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].neutrons.divide(particleDivisor[j]))) : D(1)
             if(i === 2)
-                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].electrons.divide(D(1e3)))) : D(1)
+                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].electrons.divide(particleDivisor[j]))) : D(1)
         }
     }
 }
