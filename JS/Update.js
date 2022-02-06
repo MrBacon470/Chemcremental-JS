@@ -6,6 +6,7 @@ const elementNames = ['Hydrogen','Carbon','Oxygen','Fluorine','Sulfur','Chlorine
 const isotopeIds = ['Hydrogen3','Carbon14','Oxygen15','Fluorine18','Sulfur35','Chlorine37','Iron60','Lead212',]
 const shortElement = ['H','C','O','F','S','Cl','Fe','Pb']
 const compoundButtons = []
+const compoundCostStr = ['C3H8','H2O','H2SO4','FeC','ClF3']
 const compoundBoost = ['Element Boost: ','Power Boost: ','Battery Boost: ','Lead Boost: ','Melt Boost: ']
 for (let i=0; i<8; i++){
     elementButtons[i] = DOMCacheGetOrSet(`${elementNames[i]}`)
@@ -86,11 +87,11 @@ function updateHTML(){
     }
     else if(data.currentTab === 3) {
         for(let i = 0; i < 5; i++) {
-            compoundButtons[i].innerHTML = `${data.compounds[i].name}<br>${data.compounds[i].cost}<br>Total: ${format(data.compounds[i].amt)}<br>${compoundBoost[i]} ${format(compoundBoosts[i])}x`
+            compoundButtons[i].innerHTML = `${data.compounds[i].name}<br>${compoundCostStr[i]}<br>Total: ${format(data.compounds[i].amt)}<br>${compoundBoost[i]} ${format(compoundBoosts[i])}x`
         }
     }
     else if(data.currentTab === 4) {
-        DOMCacheGetOrSet('gA').style.display = data.coriumSingUps[0] ? 'inline' : 'none'
+        DOMCacheGetOrSet('gA').style.display = data.leptonUnlocks[0] === true ? 'inline' : 'none'
         DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain)} Power` : "Generate Power<br>Req: 3 Propane + 1 Water"
         powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Power<br>Level: ${format(data.powerUps[0])}`
         powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
@@ -105,9 +106,7 @@ function updateHTML(){
         }
     }
     else if(data.currentTab === 6) {
-        DOMCacheGetOrSet(`${refineryIDs[0]}`).innerHTML = `${refineryNames[0]}<br><br>${refineryDescriptions[0]}<br><br>+${format(shardsToGet)} ${currencyNames[0]}<br><br>${format(data.refineryCurrencies[0])} ${currencyNames[0]} Avalible`
-        DOMCacheGetOrSet(`${refineryIDs[1]}`).innerHTML = `${refineryNames[1]}<br><br>${refineryDescriptions[1]}<br><br>+${format(fragmentsToGet)} ${currencyNames[1]}<br><br>${format(data.refineryCurrencies[1])} ${currencyNames[1]} Avalible`
-            DOMCacheGetOrSet(`${refineryIDs[2]}`).innerHTML = `${refineryNames[2]}<br><br>${refineryDescriptions[2]}<br><br>+${format(coinsToGet)} ${currencyNames[2]}<br><br>${format(data.refineryCurrencies[2])} ${currencyNames[2]} Avalible<br><br>${format(Decimal.sqrt(data.refineryCurrencies[2].times(D(2))))}x Element Boost`
+       
     }
     else if(data.currentTab === 7) {
         DOMCacheGetOrSet('lpA').style.display = data.augments[2].unlocked[0] === true ? 'inline' : 'none'

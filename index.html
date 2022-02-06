@@ -189,9 +189,31 @@
         </div>
     </div>
     <div id="refineryHolder" class="flexBox holder">
-        <button id="shard" onclick="refine(0)" class="refinery" style="margin-top: 40px; border: 5px solid #583793; margin-right: 50px; width:12em; height: 20em; font-size: 15px;">Sharding<br><br>Produces Kuaka Shards<br><br>+0.00 Shards<br><br>0.00 Shards Avalible</button>
-        <button id="mold" onclick="refine(1)" class="refinery" style="margin-top: 40px; border: 5px solid #583793; margin-right: 50px; width:12em; height: 20em; font-size: 15px;">Molding<br><br>Produces Kuaka Fragments<br><br>+0.00 Fragments<br><br>0.00 Fragments Avalible</button>
-        <button id="mint" onclick="refine(2)" class="refinery" style="margin-top: 40px; border: 5px solid #583793; margin-right: 50px; width:12em; height: 20em; font-size: 15px;">Minting<br><br>Produces Kuaka Coins<br><br>+0.00 Coins<br>0.00 Coins<br><br>1.00x Boost</button>
+        <div id="compoundButtonHolder" class="flexBox" style="display: flex; flex-direction: column;">
+            <button id="Propane" onclick="buyCompound(0)" class="compoundButton " style="border: 4px solid #583793; font-size: 15px;">
+                Coal<br>Cost:
+            </button>
+        </div>
+        <div id="compoundButtonHolder" onclick="buyCompound(1)" class="flexBox" style="display: flex; flex-direction: column;">
+            <button id="Water" class="compoundButton " style="border: 4px solid #583793; font-size: 15px;">
+                Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
+            </button>
+        </div>
+        <div id="compoundButtonHolder" onclick="buyCompound(2)" class="flexBox" style="display: flex; flex-direction: column;">
+            <button id="Sulfuric Acid" class="compoundButton " style="border: 4px solid #583793; font-size: 15px;">
+                Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
+            </button>
+        </div>
+        <div id="compoundButtonHolder" onclick="buyCompound(3)" class="flexBox" style="display: flex; flex-direction: column;">
+            <button id="Steel" class="compoundButton " style="border: 4px solid #583793; font-size: 15px;">
+                Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
+            </button>
+        </div>
+        <div id="compoundButtonHolder" onclick="buyCompound(4)" class="flexBox" style="display: flex; flex-direction: column;">
+            <button id="Chlorine Trifluoride" class="compoundButton " style="border: 4px solid #583793; font-size: 15px;">
+                Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
+            </button>
+        </div>
     </div>
     <div id="acceleratorHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="subTabHolder">

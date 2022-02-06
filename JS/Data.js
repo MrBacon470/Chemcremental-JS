@@ -13,9 +13,9 @@ function getDefaultObject() {
         level:D(0),max:D(0)},{amt:D(0),name:"Fe-60",level:D(0),max:D(0)},{amt:D(0),name:"Pb-212",level:D(0),max:D(0)}],
         isotopeGain: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
         //Compounds
-        compounds: [{amt:D(0),name:"Propane",cost:"C<sub>3</sub>H<sub>8</sub>"},{amt:D(0),name:"Water",cost:"H<sub>2</sub>0"},
-        {amt:D(0),name:"Sulfuric Acid",cost:"H<sub>2</sub>SO<sub>4</sub>"},{amt:D(0),name:"Steel",cost:"FeC"},
-        {amt:D(0),name:"Chlorine Trifluoride",cost:"ClF<sub>3</sub>"}],
+        compounds: [{amt:D(0),name:"Propane",cost:"C3H8"},{amt:D(0),name:"Water",cost:"H20"},
+        {amt:D(0),name:"Sulfuric Acid",cost:"H2SO4"},{amt:D(0),name:"Steel",cost:"FeC"},
+        {amt:D(0),name:"Chlorine Trifluoride",cost:"ClF3"}],
         //Power
         power: D(0),
         powerStored: D(0),
@@ -32,6 +32,7 @@ function getDefaultObject() {
         particles: [{name:'theBigThree',protons:D(0),neutrons:D(0),electrons:D(0)},{name:'leptons',muons:D(0),taus:D(0)},{name:'quarks',quarks:[D(0),D(0),D(0),D(0),D(0),D(0)]}],
         previousSum: D(1),
         augments: [{unlocked:[false,false,false]},{unlocked:[false,false,false]},{unlocked:[false,false,false]}],
+        leptonUnlocks: [false,false,false],
         //Achievements
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
