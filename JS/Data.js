@@ -44,10 +44,10 @@ function getDefaultObject() {
         hasTab: [false, false, false, false, false],
         time: Date.now(),
         currentTab: 1,
-        currentSubTab: [0,0,0],
+        currentSubTab: [0,0,0,0],
         currentElement: 0,
         settingsToggles: [true,true,true,true],
-        currentUpdate: 'v0.4.3c',
+        currentUpdate: 'v0.4.3d',
         devSpeed: 1,
     }
 }
@@ -64,9 +64,9 @@ function load() {
         createAlert('Welcome Back!','I detected your save is older than Beta 2.0 so it has been deleted because of major changes in newer updates')
         noConfirmDelete()
     }
-    else if(data.currentUpdate !== 'v0.4.3c') {
-        createAlert('Welcome Back!','The current version is Beta 4.3c<br>Check the changelog for more details')
-        data.currentUpdate = 'v0.4.3c' 
+    else if(data.currentUpdate !== 'v0.4.3d') {
+        createAlert('Welcome Back!','The current version is Beta 4.3d<br>Check the changelog for more details')
+        data.currentUpdate = 'v0.4.3d' 
     }
     //fixOldSaves()
 }

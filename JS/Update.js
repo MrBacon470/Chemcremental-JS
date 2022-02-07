@@ -48,7 +48,7 @@ function updateHTML(){
         tabs[i].style.display = data.hasTab[i] ? 'inline' : 'none'
     }
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
-    DOMCacheGetOrSet('powerText').innerHTML = `Power: ${format(data.power)} / ${format(powerLimit)}<br>Excess Power: ${format(data.powerStored)}`
+    DOMCacheGetOrSet('powerText').innerHTML = data.power.gte(D(1e3)) ? `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts<br>Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`  : `${format(data.power)} / ${format(powerLimit)} Watts<br>Excess: ${format(data.powerStored)} Watts`
     DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
     
     for(let i = 0; i < data.buyAmounts.length; i++)
@@ -91,11 +91,19 @@ function updateHTML(){
         }
     }
     else if(data.currentTab === 4) {
-        DOMCacheGetOrSet('gA').style.display = data.leptonUnlocks[0] === true ? 'inline' : 'none'
-        DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain)} Power` : "Generate Power<br>Req: 3 Propane + 1 Water"
-        powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Power<br>Level: ${format(data.powerUps[0])}`
-        powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
-        powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 0.1x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
+        DOMCacheGetOrSet('gA').style.display = data.coriumSingUps[0] === true ? 'inline' : 'none'
+        if(data.currentSubTab[3] === 0) {
+            if(powerGain.lt(D(1e3)))
+                DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain)} Watts` : "Generate Power<br>Req: 3 Propane + 1 Water"
+            else
+                DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain.divide(D(1e3)))} Kilowatts` : "Generate Power<br>Req: 3 Propane + 1 Water"
+            powerUpButton[0].innerHTML = powerCosts[0].gte(D(1e3)) ? `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0].divide(D(1e3)))} Kilowatts<br>Level: ${format(data.powerUps[0])}` : `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Watts<br>Level: ${format(data.powerUps[0])}`
+            powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
+            powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 0.1x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
+        }
+        else if(data.currentSubTab[3] === 1) {
+
+        }
     }
     else if(data.currentTab === 5) {
         
@@ -195,6 +203,9 @@ const quarksHolder = DOMCacheGetOrSet('quarksHolder')
 //Settings Subs
 const settingsArea = DOMCacheGetOrSet("settingsArea")
 const creditsArea = DOMCacheGetOrSet("creditsArea")
+//Power Subs
+const powerArea = DOMCacheGetOrSet('powerArea')
+const generatorArea = DOMCacheGetOrSet('generatorArea')
 function subTabChangeHTML() {
         regularElementHolder.style.display = data.currentSubTab[0] === 0  && data.currentTab === 1 ? 'flex' : 'none'
         isotopeElementHolder.style.display = data.currentSubTab[0] === 1  && data.currentTab === 1 ? 'flex' : 'none'
@@ -206,4 +217,7 @@ function subTabChangeHTML() {
 
         settingsArea.style.display = data.currentSubTab[2] === 0 && data.currentTab === 0 ? 'flex' : 'none'
         creditsArea.style.display = data.currentSubTab[2] === 1  && data.currentTab === 0 ? 'flex' : 'none'
+
+        powerArea.style.display = data.currentSubTab[3] === 0 && data.currentTab === 4 ? 'flex' : 'none'
+        generatorArea.style.display = data.currentSubTab[3] === 1  && data.currentTab === 4 ? 'flex' : 'none'
 }
