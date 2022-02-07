@@ -57,7 +57,9 @@ function splitElements() {
 function shatterElectrons() {
     if(data.particles[0].electrons.lt(D(1e5))) return
 
-
+    data.particles[1].muons = data.particles[1].muons.add(leptonsToGet[0])
+    data.particles[1].taus = data.particles[1].taus.add(leptonsToGet[1])
+    data.particles[0].electrons = D(0)
 }
 
 function buyAugment(a,b) {
