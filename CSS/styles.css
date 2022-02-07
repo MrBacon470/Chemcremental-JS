@@ -1,6 +1,6 @@
 * {
     background-color: #444444;
-    font-family: 'Monospace Typewriter';
+    font-family: 'Roboto';
     color: whitesmoke;
 }
 hr {
@@ -45,8 +45,16 @@ img {
     1px 1px 0 #000; 
 }
 @font-face {
-    font-family: 'Monospace Typewriter';
+    font-family: 'Monospace-Typewriter';
     src: url('MonospaceTypewriter.ttf');
+}
+@font-face {
+    font-family: 'Monaco';
+    src: url('Monaco.ttf');
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Regular.ttf');
 }
 .tabButton {
     margin-left: 5px;
