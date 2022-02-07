@@ -2,7 +2,7 @@ const D = x => new Decimal(x)
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
-        buyAmounts: [1,1,1,1,1],
+        buyAmounts: [1,1,1,1,1,1],
         //Elements
         elements: [{amt:D(10),name:"Hydrogen",level:D(0),max:D(0)},{amt:D(0),name:"Carbon",level:D(0),max:D(0)},{amt:D(0),name:"Oxygen",
         level:D(0),max:D(0)},{amt:D(0),name:"Fluorine",level:D(0),max:D(0)},{amt:D(0),name:"Sulfur",level:D(0),max:D(0)},{amt:D(0),name:"Chlorine",
@@ -26,7 +26,7 @@ function getDefaultObject() {
         coriumMultUps: [D(0),D(0),D(0)],
         coriumSingUps: [false,false,false],
         //Refinery
-        refineryCurrencies: [D(0), D(0), D(0)],
+        fuels: [D(0),D(0),D(0),D(0)],
         //Particles
         particlesToGet: [D(0),D(0),D(0)],
         particles: [{name:'theBigThree',protons:D(0),neutrons:D(0),electrons:D(0)},{name:'leptons',muons:D(0),taus:D(0)},{name:'quarks',quarks:[D(0),D(0),D(0),D(0),D(0),D(0)]}],

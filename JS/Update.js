@@ -6,7 +6,7 @@ const elementNames = ['Hydrogen','Carbon','Oxygen','Fluorine','Sulfur','Chlorine
 const isotopeIds = ['Hydrogen3','Carbon14','Oxygen15','Fluorine18','Sulfur35','Chlorine37','Iron60','Lead212',]
 const shortElement = ['H','C','O','F','S','Cl','Fe','Pb']
 const compoundButtons = []
-const compoundCostStr = ['C3H8','H2O','H2SO4','FeC','ClF3']
+const compoundCostStr = ['C3-H8','H2-O','H2-S-O4','Fe-C','Cl-F3']
 const compoundBoost = ['Element Boost: ','Power Boost: ','Battery Boost: ','Lead Boost: ','Melt Boost: ']
 for (let i=0; i<8; i++){
     elementButtons[i] = DOMCacheGetOrSet(`${elementNames[i]}`)
@@ -106,7 +106,10 @@ function updateHTML(){
         }
     }
     else if(data.currentTab === 6) {
-       
+       DOMCacheGetOrSet('Methane').innerHTML = `Methane<br>C-H4<br>Total ${format(data.fuels[0])}`
+       DOMCacheGetOrSet('Coal').innerHTML = `Coal<br>C12-H6-O<br>Total ${format(data.fuels[1])}`
+       DOMCacheGetOrSet('Petroleum').innerHTML = `Petroleum<br>C15-H28<br>Total ${format(data.fuels[2])}`
+       DOMCacheGetOrSet('Natural Gas').innerHTML = `Natural Gas<br>C10-H28-O2-S<br>Total ${format(data.fuels[3])}`
     }
     else if(data.currentTab === 7) {
         DOMCacheGetOrSet('lpA').style.display = data.augments[2].unlocked[0] === true ? 'inline' : 'none'

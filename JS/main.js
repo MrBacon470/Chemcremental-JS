@@ -64,7 +64,6 @@ function switchSubTab(i,x){
     subTabChangeHTML()
 }
 let sumOfElements = D(0)
-let shardsToGet = D(0), fragmentsToGet = D(0), coinsToGet = D(0)
 let diff
 function mainLoop(){
     diff = data.settingsToggles[1]?(Date.now()-data.time)*data.devSpeed/1000:getRandom(0.048, 0.053)*data.devSpeed
@@ -97,9 +96,6 @@ function mainLoop(){
     //Misc stuff
     if(data.elements[0].amt.lt(D(10)) && data.elements[0].level.lt(D(1)))
         data.elements[0].amt = D(10)
-    shardsToGet = Decimal.sqrt(sumOfElements.divide(D(1e8)))
-    fragmentsToGet = Decimal.sqrt(data.refineryCurrencies[0].divide(D(1e5)))
-    coinsToGet = Decimal.sqrt(data.refineryCurrencies[1].divide(D(1e3)))
 }
 function updateBoosts() {
     for(let i = 0; i < 5; i++) {
@@ -154,26 +150,45 @@ function toggleButton(i){
     data.settingsToggles[i] = !data.settingsToggles[i]
 }
 
-function refine(i) {
-    switch(i) {
+function purchaseFuel(x) {
+    switch(x) {
         case 0:
-            if(sumOfElements.gte(D(1e8))) {
-                data.refineryCurrencies[0] = data.refineryCurrencies[0].plus(shardsToGet)
-                shardsToGet = D(0)
+            for(let i = 0; i < data.buyAmounts[5]; i++) {
+                if(data.elements[1].level.gte(D(1)) && data.elements[0].level.gte(D(4))) {
+                    data.elements[1].level = data.elements[1].level.sub(D(1))
+                    data.elements[0].level = data.elements[0].level.sub(D(4))
+                    data.fuels[x] = data.fuels[x].add(D(1))
+                }
             }
             break;
         case 1:
-            if(data.refineryCurrencies[0].gte(D(1e5))) {
-                data.refineryCurrencies[1] = data.refineryCurrencies[1].plus(fragmentsToGet)
-                data.refineryCurrencies[0] = D(0)
-                fragmentsToGet = D(0)
+            for(let i = 0; i < data.buyAmounts[5]; i++) {
+                if(data.elements[1].level.gte(D(12)) && data.elements[0].level.gte(D(6)) && data.elements[2].level.gte(D(1))) {
+                    data.elements[1].level = data.elements[1].level.sub(D(12))
+                    data.elements[0].level = data.elements[0].level.sub(D(6))
+                    data.elements[2].level = data.elements[2].level.sub(D(1))
+                    data.fuels[x] = data.fuels[x].add(D(1))
+                }
             }
             break;
         case 2:
-            if(data.refineryCurrencies[1].gte(D(1e3))) {
-                data.refineryCurrencies[2] = data.refineryCurrencies[2].plus(coinsToGet)
-                data.refineryCurrencies[1] = D(0)
-                coinsToGet = D(0)
+            for(let i = 0; i < data.buyAmounts[5]; i++) {
+                if(data.elements[1].level.gte(D(15)) && data.elements[0].level.gte(D(28))) {
+                    data.elements[1].level = data.elements[1].level.sub(D(15))
+                    data.elements[0].level = data.elements[0].level.sub(D(28))
+                    data.fuels[x] = data.fuels[x].add(D(1))
+                }
+            }
+            break;
+        case 3:
+            for(let i = 0; i < data.buyAmounts[5]; i++) {
+                if(data.elements[1].level.gte(D(10)) && data.elements[0].level.gte(D(28)) && data.elements[2].level.gte(D(2)) && data.elements[4].level.gte(D(1))) {
+                    data.elements[1].level = data.elements[1].level.sub(D(10))
+                    data.elements[0].level = data.elements[0].level.sub(D(28))
+                    data.elements[2].level = data.elements[2].level.sub(D(2))
+                    data.elements[4].level = data.elements[4].level.sub(D(1))
+                    data.fuels[x] = data.fuels[x].add(D(1))
+                }
             }
             break;
     }
