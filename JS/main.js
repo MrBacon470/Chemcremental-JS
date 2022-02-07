@@ -197,6 +197,7 @@ function createAlert(a,b) {
 }
 
 function createConfirmation(a) {
+    clearConfirmationListeners()
     switch(a) {
         case 'prestige':
             DOMCacheGetOrSet('modalContainer').style.border = '4px solid #68368a'
@@ -225,7 +226,14 @@ function createConfirmation(a) {
             DOMCacheGetOrSet('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             DOMCacheGetOrSet('yesConfirm').addEventListener('click', () => {shatterElectrons(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
     }
-} 
+}
+
+function clearConfirmationListeners() {
+    DOMCacheGetOrSet('noConfirm').removeEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+    DOMCacheGetOrSet('yesConfirm').removeEventListener('click', () => {meltDown(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+    DOMCacheGetOrSet('yesConfirm').removeEventListener('click', () => {splitElements(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+    DOMCacheGetOrSet('yesConfirm').removeEventListener('click', () => {shatterElectrons(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+}
 
 function prestigeConfirmation(i) {
     switch(i) {
