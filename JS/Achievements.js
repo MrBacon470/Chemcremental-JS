@@ -209,7 +209,8 @@ const achieveDescriptions = ['<hr>[H-1] - Hydrogenated<br>Buy your first Hydroge
     '<hr>[Sl-1] - Follow the iron trail<br>Create your first Steel','<hr>[Sl-2] - Carnegie Steel<br>Create 10 Steel','<hr>[Sl-3] - What do you even do with this?<br>Create 100 Steel','<hr>[Sl-4] - All the steel<br>Create 1e3 Steel',
     '<hr>[Cf-1] - The last compound<br>Create your first Chlorine Trifluoride','<hr>[Cf-2] - A terrible idea<br>Create 10 Chlorine Trifluoride','<hr>[Cf-3] - You need to stop<br>Create 100 Chlorine Trifluoride','<hr>[Cf-4] - Burning Asbestos?!?<br>Create 1e3 Chlorine Trifluoride',
     '<hr>[Pw-1] - New tabs?!?<br>Generate 1 Power','<hr>[Pw-2] - I got the power<br>Generate 10 Power','<hr>[Pw-4] - The power of the steam engine<br>Generate 100 Power','<hr>[Pw-4] - It never changes<br>Generate 1e3 Power',
-    '<hr>[Co-1] - Three Mile Island<br>Melt for 500 Corium','<hr>[Co-2] - Fukushima<br>Melt for 1e3 Corium','<hr>[Co-3] - Chernobyl<br>Melt for 1e4 Corium','<hr>[Co-4] - The elephants foot<br>Melt for 1e6 Corium']
+    '<hr>[Co-1] - Three Mile Island<br>Melt for 500 Corium','<hr>[Co-2] - Fukushima<br>Melt for 1e3 Corium','<hr>[Co-3] - Chernobyl<br>Melt for 1e4 Corium','<hr>[Co-4] - The elephants foot<br>Melt for 1e6 Corium',
+    '<hr>[Pro-1] - Postively']
 function changeDescription(id) {
     descriptionText.innerHTML = achieveDescriptions[id]
 }
