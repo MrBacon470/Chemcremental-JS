@@ -233,7 +233,7 @@ function createConfirmation(a) {
             DOMCacheGetOrSet('yesConfirm').addEventListener('click', () => {splitElements(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             break
         case 'shatter':
-            DOMCacheGetOrSet('modalContainer').style.border = '4px solid #934237'
+            DOMCacheGetOrSet('modalContainer').style.border = '4px solid #37936d'
             DOMCacheGetOrSet('confirmTitle').innerHTML = 'Are you sure you want to shatter?'
             DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all electrons'
             DOMCacheGetOrSet('confirm').style.display = 'block'
