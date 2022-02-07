@@ -38,7 +38,8 @@ function getDefaultObject() {
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"Fe",unlocked:[false,false,false,false,false,false,false,false]},{name:"Pb",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"Pr",unlocked:[false,false,false,false]},{name:"Wt",unlocked:[false,false,false,false]},{name:"Sa",unlocked:[false,false,false,false]},{name:"Sl",unlocked:[false,false,false,false]},{name:"Cf",unlocked:[false,false,false,false]},
-        {name:"Pw",unlocked:[false,false,false,false]},{name:"Co",unlocked:[false,false,false,false]}],
+        {name:"Pw",unlocked:[false,false,false,false]},{name:"Co",unlocked:[false,false,false,false]},{name:"Pro",unlocked:[false,false,false,false]},{name:"Neu",unlocked:[false,false,false,false]},
+        {name:"Ele",unlocked:[false,false,false,false]},{name:"Muo",unlocked:[false,false,false,false]},{name:"Tau",unlocked:[false,false,false,false]}],
         //Settings things
         hasTab: [false, false, false, false, false],
         time: Date.now(),

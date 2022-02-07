@@ -20,6 +20,12 @@ const CfAchieves = []
 //Resources
 const PwAchieves = []
 const CoAchieves = []
+//Particles
+const ProAchieves = []
+const NeuAchieves = []
+const EleAchieves = []
+const MuoAchieves = []
+const TauAchieves = []
 
 for(let i = 0; i < 8; i++) {
     HAchieves[i] = DOMCacheGetOrSet(`H${i+1}`)
@@ -39,6 +45,11 @@ for(let i = 0; i < 4; i++) {
     CfAchieves[i] = DOMCacheGetOrSet(`Cf${i+1}`)
     PwAchieves[i] = DOMCacheGetOrSet(`Pw${i+1}`)
     CoAchieves[i] = DOMCacheGetOrSet(`Co${i+1}`)
+    ProAchieves[i] = DOMCacheGetOrSet(`Pro${i+1}`)
+    NeuAchieves[i] = DOMCacheGetOrSet(`Neu${i+1}`)
+    EleAchieves[i] = DOMCacheGetOrSet(`Ele${i+1}`)
+    MuoAchieves[i] = DOMCacheGetOrSet(`Muo${i+1}`)
+    TauAchieves[i] = DOMCacheGetOrSet(`Tau${i+1}`)
 }
 
 let unlockReqs = [D(1),D(10),D(50),D(100),D(500),D(1000),D(10000),D(1000000)]
@@ -62,6 +73,11 @@ for(let i = 0; i < 4; i++) {
     CfAchieves[i].addEventListener('mouseover', () => changeDescription(i+80))
     PwAchieves[i].addEventListener('mouseover', () => changeDescription(i+84))
     CoAchieves[i].addEventListener('mouseover', () => changeDescription(i+88))
+    ProAchieves[i].addEventListener('mouseover', () => changeDescription(i+92))
+    NeuAchieves[i].addEventListener('mouseover', () => changeDescription(i+96))
+    EleAchieves[i].addEventListener('mouseover', () => changeDescription(i+100))
+    MuoAchieves[i].addEventListener('mouseover', () => changeDescription(i+104))
+    TauAchieves[i].addEventListener('mouseover', () => changeDescription(i+108))
 }
 
 function unlockAchieves() {
@@ -112,6 +128,21 @@ function unlockAchieves() {
             
             if(data.corium.gte(unlockReqs[i+4]) && data.achievements[14].unlocked[i] !== true)
             data.achievements[14].unlocked[i] = true
+
+            if(data.particles[0].protons.gte(unlockReqs[i+4]) && data.achievements[15].unlocked[i] !== true)
+            data.achievements[15].unlocked[i] = true
+        
+            if(data.particles[0].neutrons.gte(unlockReqs[i+4]) && data.achievements[16].unlocked[i] !== true)
+            data.achievements[16].unlocked[i] = true
+
+            if(data.particles[0].electrons.gte(unlockReqs[i+4]) && data.achievements[17].unlocked[i] !== true)
+            data.achievements[17].unlocked[i] = true
+
+            if(data.particles[1].muons.gte(unlockReqs[i]) && data.achievements[18].unlocked[i] !== true)
+            data.achievements[18].unlocked[i] = true
+            
+            if(data.particles[1].taus.gte(unlockReqs[i]) && data.achievements[19].unlocked[i] !== true)
+            data.achievements[19].unlocked[i] = true
     }
     let amountUnlocked
     amountUnlocked = D(0)
@@ -121,7 +152,7 @@ function unlockAchieves() {
                 amountUnlocked = amountUnlocked.plus(D(1))
         }
     }
-    for(let i = 0; i < 6; i++) {
+    for(let i = 0; i < 11; i++) {
         for(let j = 0; j < 4; j++) {
             if(data.achievements[i+8].unlocked[j] === true)
                 amountUnlocked = amountUnlocked.plus(D(1))
@@ -181,9 +212,39 @@ function updateAchievementHTML() {
             
             if((CoAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[14].unlocked[i] === false) || (CoAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[14].unlocked[i] === true))
                 CoAchieves[i].style.backgroundColor = data.achievements[14].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
+
+            if((SaAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[10].unlocked[i] === false) || (SaAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[10].unlocked[i] === true))
+                SaAchieves[i].style.backgroundColor = data.achievements[10].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
+            
+            if((SlAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[11].unlocked[i] === false) || (SlAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[11].unlocked[i] === true))
+                SlAchieves[i].style.backgroundColor = data.achievements[11].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
+
+            if((CfAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[12].unlocked[i] === false) || (CfAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[12].unlocked[i] === true))
+                CfAchieves[i].style.backgroundColor = data.achievements[12].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
+            
+            if((PwAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[13].unlocked[i] === false) || (PwAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[13].unlocked[i] === true))
+                PwAchieves[i].style.backgroundColor = data.achievements[13].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
+            
+            if((CoAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[14].unlocked[i] === false) || (CoAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[14].unlocked[i] === true))
+                CoAchieves[i].style.backgroundColor = data.achievements[14].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
+
+            if((ProAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[15].unlocked[i] === false) || (ProAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[15].unlocked[i] === true))
+                ProAchieves[i].style.backgroundColor = data.achievements[15].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
+            
+            if((NeuAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[16].unlocked[i] === false) || (NeuAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[16].unlocked[i] === true))
+                NeuAchieves[i].style.backgroundColor = data.achievements[16].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
+
+            if((EleAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[17].unlocked[i] === false) || (EleAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[17].unlocked[i] === true))
+                EleAchieves[i].style.backgroundColor = data.achievements[17].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
+            
+            if((MuoAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[18].unlocked[i] === false) || (MuoAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[18].unlocked[i] === true))
+                MuoAchieves[i].style.backgroundColor = data.achievements[18].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
+            
+            if((TauAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[19].unlocked[i] === false) || (TauAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[19].unlocked[i] === true))
+                TauAchieves[i].style.backgroundColor = data.achievements[19].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
         }
     }
-        DOMCacheGetOrSet('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 93)}/92 (${format((prevAmount.divide(D(92)).times(D(100))))}%)`
+        DOMCacheGetOrSet('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 113)}/112 (${format((prevAmount.divide(D(112)).times(D(100))))}%)`
 }
 
 const descriptionText = DOMCacheGetOrSet("achieveText")
@@ -210,7 +271,11 @@ const achieveDescriptions = ['<hr>[H-1] - Hydrogenated<br>Buy your first Hydroge
     '<hr>[Cf-1] - The last compound<br>Create your first Chlorine Trifluoride','<hr>[Cf-2] - A terrible idea<br>Create 10 Chlorine Trifluoride','<hr>[Cf-3] - You need to stop<br>Create 100 Chlorine Trifluoride','<hr>[Cf-4] - Burning Asbestos?!?<br>Create 1e3 Chlorine Trifluoride',
     '<hr>[Pw-1] - New tabs?!?<br>Generate 1 Power','<hr>[Pw-2] - I got the power<br>Generate 10 Power','<hr>[Pw-4] - The power of the steam engine<br>Generate 100 Power','<hr>[Pw-4] - It never changes<br>Generate 1e3 Power',
     '<hr>[Co-1] - Three Mile Island<br>Melt for 500 Corium','<hr>[Co-2] - Fukushima<br>Melt for 1e3 Corium','<hr>[Co-3] - Chernobyl<br>Melt for 1e4 Corium','<hr>[Co-4] - The elephants foot<br>Melt for 1e6 Corium',
-    '<hr>[Pro-1] - Postively']
+    '<hr>[Pro-1] - A positive chapter<br>Split for 500 Protons','<hr>[Pro-2] - The power of positivity<br>Split for 1e3 Protons','<hr>[Pro-3] - ++<br>Split for 1e4 Protons','<hr>[Pro-4] - Protonus<br>Split for 1e6 Protons','<hr>[Neu-1] - Neutrality<br>Split for 500 Neutrons','<hr>[Neu-2] - Switzerland<br>Split for 1e3 Neutrons',
+    '<hr>[Neu-3] - Charge === 0<br>Split for 1e4 Neutrons','<hr>[Neu-4] - Little bullets<br>Split for 1e6 Neutrons','<hr>[Ele-1] - The secrets of power<br>Split for 500 Electrons','<hr>[Ele-2] - Negativity is better<br>Split for 1e3 Electrons',
+    '<hr>[Ele-3] - --<br>Split for 1e4 Electrons','<hr>[Ele-4] - Unlimited Power<br>Split for 1e6 Electrons','<hr>[Mu-1] - Leptons Galore<br>Shatter for 1 Muon','<hr>[Mu-2] - More particles than you will ever know<br>Shatter for 10 Muons',
+    '<hr>[Mu-3] - Its a big electron<br>Shatter for 50 Muons','<hr>[Mu-4] - μμμ<br>Shatter for 100 Muons','<hr>[Tau-1] - Moar greek letters<br>Shatter for 1 Tau','<hr>[Tau-2] - No this isn\'t omega layers<br>Shatter for 10 Taus',
+    '<hr>[Tau-3] - Its an even bigger electron<br>Split for 50 Taus','<hr>[Pro-1] - τττ<br>Split for 100 Taus']
 function changeDescription(id) {
     descriptionText.innerHTML = achieveDescriptions[id]
 }
