@@ -220,8 +220,8 @@ function createConfirmation(a) {
             DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all previous layers in exchange for Corium'
             DOMCacheGetOrSet('confirm').style.display = 'block'
             DOMCacheGetOrSet('modalContainer').style.display = 'block'
-            DOMCacheGetOrSet('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
-            DOMCacheGetOrSet('yesConfirm').addEventListener('click', () => {meltDown(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('yesConfirm').addEventListener('click', () => {meltDown(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             break
         case 'split':
             DOMCacheGetOrSet('modalContainer').style.border = '4px solid #37936d'
@@ -229,8 +229,8 @@ function createConfirmation(a) {
             DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all element generators'
             DOMCacheGetOrSet('confirm').style.display = 'block'
             DOMCacheGetOrSet('modalContainer').style.display = 'block'
-            DOMCacheGetOrSet('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
-            DOMCacheGetOrSet('yesConfirm').addEventListener('click', () => {splitElements(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('yesConfirm').addEventListener('click', () => {splitElements(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             break
         case 'shatter':
             DOMCacheGetOrSet('modalContainer').style.border = '4px solid #37936d'
@@ -238,16 +238,19 @@ function createConfirmation(a) {
             DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all electrons'
             DOMCacheGetOrSet('confirm').style.display = 'block'
             DOMCacheGetOrSet('modalContainer').style.display = 'block'
-            DOMCacheGetOrSet('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
-            DOMCacheGetOrSet('yesConfirm').addEventListener('click', () => {shatterElectrons(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('yesConfirm').addEventListener('click', () => {shatterElectrons(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
     }
 }
 
 function clearConfirmationListeners() {
-    DOMCacheGetOrSet('noConfirm').removeEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
-    DOMCacheGetOrSet('yesConfirm').removeEventListener('click', () => {meltDown(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
-    DOMCacheGetOrSet('yesConfirm').removeEventListener('click', () => {splitElements(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
-    DOMCacheGetOrSet('yesConfirm').removeEventListener('click', () => {shatterElectrons(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+    let old_element = document.getElementById("noConfirm");
+    let new_element = old_element.cloneNode(true);
+    old_element.parentNode.replaceChild(new_element, old_element);
+    
+    let old_element2 = document.getElementById("yesConfirm");
+    let new_element2 = old_element2.cloneNode(true);
+    old_element2.parentNode.replaceChild(new_element2, old_element2);
 }
 
 function prestigeConfirmation(i) {
