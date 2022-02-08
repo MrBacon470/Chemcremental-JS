@@ -104,7 +104,7 @@ function updateBoosts() {
         else
         compoundBoosts[i] = D(1)
 
-        compoundBoosts[i] = compoundBoosts[i].times(augmentBoosts[0].boost[1])
+        compoundBoosts[i] = compoundBoosts[i].times(augmentBoosts[0].boost[2])
     }
     for(let i = 0; i < 3; i++) {
         let boosts = [D(2), D(10), D(0.1)]
