@@ -31,6 +31,10 @@ function updatePowerCosts() {
     }
 }
 
+function fuelGenerator(i) {
+    
+}
+
 function purchasePowerUp(i) {
     switch(i) {
         case 0:

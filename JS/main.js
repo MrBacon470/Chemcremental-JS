@@ -139,14 +139,27 @@ function updateBoosts() {
 }
 
 function toggleBuyAmount(i) {
-    if(data.buyAmounts[i] === 1)
-        data.buyAmounts[i] = 10
-    else if(data.buyAmounts[i] === 10)
-        data.buyAmounts[i] = 100
-    else if(data.buyAmounts[i] === 100)
-        data.buyAmounts[i] = 1000
-    else if(data.buyAmounts[i] === 1000)
-        data.buyAmounts[i] = 1
+    if(i !== 6) {
+        if(data.buyAmounts[i] === 1)
+            data.buyAmounts[i] = 10
+        else if(data.buyAmounts[i] === 10)
+            data.buyAmounts[i] = 100
+        else if(data.buyAmounts[i] === 100)
+            data.buyAmounts[i] = 1000
+        else if(data.buyAmounts[i] === 1000)
+            data.buyAmounts[i] = 1
+    }
+    else {
+        if(data.buyAmounts[i] === .1)
+            data.buyAmounts[i] = .25
+        else if(data.buyAmounts[i] === .25)
+            data.buyAmounts[i] = .5
+        else if(data.buyAmounts[i] === .5)
+            data.buyAmounts[i] = 1.0
+        else if(data.buyAmounts[i] === 1.0)
+            data.buyAmounts[i] = .1
+    }
+    
 }
 
 function toggleButton(i){

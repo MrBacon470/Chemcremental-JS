@@ -52,7 +52,7 @@ function updateHTML(){
     DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
     
     for(let i = 0; i < data.buyAmounts.length; i++)
-        DOMCacheGetOrSet(`bA${i}`).innerHTML = `Buy Amount<br>${data.buyAmounts[i]}`
+        DOMCacheGetOrSet(`bA${i}`).innerHTML = i !== 6 ? `Buy Amount<br>${data.buyAmounts[i]}` : `Fuel Percent Used<br>${data.buyAmounts[i]*100.0}%`
 
     if(data.currentTab === 0) {
         DOMCacheGetOrSet('toggle1').innerHTML = data.settingsToggles[0] ? 'Melting Confirmation [ON]' : 'Melting Confirmation [OFF]'
