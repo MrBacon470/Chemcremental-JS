@@ -84,15 +84,25 @@ function buyAugment(a,b) {
             data.particles[0].electrons = data.particles[0].electrons.sub(augmentCosts[b])
             data.augments[a].unlocked[b] = true
             break
-        case 4:
-            if(data.particles[0].electrons.lt(augmentCosts[b]) || data.augments[a].unlocked[b] === true) return
-            data.particles[0].electrons = data.particles[0].electrons.sub(augmentCosts[b])
-            data.augments[a].unlocked[b] = true
+    }
+}
+
+function buyLepton(a) {
+    switch(a) {
+        case 0:
+            if(data.particles[0].electrons.lt(D(2.5e5)) || data.leptonUnlocks[a] === true) return 
+            data.particles[0].electrons = data.particles[0].electrons.sub(D(2.5e5))
+            data.leptonUnlocks[a] = true
             break
-        case 5:
-            if(data.particles[0].electrons.lt(augmentCosts[b]) || data.augments[a].unlocked[b] === true) return
-            data.particles[0].electrons = data.particles[0].electrons.sub(augmentCosts[b])
-            data.augments[a].unlocked[b] = true
+        case 0:
+            if(data.particles[1].muons.lt(D(250)) || data.leptonUnlocks[a] === true) return 
+            data.particles[1].muons = data.particles[1].muons.sub(D(250))
+            data.leptonUnlocks[a] = true
+            break
+        case 0:
+            if(data.particles[1].taus.lt(D(200)) || data.leptonUnlocks[a] === true) return 
+            data.particles[1].taus = data.particles[1].taus.sub(D(2.5e5))
+            data.leptonUnlocks[a] = true
             break
     }
 }

@@ -144,6 +144,10 @@ function updateHTML(){
                 DOMCacheGetOrSet('tausText').innerHTML = `${format(data.particles[1].taus)} Taus(τ<sup style="color: #8d9337">-</sup>)`
                 DOMCacheGetOrSet('shatterImage').style.backgroundColor = data.particles[0].electrons.gte(D(1e5)) ? '#379337' : '#934237'
                 DOMCacheGetOrSet('shatterGainText').innerHTML = `+${format(leptonsToGet[0])} Muons<br>+${format(leptonsToGet[1])} Taus<br><br>`
+
+                DOMCacheGetOrSet('lepUnlock1').innerHTML = data.leptonUnlocks[0] ? `Unlocked<br>No Extra Boost` : `Unlock Coal Generator<br>Cost: 250,000 Electrons`
+                DOMCacheGetOrSet('lepUnlock2').innerHTML = data.leptonUnlocks[1] ? `Unlocked<br>Power Capacity Buff: ${format(D(1).plus(Decimal.sqrt(data.particles[1].muons)))}x` : `Unlock Petroleum Generator<br>Cost: 250 Muons`
+                DOMCacheGetOrSet('lepUnlock3').innerHTML = data.leptonUnlocks[2] ? `Unlocked<br>Fueling Cost Decrease: ${format(D(1).plus(Decimal.sqrt(data.particles[1].taus.divide(D(1000)))))}x` : `Unlock Natural Gas Generator<br>Cost: 200 Taus`
         }
         else if(data.currentSubTab[1] === 3) {
             //row1
