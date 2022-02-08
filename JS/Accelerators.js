@@ -6,7 +6,7 @@ const particleGains = [D(1),D(6),D(8),D(9),D(16),D(17),D(26),D(82)]
 let sumOfLevels = data.elements[0].level.plus(data.elements[1].level).plus(data.elements[2].level).plus(data.elements[3].level).plus(data.elements[4].level).plus(data.elements[5].level).plus(data.elements[6].level).plus(data.elements[7].level)
 function updateAccelStuff() {
    sumOfLevels = data.elements[0].level.plus(data.elements[1].level).plus(data.elements[2].level).plus(data.elements[3].level).plus(data.elements[4].level).plus(data.elements[5].level).plus(data.elements[6].level).plus(data.elements[7].level)
-   gainMult = sumOfLevels.divide(data.previousSum).lte(D(1)) ? D(1) : (sumOfLevels.divide(data.previousSum))
+   gainMult = sumOfLevels.divide(data.previousSum).lte(D(1)) ? (sumOfLevels.divide(data.previousSum)) : (sumOfLevels.divide(data.previousSum))
    for(let i = 0; i < 3; i++)
    data.particlesToGet[i] = D(0)
    for(let i = 0; i < 8; i++) {

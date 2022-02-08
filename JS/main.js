@@ -256,18 +256,21 @@ function clearConfirmationListeners() {
 function prestigeConfirmation(i) {
     switch(i) {
         case 'prestige':
+            if(sumOfElements.lt(D(1e8))) return
             if(data.settingsToggles[0])
                 createConfirmation('prestige')
             else
                 meltDown()
             break
         case 'split':
+            if(data.previousSum.gte(sumOfLevels)) return
             if(data.settingsToggles[2])
                 createConfirmation('split')
             else
                 splitElements()
             break
         case 'shatter':
+            if(data.particles[0].electrons.lt(D(1e5))) return
             if(data.settingsToggles[3])
                 createConfirmation('shatter')
             else
