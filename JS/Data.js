@@ -41,6 +41,7 @@ function getDefaultObject() {
         {name:"Pw",unlocked:[false,false,false,false]},{name:"Co",unlocked:[false,false,false,false]},{name:"Pro",unlocked:[false,false,false,false]},{name:"Neu",unlocked:[false,false,false,false]},
         {name:"Ele",unlocked:[false,false,false,false]},{name:"Muo",unlocked:[false,false,false,false]},{name:"Tau",unlocked:[false,false,false,false]}],
         //Settings things
+        alerted: false,
         hasTab: [false, false, false, false, false],
         time: Date.now(),
         currentTab: 1,
