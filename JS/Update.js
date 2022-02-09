@@ -20,6 +20,8 @@ const tabIDs = ['cB','pB','mB','rB','acB']
 for(let i=0; i < 5; i++) {
     tabs[i] = DOMCacheGetOrSet(`${tabIDs[i]}`)
 }
+const tabNames = ['Compounds','Power','Melting','Refinery','Particles']
+//Power & Melting
 const powerUpButton = []
 for(let i=0; i < 3; i++)
     powerUpButton[i] = DOMCacheGetOrSet(`pu${i+1}`)
@@ -45,7 +47,7 @@ for(let i = 0; i < 3; i++)
 let currencyDisplayIndex = 0
 function updateHTML(){
     for(let i = 0; i < 5; i++) {
-        tabs[i].style.display = data.hasTab[i] ? 'inline' : 'none'
+        tabs[i].innerHTML = data.hasTab[i] ? tabNames[i] : '???'
     }
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     DOMCacheGetOrSet('powerText').innerHTML = data.power.gte(D(1e3)) ? `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts<br>Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`  : `${format(data.power)} / ${format(powerLimit)} Watts<br>Excess: ${format(data.powerStored)} Watts`
