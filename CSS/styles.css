@@ -1,3 +1,4 @@
+/*General Stuff*/
 * {
     background-color: #444444;
     font-family: 'Monospace-Typewriter';
@@ -12,6 +13,20 @@ img {
     margin-right: 3px;
     margin-bottom: 3px;
 }
+/*Fonts*/
+@font-face {
+    font-family: 'Monospace-Typewriter';
+    src: url('MonospaceTypewriter.ttf');
+}
+@font-face {
+    font-family: 'Monaco';
+    src: url('Monaco.ttf');
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Regular.ttf');
+}
+/*Custom Modal Styling*/
 #modalContainer {
     display: none;
     position: fixed;
@@ -34,28 +49,21 @@ img {
     align-content: center;
     text-align: center;
 }
+/*Styling Classes*/
 .header {
     margin-right: 30px;
     margin-left: 30px;
     font-size: 30px;
+     
+}
+.textOutline {
     text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
-    1px 1px 0 #000; 
+    1px 1px 0 #000;
 }
-@font-face {
-    font-family: 'Monospace-Typewriter';
-    src: url('MonospaceTypewriter.ttf');
-}
-@font-face {
-    font-family: 'Monaco';
-    src: url('Monaco.ttf');
-}
-@font-face {
-    font-family: 'Roboto';
-    src: url('Roboto-Regular.ttf');
-}
+
 .tabButton {
     margin-left: 5px;
     margin-right: 5px;
@@ -81,14 +89,11 @@ img {
     width: 26em;
     height: 5em;
 }
-/* change this to row so it can hold multiple columns in a row lineup, if that makes sense */
 .holder {
     margin-top: 25px;
     flex-direction: row;
 }
-/* elements you want to be in a column will be contained in one of these */
 .elementColumn{
-    /* margin is used here to separate columns */
     margin-right: 8px;
     flex-direction: column;
 }
@@ -101,12 +106,6 @@ img {
 }
 .buyMax {
     width: 10em;
-}
-.compound:hover {
-    background-color: #3a5b99;
-}
-.power:hover {
-    background-color: #abaf42;
 }
 .powerUp {
     width: 12em;
@@ -131,6 +130,7 @@ img {
     margin-right: 5px;
 }
 /* Hover Actions */
+/*Class Based Hovers*/
 .prB:hover {
     background-color: #379337;
 }
@@ -161,9 +161,20 @@ img {
 .acB:hover {
     background-color: #37936d;
 }
+.compound:hover {
+    background-color: #3a5b99;
+}
+.power:hover {
+    background-color: #abaf42;
+}
+.pcB:hover {
+    background-color: #b0b835;
+}
+/*ID Based Hovers*/
 #delete:hover {
     background-color: #ad4242;
 }
+/*Elements and Isotopes*/
 #Hydrogen:hover {
     background-color: #adadad;
 }
@@ -213,7 +224,7 @@ img {
 #Lead212:hover {
     background-color: #632452;
 }
-
+/*Tab and Sub Tab Hovers*/
 #eB:hover {
     background-color: #3c9f45;
 }
@@ -221,9 +232,6 @@ img {
     background-color: #3a5b99;
 }
 #pB:hover {
-    background-color: #b0b835;
-}
-.pcB:hover {
     background-color: #b0b835;
 }
 #mB:hover {
@@ -247,15 +255,4 @@ img {
 #RaE:hover {
     background-color: #307e35;
 }
-#accel1UpB:hover, #accel2UpB:hover, #accel3UpB:hover {
-    background-color: #939137;
-}
-#accel1B:hover {
-   background-color: #379337; 
-}
-#accel2B:hover {
-    background-color: #45568f;
-}
-#accel3B:hover {
-    background-color: #934237;
-}
+/*Any other hovers*/
