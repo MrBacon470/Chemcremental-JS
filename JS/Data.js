@@ -50,7 +50,7 @@ function getDefaultObject() {
         currentSubTab: [0,0,0,0],
         currentElement: 0,
         settingsToggles: [true,true,true,true],
-        currentUpdate: 'v0.4.3d',
+        currentUpdate: 'v0.4.3e',
         devSpeed: 1,
     }
 }
@@ -67,9 +67,9 @@ function load() {
         createAlert('Welcome Back!','I detected your save is older than Beta 2.0 so it has been deleted because of major changes in newer updates')
         noConfirmDelete()
     }
-    else if(data.currentUpdate !== 'v0.4.3d') {
-        createAlert('Welcome Back!','The current version is Beta 4.3d<br>Check the changelog for more details')
-        data.currentUpdate = 'v0.4.3d' 
+    else if(data.currentUpdate !== 'v0.4.3e') {
+        createAlert('Welcome Back!','The current version is Beta 4.3e<br>Check the changelog for more details')
+        data.currentUpdate = 'v0.4.3e' 
     }
     //fixOldSaves()
 }
