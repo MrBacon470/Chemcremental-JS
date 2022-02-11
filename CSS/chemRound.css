@@ -1,6 +1,6 @@
 /*Fonts & Variables*/
 @font-face {
-    font-family: 'Monospace Typewriter';
+    font-family: 'Monospace-Typewriter';
     src: url('MonospaceTypewriter.ttf');
 }
 :root {
@@ -44,7 +44,7 @@
 /*Main Styles*/
 * {
     background-color: #444444;
-    font-family: 'Monospace Typewriter';
+    font-family: 'Monospace-Typewriter';
     color: whitesmoke;
 }
 hr {
