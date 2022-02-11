@@ -149,8 +149,8 @@
     </div>
     <div id="powerHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="subTabHolder">
-            <button id="pA`" class="subTabButton pcB" onclick="switchSubTab(0,3)" style="border: 3px solid #b0b835;">Power</button>
-            <button id="gA" class="subTabButton pcB" onclick="switchSubTab(1,3)" style="border: 3px solid #b0b835;">Generators</button>
+            <button id="pA`" class="subTabButton pcB" onclick="switchSubTab(0,3)">Power</button>
+            <button id="gA" class="subTabButton pcB" onclick="switchSubTab(1,3)">Generators</button>
         </div>
         <div id="powerArea" class="flexBox">
             <div id="powerArea" style="display: flex; flex-direction: row; align-items: center;">
@@ -158,13 +158,13 @@
                 <button id="generator" onclick="generatePower()" class="pcB">Generate Power<br>Requires 3 Propane & 1 Water<br>+0.00 Power</button>
                 <div style="display:flex; flex-direction: column;">
                     <div style="display: flex; flex-direction: row; margin-left: 30px; margin-top: 40px;">
-                        <button onclick="purchasePowerUp(0)" id="pu1" class="pcB powerUp" style="border: 5px solid #b0b835; ">Super Charge<br>Increase atom production by 2x<br>Cost: 5.00 Power<br>Level: 0.00</button>
+                        <button onclick="purchasePowerUp(0)" id="pu1" class="pcB powerUp">Super Charge<br>Increase atom production by 2x<br>Cost: 5.00 Power<br>Level: 0.00</button>
                     </div>
                     <div style="display: flex; flex-direction: row; margin-left: 30px; margin-top: 40px;">
-                        <button onclick="purchasePowerUp(1)" id="pu2" class="pcB powerUp" style="border: 5px solid #b0b835; ">Battery<br>Increase power capacity by 10<br>Cost: 5 Sulfuric Acid<br>Level: 0.00</button>
+                        <button onclick="purchasePowerUp(1)" id="pu2" class="pcB powerUp">Battery<br>Increase power capacity by 10<br>Cost: 5 Sulfuric Acid<br>Level: 0.00</button>
                     </div>
                     <div style="display: flex; flex-direction: row; margin-left: 30px; margin-top: 40px;">
-                        <button onclick="purchasePowerUp(2)" id="pu3" class="pcB powerUp" style="border: 5px solid #b0b835; ">Heat Shields<br>Increase power production by 0.1x<br>Cost: 5 Lead Gens<br>Level: 0.00</button>
+                        <button onclick="purchasePowerUp(2)" id="pu3" class="pcB powerUp">Heat Shields<br>Increase power production by 0.1x<br>Cost: 5 Lead Gens<br>Level: 0.00</button>
                     </div>
                 </div>
             </div>
@@ -480,7 +480,7 @@
             <button onclick="exportSave()" class="settings">Export Savefile to clipboard</button>
             <button onclick="save()" class="settings">Manually Save</button>
             <button onclick="importSave()" class="settings">Import Savefile</button>
-            <button onclick="deleteSave()" id="delete" style="border: 3px solid #ad4242;">Delete Savefile</button>
+            <button onclick="deleteSave()" id="delete">Delete Savefile</button>
         </div>
         <div style="margin-top: 5px; align-items: center;">
             <button onclick="toggleButton(0)" id="toggle1" class="settings">Melting Confirmation [ON]</button>

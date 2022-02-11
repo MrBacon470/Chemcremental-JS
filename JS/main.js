@@ -327,15 +327,12 @@ function prestigeConfirmation(i) {
 }
 
 function changeTheme(i) {
-    let themeSrcs = ['CSS/Chem.css','CSS/chemRound.css']
+    let themeSrcs = ['Chem','chemRound']
     let links = document.getElementsByTagName('link')
-    links[0].setAttribute('href', `${themeSrcs[i]}`)
-    if(data.currentTheme !== i) {
-        data.currentTheme = i;
-        save()
-        location.reload()
-    }
+    links[0].setAttribute('href', `CSS/${themeSrcs[i]}.css`)
+    data.currentTheme = i
 }
+changeTheme(data.currentTheme)
 /*
 function confirmVariable(i) {
     switch(i) {

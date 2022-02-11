@@ -204,12 +204,13 @@ const achievementTab = DOMCacheGetOrSet("achievementHolder")
 const acceleratorTab = DOMCacheGetOrSet("acceleratorHolder")
 let bodyStyles = window.getComputedStyle(document.body)
 const colorVariableIDs = ['settings','element','achievement','compound','power','melt','refinery','particle']
-const seperatorColors = []
-for(let i = 0; i < colorVariableIDs.length; i++) {
-    seperatorColors[i] = bodyStyles.getPropertyValue(`--${colorVariableIDs[i]}-tab-color`)
-}
+let seperatorColors = []
+
 
 function tabChangeHTML(){
+    for(let i = 0; i < colorVariableIDs.length; i++) {
+        seperatorColors[i] = bodyStyles.getPropertyValue(`--${colorVariableIDs[i]}-tab-color`)
+    }
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
     compoundTab.style.display = data.currentTab === 3 ? 'flex': 'none'   
     powerTab.style.display = data.currentTab === 4 ? 'flex' : 'none'

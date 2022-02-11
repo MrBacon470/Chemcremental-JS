@@ -320,6 +320,7 @@ button {
 /*Power Area Styles*/
 #generator { margin-top: 40px; border-color: var(--power-tab-color); width:18em; height: 30em; font-size: 15px; }
 .powerUp { width: 12em; height: 10em; }
+.pcB {border-color: var(--power-tab-color)}
 .pcB:hover { background-color: var(--power-tab-color); }
 #pB { border-color: var(--power-tab-color); }
 #pB:hover { background-color: var(--power-tab-color); }
