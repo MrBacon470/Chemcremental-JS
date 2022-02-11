@@ -51,6 +51,34 @@ function increaseIsotopes(x,i) {
 
 }
 
+function increasePower(i) {
+    if(data.fuelStored[i].gt(D(0))) {
+        switch(i) {
+            case 0:
+                data.powerStored = data.powerStored.plus((D(1).times(augmentBoosts[2].boost[2])).times(diff))
+                break
+            case 1:
+                data.powerStored = data.powerStored.plus((D(10).times(augmentBoosts[2].boost[2])).times(diff))
+                break
+            case 2:
+                data.powerStored = data.powerStored.plus((D(100).times(augmentBoosts[2].boost[2])).times(diff))
+                break
+            case 3:
+                data.powerStored = data.powerStored.plus((D(1e3).times(augmentBoosts[2].boost[2])).times(diff))
+                break
+        }
+    }
+
+     //Fuel consumption logic
+     for(let i = 0; i < 4; i++) {
+        if(data.fuelStored[i].gt(D(0))) 
+            data.fuelStored[i] = data.fuelStored[i].sub(D(1).times(diff))
+        
+        if(data.fuelStored[i].lt(D(0)))
+            data.fuelStored[i] = D(0)
+    }
+}
+
 function switchTab(i){
     data.currentTab = i
     let x=i-3
@@ -83,6 +111,9 @@ function mainLoop(){
     for(let i = 0; i < 8; i++) {
         increaseElements(data.elementGain[i].times(diff), i)
         increaseIsotopes(data.isotopeGain[i].times(diff), i)
+    }
+    for(let i = 0; i < 4; i++) {
+        increasePower(i)
     }
     if(data.corium.gte(D(1e38)) && data.alerted === false) {
         createAlert('You\'ve Reached the End Game for Now', 'Congrats! You\'ve either now hit or past 1.00e38 Corium<br>Which is the marker for the next layer, be patient 2? is coming soon')
@@ -173,7 +204,7 @@ function purchaseFuel(x) {
                 if(data.elements[1].level.gte(D(1)) && data.elements[0].level.gte(D(4))) {
                     data.elements[1].level = data.elements[1].level.sub(D(1))
                     data.elements[0].level = data.elements[0].level.sub(D(4))
-                    data.fuels[x] = data.fuels[x].add(D(1))
+                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
                 }
             }
             break;
@@ -183,7 +214,7 @@ function purchaseFuel(x) {
                     data.elements[1].level = data.elements[1].level.sub(D(12))
                     data.elements[0].level = data.elements[0].level.sub(D(6))
                     data.elements[2].level = data.elements[2].level.sub(D(1))
-                    data.fuels[x] = data.fuels[x].add(D(1))
+                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
                 }
             }
             break;
@@ -192,7 +223,7 @@ function purchaseFuel(x) {
                 if(data.elements[1].level.gte(D(15)) && data.elements[0].level.gte(D(28))) {
                     data.elements[1].level = data.elements[1].level.sub(D(15))
                     data.elements[0].level = data.elements[0].level.sub(D(28))
-                    data.fuels[x] = data.fuels[x].add(D(1))
+                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
                 }
             }
             break;
@@ -203,7 +234,7 @@ function purchaseFuel(x) {
                     data.elements[0].level = data.elements[0].level.sub(D(28))
                     data.elements[2].level = data.elements[2].level.sub(D(2))
                     data.elements[4].level = data.elements[4].level.sub(D(1))
-                    data.fuels[x] = data.fuels[x].add(D(1))
+                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
                 }
             }
             break;

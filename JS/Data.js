@@ -21,6 +21,7 @@ function getDefaultObject() {
         powerStored: D(0),
         powerUps: [D(0),D(0),D(0)],
         fuelStored: [D(0),D(0),D(0),D(0)],
+        generatorGain: [D(0),D(0),D(0),D(0)],
         //Melting
         corium: D(0),
         coriumMax: D(0),

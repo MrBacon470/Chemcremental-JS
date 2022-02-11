@@ -50,7 +50,16 @@ function updateHTML(){
         tabs[i].innerHTML = data.hasTab[i] ? tabNames[i] : '???'
     }
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
-    DOMCacheGetOrSet('powerText').innerHTML = data.power.gte(D(1e3)) ? `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts<br>Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`  : `${format(data.power)} / ${format(powerLimit)} Watts<br>Excess: ${format(data.powerStored)} Watts`
+    //Power Text
+    if(data.power.gte(D(1e3)) && data.powerStored.gte(D(1e3)))
+        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts<br>Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`
+    else if(data.power.gte(D(1e3)) && data.powerStored.lt(D(1e3)))
+        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts<br>Excess: ${format(data.powerStored)} Watts`
+    else if(data.power.lt(D(1e3)) && data.powerStored.gte(D(1e3)))
+        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power)} / ${format(powerLimit)} Watts<br>Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`
+    else 
+        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power)} / ${format(powerLimit)} Watts<br>Excess: ${format(data.powerStored)} Watts`
+    //Corium
     DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
     
     for(let i = 0; i < data.buyAmounts.length; i++)
@@ -101,10 +110,17 @@ function updateHTML(){
                 DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain.divide(D(1e3)))} Kilowatts` : "Generate Power<br>Req: 3 Propane + 1 Water"
             powerUpButton[0].innerHTML = powerCosts[0].gte(D(1e3)) ? `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0].divide(D(1e3)))} Kilowatts<br>Level: ${format(data.powerUps[0])}` : `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Watts<br>Level: ${format(data.powerUps[0])}`
             powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
-            powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 0.1x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
+            powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 1.5x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
         }
         else if(data.currentSubTab[3] === 1) {
+            DOMCacheGetOrSet('coalGenHolder').style.display = data.leptonUnlocks[0] === true ? 'flex' : 'none'
+            DOMCacheGetOrSet('petroleumGenHolder').style.display = data.leptonUnlocks[1] === true ? 'flex' : 'none'
+            DOMCacheGetOrSet('gasGenHolder').style.display = data.leptonUnlocks[2] === true ? 'flex' : 'none'
 
+            DOMCacheGetOrSet('methaneFuel').innerHTML = data.fuelStored[0].gt(D(0)) ? `Fuel: ${format(data.fuelStored[0])} Methane<br>Watts/s ${format(D(1).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[0])} Methane<br>Watts/s 0.00`
+            DOMCacheGetOrSet('coalFuel').innerHTML = data.fuelStored[1].gt(D(0)) ? `Fuel: ${format(data.fuelStored[1])} Coal<br>Watts/s ${format(D(10).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[1])} Methane<br>Watts/s 0.00`
+            DOMCacheGetOrSet('petroleumFuel').innerHTML = data.fuelStored[2].gt(D(0)) ? `Fuel: ${format(data.fuelStored[2])} Petroleum<br>Watts/s ${format(D(100).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[2])} Methane<br>Watts/s 0.00`
+            DOMCacheGetOrSet('gasFuel').innerHTML = data.fuelStored[3].gt(D(0)) ? `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>Watts/s ${format(D(1e3).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[3])} Methane<br>Watts/s 0.00`
         }
     }
     else if(data.currentTab === 5) {
@@ -147,9 +163,9 @@ function updateHTML(){
                 DOMCacheGetOrSet('shatterImage').style.backgroundColor = data.particles[0].electrons.gte(D(1e5)) ? '#379337' : '#934237'
                 DOMCacheGetOrSet('shatterGainText').innerHTML = `+${format(leptonsToGet[0])} Muons<br>+${format(leptonsToGet[1])} Taus<br><br>`
 
-                DOMCacheGetOrSet('lepUnlock1').innerHTML = data.leptonUnlocks[0] ? `Unlocked<br>No Extra Boost` : `Unlock Coal Generator<br>Cost: 250,000 Electrons`
-                DOMCacheGetOrSet('lepUnlock2').innerHTML = data.leptonUnlocks[1] ? `Unlocked<br>Power Capacity Buff: ${format(D(1).plus(Decimal.sqrt(data.particles[1].muons)))}x` : `Unlock Petroleum Generator<br>Cost: 250 Muons`
-                DOMCacheGetOrSet('lepUnlock3').innerHTML = data.leptonUnlocks[2] ? `Unlocked<br>Fueling Cost Decrease: ${format(D(1).plus(Decimal.sqrt(data.particles[1].taus.divide(D(1000)))))}x` : `Unlock Natural Gas Generator<br>Cost: 200 Taus`
+                DOMCacheGetOrSet('lepUnlock1').innerHTML = data.leptonUnlocks[0] === true ? `Unlocked<br>No Extra Boost` : `Unlock Coal Generator<br>Cost: 250,000 Electrons`
+                DOMCacheGetOrSet('lepUnlock2').innerHTML = data.leptonUnlocks[1] === true ? `Unlocked<br>Power Capacity Buff: ${format(D(1).plus(Decimal.sqrt(data.particles[1].muons)))}x` : `Unlock Petroleum Generator<br>Cost: 250 Muons`
+                DOMCacheGetOrSet('lepUnlock3').innerHTML = data.leptonUnlocks[2] === true ? `Unlocked<br>Fueling Cost Decrease: ${format(D(1).plus(Decimal.sqrt(data.particles[1].taus.divide(D(1000)))))}x` : `Unlock Natural Gas Generator<br>Cost: 200 Taus`
         }
         else if(data.currentSubTab[1] === 3) {
             //row1
@@ -209,6 +225,7 @@ const quarksHolder = DOMCacheGetOrSet('quarksHolder')
 //Settings Subs
 const settingsArea = DOMCacheGetOrSet("settingsArea")
 const creditsArea = DOMCacheGetOrSet("creditsArea")
+const roadmapArea = DOMCacheGetOrSet("roadmapArea")
 //Power Subs
 const powerArea = DOMCacheGetOrSet('powerArea')
 const generatorArea = DOMCacheGetOrSet('generatorArea')
@@ -223,6 +240,7 @@ function subTabChangeHTML() {
 
         settingsArea.style.display = data.currentSubTab[2] === 0 && data.currentTab === 0 ? 'flex' : 'none'
         creditsArea.style.display = data.currentSubTab[2] === 1  && data.currentTab === 0 ? 'flex' : 'none'
+        roadmapArea.style.display = data.currentSubTab[2] === 2 && data.currentTab === 0 ? 'flex' : 'none'
 
         powerArea.style.display = data.currentSubTab[3] === 0 && data.currentTab === 4 ? 'flex' : 'none'
         generatorArea.style.display = data.currentSubTab[3] === 1  && data.currentTab === 4 ? 'flex' : 'none'

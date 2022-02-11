@@ -1,7 +1,7 @@
 let powerGain = D(0)
 let powerBoosts = []
 let powerLimit = D(100).plus(powerBoosts[1])
-let powerCosts = [5,5,5]
+let powerCosts = [D(5),D(5),D(5)]
 
 function generatePower() {
     if(data.compounds[0].amt.lt(3) || data.compounds[1].amt.lt(1)) return
@@ -15,7 +15,7 @@ function generatePower() {
     if(data.power.gt(powerLimit))
         data.power = powerLimit
 }
-
+let percentUse = D(0)
 function updatePowerCosts() {
     if(data.power.lt(powerLimit) && data.powerStored.gt(D(0))) {
         let powerNeeded = powerLimit.minus(data.power)
@@ -29,10 +29,25 @@ function updatePowerCosts() {
     for(let x = 0; x < 3; x++) {
         powerCosts[x] = D(5).plus(Decimal.pow(D(2), data.powerUps[x]) - 1)
     }
+    if(data.buyAmounts[6] === 0.1)
+        percentUse = D(0.1)
+    else if(data.buyAmounts[6] === 0.25)
+        percentUse = D(0.25)
+    else if(data.buyAmounts[6] === 0.5)
+        percentUse = D(0.5)
+    else if(data.buyAmounts[6] === 1)
+        percentUse = D(1.0)
+
+   
+        
+    
+    
 }
 
 function fuelGenerator(i) {
-    
+    if(data.fuels[i].gt(D(0)))
+    data.fuelStored[i] = data.fuelStored[i].plus(data.fuels[i].times(percentUse))
+    data.fuels[i] = data.fuels[i].minus(data.fuels[i].times(percentUse))
 }
 
 function purchasePowerUp(i) {
