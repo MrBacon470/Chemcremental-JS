@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chemcremental JS</title>
-    <link rel="stylesheet" type="text/css" href="CSS/styles.css">
+    <link rel="stylesheet" type="text/css" href="CSS/chem.css">
     <link rel="shortcut icon" type="image/jpg" href="ChemLOGO.png"/>
 </head>
 <body>
@@ -21,8 +21,8 @@
             <h3 id="confirmTitle">Are you sure?</h3>
             <p id="confirmContent">New things have been added since last time</p>
             <div style="flex-direction: row;">
-                <button id="noConfirm" style="border: 2px solid rgb(156, 49, 49);">No!</button>
-                <button id="yesConfirm" style="border: 2px solid rgb(37, 170, 77);">Yes!</button>
+                <button id="noConfirm">No!</button>
+                <button id="yesConfirm">Yes!</button>
             </div>
             <br>
         </div>
@@ -30,59 +30,59 @@
     <div id="currenciesHolder" class="flexBox">
         <div id="powerTextHolder" style="display:flex; flex-direction: row; align-items: center;">
             <img src="CHEM Achieves/Resources/Power.png" style="width: 76px; height: 76px;">
-            <div id="powerText" class="header textOutline" style="color: #b0b835; text-align: center; margin-left: 5px;">Power: 0.00 / 100.00 </div>
+            <div id="powerText" class="header textOutline" style="text-align: center; margin-left: 5px;">Power: 0.00 / 100.00 </div>
         </div>
         <div id="coriumTextHolder" style="display:flex; flex-direction: row; align-items: center;">
             <img src="CHEM Achieves/Resources/Corium.png" style="width: 76px; height: 76px;">
-            <div id="coriumText" class="header textOutline" style="color: #68368a; text-align: center; margin-left: 5px;">Corium: 0.00<br>Boost: 1.00x</div>
+            <div id="coriumText" class="header textOutline" style="text-align: center; margin-left: 5px;">Corium: 0.00<br>Boost: 1.00x</div>
         </div>
         
     </div>
     <div id="tabHolder" class="flexBox" style="flex-direction: row; margin-top: 20px; ">
         <button id="2B" class="tabButton" style="border: 4px solid gray;">2?</button>
-        <button id="eB" class="tabButton" onclick="switchTab(1)" style="border: 4px solid #3c9f45;">Elements</button>
-        <button id="cB" class="tabButton" onclick="switchTab(3)" style="border: 4px solid #3a5b99;">Compounds</button>
-        <button id="pB" class="tabButton" onclick="switchTab(4)" style="border: 4px solid #b0b835;">Power</button>
-        <button id="mB" class="tabButton" onclick="switchTab(5)" style="border: 4px solid #68368a;">Melting</button>
-        <button id="rB" class="tabButton" onclick="switchTab(6)" style="border: 4px solid #583793;">Refinery</button>
-        <button id="acB" class="tabButton" onclick="switchTab(7)" style="border: 4px solid #37936d;">Particles</button>
+        <button id="eB" class="tabButton" onclick="switchTab(1)">Elements</button>
+        <button id="cB" class="tabButton" onclick="switchTab(3)">Compounds</button>
+        <button id="pB" class="tabButton" onclick="switchTab(4)">Power</button>
+        <button id="mB" class="tabButton" onclick="switchTab(5)">Melting</button>
+        <button id="rB" class="tabButton" onclick="switchTab(6)">Refinery</button>
+        <button id="acB" class="tabButton" onclick="switchTab(7)">Particles</button>
         <button id="aB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid #7fccff;text-align: center;">Achievements</button>
-        <button id="sB" class="tabButton" onclick="switchTab(0)" style="border: 4px solid #808080;">Settings</button>
+        <button id="sB" class="tabButton" onclick="switchTab(0)">Settings</button>
     </div>
     <hr id="tabSeperator" style="color: #3a5b99; border:solid 1px;">
     <div id="elementHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="subTabHolder">
-            <button id="ReE" class="subTabButton" onclick="switchSubTab(0,0)" style="border: 3px solid #3c9f45;">Regular</button>
-            <button id="RaE" class="subTabButton" onclick="switchSubTab(1,0)" style="border: 3px solid #307e35;">Isotopes</button>
+            <button id="ReE" class="subTabButton" onclick="switchSubTab(0,0)">Regular</button>
+            <button id="RaE" class="subTabButton" onclick="switchSubTab(1,0)">Isotopes</button>
         </div>
         
         <div id="regularElementsHolder" class="flexBox" style="margin-top: 2em;">
             <button onclick="toggleBuyAmount(0)" id="bA0" class="buyAmount">Buy Amount: 1</button>
         <div class="flexBox elementColumn" id="elementColumn1">
-            <button id="Hydrogen" class="elementButton" onclick="purchaseElement(0)" style="border: 3px solid #adadad">
+            <button id="Hydrogen" class="elementButton" onclick="purchaseElement(0)">
                 Hydrogen Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
-            <button id="Carbon" class="elementButton" onclick="purchaseElement(1)" style="border: 3px solid #ad4242">
+            <button id="Carbon" class="elementButton" onclick="purchaseElement(1)">
                 Carbon Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
-            <button id="Oxygen" class="elementButton" onclick="purchaseElement(2)" style="border: 3px solid #ae8042">
+            <button id="Oxygen" class="elementButton" onclick="purchaseElement(2)">
                 Oxygen Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
-            <button id="Fluorine" class="elementButton" onclick="purchaseElement(3)" style="border: 3px solid #abaf42">
+            <button id="Fluorine" class="elementButton" onclick="purchaseElement(3)">
                 Fluorine Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
         </div>
         <div class="flexBox elementColumn" id="elementColumn2">
-            <button id="Sulfur" class="elementButton" onclick="purchaseElement(4)" style="border: 3px solid #62af41">
+            <button id="Sulfur" class="elementButton" onclick="purchaseElement(4)">
                 Sulfur Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
-            <button id="Chlorine" class="elementButton" onclick="purchaseElement(5)" style="border: 3px solid #4182af">
+            <button id="Chlorine" class="elementButton" onclick="purchaseElement(5)">
                 Chlorine Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
-            <button id="Iron" class="elementButton" onclick="purchaseElement(6)" style="border: 3px solid #9541af">
+            <button id="Iron" class="elementButton" onclick="purchaseElement(6)">
                 Iron Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
-            <button id="Lead" class="elementButton" onclick="purchaseElement(7)" style="border: 3px solid #b04192">
+            <button id="Lead" class="elementButton" onclick="purchaseElement(7)"
                 Lead Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
         </div>
@@ -90,30 +90,30 @@
         <div id="isotopeElementsHolder" class="flexBox" style="margin-top: 2em;">
             <button onclick="toggleBuyAmount(2)" id="bA2" class="buyAmount">Buy Amount: 1</button>
         <div class="flexBox elementColumn" id="elementColumn1">
-            <button id="Hydrogen3" class="elementButton" onclick="purchaseIsotope(0)" style="border: 3px solid #636363">
+            <button id="Hydrogen3" class="elementButton" onclick="purchaseIsotope(0)">
                 H-3 Generator<br>Cost: 10 Lead | Level: 0
             </button>
-            <button id="Carbon14" class="elementButton" onclick="purchaseIsotope(1)" style="border: 3px solid #742c2c">
+            <button id="Carbon14" class="elementButton" onclick="purchaseIsotope(1)">
                 C-14 Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
-            <button id="Oxygen15" class="elementButton" onclick="purchaseIsotope(2)" style="border: 3px solid #694d27">
+            <button id="Oxygen15" class="elementButton" onclick="purchaseIsotope(2)">
                 O-15 Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
-            <button id="Fluorine18" class="elementButton" onclick="purchaseIsotope(3)" style="border: 3px solid #5f6123">
+            <button id="Fluorine18" class="elementButton" onclick="purchaseIsotope(3)">
                 F-18 Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
         </div>
         <div class="flexBox elementColumn" id="elementColumn2">
-            <button id="Sulfur35" class="elementButton" onclick="purchaseIsotope(4)" style="border: 3px solid #2a4b1c">
+            <button id="Sulfur35" class="elementButton" onclick="purchaseIsotope(4)">
                 S-35 Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
-            <button id="Chlorine37" class="elementButton" onclick="purchaseIsotope(5)" style="border: 3px solid #21435c">
+            <button id="Chlorine37" class="elementButton" onclick="purchaseIsotope(5)">
                 Cl-37 Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
-            <button id="Iron60" class="elementButton" onclick="purchaseIsotope(6)" style="border: 3px solid #4b2058">
+            <button id="Iron60" class="elementButton" onclick="purchaseIsotope(6)">
                 Fe-60 Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
-            <button id="Lead212" class="elementButton" onclick="purchaseIsotope(7)" style="border: 3px solid #632452">
+            <button id="Lead212" class="elementButton" onclick="purchaseIsotope(7)">
                 Pb-212 Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
         </div>
@@ -121,19 +121,19 @@
     </div>
     <div id="compoundHolder" class="flexBox holder">
         <button onclick="toggleBuyAmount(1)" id="bA1" class="buyAmount">Buy Amount: 1</button>
-            <button id="Propane" onclick="buyCompound(0)" class="compoundButton compound" style="border: 4px solid #3a5b99; font-size: 15px;">
+            <button id="Propane" onclick="buyCompound(0)" class="compoundButton compound">
                 Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
             </button>
-            <button id="Water" onclick="buyCompound(1)" class="compoundButton compound" style="border: 4px solid #3a5b99; font-size: 15px;">
+            <button id="Water" onclick="buyCompound(1)" class="compoundButton compound">
                 Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
             </button>
-            <button id="Sulfuric Acid" onclick="buyCompound(2)" class="compoundButton compound" style="border: 4px solid #3a5b99; font-size: 15px;">
+            <button id="Sulfuric Acid" onclick="buyCompound(2)" class="compoundButton compound">
                 Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
             </button>
-            <button id="Steel" onclick="buyCompound(3)" class="compoundButton compound" style="border: 4px solid #3a5b99; font-size: 15px;">
+            <button id="Steel" onclick="buyCompound(3)" class="compoundButton compound">
                 Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
             </button>
-            <button id="Chlorine Trifluoride" onclick="buyCompound(4)" class="compoundButton compound" style="border: 4px solid #3a5b99; font-size: 15px;">
+            <button id="Chlorine Trifluoride" onclick="buyCompound(4)" class="compoundButton compound">
                 Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
             </button>
         
@@ -146,16 +146,16 @@
         <div id="powerArea" class="flexBox">
             <div id="powerArea" style="display: flex; flex-direction: row; align-items: center;">
                 <button onclick="toggleBuyAmount(3)" id="bA3" class="buyAmount">Buy Amount: 1</button>
-                <button id="generator" onclick="generatePower()" class="power" style="margin-top: 40px; border: 5px solid #b0b835; width:18em; height: 30em; font-size: 15px;">Generate Power<br>Requires 3 Propane & 1 Water<br>+0.00 Power</button>
+                <button id="generator" onclick="generatePower()" class="pcB">Generate Power<br>Requires 3 Propane & 1 Water<br>+0.00 Power</button>
                 <div style="display:flex; flex-direction: column;">
                     <div style="display: flex; flex-direction: row; margin-left: 30px; margin-top: 40px;">
-                        <button onclick="purchasePowerUp(0)" id="pu1" class="power powerUp" style="border: 5px solid #b0b835; ">Super Charge<br>Increase atom production by 2x<br>Cost: 5.00 Power<br>Level: 0.00</button>
+                        <button onclick="purchasePowerUp(0)" id="pu1" class="pcB powerUp" style="border: 5px solid #b0b835; ">Super Charge<br>Increase atom production by 2x<br>Cost: 5.00 Power<br>Level: 0.00</button>
                     </div>
                     <div style="display: flex; flex-direction: row; margin-left: 30px; margin-top: 40px;">
-                        <button onclick="purchasePowerUp(1)" id="pu2" class="power powerUp" style="border: 5px solid #b0b835; ">Battery<br>Increase power capacity by 10<br>Cost: 5 Sulfuric Acid<br>Level: 0.00</button>
+                        <button onclick="purchasePowerUp(1)" id="pu2" class="pcB powerUp" style="border: 5px solid #b0b835; ">Battery<br>Increase power capacity by 10<br>Cost: 5 Sulfuric Acid<br>Level: 0.00</button>
                     </div>
                     <div style="display: flex; flex-direction: row; margin-left: 30px; margin-top: 40px;">
-                        <button onclick="purchasePowerUp(2)" id="pu3" class="power powerUp" style="border: 5px solid #b0b835; ">Heat Shields<br>Increase power production by 0.1x<br>Cost: 5 Lead Gens<br>Level: 0.00</button>
+                        <button onclick="purchasePowerUp(2)" id="pu3" class="pcB powerUp" style="border: 5px solid #b0b835; ">Heat Shields<br>Increase power production by 0.1x<br>Cost: 5 Lead Gens<br>Level: 0.00</button>
                     </div>
                 </div>
             </div>
@@ -460,24 +460,24 @@
     </div>
     <div id="settingsHolder" class="flexBox holder" style="display:flex; flex-direction: column;">
         <div id="subTabHolder">
-            <button id="sB" class="subTabButton" onclick="switchSubTab(0,2)" style="border: 3px solid gray;">Settings</button>
-            <button id="sB" class="subTabButton" onclick="switchSubTab(1,2)" style="border: 3px solid gray;">Credits</button>
-            <button id="sB" class="subTabButton" onclick="switchSubTab(2,2)" style="border: 3px solid gray;">Roadmap</button>
+            <button id="settB" class="subTabButton settings" onclick="switchSubTab(0,2)">Settings</button>
+            <button id="credB" class="subTabButton settings" onclick="switchSubTab(1,2)">Credits</button>
+            <button id="roadB" class="subTabButton settings" onclick="switchSubTab(2,2)">Roadmap</button>
         </div>
         
         <div id="settingsArea" class="flexBox holder" style="display: flex; flex-direction: column;">
         <div style="flex-direction: row;">
-            <button onclick="fullReset()" class="settings" style="border: 3px solid gray;">Export & Delete Savefile</button>
-            <button onclick="exportSave()" class="settings" style="border: 3px solid gray;">Export Savefile to clipboard</button>
-            <button onclick="save()" class="settings" style="border: 3px solid gray;">Manually Save</button>
-            <button onclick="importSave()" class="settings" style="border: 3px solid gray;">Import Savefile</button>
+            <button onclick="fullReset()" class="settings">Export & Delete Savefile</button>
+            <button onclick="exportSave()" class="settings">Export Savefile to clipboard</button>
+            <button onclick="save()" class="settings">Manually Save</button>
+            <button onclick="importSave()" class="settings">Import Savefile</button>
             <button onclick="deleteSave()" id="delete" style="border: 3px solid #ad4242;">Delete Savefile</button>
         </div>
         <div style="margin-top: 5px; align-items: center;">
-            <button onclick="toggleButton(0)" id="toggle1" class="settings" style="border: 3px solid gray;">Melting Confirmation [ON]</button>
-            <button onclick="toggleButton(2)" id="toggle3" class="settings" style="border: 3px solid gray;">Splitter Confirmation [ON]</button>
-            <button onclick="toggleButton(3)" id="toggle4" class="settings" style="border: 3px solid gray;">Splitter Confirmation [ON]</button>
-            <button onclick="toggleButton(1)" id="toggle2" class="settings" style="border: 3px solid gray;">Enable Offline Progress [ON]</button>
+            <button onclick="toggleButton(0)" id="toggle1" class="settings">Melting Confirmation [ON]</button>
+            <button onclick="toggleButton(2)" id="toggle3" class="settings">Splitter Confirmation [ON]</button>
+            <button onclick="toggleButton(3)" id="toggle4" class="settings">Splitter Confirmation [ON]</button>
+            <button onclick="toggleButton(1)" id="toggle2" class="settings">Enable Offline Progress [ON]</button>
         </div>
         <br>
         <div style="display:inline;">
@@ -489,7 +489,7 @@
         <h1>Changelog :D</h1>
         <h3>Current Version is β0.4.3e</h3>
         <br>
-        <hr style="border: solid 1px;">
+        <hr>
         <h3>Early Access Beta</h3>
         <br>
         <p>β0.4.3e - Attempting Modal Window Fix</p>
@@ -515,7 +515,7 @@
         <p>β0.1.2 - Corium Boost Effect Works + Working on Melt Upgrade Fix</p>
         <p>β0.1.1 - Corium Display and Melt Down Fix</p>
         <p>β0.1.0 - Early Access Launch</p>
-        <hr style="border: solid 1px;">
+        <hr>
         <h3>Pre-Release Development Alpha</h3>
         <br>
         <p>α0.0.9 - Melt Area Display Fixes</p>
@@ -555,14 +555,14 @@
             <h1>The Roadmap</h1>
             <h3 style="color: orange">Currently working on: CSS Rework & Styling Theme Creation</h3>
             <br>
-            <hr style="border: solid 1px;">
+            <hr>
             <h3 style="color: yellow">Planned Things</h3>
             <p>Second Prestige Layer</p>
             <p>Automation for almost all of first Layer</p>
             <p>Challenges (ties into second layer)</p>
             <p>Third Prestige Layer</p>
             <br>
-            <hr style="border: solid 1px;">
+            <hr>
             <h3 style="color: green">Completed</h3>
             <p>Power Generators</p>
             <p>Custom Modal Windows (almost all)</p>

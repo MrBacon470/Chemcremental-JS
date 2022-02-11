@@ -202,7 +202,13 @@ const settingTab = DOMCacheGetOrSet("settingsHolder")
 const refineryTab = DOMCacheGetOrSet("refineryHolder")
 const achievementTab = DOMCacheGetOrSet("achievementHolder")
 const acceleratorTab = DOMCacheGetOrSet("acceleratorHolder")
-const seperatorColors = ['808080','3c9f45','7fccff','3a5b99','b0b835','68368a','583793','37936d']
+let bodyStyles = window.getComputedStyle(document.body)
+const colorVariableIDs = ['settings','element','achievement','compound','power','melt','refinery','particle']
+const seperatorColors = []
+for(let i = 0; i < colorVariableIDs.length; i++) {
+    seperatorColors[i] = bodyStyles.getPropertyValue(`--${colorVariableIDs[i]}-tab-color`)
+}
+
 function tabChangeHTML(){
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
     compoundTab.style.display = data.currentTab === 3 ? 'flex': 'none'   
@@ -212,7 +218,7 @@ function tabChangeHTML(){
     achievementTab.style.display = data.currentTab === 2 ? 'flex' : 'none'
     refineryTab.style.display = data.currentTab === 6 ? 'flex' : 'none'
     acceleratorTab.style.display = data.currentTab === 7 ? 'flex' : 'none'
-    seperator.style.color = `#${seperatorColors[data.currentTab]}`
+    seperator.style.color = `${seperatorColors[data.currentTab]}`
 }
 //Elements Subs
 const regularElementHolder = DOMCacheGetOrSet('regularElementsHolder')
