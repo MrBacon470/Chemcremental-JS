@@ -46,7 +46,7 @@
         <button id="mB" class="tabButton" onclick="switchTab(5)">Melting</button>
         <button id="rB" class="tabButton" onclick="switchTab(6)">Refinery</button>
         <button id="acB" class="tabButton" onclick="switchTab(7)">Particles</button>
-        <button id="aB" class="tabButton" onclick="switchTab(2)" style="border: 4px solid #7fccff;text-align: center;">Achievements</button>
+        <button id="aB" class="tabButton" onclick="switchTab(2)">Achievements</button>
         <button id="sB" class="tabButton" onclick="switchTab(0)">Settings</button>
     </div>
     <hr id="tabSeperator" style="color: #3a5b99; border:solid 1px;">
@@ -187,62 +187,62 @@
     </div>
     <div id="meltingHolder" class="flexBox holder">
         <button onclick="toggleBuyAmount(4)" id="bA4" class="buyAmount">Buy Amount: 1</button>
-        <button id="meltDown" onclick="prestigeConfirmation('prestige')" class="melt" style="margin-top: 25px; border: 5px solid #68368a; margin-right: 50px; width:12em; height: 20em; font-size: 23px;">Melt Down<br>Create +0.00<br>Corium</button>
+        <button id="meltDown" onclick="prestigeConfirmation('prestige')" class="melt">Melt Down<br>Create +0.00<br>Corium</button>
         <div style="display:flex; flex-direction: column;">
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
-                <button onclick="purchaseMeltUp('m1')" id="cm1" class="melt powerUp" style="border: 5px solid #68368a; ">Increase Atom Production by 4x<br>Cost: 1.00e3<br>Level: 0.00</button>
+                <button onclick="purchaseMeltUp('m1')" id="cm1" class="melt powerUp">Increase Atom Production by 4x<br>Cost: 1.00e3<br>Level: 0.00</button>
             </div>
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
-                <button onclick="purchaseMeltUp('m2')" id="cm2" class="melt powerUp" style="border: 5px solid #68368a; ">Increase Compounds Created by 1.25x<br>Cost: 1.00e5<br>Level: 0.00</button>
+                <button onclick="purchaseMeltUp('m2')" id="cm2" class="melt powerUp">Increase Compounds Created by 1.25x<br>Cost: 1.00e5<br>Level: 0.00</button>
             </div>
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
-                <button onclick="purchaseMeltUp('m3')" id="cm3" class="melt powerUp" style="border: 5px solid #68368a; ">Increase Corium Produced On Melt<br>Cost: 1.00e10<br>Level: 0.00</button>
+                <button onclick="purchaseMeltUp('m3')" id="cm3" class="melt powerUp">Increase Corium Produced On Melt<br>Cost: 1.00e10<br>Level: 0.00</button>
             </div>
         </div>
         <div style="display:flex; flex-direction: column;">
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
-                <button onclick="purchaseMeltUp('s1')" id="cs1" class="melt powerUp" style="border: 5px solid #68368a; ">Currently Offline</button>
+                <button onclick="purchaseMeltUp('s1')" id="cs1" class="melt powerUp">Currently Offline</button>
             </div>
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
-                <button onclick="purchaseMeltUp('s2')" id="cs2" class="melt powerUp" style="border: 5px solid #68368a; ">Currently Offline</button>
+                <button onclick="purchaseMeltUp('s2')" id="cs2" class="melt powerUp">Currently Offline</button>
             </div>
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
-                <button onclick="" id="cs3" class="melt powerUp" style="border: 5px solid #68368a; ">Currently Offline</button>
+                <button onclick="" id="cs3" class="melt powerUp">Currently Offline</button>
             </div>
         </div>
     </div>
     <div id="refineryHolder" class="flexBox holder" style="flex-direction: column;">
         <div style="display: flex; flex-direction: row; align-items: center; margin-bottom: 5px;">
             <button onclick="toggleBuyAmount(5)" id="bA5" class="buyAmount">Buy Amount: 1</button>
-            <button id="Methane" onclick="purchaseFuel(0)" class="compoundButton refinery" style="border: 4px solid #583793; font-size: 15px;">
+            <button id="Methane" onclick="purchaseFuel(0)" class="compoundButton refinery">
                 Methane<br>C-H4<br>Total 0.00
             </button>
-            <button id="Coal" onclick="purchaseFuel(1)" class="compoundButton refinery" style="border: 4px solid #583793; font-size: 15px;">
+            <button id="Coal" onclick="purchaseFuel(1)" class="compoundButton refinery">
                 Coal<br>C12-H6-O<br>Total: 0.00
             </button>
-            <button id="Petroleum" onclick="purchaseFuel(2)" class="compoundButton refinery" style="border: 4px solid #583793; font-size: 15px;">
+            <button id="Petroleum" onclick="purchaseFuel(2)" class="compoundButton refinery">
                 Petroleum<br>C15-H28<br>Total: 0.00
             </button>
-            <button id="Natural Gas" onclick="purchaseFuel(3)" class="compoundButton refinery" style="border: 4px solid #583793; font-size: 15px;">
+            <button id="Natural Gas" onclick="purchaseFuel(3)" class="compoundButton refinery">
                 Natural Gas<br>C10-H28-O2-S<br>Total 1.00
             </button>
         </div>
     </div>
     <div id="acceleratorHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="subTabHolder">
-            <button id="sA`" class="subTabButton acB" onclick="switchSubTab(0,1)" style="border: 3px solid #37936d;">Splitter</button>
-            <button id="fA" class="subTabButton acB" onclick="switchSubTab(1,1)" style="border: 3px solid #37936d;">Fundamental</button>
-            <button id="lpA" class="subTabButton acB" onclick="switchSubTab(2,1)" style="border: 3px solid #37936d;">Leptons</button>
-            <button id="quA" class="subTabButton acB" onclick="switchSubTab(3,1)" style="display: none; border: 3px solid #37936d;">Quarks</button>
+            <button id="sA`" class="subTabButton acB" onclick="switchSubTab(0,1)">Splitter</button>
+            <button id="fA" class="subTabButton acB" onclick="switchSubTab(1,1)">Fundamental</button>
+            <button id="lpA" class="subTabButton acB" onclick="switchSubTab(2,1)">Leptons</button>
+            <button id="quA" class="subTabButton acB" onclick="switchSubTab(3,1)" style="display: none;">Quarks</button>
         </div>
         <div id="splitterHolder" class="holder" style="flex-direction: row;">
             
             <div id="particleText" style="margin-top: 5px; margin-right: 25px;">
                 Particle Gain<hr>
                 <p id="gainMult">1.00x</p>
-                <p id="protonGain" style="color: #379337;">+1.00 Protons</p>
-                <p id="neutronGain" style="color: #45568f;">+1.00 Neutrons</p>
-                <p id="electronGain" style="color: #934237;">+1.00 Electrons</p>
+                <p id="protonGain">+1.00 Protons</p>
+                <p id="neutronGain">+1.00 Neutrons</p>
+                <p id="electronGain">+1.00 Electrons</p>
             </div>
             <div id="splitButtonHolder" class="flexBox" style="margin-left: 25px; flex-direction: column;">
                 <img id="splitImage" src="CHEM Achieves/Split.png" style="width: 76px; height: 76px;" onclick="prestigeConfirmation('split')">
@@ -251,35 +251,35 @@
         </div>
         <div id="fundamentalHolder" style="display:flex; flex-direction: column; align-items: center;">
             <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
-                <p id="protonsText" style="color: #379337; margin-left: 25px; margin-right: 25px;">1.00 Protons</p>
-                <p id="neutronsText" style="color: #45568f; margin-left: 25px; margin-right: 25px;">1.00 Neutrons</p>
-                <p id="electronsText" style="color: #934237; margin-left: 25px; margin-right: 25px;">1.00 Electrons</p>
+                <p id="protonsText" style="margin-left: 25px; margin-right: 25px;">1.00 Protons</p>
+                <p id="neutronsText" style="margin-left: 25px; margin-right: 25px;">1.00 Neutrons</p>
+                <p id="electronsText" style="margin-left: 25px; margin-right: 25px;">1.00 Electrons</p>
             </div>
             <div>Augments</div>
             <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
                 <div style="display:flex;flex-direction: column; margin-right: 10px;">
-                    <button id="proAug1" onclick="buyAugment(0,0)" class="prB" style="border: 2px solid #379337; margin-bottom: 10px;">Augment I</button>
-                    <button id="proAug2" onclick="buyAugment(0,1)" class="prB" style="border: 2px solid #379337; margin-bottom: 10px;">Augment II</button>
-                    <button id="proAug3" onclick="buyAugment(0,2)" class="prB" style="border: 2px solid #379337; margin-bottom: 10px;">Augment III</button>
+                    <button id="proAug1" onclick="buyAugment(0,0)" class="prB">Augment I</button>
+                    <button id="proAug2" onclick="buyAugment(0,1)" class="prB">Augment II</button>
+                    <button id="proAug3" onclick="buyAugment(0,2)" class="prB">Augment III</button>
                 </div>
                 <div style="display:flex;flex-direction: column;margin-right: 10px;">
-                    <button id="neuAug1" onclick="buyAugment(1,0)" class="neB" style="border: 2px solid #45568f; margin-bottom: 10px;">Augment I</button>
-                    <button id="neuAug2" onclick="buyAugment(1,1)" class="neB" style="border: 2px solid #45568f; margin-bottom: 10px;">Augment II</button>
-                    <button id="neuAug3" onclick="buyAugment(1,2)" class="neB" style="border: 2px solid #45568f; margin-bottom: 10px;">Augment III</button>
+                    <button id="neuAug1" onclick="buyAugment(1,0)" class="neB">Augment I</button>
+                    <button id="neuAug2" onclick="buyAugment(1,1)" class="neB">Augment II</button>
+                    <button id="neuAug3" onclick="buyAugment(1,2)" class="neB">Augment III</button>
                 </div>
                 <div style="display:flex;flex-direction: column;">
-                    <button id="eleAug1" onclick="buyAugment(2,0)" class="elB" style="border: 2px solid #934237; margin-bottom: 10px;">Augment I</button>
-                    <button id="eleAug2" onclick="buyAugment(2,1)" class="elB" style="border: 2px solid #934237; margin-bottom: 10px;">Augment II</button>
-                    <button id="eleAug3" onclick="buyAugment(2,2)" class="elB" style="border: 2px solid #934237; margin-bottom: 10px;">Augment III</button>
+                    <button id="eleAug1" onclick="buyAugment(2,0)" class="elB">Augment I</button>
+                    <button id="eleAug2" onclick="buyAugment(2,1)" class="elB">Augment II</button>
+                    <button id="eleAug3" onclick="buyAugment(2,2)" class="elB">Augment III</button>
                 </div>
             </div>
         </div>
         <div id="leptonsHolder" style="display:flex; flex-direction: row;">
             <div style="display: flex; flex-direction: column; align-items: center;">
                 <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
-                    <p id="electronsText2" style="color: #934237; margin-left: 25px; margin-right: 25px;">1.00 Electrons(e<sup style="color: #934237">-</sup>)</p>
-                    <p id="muonsText" style="color: #8f6945; margin-left: 25px; margin-right: 25px;">1.00 Muons(μ<sup style="color: #8f6945">-</sup>)</p>
-                    <p id="tausText" style="color: #8d9337; margin-left: 25px; margin-right: 25px;">1.00 Tau(τ<sup style="color: #8d9337">-</sup>)</p>
+                    <p id="electronsText2" style=" margin-left: 25px; margin-right: 25px;">1.00 Electrons(e<sup style="color: #934237">-</sup>)</p>
+                    <p id="muonsText" style="margin-left: 25px; margin-right: 25px;">1.00 Muons(μ<sup style="color: #8f6945">-</sup>)</p>
+                    <p id="tausText" style="margin-left: 25px; margin-right: 25px;">1.00 Tau(τ<sup style="color: #8d9337">-</sup>)</p>
                 </div> 
                 <div style="display:flex;flex-direction: row;">
                     <button id="lepUnlock1" onclick="buyLepton(0)" class="elB" style="border: 2px solid #934237; margin-right: 10px;">Unlock Coal Generator<br>Cost: 250,000 Electrons</button>
