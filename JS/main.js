@@ -326,6 +326,16 @@ function prestigeConfirmation(i) {
     }
 }
 
+function changeTheme(i) {
+    let themeSrcs = ['CSS/Chem.css','CSS/chemRound.css']
+    let links = document.getElementsByTagName('link')
+    links[0].setAttribute('href', `${themeSrcs[i]}`)
+    if(data.currentTheme !== i) {
+        data.currentTheme = i;
+        save()
+        location.reload()
+    }
+}
 /*
 function confirmVariable(i) {
     switch(i) {

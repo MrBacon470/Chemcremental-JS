@@ -5,7 +5,7 @@
 }
 :root {
     --border-width: 4px;
-    --border-radius: 0px;
+    --border-radius: 4px;
     /*Colors*/
     /*Tabs*/
     --element-tab-color: #3c9f45;
@@ -57,8 +57,9 @@ img {
     margin-bottom: 3px;
 }
 button {
-    border: var(--border-width) solid;
+    border-width: var(--border-radius);
     border-radius: var(--border-radius);
+    border-style: solid;
 }
 #powerText {color: var(--power-tab-color)}
 #coriumText {color: var(--melt-tab-color)}
