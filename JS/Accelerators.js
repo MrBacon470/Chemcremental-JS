@@ -1,13 +1,12 @@
-let accelUpCosts = [{a:D(5e3),b:D(1e4),c:D(0),d:D(0)},{a:D(1e4),b:D(5e4),c:D(1e4),d:D(0)},{a:D(5e4),b:D(1e5),c:D(5e4),d:D(1e4)}]
-let accelCosts = [D(0),D(0),D(0)]
-let accelCostBase = [D(1e3),D(1e4),D(5e3)]
-let accelBoosts = [{a:D(0),b:D(0),c:D(0),d:D(0)},{a:D(0),b:D(0),c:D(0),d:D(0)},{a:D(0),b:D(0),c:D(0),d:D(0)}]
-let gainMult = D(0)
+let augmentCosts = [D(2.5e4),D(5e4),D(1.5e5)]
+let unlockCosts = [D(0),D(0),D(0)]
+let augmentBoosts = [{boost:[D(0),D(0),D(0)]},{boost:[D(0),D(0),D(0)]},{boost:[D(0),D(0),D(0)]}]
+let leptonsToGet = [D(0),D(0)]
 const particleGains = [D(1),D(6),D(8),D(9),D(16),D(17),D(26),D(82)]
 let sumOfLevels = data.elements[0].level.plus(data.elements[1].level).plus(data.elements[2].level).plus(data.elements[3].level).plus(data.elements[4].level).plus(data.elements[5].level).plus(data.elements[6].level).plus(data.elements[7].level)
 function updateAccelStuff() {
    sumOfLevels = data.elements[0].level.plus(data.elements[1].level).plus(data.elements[2].level).plus(data.elements[3].level).plus(data.elements[4].level).plus(data.elements[5].level).plus(data.elements[6].level).plus(data.elements[7].level)
-   gainMult = sumOfLevels.divide(data.previousSum).lte(D(1)) ? D(1) : (sumOfLevels.divide(data.previousSum))
+   gainMult = sumOfLevels.divide(data.previousSum).lte(D(1)) ? (sumOfLevels.divide(data.previousSum)) : (sumOfLevels.divide(data.previousSum))
    for(let i = 0; i < 3; i++)
    data.particlesToGet[i] = D(0)
    for(let i = 0; i < 8; i++) {
@@ -17,28 +16,32 @@ function updateAccelStuff() {
         
             data.particlesToGet[2] = data.particlesToGet[2].plus(particleGains[i].times(data.elements[i].level))
    }
-
-   for(let i = 0; i < 3; i++) {
-        accelCosts[i] = accelCostBase[i].times(Decimal.pow(1.15, data.accelerators[i].level))
-        accelBoosts[i].a = D(1).plus(Decimal.sqrt(data.accelerators[i].level.times(D(2))))
-        accelBoosts[i].b = D(1).plus(Decimal.sqrt(data.accelerators[i].level.times(D(3))))
-        accelBoosts[i].c = D(1).plus(Decimal.sqrt(data.accelerators[i].level.times(D(4))))
-        accelBoosts[i].d = D(1).plus(Decimal.sqrt(data.accelerators[i].level.times(D(6))))
-   }
     
-
+   leptonsToGet[0] = Decimal.sqrt(data.particles[0].electrons.divide(D(105)))
+   leptonsToGet[1] = Decimal.sqrt(data.particles[0].electrons.divide(D(1776)))
 }
-
+const particleDivisor = [D(1e3),D(1e2),D(1e1)]
+function calculateAugmentBoost() {
+    for(let i = 0; i < 3; i++) {
+        for(let j = 0; j < 3; j++) {
+            if(i === 0)
+                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].protons.divide(particleDivisor[j]))) : D(1)
+            if(i === 1)
+                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].neutrons.divide(particleDivisor[j]))) : D(1)
+            if(i === 2)
+                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].electrons.divide(particleDivisor[j]))) : D(1)
+        }
+    }
+}
 
 function splitElements() {
     if(sumOfElements.lte(data.previousSum)) return
-    if(data.settingsToggles[2])
-        if(!confirm('Are you sure you want to do this? It will reset all elements generators')) return
 
     data.previousSum = sumOfLevels
 
-    for(let i = 0; i < 3; i++)
-        data.particles[i] = data.particles[i].plus(data.particlesToGet[i])
+    data.particles[0].protons = data.particles[0].protons.plus(data.particlesToGet[0])
+    data.particles[0].neutrons = data.particles[0].neutrons.plus(data.particlesToGet[1])
+    data.particles[0].electrons = data.particles[0].electrons.plus(data.particlesToGet[2])
     
     for(let i = 7; i > -1; i--) {
         data.elements[i].level = D(0)
@@ -51,56 +54,55 @@ function splitElements() {
         data.particlesToGet[i] = D(0)
 }
 
-function accelerate(i) {
-    if(data.particles[i].lt(accelCosts[i])) return
+function shatterElectrons() {
+    if(data.particles[0].electrons.lt(D(1e5))) return
 
-    data.particles[i] = data.particles[i].sub(accelCosts[i])
-    data.accelerators[i].level = data.accelerators[i].level.add(D(1))
+    data.particles[1].muons = data.particles[1].muons.add(leptonsToGet[0])
+    data.particles[1].taus = data.particles[1].taus.add(leptonsToGet[1])
+    data.particles[0].electrons = D(0)
 }
 
-function upgradeAccel(i) {
-    if(data.accelerators[i].upgradeLevel.eq(D(3))) return
-    if(data.compounds[3].amt.lt(accelUpCosts[data.accelerators[i].upgradeLevel].a)) return
-    if(data.particles[0].lt(accelUpCosts[data.accelerators[i].upgradeLevel].b)) return
-    if(data.particles[1].lt(accelUpCosts[data.accelerators[i].upgradeLevel].c)) return
-    if(data.particles[2].lt(accelUpCosts[data.accelerators[i].upgradeLevel].d)) return
-
-    data.compounds[3].amt = data.compounds[3].amt.minus(accelUpCosts[data.accelerators[i].upgradeLevel].a)
-    data.particles[0] = data.particles[0].minus(accelUpCosts[data.accelerators[i].upgradeLevel].b)
-    data.particles[1] = data.particles[1].minus(accelUpCosts[data.accelerators[i].upgradeLevel].c)
-    data.particles[2] = data.particles[2].minus(accelUpCosts[data.accelerators[i].upgradeLevel].d)
-    data.accelerators[i].upgradeLevel = data.accelerators[i].upgradeLevel.plus(D(1))
+function buyAugment(a,b) {
+    switch(a) {
+        case 0:
+            if(data.particles[0].protons.lt(augmentCosts[b]) || data.augments[a].unlocked[b] === true) return
+            data.particles[0].protons = data.particles[0].protons.sub(augmentCosts[b])
+            data.augments[a].unlocked[b] = true
+            break
+        case 1:
+            if(data.particles[0].neutrons.lt(augmentCosts[b]) || data.augments[a].unlocked[b] === true) return
+            data.particles[0].neutrons = data.particles[0].neutrons.sub(augmentCosts[b])
+            data.augments[a].unlocked[b] = true
+            break
+        case 2:
+            if(data.particles[0].electrons.lt(augmentCosts[b]) || data.augments[a].unlocked[b] === true) return
+            data.particles[0].electrons = data.particles[0].electrons.sub(augmentCosts[b])
+            data.augments[a].unlocked[b] = true
+            break
+        case 3:
+            if(data.particles[0].electrons.lt(augmentCosts[b]) || data.augments[a].unlocked[b] === true) return
+            data.particles[0].electrons = data.particles[0].electrons.sub(augmentCosts[b])
+            data.augments[a].unlocked[b] = true
+            break
+    }
 }
 
-for(let i = 0; i < 3; i++) {
-    DOMCacheGetOrSet(`accel${i+1}UpB`).addEventListener('mouseover', () => acceleratorHover(i+4))
-    DOMCacheGetOrSet(`accel${i+1}UpB`).addEventListener('click', () => upgradeAccel(i))
-    DOMCacheGetOrSet(`accel${i+1}B`).addEventListener('mouseover', () => acceleratorHover(i+1))
-    DOMCacheGetOrSet(`accel${i+1}B`).addEventListener('click', () => accelerate(i))
-}
-
-function acceleratorHover(i) {
-    currencyDisplayIndex = i
-    /*
-    switch(i) {
-        case 'ac1':
-            DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[0].level.eq(data.accelerators[0].lvlCap) ? `Max Level` :`Accelerate Cost<br>${format(accelCosts[0])} Protons`
+function buyLepton(a) {
+    switch(a) {
+        case 0:
+            if(data.particles[0].electrons.lt(D(2.5e5)) || data.leptonUnlocks[a] === true) return 
+            data.particles[0].electrons = data.particles[0].electrons.sub(D(2.5e5))
+            data.leptonUnlocks[a] = true
             break
-        case 'ac2':
-            DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[1].level.eq(data.accelerators[1].lvlCap) ? `Max Level` :`Accelerate Cost<br>${format(accelCosts[1])} Neutrons`
+        case 0:
+            if(data.particles[1].muons.lt(D(250)) || data.leptonUnlocks[a] === true) return 
+            data.particles[1].muons = data.particles[1].muons.sub(D(250))
+            data.leptonUnlocks[a] = true
             break
-        case 'ac3':
-            DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[2].level.eq(data.accelerators[2].lvlCap) ? `Max Level` :`Accelerate Cost<br>${format(accelCosts[2])} Electrons`
+        case 0:
+            if(data.particles[1].taus.lt(D(200)) || data.leptonUnlocks[a] === true) return 
+            data.particles[1].taus = data.particles[1].taus.sub(D(2.5e5))
+            data.leptonUnlocks[a] = true
             break
-        case 'up1':
-            DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[0].upgradeLevel.eq(D(3)) ? 'Maxed Out' : `Current Level: ${toPlaces()}/4Upgrade Cost<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].a)} Steel<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].b)} Protons<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].c)} Neutrons<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].d)} Electrons`
-            break
-        case 'up2':
-            DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[1].upgradeLevel.eq(D(3)) ? 'Maxed Out' : `Upgrade Cost<br>${format(accelUpCosts[data.accelerators[1].upgradeLevel].a)} Steel<br>${format(accelUpCosts[data.accelerators[1].upgradeLevel].b)} Protons<br>${format(accelUpCosts[data.accelerators[1].upgradeLevel].c)} Neutrons<br>${format(accelUpCosts[data.accelerators[1].upgradeLevel].d)} Electrons`
-            break
-        case 'up3':
-            DOMCacheGetOrSet('accelUpgradeText').innerHTML = data.accelerators[0].upgradeLevel.eq(D(3)) ? 'Maxed Out' : `Upgrade Cost<br>${format(accelUpCosts[data.accelerators[2].upgradeLevel].a)} Steel<br>${format(accelUpCosts[data.accelerators[2].upgradeLevel].b)} Protons<br>${format(accelUpCosts[data.accelerators[2].upgradeLevel].c)} Neutrons<br>${format(accelUpCosts[data.accelerators[0].upgradeLevel].d)} Electrons`
-            break
-    }    
-    */
+    }
 }

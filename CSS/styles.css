@@ -1,6 +1,7 @@
+/*General Stuff*/
 * {
     background-color: #444444;
-    font-family: 'Monospace Typewriter';
+    font-family: 'Monospace-Typewriter';
     color: whitesmoke;
 }
 hr {
@@ -12,44 +13,57 @@ img {
     margin-right: 3px;
     margin-bottom: 3px;
 }
-#confirmWrapper {
+/*Fonts*/
+@font-face {
+    font-family: 'Monospace-Typewriter';
+    src: url('MonospaceTypewriter.ttf');
+}
+@font-face {
+    font-family: 'Monaco';
+    src: url('Monaco.ttf');
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('Roboto-Regular.ttf');
+}
+/*Custom Modal Styling*/
+#modalContainer {
+    display: none;
     position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-    align-items: center;
-    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6969;
+    padding: 5px;
+    border: 4px solid #ad4242;
+}
+#alert {
+    height: 100%;
+    display: none;
+    align-content: center;
+    text-align: center;
 }
 #confirm {
-    max-width: 500px;
-    background: #646464;
-    border: 4px solid #ffffff;
-    font-size: 16px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
-    padding: 5px;
+    height: 100%;
+    display: none;
+    align-content: center;
+    text-align: center;
 }
-#confirmB:hover {
-    background-color: green;
-}
-#cancelB:hover {
-    background-color: red;
-}
+/*Styling Classes*/
 .header {
     margin-right: 30px;
     margin-left: 30px;
     font-size: 30px;
+     
+}
+.textOutline {
     text-shadow:
     -1px -1px 0 #000,
     1px -1px 0 #000,
     -1px 1px 0 #000,
-    1px 1px 0 #000; 
+    1px 1px 0 #000;
 }
-@font-face {
-    font-family: 'Monospace Typewriter';
-    src: url('MonospaceTypewriter.ttf');
-}
+
 .tabButton {
     margin-left: 5px;
     margin-right: 5px;
@@ -60,7 +74,7 @@ img {
 .subTabButton {
     margin-left: 5px;
     margin-right: 5px;
-    width: 7.5em;
+    width: 8em;
     height: 3em;
     text-align: center;
 }
@@ -75,14 +89,11 @@ img {
     width: 26em;
     height: 5em;
 }
-/* change this to row so it can hold multiple columns in a row lineup, if that makes sense */
 .holder {
     margin-top: 25px;
     flex-direction: row;
 }
-/* elements you want to be in a column will be contained in one of these */
 .elementColumn{
-    /* margin is used here to separate columns */
     margin-right: 8px;
     flex-direction: column;
 }
@@ -95,12 +106,6 @@ img {
 }
 .buyMax {
     width: 10em;
-}
-.compound:hover {
-    background-color: #3a5b99;
-}
-.power:hover {
-    background-color: #abaf42;
 }
 .powerUp {
     width: 12em;
@@ -125,6 +130,22 @@ img {
     margin-right: 5px;
 }
 /* Hover Actions */
+/*Class Based Hovers*/
+.prB:hover {
+    background-color: #379337;
+}
+.neB:hover {
+    background-color: #45568f;
+}
+.elB:hover {
+    background-color: #934237;
+}
+.muB:hover {
+    background-color: #8f6945;
+}
+.taB:hover {
+    background-color: #8d9337;
+}
 .melt:hover {
     background-color: #68368a;
 }
@@ -140,9 +161,20 @@ img {
 .acB:hover {
     background-color: #37936d;
 }
+.compound:hover {
+    background-color: #3a5b99;
+}
+.power:hover {
+    background-color: #abaf42;
+}
+.pcB:hover {
+    background-color: #b0b835;
+}
+/*ID Based Hovers*/
 #delete:hover {
     background-color: #ad4242;
 }
+/*Elements and Isotopes*/
 #Hydrogen:hover {
     background-color: #adadad;
 }
@@ -192,7 +224,7 @@ img {
 #Lead212:hover {
     background-color: #632452;
 }
-
+/*Tab and Sub Tab Hovers*/
 #eB:hover {
     background-color: #3c9f45;
 }
@@ -204,9 +236,6 @@ img {
 }
 #mB:hover {
     background-color: #68368a;
-}
-#fB:hover {
-    background-color: #9f3c3c;
 }
 #sB:hover {
     background-color: gray;
@@ -226,15 +255,4 @@ img {
 #RaE:hover {
     background-color: #307e35;
 }
-#accel1UpB:hover, #accel2UpB:hover, #accel3UpB:hover {
-    background-color: #939137;
-}
-#accel1B:hover {
-   background-color: #379337; 
-}
-#accel2B:hover {
-    background-color: #45568f;
-}
-#accel3B:hover {
-    background-color: #934237;
-}
+/*Any other hovers*/

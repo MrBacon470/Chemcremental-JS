@@ -2,7 +2,7 @@ const D = x => new Decimal(x)
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
-        buyAmounts: [1,1,1,1,1],
+        buyAmounts: [1,1,1,1,1,1,1],
         //Elements
         elements: [{amt:D(10),name:"Hydrogen",level:D(0),max:D(0)},{amt:D(0),name:"Carbon",level:D(0),max:D(0)},{amt:D(0),name:"Oxygen",
         level:D(0),max:D(0)},{amt:D(0),name:"Fluorine",level:D(0),max:D(0)},{amt:D(0),name:"Sulfur",level:D(0),max:D(0)},{amt:D(0),name:"Chlorine",
@@ -12,33 +12,45 @@ function getDefaultObject() {
         level:D(0),max:D(0)},{amt:D(0),name:"F-18",level:D(0),max:D(0)},{amt:D(0),name:"S-35",level:D(0),max:D(0)},{amt:D(0),name:"Cl-37",
         level:D(0),max:D(0)},{amt:D(0),name:"Fe-60",level:D(0),max:D(0)},{amt:D(0),name:"Pb-212",level:D(0),max:D(0)}],
         isotopeGain: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
-        compounds: [{amt:D(0),name:"Propane",cost:"C<sub>3</sub>H<sub>8</sub>"},{amt:D(0),name:"Water",cost:"H<sub>2</sub>0"},
-        {amt:D(0),name:"Sulfuric Acid",cost:"H<sub>2</sub>SO<sub>4</sub>"},{amt:D(0),name:"Steel",cost:"FeC"},
-        {amt:D(0),name:"Chlorine Trifluoride",cost:"ClF<sub>3</sub>"}],
+        //Compounds
+        compounds: [{amt:D(0),name:"Propane",cost:"C3H8"},{amt:D(0),name:"Water",cost:"H20"},
+        {amt:D(0),name:"Sulfuric Acid",cost:"H2SO4"},{amt:D(0),name:"Steel",cost:"FeC"},
+        {amt:D(0),name:"Chlorine Trifluoride",cost:"ClF3"}],
+        //Power
         power: D(0),
         powerStored: D(0),
         powerUps: [D(0),D(0),D(0)],
+        fuelStored: [D(0),D(0),D(0),D(0)],
+        generatorGain: [D(0),D(0),D(0),D(0)],
+        //Melting
         corium: D(0),
         coriumMax: D(0),
         coriumMultUps: [D(0),D(0),D(0)],
         coriumSingUps: [false,false,false],
-        refineryCurrencies: [D(0), D(0), D(0)],
+        //Refinery
+        fuels: [D(0),D(0),D(0),D(0)],
+        //Particles
         particlesToGet: [D(0),D(0),D(0)],
-        particles: [D(0),D(0),D(0)],
+        particles: [{name:'theBigThree',protons:D(0),neutrons:D(0),electrons:D(0)},{name:'leptons',muons:D(0),taus:D(0)},{name:'quarks',quarks:[D(0),D(0),D(0),D(0),D(0),D(0)]}],
         previousSum: D(1),
-        accelerators: [{name:'Protons',level:D(0),upgradeLevel:D(0),lvlCap:D(25)},{name:'Neutrons',level:D(0),upgradeLevel:D(0),lvlCap:D(25)},{name:'Electrons',level:D(0),upgradeLevel:D(0),lvlCap:D(25)}],
+        augments: [{unlocked:[false,false,false]},{unlocked:[false,false,false]},{unlocked:[false,false,false]}],
+        leptonUnlocks: [false,false,false],
+        //Achievements
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"Fe",unlocked:[false,false,false,false,false,false,false,false]},{name:"Pb",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"Pr",unlocked:[false,false,false,false]},{name:"Wt",unlocked:[false,false,false,false]},{name:"Sa",unlocked:[false,false,false,false]},{name:"Sl",unlocked:[false,false,false,false]},{name:"Cf",unlocked:[false,false,false,false]},
-        {name:"Pw",unlocked:[false,false,false,false]},{name:"Co",unlocked:[false,false,false,false]}],
+        {name:"Pw",unlocked:[false,false,false,false]},{name:"Co",unlocked:[false,false,false,false]},{name:"Pro",unlocked:[false,false,false,false]},{name:"Neu",unlocked:[false,false,false,false]},
+        {name:"Ele",unlocked:[false,false,false,false]},{name:"Muo",unlocked:[false,false,false,false]},{name:"Tau",unlocked:[false,false,false,false]}],
+        //Settings things
+        alerted: false,
         hasTab: [false, false, false, false, false],
         time: Date.now(),
         currentTab: 1,
-        currentSubTab: [0,0,0],
+        currentSubTab: [0,0,0,0],
         currentElement: 0,
-        settingsToggles: [true,true,true],
-        currentUpdate: 'v0.4.3b',
+        settingsToggles: [true,true,true,true],
+        currentUpdate: 'v0.4.3d',
         devSpeed: 1,
     }
 }
@@ -52,11 +64,12 @@ function load() {
     if (savedata !== undefined) fixSave(data, savedata)
     if(data.currentUpdate === 'v0.1.0' || data.currentUpdate === 'v0.1.1' || data.currentUpdate === 'v0.1.2' || data.currentUpdate === 'v0.1.3' || data.currentUpdate === 'v0.1.4') {
         alert(`Welcome Back! The Current Version is v0.4.3b, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
+        createAlert('Welcome Back!','I detected your save is older than Beta 2.0 so it has been deleted because of major changes in newer updates')
         noConfirmDelete()
     }
-    else if(data.currentUpdate !== 'v0.4.3b') {
-        alert(`Welcome Back! The current version is v0.4.3b`)
-        data.currentUpdate = 'v0.4.3b' 
+    else if(data.currentUpdate !== 'v0.4.3d') {
+        createAlert('Welcome Back!','The current version is Beta 4.3d<br>Check the changelog for more details')
+        data.currentUpdate = 'v0.4.3d' 
     }
     //fixOldSaves()
 }
@@ -112,6 +125,7 @@ window.onload = function (){
 function fullReset(){
     exportSave()
     window.localStorage.removeItem('chemJSSave')
+    prevAmount = D(0)
     location.reload()
 }
 function deleteSave(){

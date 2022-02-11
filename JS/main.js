@@ -8,16 +8,8 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(powerBoosts[0])
             data.elementGain[i] = data.elementGain[i].times(coriumMultBoosts[0])
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
-            if(data.accelerators[2].level.gt(D(0)) && data.accelerators[2].upgradeLevel.gte(D(3)))
-                data.elementGain[i] = data.elementGain[i].times(D(1).add((Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))).times(accelBoosts[2].d)))
-            else
-                data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
-            if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(0)))
-                data.elementGain[i] = data.elementGain[i].times(accelBoosts[0].a)
-            if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(1)))
-                data.elementGain[i] = data.elementGain[i].times(accelBoosts[0].b)
-            if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(3)))
-                data.elementGain[i] = data.elementGain[i].times(accelBoosts[0].d)
+            data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[0])
+            data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[2])
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
@@ -26,23 +18,17 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(D(1).add(powerBoosts[0]))
             data.elementGain[i] = data.elementGain[i].times(D(1).add(coriumMultBoosts[0]))
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
-            data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
-            if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(3)))
-                data.elementGain[i] = data.elementGain[i].times(accelBoosts[0].d)
-            if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(0)))
-                data.elementGain[i] = data.elementGain[i].times(accelBoosts[0].a)
+            data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[0])
         }
 
         if(i === 7) {
             //data.elementGain[i] = (data.elements[i].level.times(compoundBoosts[0].add(compoundBoosts[3]).add(powerBoosts[0]).add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax))))
             data.isotopeGain[i] = data.isotopes[i].level.times(D(1).add(Decimal.sqrt(data.coriumMax)))
-            data.isotopeGain[i] = data.isotopeGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
             data.isotopeGain[i] = data.isotopes[i].level.times(D(1).add(Decimal.sqrt(data.isotopes[i + 1].max)))
             data.isotopeGain[i] = data.isotopeGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
-            data.isotopeGain[i] = data.isotopeGain[i].times(D(1).add(Decimal.sqrt(data.refineryCurrencies[2].times(D(2)))))
         }
     }
     //for(let i = 0; i < 8; i++)
@@ -65,6 +51,34 @@ function increaseIsotopes(x,i) {
 
 }
 
+function increasePower(i) {
+    if(data.fuelStored[i].gt(D(0))) {
+        switch(i) {
+            case 0:
+                data.powerStored = data.powerStored.plus((D(1).times(augmentBoosts[2].boost[2])).times(diff))
+                break
+            case 1:
+                data.powerStored = data.powerStored.plus((D(10).times(augmentBoosts[2].boost[2])).times(diff))
+                break
+            case 2:
+                data.powerStored = data.powerStored.plus((D(100).times(augmentBoosts[2].boost[2])).times(diff))
+                break
+            case 3:
+                data.powerStored = data.powerStored.plus((D(1e3).times(augmentBoosts[2].boost[2])).times(diff))
+                break
+        }
+    }
+
+     //Fuel consumption logic
+     for(let i = 0; i < 4; i++) {
+        if(data.fuelStored[i].gt(D(0))) 
+            data.fuelStored[i] = data.fuelStored[i].sub(D(1).times(diff))
+        
+        if(data.fuelStored[i].lt(D(0)))
+            data.fuelStored[i] = D(0)
+    }
+}
+
 function switchTab(i){
     data.currentTab = i
     let x=i-3
@@ -78,7 +92,6 @@ function switchSubTab(i,x){
     subTabChangeHTML()
 }
 let sumOfElements = D(0)
-let shardsToGet = D(0), fragmentsToGet = D(0), coinsToGet = D(0)
 let diff
 function mainLoop(){
     diff = data.settingsToggles[1]?(Date.now()-data.time)*data.devSpeed/1000:getRandom(0.048, 0.053)*data.devSpeed
@@ -86,6 +99,7 @@ function mainLoop(){
     //Functions Here
     updateBoosts()
     updateAccelStuff()
+    calculateAugmentBoost()
     updateHTML()
     updateAchievementHTML()
     updateCosts()
@@ -98,31 +112,24 @@ function mainLoop(){
         increaseElements(data.elementGain[i].times(diff), i)
         increaseIsotopes(data.isotopeGain[i].times(diff), i)
     }
-        
+    for(let i = 0; i < 4; i++) {
+        increasePower(i)
+    }
+    if(data.corium.gte(D(1e38)) && data.alerted === false) {
+        createAlert('You\'ve Reached the End Game for Now', 'Congrats! You\'ve either now hit or past 1.00e38 Corium<br>Which is the marker for the next layer, be patient 2? is coming soon')
+        data.alerted = true
+    }
     powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(0)))
-        powerGain = powerGain.times(accelBoosts[2].a)
+    powerGain = powerGain.times(augmentBoosts[2].boost[0])
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Corium
     coriumToGet = D(0)
     coriumToGet = D(1).add(Decimal.sqrt(sumOfElements / D(1e6)).times(coriumMultBoosts[2]))
     coriumToGet = coriumToGet.times(compoundBoosts[4])
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(0)))
-        coriumToGet = coriumToGet.times(accelBoosts[1].a)
+    coriumToGet = coriumToGet.times(augmentBoosts[1].boost[0])
     //Misc stuff
     if(data.elements[0].amt.lt(D(10)) && data.elements[0].level.lt(D(1)))
         data.elements[0].amt = D(10)
-    shardsToGet = Decimal.sqrt(sumOfElements.divide(D(1e8)))
-    fragmentsToGet = Decimal.sqrt(data.refineryCurrencies[0].divide(D(1e5)))
-    coinsToGet = Decimal.sqrt(data.refineryCurrencies[1].divide(D(1e3)))
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(1))) {
-        shardsToGet = shardsToGet.times(accelBoosts[2].b)
-        fragmentsToGet = fragmentsToGet.times(accelBoosts[2].b)
-        coinsToGet = coinsToGet.times(accelBoosts[2].b)
-    }
-    for(let i = 0; i < 3; i++) {
-        data.accelerators[i].lvlCap = D(25).plus(D(25).times(data.accelerators[i].upgradeLevel))
-    }
 }
 function updateBoosts() {
     for(let i = 0; i < 5; i++) {
@@ -131,8 +138,7 @@ function updateBoosts() {
         else
         compoundBoosts[i] = D(1)
 
-        if(data.accelerators[0].level.gt(D(0)) && data.accelerators[0].upgradeLevel.gte(D(2)))
-            compoundBoosts[i] = compoundBoosts[i].times(accelBoosts[0].c)
+        compoundBoosts[i] = compoundBoosts[i].times(augmentBoosts[0].boost[2])
     }
     for(let i = 0; i < 3; i++) {
         let boosts = [D(2), D(10), D(0.1)]
@@ -144,8 +150,6 @@ function updateBoosts() {
             else
                 powerBoosts[0] = D(1)
     }
-    if(data.accelerators[2].level.gt(D(0)) && data.accelerators[2].upgradeLevel.gte(D(2)))
-        powerBoosts[0] = powerBoosts[0].times(accelBoosts[2].c)
     /*
     powerBoosts[0] = data.powerUps[0] === D(0) ? D(1) : D(2).times(data.powerUps[0])
     powerBoosts[1] = D(10).times(data.powerUps[1])
@@ -159,54 +163,169 @@ function updateBoosts() {
         else
             coriumMultBoosts[i] = D(1)
 
+        
     }
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(1)))
-        coriumMultBoosts[0] = coriumMultBoosts[0].times(accelBoosts[1].b)
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(2)))
-        coriumMultBoosts[1] = coriumMultBoosts[1].times(accelBoosts[1].c)
-    if(data.accelerators[1].level.gt(D(0)) && data.accelerators[1].upgradeLevel.gte(D(3)))
-        coriumMultBoosts[2] = coriumMultBoosts[2].times(accelBoosts[1].d)
+    coriumMultBoosts[0] = coriumMultBoosts[0].times(augmentBoosts[1].boost[1])
+        coriumMultBoosts[1] = coriumMultBoosts[1].times(augmentBoosts[1].boost[2])
 }
 
 function toggleBuyAmount(i) {
-    if(data.buyAmounts[i] === 1)
-        data.buyAmounts[i] = 10
-    else if(data.buyAmounts[i] === 10)
-        data.buyAmounts[i] = 100
-    else if(data.buyAmounts[i] === 100)
-        data.buyAmounts[i] = 1000
-    else if(data.buyAmounts[i] === 1000)
-        data.buyAmounts[i] = 1
+    if(i !== 6) {
+        if(data.buyAmounts[i] === 1)
+            data.buyAmounts[i] = 10
+        else if(data.buyAmounts[i] === 10)
+            data.buyAmounts[i] = 100
+        else if(data.buyAmounts[i] === 100)
+            data.buyAmounts[i] = 1000
+        else if(data.buyAmounts[i] === 1000)
+            data.buyAmounts[i] = 1
+    }
+    else {
+        if(data.buyAmounts[i] === .1)
+            data.buyAmounts[i] = .25
+        else if(data.buyAmounts[i] === .25)
+            data.buyAmounts[i] = .5
+        else if(data.buyAmounts[i] === .5)
+            data.buyAmounts[i] = 1.0
+        else if(data.buyAmounts[i] === 1.0)
+            data.buyAmounts[i] = .1
+    }
+    
 }
 
 function toggleButton(i){
     data.settingsToggles[i] = !data.settingsToggles[i]
 }
 
-function refine(i) {
-    switch(i) {
+function purchaseFuel(x) {
+    switch(x) {
         case 0:
-            if(sumOfElements.gte(D(1e8))) {
-                data.refineryCurrencies[0] = data.refineryCurrencies[0].plus(shardsToGet)
-                shardsToGet = D(0)
+            for(let i = 0; i < data.buyAmounts[5]; i++) {
+                if(data.elements[1].level.gte(D(1)) && data.elements[0].level.gte(D(4))) {
+                    data.elements[1].level = data.elements[1].level.sub(D(1))
+                    data.elements[0].level = data.elements[0].level.sub(D(4))
+                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
+                }
             }
             break;
         case 1:
-            if(data.refineryCurrencies[0].gte(D(1e5))) {
-                data.refineryCurrencies[1] = data.refineryCurrencies[1].plus(fragmentsToGet)
-                data.refineryCurrencies[0] = D(0)
-                fragmentsToGet = D(0)
+            for(let i = 0; i < data.buyAmounts[5]; i++) {
+                if(data.elements[1].level.gte(D(12)) && data.elements[0].level.gte(D(6)) && data.elements[2].level.gte(D(1))) {
+                    data.elements[1].level = data.elements[1].level.sub(D(12))
+                    data.elements[0].level = data.elements[0].level.sub(D(6))
+                    data.elements[2].level = data.elements[2].level.sub(D(1))
+                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
+                }
             }
             break;
         case 2:
-            if(data.refineryCurrencies[1].gte(D(1e3))) {
-                data.refineryCurrencies[2] = data.refineryCurrencies[2].plus(coinsToGet)
-                data.refineryCurrencies[1] = D(0)
-                coinsToGet = D(0)
+            for(let i = 0; i < data.buyAmounts[5]; i++) {
+                if(data.elements[1].level.gte(D(15)) && data.elements[0].level.gte(D(28))) {
+                    data.elements[1].level = data.elements[1].level.sub(D(15))
+                    data.elements[0].level = data.elements[0].level.sub(D(28))
+                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
+                }
+            }
+            break;
+        case 3:
+            for(let i = 0; i < data.buyAmounts[5]; i++) {
+                if(data.elements[1].level.gte(D(10)) && data.elements[0].level.gte(D(28)) && data.elements[2].level.gte(D(2)) && data.elements[4].level.gte(D(1))) {
+                    data.elements[1].level = data.elements[1].level.sub(D(10))
+                    data.elements[0].level = data.elements[0].level.sub(D(28))
+                    data.elements[2].level = data.elements[2].level.sub(D(2))
+                    data.elements[4].level = data.elements[4].level.sub(D(1))
+                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
+                }
             }
             break;
     }
 }
+
+function closeModal(i) {
+    switch(i) {
+        case 0:
+            DOMCacheGetOrSet('alert').style.display = 'none'
+            DOMCacheGetOrSet('modalContainer').style.display = 'none'
+            break
+    }
+}
+
+function createAlert(a,b) {
+    DOMCacheGetOrSet('modalContainer').style.border = '4px solid #ad4242'
+    DOMCacheGetOrSet('alertTitle').innerHTML = a
+    DOMCacheGetOrSet('alertContent').innerHTML = b
+    DOMCacheGetOrSet('alert').style.display = 'block'
+    DOMCacheGetOrSet('modalContainer').style.display = 'block'
+}
+
+function createConfirmation(a) {
+    clearConfirmationListeners()
+    switch(a) {
+        case 'prestige':
+            DOMCacheGetOrSet('modalContainer').style.border = '4px solid #68368a'
+            DOMCacheGetOrSet('confirmTitle').innerHTML = 'Are you sure you want to prestige?'
+            DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all previous layers in exchange for Corium'
+            DOMCacheGetOrSet('confirm').style.display = 'block'
+            DOMCacheGetOrSet('modalContainer').style.display = 'block'
+            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('yesConfirm').addEventListener('click', () => {meltDown(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            break
+        case 'split':
+            DOMCacheGetOrSet('modalContainer').style.border = '4px solid #37936d'
+            DOMCacheGetOrSet('confirmTitle').innerHTML = 'Are you sure you want to split?'
+            DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all element generators'
+            DOMCacheGetOrSet('confirm').style.display = 'block'
+            DOMCacheGetOrSet('modalContainer').style.display = 'block'
+            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('yesConfirm').addEventListener('click', () => {splitElements(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            break
+        case 'shatter':
+            DOMCacheGetOrSet('modalContainer').style.border = '4px solid #37936d'
+            DOMCacheGetOrSet('confirmTitle').innerHTML = 'Are you sure you want to shatter?'
+            DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all electrons'
+            DOMCacheGetOrSet('confirm').style.display = 'block'
+            DOMCacheGetOrSet('modalContainer').style.display = 'block'
+            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('yesConfirm').addEventListener('click', () => {shatterElectrons(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+    }
+}
+
+function clearConfirmationListeners() {
+    let old_element = document.getElementById("noConfirm");
+    let new_element = old_element.cloneNode(true);
+    old_element.parentNode.replaceChild(new_element, old_element);
+    
+    let old_element2 = document.getElementById("yesConfirm");
+    let new_element2 = old_element2.cloneNode(true);
+    old_element2.parentNode.replaceChild(new_element2, old_element2);
+}
+
+function prestigeConfirmation(i) {
+    switch(i) {
+        case 'prestige':
+            if(sumOfElements.lt(D(1e8))) return
+            if(data.settingsToggles[0])
+                createConfirmation('prestige')
+            else
+                meltDown()
+            break
+        case 'split':
+            if(data.previousSum.gte(sumOfLevels)) return
+            if(data.settingsToggles[2])
+                createConfirmation('split')
+            else
+                splitElements()
+            break
+        case 'shatter':
+            if(data.particles[0].electrons.lt(D(1e5))) return
+            if(data.settingsToggles[3])
+                createConfirmation('shatter')
+            else
+                shatterElectrons()
+            break
+    }
+}
+
 /*
 function confirmVariable(i) {
     switch(i) {
