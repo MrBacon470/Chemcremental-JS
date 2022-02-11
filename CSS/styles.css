@@ -27,7 +27,7 @@ img {
     src: url('Roboto-Regular.ttf');
 }
 /*Custom Modal Styling*/
-.modalContainer {
+#modalContainer {
     display: none;
     position: fixed;
     top: 50%;

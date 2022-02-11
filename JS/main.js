@@ -251,40 +251,40 @@ function closeModal(i) {
 }
 
 function createAlert(a,b) {
-    DOMCacheGetOrSet('modalContainer').style.border = '4px solid #ad4242'
-    DOMCacheGetOrSet('alertTitle').innerHTML = a
-    DOMCacheGetOrSet('alertContent').innerHTML = b
-    DOMCacheGetOrSet('alert').style.display = 'block'
-    DOMCacheGetOrSet('modalContainer').style.display = 'block'
+    document.getElementById('modalContainer').style.border = '4px solid #ad4242'
+    document.getElementById('alertTitle').innerHTML = a
+    document.getElementById('alertContent').innerHTML = b
+    document.getElementById('alert').style.display = 'block'
+    document.getElementById('modalContainer').style.display = 'block'
 }
 
 function createConfirmation(a) {
     clearConfirmationListeners()
     switch(a) {
         case 'prestige':
-            DOMCacheGetOrSet('modalContainer').style.border = '4px solid #68368a'
-            DOMCacheGetOrSet('confirmTitle').innerHTML = 'Are you sure you want to prestige?'
-            DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all previous layers in exchange for Corium'
-            DOMCacheGetOrSet('confirm').style.display = 'block'
-            DOMCacheGetOrSet('modalContainer').style.display = 'block'
+            document.getElementById('modalContainer').style.border = '4px solid #68368a'
+            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to prestige?'
+            document.getElementById('confirmContent').innerHTML = 'This will reset all previous layers in exchange for Corium'
+            document.getElementById('confirm').style.display = 'block'
+            document.getElementById('modalContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             document.getElementById('yesConfirm').addEventListener('click', () => {meltDown(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             break
         case 'split':
-            DOMCacheGetOrSet('modalContainer').style.border = '4px solid #37936d'
-            DOMCacheGetOrSet('confirmTitle').innerHTML = 'Are you sure you want to split?'
-            DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all element generators'
-            DOMCacheGetOrSet('confirm').style.display = 'block'
-            DOMCacheGetOrSet('modalContainer').style.display = 'block'
+            document.getElementById('modalContainer').style.border = '4px solid #37936d'
+            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to split?'
+            document.getElementById('confirmContent').innerHTML = 'This will reset all element generators'
+            document.getElementById('confirm').style.display = 'block'
+            document.getElementById('modalContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             document.getElementById('yesConfirm').addEventListener('click', () => {splitElements(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             break
         case 'shatter':
-            DOMCacheGetOrSet('modalContainer').style.border = '4px solid #37936d'
-            DOMCacheGetOrSet('confirmTitle').innerHTML = 'Are you sure you want to shatter?'
-            DOMCacheGetOrSet('confirmContent').innerHTML = 'This will reset all electrons'
-            DOMCacheGetOrSet('confirm').style.display = 'block'
-            DOMCacheGetOrSet('modalContainer').style.display = 'block'
+            document.getElementById('modalContainer').style.border = '4px solid #37936d'
+            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to shatter?'
+            document.getElementById('confirmContent').innerHTML = 'This will reset all electrons'
+            document.getElementById('confirm').style.display = 'block'
+            document.getElementById('modalContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             document.getElementById('yesConfirm').addEventListener('click', () => {shatterElectrons(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
     }
