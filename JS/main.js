@@ -334,7 +334,7 @@ function openThemePicker() {
     document.getElementById('buttonHolder').style.display = 'flex'
 }
 //Theme Stuff
-let themeSrcs = ['Chem','chemRound','dark']
+let themeSrcs = ['chem','chemRound','dark']
 const themeButtons = []
 for(let i = 0; i < themeSrcs.length; i++)
     themeButtons[i] = document.getElementById(`theme${i+1}`)
