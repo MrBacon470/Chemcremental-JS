@@ -317,7 +317,7 @@
             </div>
         </div>
     </div>
-    <div id="acceleratorHolder" class="flexBox holder" style="flex-direction: column;">
+    <div id="radiationHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="subTabHolder">
             <button id="irrA`" class="subTabButton radB" onclick="switchSubTab(0,4)">Irridiate</button>
             <button id="resA" class="subTabButton radB" onclick="switchSubTab(1,4)">Research</button>
@@ -326,18 +326,23 @@
         </div>
         <div id="splitterHolder" class="holder" style="flex-direction: row;">
             <div id="particleText" style="margin-top: 5px; margin-right: 25px;">
-                Particle Gain<hr>
+                Radiation gain<hr>
                 <p id="gainMult">1.00x</p>
-                <p id="protonGain">+1.00 Protons</p>
-                <p id="neutronGain">+1.00 Neutrons</p>
-                <p id="electronGain">+1.00 Electrons</p>
-            </div>
-            <div id="splitButtonHolder" class="flexBox" style="margin-left: 25px; flex-direction: column;">
-                <img id="splitImage" src="CHEM Achieves/Split.png" style="width: 76px; height: 76px;" onclick="prestigeConfirmation('split')">
-                <div style="color: #c52424; text-align: center;">Notice<br>Multiplier must be >1.00x<br>to split elements<br><br>Multiplier can be reset by melting down</div>
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Resources/alpha.png" style="height: 32px; width: 32px;">
+                    <p id="alphaGainText" style="justify-content:center; text-align:center">+1.00 Alpha Particles (α)</p>
+                </div>
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Resources/beta.png" style="height: 32px; width: 32px;">
+                    <p id="betaGainText" style="justify-content:center; text-align:center">+1.00 Beta Particles (β)</p>
+                </div>
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Resources/gamma.png" style="height: 32px; width: 32px;">
+                    <p id="gammaGainText" style="justify-content:center; text-align:center">+1.00 Gamma Particles (γ)</p>
+                </div>
             </div>
         </div>
-        <div id="fundamentalHolder" style="display:flex; flex-direction: column; align-items: center;">
+        <div id="researchArea" style="display:flex; flex-direction: column; align-items: center;">
             <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
                 <p id="protonsText" style="margin-left: 25px; margin-right: 25px;">1.00 Protons</p>
                 <p id="neutronsText" style="margin-left: 25px; margin-right: 25px;">1.00 Neutrons</p>
@@ -363,6 +368,7 @@
             </div>
         </div>
     </div>
+    
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="percentageText">Achievements Unlocked: 42/64 (22.22%)</div>
         <div>Current Endgame: 1.00e38 Corium+</div>
