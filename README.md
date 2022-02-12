@@ -11,3 +11,5 @@ Different Balancing Changes
 Background Hover dissapears behind subscripts<br>
 Tab Background remains gray after unlock until refreshed<br>
 Note: Game will remain in beta until after the second layer is implemented
+# Wanna make a custom theme for the game
+Look no further find the help file []()
