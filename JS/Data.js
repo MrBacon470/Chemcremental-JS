@@ -43,6 +43,7 @@ function getDefaultObject() {
         {name:"Pw",unlocked:[false,false,false,false]},{name:"Co",unlocked:[false,false,false,false]},{name:"Pro",unlocked:[false,false,false,false]},{name:"Neu",unlocked:[false,false,false,false]},
         {name:"Ele",unlocked:[false,false,false,false]},{name:"Muo",unlocked:[false,false,false,false]},{name:"Tau",unlocked:[false,false,false,false]}],
         //Settings things
+        currentTheme: 0,
         alerted: false,
         hasTab: [false, false, false, false, false],
         time: Date.now(),
@@ -50,7 +51,7 @@ function getDefaultObject() {
         currentSubTab: [0,0,0,0],
         currentElement: 0,
         settingsToggles: [true,true,true,true],
-        currentUpdate: 'v0.4.3e',
+        currentUpdate: 'v0.4.3f',
         devSpeed: 1,
     }
 }
@@ -67,9 +68,9 @@ function load() {
         createAlert('Welcome Back!','I detected your save is older than Beta 2.0 so it has been deleted because of major changes in newer updates')
         noConfirmDelete()
     }
-    else if(data.currentUpdate !== 'v0.4.3e') {
-        createAlert('Welcome Back!','The current version is Beta 4.3e<br>Check the changelog for more details')
-        data.currentUpdate = 'v0.4.3e' 
+    else if(data.currentUpdate !== 'v0.4.3f') {
+        createAlert('Welcome Back!','The current version is Beta 4.3f<br>Check the changelog for more details')
+        data.currentUpdate = 'v0.4.3f' 
     }
     //fixOldSaves()
 }

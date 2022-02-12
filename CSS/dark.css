@@ -1,0 +1,358 @@
+/*Fonts & Variables*/
+@font-face {
+    font-family: 'Monospace Typewriter';
+    src: url('MonospaceTypewriter.ttf');
+}
+:root {
+    --border-width: 4px;
+    --border-radius: 0px;
+    /*Colors*/
+    /*Tabs*/
+    --element-tab-color: #3c9f45;
+    --isotope-subtab-color: #307e35;
+    --compound-tab-color: #3a5b99;
+    --power-tab-color: #b0b835;
+    --melt-tab-color: #68368a;
+    --settings-tab-color: #808080;
+    --achievement-tab-color: #7fccff;
+    --refinery-tab-color: #583793;
+    --particle-tab-color: #37936d;
+    /*Particle Colors*/
+    --proton-color: #379337;
+    --neutron-color: #45568f;
+    --electron-color: #934237;
+    --muon-color: #8f6945;
+    --tau-color: #8d9337;
+    /*Element & Isotope Colors*/
+    --hydrogen-color: #adadad;
+    --hydrogen3-color: #636363;
+    --carbon-color: #ad4242;
+    --carbon14-color: #742c2c;
+    --oxygen-color: #ae8042;
+    --oxygen15-color: #694d27;
+    --fluorine-color: #abaf42;
+    --fluorine18-color: #5f6123;
+    --sulfur-color: #62af41;
+    --sulfur35-color: #2a4b1c;
+    --chlorine-color: #4182af;
+    --chlorine37-color: #21435c;
+    --iron-color: #9541af;
+    --iron60-color: #4b2058;
+    --lead-color: #b04192;
+    --lead212-color: #632452;
+}
+/*Main Styles*/
+* {
+    background-color: black;
+    font-family: 'Monospace Typewriter';
+    color: whitesmoke;
+}
+hr {
+    border: 1px solid;
+}
+img {
+    margin-left: 3px;
+    margin-top: 3px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+}
+button {
+    border: var(--border-width) solid;
+    border-radius: var(--border-radius);
+}
+#powerText {color: var(--power-tab-color)}
+#coriumText {color: var(--melt-tab-color)}
+/*Custom Modal Styles*/
+#modalContainer {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6969;
+    padding: 5px;
+    border: 4px solid #ad4242;
+}
+#themeSelector {
+    height: 100%;
+    display: none;
+    align-content: center;
+    text-align: center;
+}
+#buttonHolder { flex-direction: column; display:none; padding: 5px; }
+#alert {
+    height: 100%;
+    display: none;
+    align-content: center;
+    text-align: center;
+}
+#confirm {
+    height: 100%;
+    display: none;
+    align-content: center;
+    text-align: center;
+}
+#noConfirm {
+    border: 2px solid red;
+}
+#noConfirm:hover {
+    background-color: red;
+}
+#yesConfirm {
+    border: 2px solid green;
+}
+#yesConfirm:hover {
+    background-color: green;
+}
+/*Major Style Classes*/
+
+.header {
+    margin-right: 30px;
+    margin-left: 30px;
+    font-size: 30px;
+}
+.textOutline {
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+.tabButton {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 8.25em;
+    height: 4em;
+    text-align: center;
+}
+.subTabButton {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 8em;
+    height: 3em;
+    text-align: center;
+}
+.flexBox {
+    display: flex;
+    align-items: center;
+    place-content:center
+}
+.elementButton {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 26em;
+    height: 5em;
+}
+.holder {
+    margin-top: 25px;
+    flex-direction: row;
+}
+.elementColumn{
+    margin-right: 8px;
+    flex-direction: column;
+}
+.buyMax {
+    width: 10em;
+}
+.buyAmount {
+    margin-right: 10px;
+    border: 3px solid var(--hydrogen-color);
+    width: 10em;
+    height: 5em;
+}
+.buyAmount:hover {
+    background-color: var(--hydrogen-color);
+}
+.achieveHolder {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+.credit {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+/*Achievement Area Styles*/
+#aB {border-color: var(--achievement-tab-color); text-align: center;}
+#aB:hover {background-color: var(--achievement-tab-color);}
+/*Settings Area styles*/
+#sB {border-color: var(--settings-tab-color)}
+#sB:hover {background-color: var(--settings-tab-color);}
+.settings {
+    border-color: var(--settings-tab-color);
+}
+.settings:hover {
+    background-color: var(--settings-tab-color);
+}
+#delete {
+    border-color: var(--carbon-color);
+}
+#delete:hover {
+    background-color: var(--carbon-color);
+}
+/*Elements area styles*/
+#eB, #ReE {
+    border-color: var(--element-tab-color);
+}
+#eB:hover, #ReE:hover {
+    background-color: var(--element-tab-color);
+}
+#RaE {
+    border-color: var(--isotope-subtab-color);
+}
+#RaE:hover {
+    border-color: var(--isotope-subtab-color);
+}
+#Hydrogen {
+    border-color: var(--hydrogen-color);
+}
+#Hydrogen:hover {
+    background-color: var(--hydrogen-color);
+}
+#Carbon {
+    border-color: var(--carbon-color);
+}
+#Carbon:hover {
+    background-color: var(--carbon-color);
+}
+#Oxygen {
+    border-color: var(--oxygen-color);
+}
+#Oxygen:hover {
+    background-color: var(--oxygen-color);
+}
+#Fluorine {
+    border-color: var(--fluorine-color);
+}
+#Fluorine:hover {
+    background-color: var(--fluorine-color);
+}
+#Sulfur {
+    border-color: var(--sulfur-color);
+}
+#Sulfur:hover {
+    background-color: var(--sulfur-color);
+}
+#Chlorine {
+    border-color: var(--chlorine-color);
+}
+#Chlorine:hover {
+    background-color: var(--chlorine-color);
+}
+#Iron {
+    border-color: var(--iron-color);
+}
+#Iron:hover {
+    background-color: var(--iron-color);
+}
+#Lead {
+    border-color: var(--lead-color);
+}
+#Lead:hover {
+    background-color: var(--lead-color);
+}
+/*Isotope Styles*/
+#Hydrogen3 {
+    border-color: var(--hydrogen3-color);
+}
+#Hydrogen3:hover {
+    background-color: var(--hydrogen3-color);
+}
+#Carbon14 {
+    border-color: var(--carbon14-color);
+}
+#Carbon14:hover {
+    background-color: var(--carbon14-color);
+}
+#Oxygen15 {
+    border-color: var(--oxygen15-color);
+}
+#Oxygen15:hover {
+    background-color: var(--oxygen15-color);
+}
+#Fluorine18 {
+    border-color: var(--fluorine18-color);
+}
+#Fluorine18:hover {
+    background-color: var(--fluorine18-color);
+}
+#Sulfur35 {
+    border-color: var(--sulfur35-color);
+}
+#Sulfur35:hover {
+    background-color: var(--sulfur35-color);
+}
+#Chlorine37 {
+    border-color: var(--chlorine37-color);
+}
+#Chlorine37:hover {
+    background-color: var(--chlorine37-color);
+}
+#Iron60 {
+    border-color: var(--iron60-color);
+}
+#Iron60:hover {
+    background-color: var(--iron60-color);
+}
+#Lead212 {
+    border-color: var(--lead212-color);
+}
+#Lead212:hover {
+    background-color: var(--lead212-color);
+}
+/*Compound Area Styles*/
+#cB {
+    border-color: var(--compound-tab-color);
+}
+#cB:hover { background-color: var(--compound-tab-color);}
+.compoundButton {
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 10em;
+    height: 12em;
+    font-size: 15px;
+    border-color: var(--compound-tab-color);
+}
+.compound:hover { background-color: var(--compound-tab-color);}
+/*Power Area Styles*/
+#generator { margin-top: 40px; border-color: var(--power-tab-color); width:18em; height: 30em; font-size: 15px; }
+.powerUp { width: 12em; height: 10em; }
+.pcB {border-color: var(--power-tab-color)}
+.pcB:hover { background-color: var(--power-tab-color); }
+#pB { border-color: var(--power-tab-color); }
+#pB:hover { background-color: var(--power-tab-color); }
+/*Melting Area Styles*/
+#mB {border-color: var(--melt-tab-color);}
+#mB:hover {background-color: var(--melt-tab-color);}
+#meltDown { margin-top: 25px; margin-right: 50px; width:12em; height: 20em; font-size: 23px; }
+.melt {border: 5px solid var(--melt-tab-color);}
+.melt:hover { background-color: var(--melt-tab-color);}
+/*Refinery Styles*/
+#rB {border-color: var(--refinery-tab-color);}
+#rB:hover {background-color: var(--refinery-tab-color);}
+.refinery {border-color: var(--refinery-tab-color);}
+.refinery:hover {background-color: var(--refinery-tab-color);}
+/*Particles Styles*/
+#acB {border-color: var(--particle-tab-color);}
+#acB:hover {background-color: var(--particle-tab-color);}
+.acB {border-color: var(--particle-tab-color);}
+.acB:hover {background-color: var(--particle-tab-color);}
+#protonGain, #protonsText {color: var(--proton-color)}
+#neutronGain, #neutronsText {color: var(--neutron-color)}
+#electronGain, #electronsText, #electronsText2 {color: var(--electron-color)}
+#muonsText {color:var(--muon-color)}
+#tausText {color:var(--tau-color)}
+.prB {border-color: var(--proton-color); margin-bottom: 10px;}
+.prB:hover {background-color: var(--proton-color);}
+.neB {border-color: var(--neutron-color); margin-bottom: 10px;}
+.neB:hover {background-color: var(--neutron-color);}
+.elB {border-color: var(--electron-color); margin-bottom: 10px;}
+.elB:hover {background-color: var(--electron-color);}
+.muB {border-color: var(--muon-color); margin-bottom: 10px;}
+.muB:hover {background-color: var(--muon-color);}
+.taB {border-color: var(--tau-color); margin-bottom: 10px;}
+.taB:hover {background-color: var(--tau-color);}

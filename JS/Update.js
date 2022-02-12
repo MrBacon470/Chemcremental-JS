@@ -149,7 +149,7 @@ function updateHTML(){
         else if(data.currentSubTab[1] === 1) {
                 particleTexts[0].innerHTML = `${format(data.particles[0].protons)} ${particleNames[0]}(+)`
                 particleTexts[1].innerHTML = `${format(data.particles[0].neutrons)} ${particleNames[1]}(0)`
-                particleTexts[2].innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color: #934237">-</sup>)`
+                particleTexts[2].innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color:${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
                 for(let i = 0; i < 3; i++) {
                     DOMCacheGetOrSet(`proAug${i+1}`).innerHTML = data.augments[0].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${format(augmentCosts[i])} Protons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[0].name[i]} Boost: ${format(augmentBoosts[0].boost[i])}x`
                     DOMCacheGetOrSet(`neuAug${i+1}`).innerHTML = data.augments[1].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${format(augmentCosts[i])} Neutrons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[1].name[i]} Boost: ${format(augmentBoosts[1].boost[i])}x`
@@ -157,9 +157,9 @@ function updateHTML(){
                 }
         }
         else if(data.currentSubTab[1] === 2) {
-                DOMCacheGetOrSet('electronsText2').innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color: #934237">-</sup>)`
-                DOMCacheGetOrSet('muonsText').innerHTML = `${format(data.particles[1].muons)} Muons(μ<sup style="color: #8f6945">-</sup>)`
-                DOMCacheGetOrSet('tausText').innerHTML = `${format(data.particles[1].taus)} Taus(τ<sup style="color: #8d9337">-</sup>)`
+                DOMCacheGetOrSet('electronsText2').innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color: ${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
+                DOMCacheGetOrSet('muonsText').innerHTML = `${format(data.particles[1].muons)} Muons(μ<sup style="color: ${bodyStyles.getPropertyValue(`--muon-color`)}">-</sup>)`
+                DOMCacheGetOrSet('tausText').innerHTML = `${format(data.particles[1].taus)} Taus(τ<sup style="color: ${bodyStyles.getPropertyValue(`--tau-color`)}">-</sup>)`
                 DOMCacheGetOrSet('shatterImage').style.backgroundColor = data.particles[0].electrons.gte(D(1e5)) ? '#379337' : '#934237'
                 DOMCacheGetOrSet('shatterGainText').innerHTML = `+${format(leptonsToGet[0])} Muons<br>+${format(leptonsToGet[1])} Taus<br><br>`
 
@@ -202,8 +202,15 @@ const settingTab = DOMCacheGetOrSet("settingsHolder")
 const refineryTab = DOMCacheGetOrSet("refineryHolder")
 const achievementTab = DOMCacheGetOrSet("achievementHolder")
 const acceleratorTab = DOMCacheGetOrSet("acceleratorHolder")
-const seperatorColors = ['808080','3c9f45','7fccff','3a5b99','b0b835','68368a','583793','37936d']
+let bodyStyles = window.getComputedStyle(document.body)
+const colorVariableIDs = ['settings','element','achievement','compound','power','melt','refinery','particle']
+let seperatorColors = []
+
+
 function tabChangeHTML(){
+    for(let i = 0; i < colorVariableIDs.length; i++) {
+        seperatorColors[i] = bodyStyles.getPropertyValue(`--${colorVariableIDs[i]}-tab-color`)
+    }
     elementTab.style.display = data.currentTab === 1 ? 'flex': 'none'
     compoundTab.style.display = data.currentTab === 3 ? 'flex': 'none'   
     powerTab.style.display = data.currentTab === 4 ? 'flex' : 'none'
@@ -212,7 +219,7 @@ function tabChangeHTML(){
     achievementTab.style.display = data.currentTab === 2 ? 'flex' : 'none'
     refineryTab.style.display = data.currentTab === 6 ? 'flex' : 'none'
     acceleratorTab.style.display = data.currentTab === 7 ? 'flex' : 'none'
-    seperator.style.color = `#${seperatorColors[data.currentTab]}`
+    seperator.style.color = `${seperatorColors[data.currentTab]}`
 }
 //Elements Subs
 const regularElementHolder = DOMCacheGetOrSet('regularElementsHolder')
