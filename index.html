@@ -10,19 +10,21 @@
     <link rel="shortcut icon" type="image/jpg" href="ChemLOGO.png"/>
 </head>
 <body>
-    <div style="position: fixed; bottom: 0; right: 0;">Beta 4.3e</div>
+    <img src="VoidBG.png" id="hider" style="position: fixed; background-color: black; height: 100vh; width: 100vw; top:0; left:0; text-align: center; justify-content: center;">
+    <div style="position: fixed; bottom: 0; right: 0;">Beta 4.3f</div>
     <div id="modalContainer">
         <div id="alert">
             <h3 id="alertTitle">Welcome back gamer!</h3>
             <p id="alertContent">New things have been added since last time</p>
-            <button id="closeAlert" onclick="closeModal(0)">Thanks!</button>
+            <button id="closeAlert" style="border: 2px solid;" onclick="closeModal(0)">Thanks!</button>
             <br>
         </div>
         <div id="themeSelector">
-            <h3 id="themeTitle">Pick a theme any theme</h3>
+            <h3 id="themeTitle">Pick a theme any theme.</h3>
             <div id="buttonHolder">
-                <button onclick="" style="margin-bottom: 10px">Classic</button>
-                <button onclick="">Classic but ROUND</button>
+                <button id="theme1" style="margin-bottom: 10px">Classic</button>
+                <button id="theme2" style="margin-bottom: 10px">Classic but ROUND</button>
+                <button id="theme3" style="margin-bottom: 10px">Dark Mode</button>
             </div>
             <br>
         </div>
@@ -30,8 +32,8 @@
             <h3 id="confirmTitle">Are you sure?</h3>
             <p id="confirmContent">New things have been added since last time</p>
             <div style="flex-direction: row;">
-                <button id="noConfirm">No!</button>
-                <button id="yesConfirm">Yes!</button>
+                <button id="noConfirm" style="border: 2px solid;">No!</button>
+                <button id="yesConfirm" style="border: 2px solid;">Yes!</button>
             </div>
             <br>
         </div>
@@ -48,7 +50,7 @@
         
     </div>
     <div id="tabHolder" class="flexBox" style="flex-direction: row; margin-top: 20px; ">
-        <button id="2B" class="tabButton" style="border: 4px solid gray;">2?</button>
+        <button id="2B" class="tabButton">2?</button>
         <button id="eB" class="tabButton" onclick="switchTab(1)">Elements</button>
         <button id="cB" class="tabButton" onclick="switchTab(3)">Compounds</button>
         <button id="pB" class="tabButton" onclick="switchTab(4)">Power</button>
@@ -291,9 +293,9 @@
                     <p id="tausText" style="margin-left: 25px; margin-right: 25px;">1.00 Tau(τ<sup style="color: #8d9337">-</sup>)</p>
                 </div> 
                 <div style="display:flex;flex-direction: row;">
-                    <button id="lepUnlock1" onclick="buyLepton(0)" class="elB" style="border: 2px solid #934237; margin-right: 10px;">Unlock Coal Generator<br>Cost: 250,000 Electrons</button>
-                    <button id="lepUnlock2" onclick="buyLepton(1)" class="muB" style="border: 2px solid #8f6945; margin-right: 10px;">Unlock Petroleum Generator<br>Cost: 250 Muons</button>
-                    <button id="lepUnlock3" onclick="buyLepton(2)" class="taB" style="border: 2px solid #8d9337; margin-right: 10px;">Unlock Natural Gas Generator<br>Cost: 200 Taus</button>
+                    <button id="lepUnlock1" onclick="buyLepton(0)" class="elB" style="margin-right: 10px;">Unlock Coal Generator<br>Cost: 250,000 Electrons</button>
+                    <button id="lepUnlock2" onclick="buyLepton(1)" class="muB" style="margin-right: 10px;">Unlock Petroleum Generator<br>Cost: 250 Muons</button>
+                    <button id="lepUnlock3" onclick="buyLepton(2)" class="taB" style="margin-right: 10px;">Unlock Natural Gas Generator<br>Cost: 200 Taus</button>
                 </div>
             </div>
             <div style="display: flex; flex-direction: column; align-items: center;">
@@ -488,6 +490,9 @@
             <button onclick="toggleButton(3)" id="toggle4" class="settings">Splitter Confirmation [ON]</button>
             <button onclick="toggleButton(1)" id="toggle2" class="settings">Enable Offline Progress [ON]</button>
         </div>
+        <div style="margin-top: 5px; align-items: center;">
+            <button onclick="openThemePicker()" id="toggle1" class="settings">Change Theme</button>
+        </div>
         <br>
         <div style="display:inline;">
         <br>
@@ -496,12 +501,13 @@
         <h3>Check out more of my games on <a href="https://mrbacon470.github.io/">my website</a></h3>
         <br>
         <h1>Changelog :D</h1>
-        <h3>Current Version is β0.4.3e</h3>
+        <h3>Current Version is β0.4.3f</h3>
         <br>
         <hr>
         <h3>Early Access Beta</h3>
         <br>
-        <p>β0.4.3e - Attempting Modal Window Fix</p>
+        <p>β0.4.3f - CSS Rework & Theme support</p>
+        <p>β0.4.3e - Modal Window Fix</p>
         <p>β0.4.3d - Power Generators Added and a roadmap</p>
         <p>β0.4.3c - Accelerator and Refinery remaster, Custom modals (Released with 4.3d)</p>
         <p>β0.4.3b - Excess Power System Fix</p>
@@ -562,7 +568,7 @@
         <div id="roadmapArea" class="flexBox holder" style="display: flex; flex-direction: column;">
             <div style="display:inline;">
             <h1>The Roadmap</h1>
-            <h3 style="color: orange">Currently working on: CSS Rework & Styling Theme Creation</h3>
+            <h3 style="color: orange">Currently working on: None</h3>
             <br>
             <hr>
             <h3 style="color: yellow">Planned Things</h3>
@@ -573,6 +579,7 @@
             <br>
             <hr>
             <h3 style="color: green">Completed</h3>
+            <p>CSS Rework & Styling Theme Creation</p>
             <p>Power Generators</p>
             <p>Custom Modal Windows (almost all)</p>
             <p>Refinery and Accelerator Remaster</p>

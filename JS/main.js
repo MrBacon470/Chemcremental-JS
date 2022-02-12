@@ -1,3 +1,4 @@
+
 function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
         
@@ -96,6 +97,7 @@ let diff
 function mainLoop(){
     diff = data.settingsToggles[1]?(Date.now()-data.time)*data.devSpeed/1000:getRandom(0.048, 0.053)*data.devSpeed
     data.time = Date.now()
+    changeTheme(data.currentTheme)
     //Functions Here
     updateBoosts()
     updateAccelStuff()
@@ -326,13 +328,41 @@ function prestigeConfirmation(i) {
     }
 }
 
-function changeTheme(i) {
-    let themeSrcs = ['Chem','chemRound']
-    let links = document.getElementsByTagName('link')
-    links[0].setAttribute('href', `CSS/${themeSrcs[i]}.css`)
-    data.currentTheme = i
+function openThemePicker() {
+    document.getElementById('modalContainer').style.display = 'block'
+    document.getElementById('themeSelector').style.display = 'block'
+    document.getElementById('buttonHolder').style.display = 'flex'
 }
+//Theme Stuff
+let themeSrcs = ['Chem','chemRound','dark']
+const themeButtons = []
+for(let i = 0; i < themeSrcs.length; i++)
+    themeButtons[i] = document.getElementById(`theme${i+1}`)
+
+for(let i = 0; i < themeSrcs.length; i++)
+    themeButtons[i].addEventListener('click', () => {changeTheme(i);document.getElementById('modalContainer').style.display = 'none'; document.getElementById('themeSelector').style.display = 'none'; document.getElementById('buttonHolder').style.display = 'none'; data.currentTheme = i;})
+function changeTheme(i) {
+    
+    let links = document.getElementsByTagName('link')
+    if(links[0].getAttribute('href') !== `CSS/${themeSrcs[i]}.css`) {
+        links[0].setAttribute('href', `CSS/${themeSrcs[i]}.css`)
+    }
+}
+//Splash Screen
+function hideResolver(x) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(x);
+      }, 300);
+    });
+  }
+  
+  async function f1() {
+    var x = await hideResolver(10);
+    document.getElementById('hider').style.display = 'none'
+  }
 changeTheme(data.currentTheme)
+f1()
 /*
 function confirmVariable(i) {
     switch(i) {
