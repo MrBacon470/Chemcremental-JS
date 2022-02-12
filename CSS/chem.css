@@ -356,3 +356,6 @@ button {
 .muB:hover {background-color: var(--muon-color);}
 .taB {border-color: var(--tau-color); margin-bottom: 10px;}
 .taB:hover {background-color: var(--tau-color);}
+/*Radiation Styles*/
+.radB {border-color: #5b9042;}
+.radB:hover {background-color: #5b9042;}

@@ -32,8 +32,8 @@
             <h3 id="confirmTitle">Are you sure?</h3>
             <p id="confirmContent">New things have been added since last time</p>
             <div style="flex-direction: row;">
-                <button id="noConfirm" style="border: 2px solid;">No!</button>
-                <button id="yesConfirm" style="border: 2px solid;">Yes!</button>
+                <button id="noConfirm">No!</button>
+                <button id="yesConfirm">Yes!</button>
             </div>
             <br>
         </div>
@@ -50,7 +50,7 @@
         
     </div>
     <div id="tabHolder" class="flexBox" style="flex-direction: row; margin-top: 20px; ">
-        <button id="2B" class="tabButton">2?</button>
+        <button id="2B" class="tabButton" style="border-color: #5b9042;">Radiation</button>
         <button id="eB" class="tabButton" onclick="switchTab(1)">Elements</button>
         <button id="cB" class="tabButton" onclick="switchTab(3)">Compounds</button>
         <button id="pB" class="tabButton" onclick="switchTab(4)">Power</button>
@@ -317,7 +317,52 @@
             </div>
         </div>
     </div>
-    
+    <div id="acceleratorHolder" class="flexBox holder" style="flex-direction: column;">
+        <div id="subTabHolder">
+            <button id="irrA`" class="subTabButton radB" onclick="switchSubTab(0,4)">Irridiate</button>
+            <button id="resA" class="subTabButton radB" onclick="switchSubTab(1,4)">Research</button>
+            <button id="chlA" class="subTabButton radB" onclick="switchSubTab(2,4)">Challenges</button>
+            <button id="???" class="subTabButton radB" onclick="switchSubTab(3,4)">???</button>
+        </div>
+        <div id="splitterHolder" class="holder" style="flex-direction: row;">
+            <div id="particleText" style="margin-top: 5px; margin-right: 25px;">
+                Particle Gain<hr>
+                <p id="gainMult">1.00x</p>
+                <p id="protonGain">+1.00 Protons</p>
+                <p id="neutronGain">+1.00 Neutrons</p>
+                <p id="electronGain">+1.00 Electrons</p>
+            </div>
+            <div id="splitButtonHolder" class="flexBox" style="margin-left: 25px; flex-direction: column;">
+                <img id="splitImage" src="CHEM Achieves/Split.png" style="width: 76px; height: 76px;" onclick="prestigeConfirmation('split')">
+                <div style="color: #c52424; text-align: center;">Notice<br>Multiplier must be >1.00x<br>to split elements<br><br>Multiplier can be reset by melting down</div>
+            </div>
+        </div>
+        <div id="fundamentalHolder" style="display:flex; flex-direction: column; align-items: center;">
+            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
+                <p id="protonsText" style="margin-left: 25px; margin-right: 25px;">1.00 Protons</p>
+                <p id="neutronsText" style="margin-left: 25px; margin-right: 25px;">1.00 Neutrons</p>
+                <p id="electronsText" style="margin-left: 25px; margin-right: 25px;">1.00 Electrons</p>
+            </div>
+            <div>Augments</div>
+            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
+                <div style="display:flex;flex-direction: column; margin-right: 10px;">
+                    <button id="proAug1" onclick="buyAugment(0,0)" class="prB">Augment I</button>
+                    <button id="proAug2" onclick="buyAugment(0,1)" class="prB">Augment II</button>
+                    <button id="proAug3" onclick="buyAugment(0,2)" class="prB">Augment III</button>
+                </div>
+                <div style="display:flex;flex-direction: column;margin-right: 10px;">
+                    <button id="neuAug1" onclick="buyAugment(1,0)" class="neB">Augment I</button>
+                    <button id="neuAug2" onclick="buyAugment(1,1)" class="neB">Augment II</button>
+                    <button id="neuAug3" onclick="buyAugment(1,2)" class="neB">Augment III</button>
+                </div>
+                <div style="display:flex;flex-direction: column;">
+                    <button id="eleAug1" onclick="buyAugment(2,0)" class="elB">Augment I</button>
+                    <button id="eleAug2" onclick="buyAugment(2,1)" class="elB">Augment II</button>
+                    <button id="eleAug3" onclick="buyAugment(2,2)" class="elB">Augment III</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="percentageText">Achievements Unlocked: 42/64 (22.22%)</div>
         <div>Current Endgame: 1.00e38 Corium+</div>
