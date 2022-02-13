@@ -264,7 +264,7 @@ function createConfirmation(a) {
     clearConfirmationListeners()
     switch(a) {
         case 'prestige':
-            document.getElementById('modalContainer').style.border = '4px solid #68368a'
+            document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--melt-tab-color`)}`
             document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to prestige?'
             document.getElementById('confirmContent').innerHTML = 'This will reset all previous layers in exchange for Corium'
             document.getElementById('confirm').style.display = 'block'
@@ -273,7 +273,7 @@ function createConfirmation(a) {
             document.getElementById('yesConfirm').addEventListener('click', () => {meltDown(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             break
         case 'split':
-            document.getElementById('modalContainer').style.border = '4px solid #37936d'
+            document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--particle-tab-color`)}`
             document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to split?'
             document.getElementById('confirmContent').innerHTML = 'This will reset all element generators'
             document.getElementById('confirm').style.display = 'block'
@@ -282,9 +282,18 @@ function createConfirmation(a) {
             document.getElementById('yesConfirm').addEventListener('click', () => {splitElements(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             break
         case 'shatter':
-            document.getElementById('modalContainer').style.border = '4px solid #37936d'
+            document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--particle-tab-color`)}`
             document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to shatter?'
             document.getElementById('confirmContent').innerHTML = 'This will reset all electrons'
+            document.getElementById('confirm').style.display = 'block'
+            document.getElementById('modalContainer').style.display = 'block'
+            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('yesConfirm').addEventListener('click', () => {shatterElectrons(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            break
+        case 'irridiate':
+            document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--radiation-tab-color`)}`
+            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to irridiate?'
+            document.getElementById('confirmContent').innerHTML = 'This will reset everything that is not in this layer'
             document.getElementById('confirm').style.display = 'block'
             document.getElementById('modalContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
@@ -322,6 +331,13 @@ function prestigeConfirmation(i) {
             if(data.particles[0].electrons.lt(D(1e5))) return
             if(data.settingsToggles[3])
                 createConfirmation('shatter')
+            else
+                shatterElectrons()
+            break
+        case 'irridiate':
+            if(data.particles[0].electrons.lt(D(1e5))) return
+            if(data.settingsToggles[4])
+                createConfirmation('irridiate')
             else
                 shatterElectrons()
             break
@@ -363,72 +379,7 @@ function hideResolver(x) {
   }
 changeTheme(data.currentTheme)
 f1()
-/*
-function confirmVariable(i) {
-    switch(i) {
-        case 'prestigeY':
-            meltConfirmed = true;
-            DOMCacheGetOrSet('confirmWrapper').style.display = 'none'
-            break;
-        case 'prestigeN':
-            meltConfirmed = false;
-            DOMCacheGetOrSet('confirmWrapper').style.display = 'none'
-            break;
-    }
-}
 
-function callConfirmation(i) {
-    switch(i) {
-        case 'prestige':
-            DOMCacheGetOrSet('confirm').innerHTML = 'Are you sure you want to prestige?'
-            DOMCacheGetOrSet('confirmWrapper').style.display = 'flex'
-            DOMCacheGetOrSet('confirmB').addEventListener('click', () => confirmVariable('prestigeY')) 
-            DOMCacheGetOrSet('cancelB').addEventListener('click', () => confirmVariable('prestigeY')) 
-            break;
-    }
-}
-*/
-/* Didn't Work
-function buyMax(c,b,s,l) {
-    //c == Currency | b == base cost | s == rate/cost scale | l == levels to be increased
-    //Converted from C# made by Cryptogrounds
-    //var n = Floor(Log((c * (s - 1) / (b * Pow(s, l))) + 1, s));
-    let n = Decimal.floor(Decimal.log(c.times(s.sub(1)).divide(b.times(Decimal.pow(s, l))).plus(1), s))
-    // var cost = b * (Pow(s, l) * (Pow(s, n) - 1) / (s - 1));
-    let cost = b.times(Decimal.pow(s,l)).times(Decimal.pow(s,n).sub(1)).divide(s.sub(1))
-    console.log(cost)
-    if(c.gte(cost)) {
-        l = l.plus(n)
-        c = c.minus(cost)
-    }
-}
-
-Obsolete
-function elementProduction(){
-    data.elements[0].amt = data.elements[0].amt.add(data.elements[0].level.times((1 + Decimal.sqrt(data.elements[1].max))))
-
-    data.elements[1].amt = data.elements[1].amt.add(data.elements[1].level.times((1 + Decimal.sqrt(data.elements[2].max))))
-    data.elements[1].max = data.elements[1].max.add(data.elements[1].level.times(1 + Decimal.sqrt(data.elements[2].max)))
-
-    data.elements[2].amt = data.elements[2].amt.add(data.elements[2].level.times((1 + Decimal.sqrt(data.elements[3].max))))
-    data.elements[2].max = data.elements[2].max.add(data.elements[2].level * (1 + Decimal.sqrt(data.elements[3].max)))
-    
-    data.elements[3].amt = data.elements[3].amt.add(data.elements[3].level.times((1 + Decimal.sqrt(data.elements[4].max))))
-    data.elements[3].max = data.elements[3].max.add(data.elements[3].level * (1 + Decimal.sqrt(data.elements[4].max)))
-
-    data.elements[4].amt = data.elements[4].amt.add(data.elements[4].level.times((1 + Decimal.sqrt(data.elements[5].max))))
-    data.elements[4].max = data.elements[4].max.add(data.elements[4].level * (1 + Decimal.sqrt(data.elements[5].max)))
-
-    data.elements[5].amt = data.elements[5].amt.add(data.elements[5].level.times((1 + Decimal.sqrt(data.elements[6].max))))
-    data.elements[5].max = data.elements[5].max.add(data.elements[5].level * (1 + Decimal.sqrt(data.elements[6].max)))
-
-    data.elements[6].amt = data.elements[6].amt.add(data.elements[6].level.times((1 + Decimal.sqrt(data.elements[7].max))))
-    data.elements[6].max = data.elements[6].max.add(data.elements[6].level * (1 + Decimal.sqrt(data.elements[7].max)))
-
-    data.elements[7].amt = data.elements[7].amt.add(data.elements[7].level)
-    data.elements[7].max = data.elements[7].max.add(data.elements[7].level)
-}
-*/
 window.setInterval(function(){
     mainLoop()
 }, 10);

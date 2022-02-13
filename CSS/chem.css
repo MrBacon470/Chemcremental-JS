@@ -359,7 +359,7 @@ button {
 .taB:hover {background-color: var(--tau-color);}
 /*Radiation Styles*/
 #radB {border-color: var(--radiation-tab-color)}
-#radB:hover {border-color: var(--radiation-tab-color);}
+#radB:hover {background-color: var(--radiation-tab-color);}
 .radB {border-color: var(--radiation-tab-color);}
 .radB:hover {background-color: var(--radiation-tab-color);}
 #alphaGainText, #alphaText {

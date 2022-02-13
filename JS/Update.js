@@ -64,18 +64,23 @@ function updateHTML(){
     
     for(let i = 0; i < data.buyAmounts.length; i++)
         DOMCacheGetOrSet(`bA${i}`).innerHTML = i !== 6 ? `Buy Amount<br>${data.buyAmounts[i]}` : `Fuel Percent Used<br>${data.buyAmounts[i]*100.0}%`
+        //Different Header Texts
         particleTexts[0].innerHTML = `${format(data.particles[0].protons)} ${particleNames[0]}(+)`
         particleTexts[1].innerHTML = `${format(data.particles[0].neutrons)} ${particleNames[1]}(0)`
         particleTexts[2].innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color:${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
+        DOMCacheGetOrSet('alphaText').innerHTML = `${format(data.radiationParticles[0])} Alpha Particles`
+        DOMCacheGetOrSet('betaText').innerHTML = `${format(data.radiationParticles[0])} Beta Particles`
+        DOMCacheGetOrSet('gammaText').innerHTML = `${format(data.radiationParticles[0])} Gamma Particles`
     if(data.currentTab === 0) {
         DOMCacheGetOrSet('toggle1').innerHTML = data.settingsToggles[0] ? 'Melting Confirmation [ON]' : 'Melting Confirmation [OFF]'
         DOMCacheGetOrSet('toggle2').innerHTML = data.settingsToggles[1] ? 'Enable Offline Progress [ON]' : 'Enable Offline Progress [OFF]'
         DOMCacheGetOrSet('toggle3').innerHTML = data.settingsToggles[2] ? 'Splitter Confirmation [ON]' : 'Splitter Confirmation [OFF]'
         DOMCacheGetOrSet('toggle4').innerHTML = data.settingsToggles[3] ? 'Shatter Confirmation [ON]' : 'Shatter Confirmation [OFF]'
+        DOMCacheGetOrSet('toggle5').innerHTML = data.settingsToggles[4] ? 'Irridiate Confirmation [ON]' : 'Irridiate Confirmation [OFF]'
     }
     else if (data.currentTab === 1) {
-        document.getElementById('RaE').style.display = data.hasTab[5] ? 'inline' : 'none'
-        document.getElementById('ReE').style.display = data.hasTab[5] ? 'inline' : 'none'
+        document.getElementById('RaE').style.display = data.hasIrridiated ? 'inline' : 'none'
+        document.getElementById('ReE').style.display = data.hasIrridiated ? 'inline' : 'none'
         if(data.currentSubTab[0] === 0) {
             for(let i = 0;i < 8;i++) {
                 if(i == 0)

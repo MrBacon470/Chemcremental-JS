@@ -35,6 +35,9 @@ function getDefaultObject() {
         previousSum: D(1),
         augments: [{unlocked:[false,false,false]},{unlocked:[false,false,false]},{unlocked:[false,false,false]}],
         leptonUnlocks: [false,false,false],
+        //Radiation Vars
+        hasIrridiated: false,
+        radiationParticles: [D(0),D(0),D(0)],
         //Achievements
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
@@ -50,7 +53,7 @@ function getDefaultObject() {
         currentTab: 1,
         currentSubTab: [0,0,0,0],
         currentElement: 0,
-        settingsToggles: [true,true,true,true],
+        settingsToggles: [true,true,true,true,true],
         currentUpdate: 'v0.4.3f',
         devSpeed: 1,
     }
