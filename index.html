@@ -39,18 +39,57 @@
         </div>
     </div>
     <div id="currenciesHolder" class="flexBox">
-        <div id="powerTextHolder" style="display:flex; flex-direction: row; align-items: center;">
-            <img src="CHEM Achieves/Resources/Power.png" style="width: 76px; height: 76px;">
-            <div id="powerText" class="header textOutline" style="text-align: center; margin-left: 5px;">Power: 0.00 / 100.00 </div>
+        <div style="display:flex; flex-direction: column;">
+            <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                <img src="CHEM Achieves/Resources/Power.png" style="height: 32px; width: 32px;">
+                <p id="powerText" class="textOutline" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
+            </div>
+            <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                <img src="CHEM Achieves/Resources/Corium.png" style="height: 32px; width: 32px;">
+                <p id="coriumText" class="textOutline" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
+            </div>
         </div>
-        <div id="coriumTextHolder" style="display:flex; flex-direction: row; align-items: center;">
-            <img src="CHEM Achieves/Resources/Corium.png" style="width: 76px; height: 76px;">
-            <div id="coriumText" class="header textOutline" style="text-align: center; margin-left: 5px;">Corium: 0.00<br>Boost: 1.00x</div>
+        <div id="particleTextHolder" style="display:flex; flex-direction: row; margin-left: 10px;">
+            <div style="display:flex; flex-direction: column; margin-left: 10px;">
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Proton.png" style="height: 32px; width: 32px;">
+                    <p id="protonsText" class="" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
+                </div>
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Neutron.png" style="height: 32px; width: 32px;">
+                    <p id="neutronsText" class="" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
+                </div>
+                
+            </div>
+            <div style="display:flex; flex-direction: column; margin-left: 10px;">
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Electron.png" style="height: 32px; width: 32px;">
+                    <p id="electronsText" class="" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
+                </div>
+            </div>
         </div>
-        
+        <div id="radiationTextHolder" style="display:flex; flex-direction: row; margin-left: 10px;">
+            <div style="display:flex; flex-direction: column; margin-left: 10px;">
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Resources/alpha.png" style="height: 32px; width: 32px;">
+                    <p id="alphaText" class="" style="justify-content:center; text-align:center">1.00 Alpha Particles</p>
+                </div>
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Resources/beta.png" style="height: 32px; width: 32px;">
+                    <p id="betaText" class="" style="justify-content:center; text-align:center">1.00 Beta Particles</p>
+                </div>
+                
+            </div>
+            <div style="display:flex; flex-direction: column; margin-left: 10px;">
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Resources/gamma.png" style="height: 32px; width: 32px;">
+                    <p id="gammaText" class="" style="justify-content:center; text-align:center">1.00 Gamma Particles</p>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="tabHolder" class="flexBox" style="flex-direction: row; margin-top: 20px; ">
-        <button id="2B" class="tabButton" style="border-color: #5b9042;">Radiation</button>
+        <button id="radB" class="tabButton" onclick="switchTab(8)">Radiation</button>
         <button id="eB" class="tabButton" onclick="switchTab(1)">Elements</button>
         <button id="cB" class="tabButton" onclick="switchTab(3)">Compounds</button>
         <button id="pB" class="tabButton" onclick="switchTab(4)">Power</button>
@@ -218,7 +257,7 @@
                 <button onclick="purchaseMeltUp('s2')" id="cs2" class="melt powerUp">Currently Offline</button>
             </div>
             <div style="display: flex; flex-direction: row; margin-left: 25px; margin-top: 25px;">
-                <button onclick="" id="cs3" class="melt powerUp">Currently Offline</button>
+                <button onclick="purchaseMeltUp('s3')" id="cs3" class="melt powerUp">Currently Offline</button>
             </div>
         </div>
     </div>
@@ -247,7 +286,6 @@
             <button id="quA" class="subTabButton acB" onclick="switchSubTab(3,1)" style="display: none;">Quarks</button>
         </div>
         <div id="splitterHolder" class="holder" style="flex-direction: row;">
-            
             <div id="particleText" style="margin-top: 5px; margin-right: 25px;">
                 Particle Gain<hr>
                 <p id="gainMult">1.00x</p>
@@ -261,13 +299,8 @@
             </div>
         </div>
         <div id="fundamentalHolder" style="display:flex; flex-direction: column; align-items: center;">
-            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
-                <p id="protonsText" style="margin-left: 25px; margin-right: 25px;">1.00 Protons</p>
-                <p id="neutronsText" style="margin-left: 25px; margin-right: 25px;">1.00 Neutrons</p>
-                <p id="electronsText" style="margin-left: 25px; margin-right: 25px;">1.00 Electrons</p>
-            </div>
-            <div>Augments</div>
-            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
+            <div style="margin-top: 25px">Augments</div>
+            <div id="particleRow" class="flexBox" style="margin-top:10px;display:flex; flex-direction:row;">
                 <div style="display:flex;flex-direction: column; margin-right: 10px;">
                     <button id="proAug1" onclick="buyAugment(0,0)" class="prB">Augment I</button>
                     <button id="proAug2" onclick="buyAugment(0,1)" class="prB">Augment II</button>
@@ -288,7 +321,6 @@
         <div id="leptonsHolder" style="display:flex; flex-direction: row;">
             <div style="display: flex; flex-direction: column; align-items: center;">
                 <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
-                    <p id="electronsText2" style=" margin-left: 25px; margin-right: 25px;">1.00 Electrons(e<sup style="color: #934237">-</sup>)</p>
                     <p id="muonsText" style="margin-left: 25px; margin-right: 25px;">1.00 Muons(μ<sup style="color: #8f6945">-</sup>)</p>
                     <p id="tausText" style="margin-left: 25px; margin-right: 25px;">1.00 Tau(τ<sup style="color: #8d9337">-</sup>)</p>
                 </div> 
@@ -324,10 +356,9 @@
             <button id="chlA" class="subTabButton radB" onclick="switchSubTab(2,4)">Challenges</button>
             <button id="???" class="subTabButton radB" onclick="switchSubTab(3,4)">???</button>
         </div>
-        <div id="splitterHolder" class="holder" style="flex-direction: row;">
+        <div id="splitterHolder" class="flexBox holder" style="">
             <div id="particleText" style="margin-top: 5px; margin-right: 25px;">
-                Radiation gain<hr>
-                <p id="gainMult">1.00x</p>
+                Gain on Irridiate<hr>
                 <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
                     <img src="CHEM Achieves/Resources/alpha.png" style="height: 32px; width: 32px;">
                     <p id="alphaGainText" style="justify-content:center; text-align:center">+1.00 Alpha Particles (α)</p>
@@ -341,15 +372,14 @@
                     <p id="gammaGainText" style="justify-content:center; text-align:center">+1.00 Gamma Particles (γ)</p>
                 </div>
             </div>
+            <div id="splitButtonHolder" class="flexBox" style="margin-left: 25px; flex-direction: column;">
+                <img id="splitImage" src="CHEM Achieves/Split.png" style="width: 76px; height: 76px;" onclick="prestigeConfirmation('split')">
+                <div style="color: #c52424; text-align: center;">Notice<br>Multiplier must be >1.00x<br>to split elements<br><br>Multiplier can be reset by melting down</div>
+            </div>
         </div>
         <div id="researchArea" style="display:flex; flex-direction: column; align-items: center;">
-            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
-                <p id="protonsText" style="margin-left: 25px; margin-right: 25px;">1.00 Protons</p>
-                <p id="neutronsText" style="margin-left: 25px; margin-right: 25px;">1.00 Neutrons</p>
-                <p id="electronsText" style="margin-left: 25px; margin-right: 25px;">1.00 Electrons</p>
-            </div>
-            <div>Augments</div>
-            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
+            <div style="margin-top: 25px">Augments</div>
+            <div id="particleRow" class="flexBox" style="margin-top:10px;display:flex; flex-direction:row;">
                 <div style="display:flex;flex-direction: column; margin-right: 10px;">
                     <button id="proAug1" onclick="buyAugment(0,0)" class="prB">Augment I</button>
                     <button id="proAug2" onclick="buyAugment(0,1)" class="prB">Augment II</button>

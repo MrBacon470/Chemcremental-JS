@@ -26,7 +26,7 @@ const powerUpButton = []
 for(let i=0; i < 3; i++)
     powerUpButton[i] = DOMCacheGetOrSet(`pu${i+1}`)
 const coriumMultDesc =['Increase Atom Production by 4x','Increase Compounds Created by 1.25x','Increase Corium Produced on Melt']
-const coriumSingDesc = ['Unlock The Refinery<br>Cost: 1.00e10 Corium','Unlock Particles<br>Cost: 1.00e15 Corium','Not Available']
+const coriumSingDesc = ['Unlock The Refinery<br>Cost: 1.00e10 Corium','Unlock Particles<br>Cost: 1.00e15 Corium','Unlock Radiation<br>Cost: 1.00e38 Corium']
 //'Unlock Passive Power Production<br>Cost: 1.00e15 Corium','Radition Not Implemented'
 // Refinery Area
 const refineryIDs = ['shard', 'mold', 'mint']
@@ -52,19 +52,21 @@ function updateHTML(){
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Power Text
     if(data.power.gte(D(1e3)) && data.powerStored.gte(D(1e3)))
-        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts<br>Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`
+        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts | Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`
     else if(data.power.gte(D(1e3)) && data.powerStored.lt(D(1e3)))
-        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts<br>Excess: ${format(data.powerStored)} Watts`
+        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts | Excess: ${format(data.powerStored)} Watts`
     else if(data.power.lt(D(1e3)) && data.powerStored.gte(D(1e3)))
-        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power)} / ${format(powerLimit)} Watts<br>Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`
+        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power)} / ${format(powerLimit)} Watts | Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`
     else 
-        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power)} / ${format(powerLimit)} Watts<br>Excess: ${format(data.powerStored)} Watts`
+        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power)} / ${format(powerLimit)} Watts | Excess: ${format(data.powerStored)} Watts`
     //Corium
-    DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)}<br>Boost: ${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x`
+    DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)} [${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x]`
     
     for(let i = 0; i < data.buyAmounts.length; i++)
         DOMCacheGetOrSet(`bA${i}`).innerHTML = i !== 6 ? `Buy Amount<br>${data.buyAmounts[i]}` : `Fuel Percent Used<br>${data.buyAmounts[i]*100.0}%`
-
+        particleTexts[0].innerHTML = `${format(data.particles[0].protons)} ${particleNames[0]}(+)`
+        particleTexts[1].innerHTML = `${format(data.particles[0].neutrons)} ${particleNames[1]}(0)`
+        particleTexts[2].innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color:${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
     if(data.currentTab === 0) {
         DOMCacheGetOrSet('toggle1').innerHTML = data.settingsToggles[0] ? 'Melting Confirmation [ON]' : 'Melting Confirmation [OFF]'
         DOMCacheGetOrSet('toggle2').innerHTML = data.settingsToggles[1] ? 'Enable Offline Progress [ON]' : 'Enable Offline Progress [OFF]'
@@ -72,8 +74,8 @@ function updateHTML(){
         DOMCacheGetOrSet('toggle4').innerHTML = data.settingsToggles[3] ? 'Shatter Confirmation [ON]' : 'Shatter Confirmation [OFF]'
     }
     else if (data.currentTab === 1) {
-        document.getElementById('RaE').style.display = data.coriumSingUps[2] ? 'flex' : 'none'
-        document.getElementById('ReE').style.display = data.coriumSingUps[2] ? 'flex' : 'none'
+        document.getElementById('RaE').style.display = data.hasTab[5] ? 'inline' : 'none'
+        document.getElementById('ReE').style.display = data.hasTab[5] ? 'inline' : 'none'
         if(data.currentSubTab[0] === 0) {
             for(let i = 0;i < 8;i++) {
                 if(i == 0)
@@ -147,9 +149,7 @@ function updateHTML(){
             DOMCacheGetOrSet('splitImage').style.backgroundColor = gainMult.gt(D(1)) ? '#379337' : '#934237'
         }
         else if(data.currentSubTab[1] === 1) {
-                particleTexts[0].innerHTML = `${format(data.particles[0].protons)} ${particleNames[0]}(+)`
-                particleTexts[1].innerHTML = `${format(data.particles[0].neutrons)} ${particleNames[1]}(0)`
-                particleTexts[2].innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color:${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
+                
                 for(let i = 0; i < 3; i++) {
                     DOMCacheGetOrSet(`proAug${i+1}`).innerHTML = data.augments[0].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${format(augmentCosts[i])} Protons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[0].name[i]} Boost: ${format(augmentBoosts[0].boost[i])}x`
                     DOMCacheGetOrSet(`neuAug${i+1}`).innerHTML = data.augments[1].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${format(augmentCosts[i])} Neutrons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[1].name[i]} Boost: ${format(augmentBoosts[1].boost[i])}x`
@@ -157,7 +157,6 @@ function updateHTML(){
                 }
         }
         else if(data.currentSubTab[1] === 2) {
-                DOMCacheGetOrSet('electronsText2').innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color: ${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
                 DOMCacheGetOrSet('muonsText').innerHTML = `${format(data.particles[1].muons)} Muons(μ<sup style="color: ${bodyStyles.getPropertyValue(`--muon-color`)}">-</sup>)`
                 DOMCacheGetOrSet('tausText').innerHTML = `${format(data.particles[1].taus)} Taus(τ<sup style="color: ${bodyStyles.getPropertyValue(`--tau-color`)}">-</sup>)`
                 DOMCacheGetOrSet('shatterImage').style.backgroundColor = data.particles[0].electrons.gte(D(1e5)) ? '#379337' : '#934237'
@@ -192,6 +191,7 @@ function unlockTabs(){
     data.hasTab[2] = sumOfElements.gte(D(1e8)) || data.hasTab[2]
     data.hasTab[3] = data.coriumSingUps[0] === true || data.hasTab[3]
     data.hasTab[4] = data.coriumSingUps[1] === true || data.hasTab[4]
+    data.hasTab[5] = data.coriumSingUps[2] === true || data.hasTab[5]
 }
 const seperator = DOMCacheGetOrSet('tabSeperator')
 const elementTab = DOMCacheGetOrSet("elementHolder")
@@ -202,6 +202,7 @@ const settingTab = DOMCacheGetOrSet("settingsHolder")
 const refineryTab = DOMCacheGetOrSet("refineryHolder")
 const achievementTab = DOMCacheGetOrSet("achievementHolder")
 const acceleratorTab = DOMCacheGetOrSet("acceleratorHolder")
+const radiationTab = DOMCacheGetOrSet("radiationHolder")
 let bodyStyles = window.getComputedStyle(document.body)
 const colorVariableIDs = ['settings','element','achievement','compound','power','melt','refinery','particle']
 let seperatorColors = []
@@ -219,7 +220,9 @@ function tabChangeHTML(){
     achievementTab.style.display = data.currentTab === 2 ? 'flex' : 'none'
     refineryTab.style.display = data.currentTab === 6 ? 'flex' : 'none'
     acceleratorTab.style.display = data.currentTab === 7 ? 'flex' : 'none'
+    radiationTab.style.display = data.currentTab === 8 ? 'flex' : 'none'
     seperator.style.color = `${seperatorColors[data.currentTab]}`
+    DOMCacheGetOrSet('particleTextHolder').style.display = data.coriumSingUps[1] === true ? 'flex' : 'none'
 }
 //Elements Subs
 const regularElementHolder = DOMCacheGetOrSet('regularElementsHolder')
