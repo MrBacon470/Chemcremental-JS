@@ -24,6 +24,12 @@
     --electron-color: #934237;
     --muon-color: #8f6945;
     --tau-color: #8d9337;
+    --upQuark-color: #4fc72b;
+    --charmQuark-color: #c72ba0;
+    --topQuark-color: #962bc7;
+    --downQuark-color: #2b62c7;
+    --strangeQuark-color: #c7892b;
+    --bottomQuark-color: #a5c72b;
     /*Element & Isotope Colors*/
     --hydrogen-color: #adadad;
     --hydrogen3-color: #636363;

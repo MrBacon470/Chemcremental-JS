@@ -39,34 +39,13 @@
         </div>
     </div>
     <div id="currenciesHolder" class="flexBox">
-        <div style="display:flex; flex-direction: column;">
-            <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
-                <img src="CHEM Achieves/Resources/Power.png" style="height: 32px; width: 32px;">
-                <p id="powerText" class="textOutline" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
-            </div>
-            <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
-                <img src="CHEM Achieves/Resources/Corium.png" style="height: 32px; width: 32px;">
-                <p id="coriumText" class="textOutline" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
-            </div>
+        <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+            <img src="CHEM Achieves/Resources/Power.png" style="height: 32px; width: 32px;">
+            <p id="powerText" class="textOutline" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
         </div>
-        <div id="particleTextHolder" style="display:flex; flex-direction: row; margin-left: 10px;">
-            <div style="display:flex; flex-direction: column; margin-left: 10px;">
-                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
-                    <img src="CHEM Achieves/Proton.png" style="height: 32px; width: 32px;">
-                    <p id="protonsText" class="" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
-                </div>
-                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
-                    <img src="CHEM Achieves/Neutron.png" style="height: 32px; width: 32px;">
-                    <p id="neutronsText" class="" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
-                </div>
-                
-            </div>
-            <div style="display:flex; flex-direction: column; margin-left: 10px;">
-                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
-                    <img src="CHEM Achieves/Electron.png" style="height: 32px; width: 32px;">
-                    <p id="electronsText" class="" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
-                </div>
-            </div>
+        <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+            <img src="CHEM Achieves/Resources/Corium.png" style="height: 32px; width: 32px;">
+            <p id="coriumText" class="textOutline" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
         </div>
         <div id="radiationTextHolder" style="display:flex; flex-direction: row; margin-left: 10px;">
             <div style="display:flex; flex-direction: column; margin-left: 10px;">
@@ -285,6 +264,23 @@
             <button id="lpA" class="subTabButton acB" onclick="switchSubTab(2,1)">Leptons</button>
             <button id="quA" class="subTabButton acB" onclick="switchSubTab(3,1)" style="display: none;">Quarks</button>
         </div>
+        <div id="particleTextHolder" style="display:flex; flex-direction: row; margin-left: 10px;">
+            <div style="display:flex; flex-direction: row; margin-left: 10px;">
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px; margin-right: 10px;">
+                    <img src="CHEM Achieves/Proton.png" style="height: 32px; width: 32px;">
+                    <p id="protonsText" class="" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
+                </div>
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px; margin-right: 10px;">
+                    <img src="CHEM Achieves/Neutron.png" style="height: 32px; width: 32px;">
+                    <p id="neutronsText" class="" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
+                </div>
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Electron.png" style="height: 32px; width: 32px;">
+                    <p id="electronsText" class="" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
+                </div>
+            </div>
+        </div>
+       
         <div id="splitterHolder" class="holder" style="flex-direction: row;">
             <div id="particleText" style="margin-top: 5px; margin-right: 25px;">
                 Particle Gain<hr>
@@ -378,24 +374,37 @@
             </div>
         </div>
         <div id="researchArea" style="display:flex; flex-direction: column; align-items: center;">
-            <div style="margin-top: 25px">Augments</div>
-            <div id="particleRow" class="flexBox" style="margin-top:10px;display:flex; flex-direction:row;">
-                <div style="display:flex;flex-direction: column; margin-right: 10px;">
-                    <button id="proAug1" onclick="buyAugment(0,0)" class="prB">Augment I</button>
-                    <button id="proAug2" onclick="buyAugment(0,1)" class="prB">Augment II</button>
-                    <button id="proAug3" onclick="buyAugment(0,2)" class="prB">Augment III</button>
+            <div style="margin-top: 25px">Research :P</div>
+            <div style="display:flex;flex-direction: column;">
+                <div style="display:flex;flex-direction: row;">
+                    <img id="Re1"  src="CHEM Achieves/Research/Research1.png" alt="" loading="lazy">
+                    <img id="Re2"  src="CHEM Achieves/Research/Research2.png" alt="" loading="lazy">
+                    <img id="Re3"  src="CHEM Achieves/Research/Research3.png" alt="" loading="lazy">
+                    <img id="Re4"  src="CHEM Achieves/Research/Research4.png" alt="" loading="lazy">
+                    <img id="Re5"  src="CHEM Achieves/Research/Research5.png" alt="" loading="lazy">
+                    <img id="Re6"  src="CHEM Achieves/Research/Research6.png" alt="" loading="lazy">
+                    <img id="Re7"  src="CHEM Achieves/Research/Research7.png" alt="" loading="lazy">
+                    <img id="Re8"  src="CHEM Achieves/Research/Research8.png" alt="" loading="lazy">
                 </div>
-                <div style="display:flex;flex-direction: column;margin-right: 10px;">
-                    <button id="neuAug1" onclick="buyAugment(1,0)" class="neB">Augment I</button>
-                    <button id="neuAug2" onclick="buyAugment(1,1)" class="neB">Augment II</button>
-                    <button id="neuAug3" onclick="buyAugment(1,2)" class="neB">Augment III</button>
+                <div style="display:flex;flex-direction: row;">
+                    <img id="Re9"  src="CHEM Achieves/Research/Research9.png" alt="" loading="lazy">
+                    <img id="Re10"  src="CHEM Achieves/Research/Research10.png" alt="" loading="lazy">
+                    <img id="Re11"  src="CHEM Achieves/Research/Research11.png" alt="" loading="lazy">
+                    <img id="Re12"  src="CHEM Achieves/Research/Research12.png" alt="" loading="lazy">
+                    <img id="Re13"  src="CHEM Achieves/Research/Research13.png" alt="" loading="lazy">
+                    <img id="Re14"  src="CHEM Achieves/Research/Research14.png" alt="" loading="lazy">
+                    <img id="Re15"  src="CHEM Achieves/Research/Research15.png" alt="" loading="lazy">
+                    <img id="Re16"  src="CHEM Achieves/Research/Research16.png" alt="" loading="lazy">
                 </div>
-                <div style="display:flex;flex-direction: column;">
-                    <button id="eleAug1" onclick="buyAugment(2,0)" class="elB">Augment I</button>
-                    <button id="eleAug2" onclick="buyAugment(2,1)" class="elB">Augment II</button>
-                    <button id="eleAug3" onclick="buyAugment(2,2)" class="elB">Augment III</button>
-                </div>
+            </div> 
+            <div style="margin-top: 25px">Hover over a research to see its description</div>
+            <div style="margin-top: 5px; display: flex; flex-direction: row; align-items: center;">
+                <p style="color: #5b9042; margin-left: 10px;">Green</p>
+                <p style="margin-left: 10px;">and</p>
+                <p style="color: #ac3232; margin-left: 10px;">Red</p>
+                <p style="margin-left: 10px;">bordered researches never reset</p>
             </div>
+            <i style="font-size:xx-small">Oh yeah and green researches you might wanna buy first</i>
         </div>
     </div>
     

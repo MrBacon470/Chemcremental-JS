@@ -125,9 +125,9 @@ function updateHTML(){
             DOMCacheGetOrSet('gasGenHolder').style.display = data.leptonUnlocks[2] === true ? 'flex' : 'none'
 
             DOMCacheGetOrSet('methaneFuel').innerHTML = data.fuelStored[0].gt(D(0)) ? `Fuel: ${format(data.fuelStored[0])} Methane<br>Watts/s ${format(D(1).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[0])} Methane<br>Watts/s 0.00`
-            DOMCacheGetOrSet('coalFuel').innerHTML = data.fuelStored[1].gt(D(0)) ? `Fuel: ${format(data.fuelStored[1])} Coal<br>Watts/s ${format(D(10).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[1])} Methane<br>Watts/s 0.00`
-            DOMCacheGetOrSet('petroleumFuel').innerHTML = data.fuelStored[2].gt(D(0)) ? `Fuel: ${format(data.fuelStored[2])} Petroleum<br>Watts/s ${format(D(100).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[2])} Methane<br>Watts/s 0.00`
-            DOMCacheGetOrSet('gasFuel').innerHTML = data.fuelStored[3].gt(D(0)) ? `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>Watts/s ${format(D(1e3).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[3])} Methane<br>Watts/s 0.00`
+            DOMCacheGetOrSet('coalFuel').innerHTML = data.fuelStored[1].gt(D(0)) ? `Fuel: ${format(data.fuelStored[1])} Coal<br>Watts/s ${format(D(10).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[1])} Coal<br>Watts/s 0.00`
+            DOMCacheGetOrSet('petroleumFuel').innerHTML = data.fuelStored[2].gt(D(0)) ? `Fuel: ${format(data.fuelStored[2])} Petroleum<br>Watts/s ${format(D(100).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[2])} Petroleum<br>Watts/s 0.00`
+            DOMCacheGetOrSet('gasFuel').innerHTML = data.fuelStored[3].gt(D(0)) ? `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>Watts/s ${format(D(1e3).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>Watts/s 0.00`
         }
     }
     else if(data.currentTab === 5) {
