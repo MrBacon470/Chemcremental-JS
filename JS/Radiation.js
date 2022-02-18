@@ -7,7 +7,7 @@ function updateRadiation() {
 }
 
 function irridiate() {
-    if(!data.coriumSingUps[2]) return
+    
     for(let i = 0; i < 3; i++)
         data.radiationParticles[i] = data.radiationParticles[i].plus(radiationGain[i])
     
@@ -21,6 +21,9 @@ function irridiate() {
         data.fuels[i] = D(0)
         data.fuelStored[i] = D(0)
     }
-        
+    for(let i = 0; i < 3; i++) {
+        data.coriumMultUps[i] = D(0)
+    }
+    data.coriumMax = data.corium = D(0)
         
 }

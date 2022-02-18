@@ -17,8 +17,8 @@ function updateAccelStuff() {
             data.particlesToGet[2] = data.particlesToGet[2].plus(particleGains[i].times(data.elements[i].level))
    }
     
-   leptonsToGet[0] = Decimal.sqrt(data.particles[0].electrons.divide(D(105)))
-   leptonsToGet[1] = Decimal.sqrt(data.particles[0].electrons.divide(D(1776)))
+   leptonsToGet[0] = Decimal.sqrt(data.particles[0].electrons.divide(D(105))).multiply(D(2))
+   leptonsToGet[1] = Decimal.sqrt(data.particles[0].electrons.divide(D(1776))).multiply(D(2))
 }
 const particleDivisor = [D(1e3),D(1e2),D(1e1)]
 function calculateAugmentBoost() {

@@ -47,25 +47,6 @@
             <img src="CHEM Achieves/Resources/Corium.png" style="height: 32px; width: 32px;">
             <p id="coriumText" class="textOutline" style="justify-content:center; text-align:center">+1.00 Gamma Particles</p>
         </div>
-        <div id="radiationTextHolder" style="display:flex; flex-direction: row; margin-left: 10px;">
-            <div style="display:flex; flex-direction: column; margin-left: 10px;">
-                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
-                    <img src="CHEM Achieves/Resources/alpha.png" style="height: 32px; width: 32px;">
-                    <p id="alphaText" class="" style="justify-content:center; text-align:center">1.00 Alpha Particles</p>
-                </div>
-                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
-                    <img src="CHEM Achieves/Resources/beta.png" style="height: 32px; width: 32px;">
-                    <p id="betaText" class="" style="justify-content:center; text-align:center">1.00 Beta Particles</p>
-                </div>
-                
-            </div>
-            <div style="display:flex; flex-direction: column; margin-left: 10px;">
-                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
-                    <img src="CHEM Achieves/Resources/gamma.png" style="height: 32px; width: 32px;">
-                    <p id="gammaText" class="" style="justify-content:center; text-align:center">1.00 Gamma Particles</p>
-                </div>
-            </div>
-        </div>
     </div>
     <div id="tabHolder" class="flexBox" style="flex-direction: row; margin-top: 20px; ">
         <button id="radB" class="tabButton" onclick="switchTab(8)">Radiation</button>
@@ -84,7 +65,6 @@
             <button id="ReE" class="subTabButton" onclick="switchSubTab(0,0)">Regular</button>
             <button id="RaE" class="subTabButton" onclick="switchSubTab(1,0)">Isotopes</button>
         </div>
-        
         <div id="regularElementsHolder" class="flexBox" style="margin-top: 2em;">
             <button onclick="toggleBuyAmount(0)" id="bA0" class="buyAmount">Buy Amount: 1</button>
         <div class="flexBox elementColumn" id="elementColumn1">
@@ -147,9 +127,11 @@
             </button>
         </div>
         </div>
+        <div>Use Hotkeys [1]-[8] to purchase things</div>
     </div>
-    <div id="compoundHolder" class="flexBox holder">
-        <button onclick="toggleBuyAmount(1)" id="bA1" class="buyAmount">Buy Amount: 1</button>
+    <div id="compoundHolder" class="flexBox holder" style="flex-direction:column">
+        <div class="flexBox" style="margin-bottom: 10px;">
+            <button onclick="toggleBuyAmount(1)" id="bA1" class="buyAmount">Buy Amount: 1</button>
             <button id="Propane" onclick="buyCompound(0)" class="compoundButton compound">
                 Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
             </button>
@@ -165,7 +147,8 @@
             <button id="Chlorine Trifluoride" onclick="buyCompound(4)" class="compoundButton compound">
                 Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
             </button>
-        
+        </div>
+            <div>Use Hotkeys [1]-[5] to purchase things</div>
     </div>
     <div id="powerHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="subTabHolder">
@@ -256,6 +239,7 @@
                 Natural Gas<br>C10-H28-O2-S<br>Total 1.00
             </button>
         </div>
+        <div>Use Hotkeys [1]-[4] to purchase things</div>
     </div>
     <div id="acceleratorHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="subTabHolder">
@@ -280,7 +264,6 @@
                 </div>
             </div>
         </div>
-       
         <div id="splitterHolder" class="holder" style="flex-direction: row;">
             <div id="particleText" style="margin-top: 5px; margin-right: 25px;">
                 Particle Gain<hr>
@@ -352,14 +335,30 @@
             <button id="chlA" class="subTabButton radB" onclick="switchSubTab(2,4)">Challenges</button>
             <button id="???" class="subTabButton radB" onclick="switchSubTab(3,4)">???</button>
         </div>
+        <div id="particleTextHolder" style="display:flex; flex-direction: row; margin-left: 10px;">
+            <div style="display:flex; flex-direction: row; margin-left: 10px;">
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Resources/alpha.png" style="height: 32px; width: 32px;">
+                    <p id="alphaText" class="" style="justify-content:center; text-align:center">1.00 Alpha Particles</p>
+                </div>
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Resources/beta.png" style="height: 32px; width: 32px;">
+                    <p id="betaText" class="" style="justify-content:center; text-align:center">1.00 Beta Particles</p>
+                </div>
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                    <img src="CHEM Achieves/Resources/gamma.png" style="height: 32px; width: 32px;">
+                    <p id="gammaText" class="" style="justify-content:center; text-align:center">1.00 Gamma Particles</p>
+                </div>
+            </div>
+        </div>
         <div id="splitterHolder" class="flexBox holder">
             <div id="particleText" style="margin-top: 5px; margin-right: 25px;">
                 Gain on Irridiate<hr>
-                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px; margin-right: 10px;">
                     <img src="CHEM Achieves/Resources/alpha.png" style="height: 32px; width: 32px;">
                     <p id="alphaGainText" style="justify-content:center; text-align:center">+1.00 Alpha Particles (α)</p>
                 </div>
-                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px; margin-right: 10px;">
                     <img src="CHEM Achieves/Resources/beta.png" style="height: 32px; width: 32px;">
                     <p id="betaGainText" style="justify-content:center; text-align:center">+1.00 Beta Particles (β)</p>
                 </div>
@@ -369,7 +368,7 @@
                 </div>
             </div>
             <div id="splitButtonHolder" class="flexBox" style="margin-left: 25px; flex-direction: column;">
-                <img id="splitImage" src="CHEM Achieves/irridiate.png" style="width: 76px; height: 76px;" onclick="prestigeConfirmation('irridiate')">
+                <img id="irridiateImage" src="CHEM Achieves/irridiate.png" style="width: 76px; height: 76px;" onclick="prestigeConfirmation('irridiate')">
                 <div style="text-align: center;"><i style="font-size: xx-small;">Yay! More of my bad art :D</i></div>
             </div>
         </div>
@@ -397,7 +396,7 @@
                     <img id="Re16"  src="CHEM Achieves/Research/Research16.png" alt="" loading="lazy">
                 </div>
             </div> 
-            <div style="margin-top: 25px">Hover over a research to see its description</div>
+            <div style="margin-top: 25px"><hr>Hover over a research to see its description</div>
             <div style="margin-top: 5px; display: flex; flex-direction: row; align-items: center;">
                 <p style="color: #5b9042; margin-left: 10px;">Green</p>
                 <p style="margin-left: 10px;">and</p>
@@ -410,7 +409,7 @@
     
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="percentageText">Achievements Unlocked: 42/64 (22.22%)</div>
-        <div>Current Endgame: 1.00e38 Corium+</div>
+        <div>Current Endgame: TBD</div>
         <div style="display:flex;flex-direction: row;">
             <div style="display:flex;flex-direction: column;">
                 <img id="H1"  src="CHEM Achieves/Hydrogen/H1-Locked.png" alt="" loading="lazy">

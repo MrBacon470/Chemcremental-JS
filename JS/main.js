@@ -266,7 +266,7 @@ function createConfirmation(a) {
     switch(a) {
         case 'prestige':
             document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--melt-tab-color`)}`
-            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to prestige?'
+            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to melt down?'
             document.getElementById('confirmContent').innerHTML = 'This will reset all previous layers in exchange for Corium'
             document.getElementById('confirm').style.display = 'block'
             document.getElementById('modalContainer').style.display = 'block'
@@ -276,7 +276,7 @@ function createConfirmation(a) {
         case 'split':
             document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--particle-tab-color`)}`
             document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to split?'
-            document.getElementById('confirmContent').innerHTML = 'This will reset all element generators'
+            document.getElementById('confirmContent').innerHTML = 'This will reset all Element Generators in exchange for Protons, Neutrons & Electrons'
             document.getElementById('confirm').style.display = 'block'
             document.getElementById('modalContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
@@ -285,7 +285,7 @@ function createConfirmation(a) {
         case 'shatter':
             document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--particle-tab-color`)}`
             document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to shatter?'
-            document.getElementById('confirmContent').innerHTML = 'This will reset all electrons'
+            document.getElementById('confirmContent').innerHTML = 'This will reset all Electrons in exchange for Muons & Tau Leptons'
             document.getElementById('confirm').style.display = 'block'
             document.getElementById('modalContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
@@ -294,11 +294,11 @@ function createConfirmation(a) {
         case 'irridiate':
             document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--radiation-tab-color`)}`
             document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to irridiate?'
-            document.getElementById('confirmContent').innerHTML = 'This will reset everything that is not in this layer'
+            document.getElementById('confirmContent').innerHTML = 'This will reset everything from all previous layers in exchange for Radiation'
             document.getElementById('confirm').style.display = 'block'
             document.getElementById('modalContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
-            document.getElementById('yesConfirm').addEventListener('click', () => {shatterElectrons(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('yesConfirm').addEventListener('click', () => {irridiate(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
     }
 }
 
@@ -336,11 +336,11 @@ function prestigeConfirmation(i) {
                 shatterElectrons()
             break
         case 'irridiate':
-            if(data.particles[0].electrons.lt(D(1e5))) return
+            if(data.corium.lt(D(1e38))) return
             if(data.settingsToggles[4])
                 createConfirmation('irridiate')
             else
-                shatterElectrons()
+                irridiate()
             break
     }
 }
@@ -380,6 +380,40 @@ function hideResolver(x) {
   }
 changeTheme(data.currentTheme)
 f1()
+
+document.addEventListener('keydown', (event) => {
+    let key = event.key;
+    if(data.currentTab === 1) {
+        if(data.currentSubTab[0] === 0) {
+            if(key === "1") purchaseElement(0)
+            if(key === "2") purchaseElement(1)
+            if(key === "3") purchaseElement(2)
+            if(key === "4") purchaseElement(3)
+            if(key === "5") purchaseElement(4)
+            if(key === "6") purchaseElement(5)
+            if(key === "7") purchaseElement(6)
+            if(key === "8") purchaseElement(7)
+        }
+        if(data.currentSubTab[0] === 1) {
+            if(key === "1") purchaseIsotope(0)
+            if(key === "2") purchaseIsotope(1)
+            if(key === "3") purchaseIsotope(2)
+            if(key === "4") purchaseIsotope(3)
+            if(key === "5") purchaseIsotope(4)
+            if(key === "6") purchaseIsotope(5)
+            if(key === "7") purchaseIsotope(6)
+            if(key === "8") purchaseIsotope(7)
+        }
+    }
+    if(data.currentTab === 3) {
+        if(key === "1") buyCompound(0)
+        if(key === "2") buyCompound(1)
+        if(key === "3") buyCompound(2)
+        if(key === "4") buyCompound(3)
+        if(key === "5") buyCompound(4)
+        
+    }
+}, false);
 
 window.setInterval(function(){
     mainLoop()
