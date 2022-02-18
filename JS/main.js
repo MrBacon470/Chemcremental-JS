@@ -102,6 +102,7 @@ function mainLoop(){
     updateBoosts()
     updateAccelStuff()
     calculateAugmentBoost()
+    updateRadiation()
     updateHTML()
     updateAchievementHTML()
     updateCosts()

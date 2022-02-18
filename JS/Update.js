@@ -182,6 +182,11 @@ function updateHTML(){
                 DOMCacheGetOrSet('bottomQuarkText').innerHTML = `${format(data.particles[2].quarks[5])} Bottom Quarks`
         }
     }
+    else if(data.currentTab === 8) {
+        DOMCacheGetOrSet('alphaGainText').innerHTML = `+${format(radiationGain[0])} Alpha Radiation` 
+        DOMCacheGetOrSet('betaGainText').innerHTML = `+${format(radiationGain[1])} Beta Radiation` 
+        DOMCacheGetOrSet('gammaGainText').innerHTML = `+${format(radiationGain[2])} Gamma Radiation` 
+    }
     unlockTabs()
     tabChangeHTML()
     subTabChangeHTML()
