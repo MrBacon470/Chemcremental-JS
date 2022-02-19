@@ -65,12 +65,8 @@ function updateHTML(){
     for(let i = 0; i < data.buyAmounts.length; i++)
         DOMCacheGetOrSet(`bA${i}`).innerHTML = i !== 6 ? `Buy Amount<br>${data.buyAmounts[i]}` : `Fuel Percent Used<br>${data.buyAmounts[i]*100.0}%`
         //Different Header Texts
-        particleTexts[0].innerHTML = `${format(data.particles[0].protons)} ${particleNames[0]}(+)`
-        particleTexts[1].innerHTML = `${format(data.particles[0].neutrons)} ${particleNames[1]}(0)`
-        particleTexts[2].innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color:${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
-        DOMCacheGetOrSet('alphaText').innerHTML = `${format(data.radiationParticles[0])} Alpha Particles`
-        DOMCacheGetOrSet('betaText').innerHTML = `${format(data.radiationParticles[0])} Beta Particles`
-        DOMCacheGetOrSet('gammaText').innerHTML = `${format(data.radiationParticles[0])} Gamma Particles`
+        
+        
     if(data.currentTab === 0) {
         DOMCacheGetOrSet('toggle1').innerHTML = data.settingsToggles[0] ? 'Melting Confirmation [ON]' : 'Melting Confirmation [OFF]'
         DOMCacheGetOrSet('toggle2').innerHTML = data.settingsToggles[1] ? 'Enable Offline Progress [ON]' : 'Enable Offline Progress [OFF]'
@@ -145,7 +141,11 @@ function updateHTML(){
        DOMCacheGetOrSet('Natural Gas').innerHTML = `Natural Gas<br>C10-H28-O2-S<br>Total ${format(data.fuels[3])}`
     }
     else if(data.currentTab === 7) {
+        particleTexts[0].innerHTML = `${format(data.particles[0].protons)} ${particleNames[0]}(+)`
+        particleTexts[1].innerHTML = `${format(data.particles[0].neutrons)} ${particleNames[1]}(0)`
+        particleTexts[2].innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color:${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
         DOMCacheGetOrSet('lpA').style.display = data.augments[2].unlocked[0] === true ? 'inline' : 'none'
+        DOMCacheGetOrSet('quA').style.display = data.research[13] ? 'inline' : 'none'
         if(data.currentSubTab[1] === 0) {
             DOMCacheGetOrSet('gainMult').innerHTML = `${format(gainMult)}x more to gain`
             protonGainText.innerHTML = `+${format(data.particlesToGet[0])} Protons`
@@ -183,13 +183,20 @@ function updateHTML(){
         }
     }
     else if(data.currentTab === 8) {
-        if(data.currentSubTab[4] == 0) {
+        DOMCacheGetOrSet('chlA').style.display = data.research[15] ? 'inline' : 'none'
+        DOMCacheGetOrSet('alphaText').innerHTML = `${format(data.radiationParticles[0])} Alpha Radiation`
+        DOMCacheGetOrSet('betaText').innerHTML = `${format(data.radiationParticles[1])} Beta Radiation`
+        DOMCacheGetOrSet('gammaText').innerHTML = `${format(data.radiationParticles[2])} Gamma Radiation`
+        if(data.currentSubTab[4] === 0) {
             DOMCacheGetOrSet('irridiateImage').style.backgroundColor = data.corium.gte(D(1e38)) ? '#438043' : '#963a2e'
             DOMCacheGetOrSet('alphaGainText').innerHTML = `+${format(radiationGain[0])} Alpha Radiation` 
             DOMCacheGetOrSet('betaGainText').innerHTML = `+${format(radiationGain[1])} Beta Radiation` 
             DOMCacheGetOrSet('gammaGainText').innerHTML = `+${format(radiationGain[2])} Gamma Radiation` 
         }
-        
+        if(data.currentSubTab[4] === 1) {
+            for(let i = 0; i < researchDescs.length; i++)
+                DOMCacheGetOrSet(`Re${i+1}`).style.backgroundColor = data.research[i] ? '#ffffff' : 'none'
+        }
     }
     unlockTabs()
     tabChangeHTML()
