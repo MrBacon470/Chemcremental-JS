@@ -11,7 +11,11 @@ function irridiate() {
     for(let i = 0; i < 3; i++)
         data.radiationParticles[i] = data.radiationParticles[i].plus(radiationGain[i])
     
-    data.particles[0].protons = data.particles[0].neutrons = data.particles[0].electrons = data.particles[1].muons = data.particles[1].taus = D(0)
+    data.particles[0].protons = D(0)
+    data.particles[0].neutrons = D(0)
+    data.particles[0].electrons = D(0)
+    data.particles[1].muons = D(0)
+    data.particles[1].taus = D(0)
     for(let i = 0; i < 3; i++) {
         for(let j = 0; j < 3; j++)
             data.augments[i].unlocked[j] = false
@@ -24,6 +28,21 @@ function irridiate() {
     for(let i = 0; i < 3; i++) {
         data.coriumMultUps[i] = D(0)
     }
-    data.coriumMax = data.corium = D(0)
-        
+    data.coriumMax = D(0)
+    data.corium = D(0)
+    
+    for(let i = 0; i < 3; i++)
+        data.powerUps[i] = D(0)
+    data.powerStored = D(0)
+    data.power = D(0)
+    
+    for(let i = 0; i < 5; i++)
+        data.compounds[i].amt = D(0)
+
+    for(let i = 7; i > -1; i--) {
+        data.elements[i].level = D(0)
+        data.elements[i].max = D(0)
+        data.elements[i].amt = D(0)
+        data.elementGain[i] = D(0)
+    }
 }

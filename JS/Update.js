@@ -184,7 +184,7 @@ function updateHTML(){
     }
     else if(data.currentTab === 8) {
         if(data.currentSubTab[4] == 0) {
-            DOMCacheGetOrSet('irridiateImage').style.backgroundColor = data.corium.gte(D(1e38)) ? '#1f4b1f' : '#751b0f'
+            DOMCacheGetOrSet('irridiateImage').style.backgroundColor = data.corium.gte(D(1e38)) ? '#438043' : '#963a2e'
             DOMCacheGetOrSet('alphaGainText').innerHTML = `+${format(radiationGain[0])} Alpha Radiation` 
             DOMCacheGetOrSet('betaGainText').innerHTML = `+${format(radiationGain[1])} Beta Radiation` 
             DOMCacheGetOrSet('gammaGainText').innerHTML = `+${format(radiationGain[2])} Gamma Radiation` 
