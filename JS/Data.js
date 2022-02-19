@@ -38,6 +38,7 @@ function getDefaultObject() {
         //Radiation Vars
         hasIrridiated: false,
         radiationParticles: [D(0),D(0),D(0)],
+        research: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
         //Achievements
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
