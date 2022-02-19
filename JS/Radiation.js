@@ -46,3 +46,18 @@ function irridiate() {
         data.elementGain[i] = D(0)
     }
 }
+const researchCosts = [{alpha:D(10),beta:D(5),gamma:D(1)},{alpha:D(25),beta:D(10),gamma:D(5)},{alpha:D(50),beta:D(25),gamma:D(10)},{alpha:D(100),beta:D(75),gamma:D(25)},
+{alpha:D(25),beta:D(10),gamma:D(5)},{alpha:D(125),beta:D(85),gamma:D(35)},{alpha:D(10),beta:D(5),gamma:D(1)},{alpha:D(10),beta:D(5),gamma:D(1)},]
+const researchDescs = ['[1x1] - Unlock Element Purchase Automators','[1x2] - Unlock Compound Purchase Automators','[1x3] - Unlock Power Upgrade Purchase Automators','[1x4] - Unlock Melt Upgrade Automators',
+'[1x5] - Unlock Refinery Purchase Automators', '[1x6] - Unlock Auto Augment & Lepton Purchase Automators', '[1x7] - Boost Hydrogen - Fluorine by ^1.15', '[1x8] - Boost Sulfur - Lead by ^1.20',
+'[2x1] - Boost Lead by an additional ^1.10', '[2x2] - Remove the Power Limit Entirely', '[2x3] - Generator Fueling Automator', '[2x4] - Generate 1% of Corium Per Second',
+'[2x5] - AAA elements are still a crutch boost all of them by ^1.20', '[2x6] - Unlock Quarks', '[2x7] - Hydrogen is the source of all boost it by ^2.00', '[2x8] - Unlock Challenges']
+
+for(let i = 0; i < researchDescs.length; i++) {
+    DOMCacheGetOrSet(`Re${i+1}`).addEventListener('mouseover', () => changeResearchDescription(i))
+}
+
+function changeResearchDescription(i) {
+    DOMCacheGetOrSet('researchDescText').innerHTML = `<hr>${researchDescs[i]}`
+    DOMCacheGetOrSet('researchCostText').innerHTML = `Research Cost<hr>Alpha: ${format(researchCosts[i].alpha)}<br>Beta: ${format(researchCosts[i].beta)}<br>Gamma: ${format(researchCosts[i].gamma)}`
+}
