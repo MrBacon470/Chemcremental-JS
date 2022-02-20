@@ -120,6 +120,7 @@ function mainLoop(){
     updatePowerCosts()
     calculateElementGain()
     unlockAchieves()
+    automate()
     //Misc Stuff Here
     for(let i = 0; i < 8; i++) {
         increaseElements(data.elementGain[i].times(diff), i)
