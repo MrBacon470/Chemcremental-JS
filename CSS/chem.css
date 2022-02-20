@@ -207,7 +207,7 @@ button {
     border-color: var(--isotope-subtab-color);
 }
 #RaE:hover {
-    border-color: var(--isotope-subtab-color);
+    background-color: var(--isotope-subtab-color);
 }
 #Hydrogen {
     border-color: var(--hydrogen-color);

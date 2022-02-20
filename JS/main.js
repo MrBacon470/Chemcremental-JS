@@ -11,6 +11,7 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
             data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[0])
             data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[2])
+            data.elementGain[i] = data.elementGain[i].times(D(1).plus(Decimal.sqrt(data.isotopes[0].max)))
             if(data.research[7])
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.20))
             if(data.research[8])
@@ -56,9 +57,7 @@ function increaseElements(x,i) {
 
 function increaseIsotopes(x,i) {
     data.isotopes[i].amt = data.isotopes[i].amt.plus(x);
-    if(i != 0) {
-        data.isotopes[i].max = data.isotopes[i].max.plus(x);
-    }
+    data.isotopes[i].max = data.isotopes[i].max.plus(x);
 
 }
 
