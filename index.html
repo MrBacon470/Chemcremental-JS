@@ -11,7 +11,7 @@
 </head>
 <body>
     <img src="VoidBG.png" id="hider" style="position: fixed; background-color: black; height: 100vh; width: 100vw; top:0; left:0; text-align: center; justify-content: center;">
-    <div style="position: fixed; bottom: 0; right: 0;">Beta 4.3f</div>
+    <div style="position: fixed; bottom: 0; right: 0;">Beta 5.0 - Development Build</div>
     <div id="modalContainer">
         <div id="alert">
             <h3 id="alertTitle">Welcome back gamer!</h3>
@@ -226,7 +226,7 @@
                 <button onclick="purchaseMeltUp('s3')" id="cs3" class="melt powerUp">Currently Offline</button>
             </div>
         </div>
-        <button id="Auto3">Automators: [OFF]</button>
+        <button id="Auto3" style="margin-left: 25px">Automators: [OFF]</button>
     </div>
     <div id="refineryHolder" class="flexBox holder" style="flex-direction: column;">
         <div style="display: flex; flex-direction: row; align-items: center; margin-bottom: 5px;">
@@ -323,15 +323,39 @@
             </div>
         </div>
         <div id="quarksHolder" style="display:flex; flex-direction: column; align-items: center;">
-            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row;">
-                <p id="upQuarkText" style="color: #4fc72b; margin-left: 25px; margin-right: 25px;">1.00 Up Quarks</p>
-                <p id="charmQuarkText" style="color: #c72ba0; margin-left: 25px; margin-right: 25px;">1.00 Charm Quarks</p>
-                <p id="topQuarkText" style="color: #962bc7; margin-left: 25px; margin-right: 25px;">1.00 Top Quarks</p>
-            </div>
-            <div id="particleRow" class="flexBox" style="display:flex; flex-direction:row; margin-top: 5px;">
-                <p id="downQuarkText" style="color: #2b62c7; margin-left: 25px; margin-right: 25px;">1.00 Down Quarks</p>
-                <p id="strangeQuarkText" style="color: #c7892b; margin-left: 25px; margin-right: 25px;">1.00 Strange Quarks</p>
-                <p id="bottomQuarkText" style="color: #a5c72b; margin-left: 25px; margin-right: 25px;">1.00 Bottom Quarks</p>
+            <div id="Quark Holder" style="display: flex;flex-direction:row;">
+                <div id="quarkColumn" style="flex-direction:column;">
+                    <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px; margin-right: 10px;">
+                        <img src="CHEM Achieves/Quarks/Up.png" style="height: 32px; width: 32px;">
+                        <p id="upQuark" class="" style="justify-content:center; text-align:center">1.00 Alpha Particles</p>
+                    </div>
+                    <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px; margin-right: 10px;">
+                        <img src="CHEM Achieves/Quarks/Charm.png" style="height: 32px; width: 32px;">
+                        <p id="charmQuark" class="" style="justify-content:center; text-align:center">1.00 Beta Particles</p>
+                    </div>
+                    <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                        <img src="CHEM Achieves/Quarks/Top.png" style="height: 32px; width: 32px;">
+                        <p id="topQuark" class="" style="justify-content:center; text-align:center">1.00 Gamma Particles</p>
+                    </div>
+                </div>
+                <div id="quarkColumn" style="margin-right: 25px;">
+                    <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px; margin-right: 10px;">
+                        <img src="CHEM Achieves/Quarks/Down.png" style="height: 32px; width: 32px;">
+                        <p id="downQuark" class="" style="justify-content:center; text-align:center">1.00 Alpha Particles</p>
+                    </div>
+                    <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px; margin-right: 10px;">
+                        <img src="CHEM Achieves/Quarks/Strange.png" style="height: 32px; width: 32px;">
+                        <p id="strangeQuark" class="" style="justify-content:center; text-align:center">1.00 Beta Particles</p>
+                    </div>
+                    <div style="display: flex; justify-content: flex-start; align-items: center; min-width: 146px;">
+                        <img src="CHEM Achieves/Quarks/Bottom.png" style="height: 32px; width: 32px;">
+                        <p id="bottomQuark" class="" style="justify-content:center; text-align:center">1.00 Gamma Particles</p>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <img id="ripperImage" src="CHEM Achieves/Ripping.png" onclick="rip()" style="height: 76px; width: 76px;">
+                    <div style="text-align: center;">Ripper<br>Requires at least<br>100,000 Protons and Neutrons combined<br><i style="font-size:xx-small;">This is definitely not scientifically accurate</i></div>
+                </div>
             </div>
         </div>
     </div>
@@ -340,7 +364,7 @@
             <button id="irrA`" class="subTabButton radB" onclick="switchSubTab(0,4)">Irridiate</button>
             <button id="resA" class="subTabButton radB" onclick="switchSubTab(1,4)">Research</button>
             <button id="chlA" class="subTabButton radB" onclick="switchSubTab(2,4)">Challenges</button>
-            <button id="???" class="subTabButton" style="border-color: #7a3b80" onclick="switchSubTab(3,4)">???</button>
+            <button id="???" class="subTabButton" style="border-color: #7a3b80">???</button>
         </div>
         <div id="particleTextHolder" style="display:flex; flex-direction: row; margin-left: 10px;">
             <div style="display:flex; flex-direction: row; margin-left: 10px;">
@@ -599,11 +623,13 @@
         <h3>Check out more of my games on <a href="https://mrbacon470.github.io/">my website</a></h3>
         <br>
         <h1>Changelog :D</h1>
-        <h3>Current Version is β0.4.3f</h3>
+        <h3>Current Version is β0.5.0</h3>
         <br>
         <hr>
         <h3>Early Access Beta</h3>
         <br>
+        <p></p>
+        <p>β0.5.0 - 2nd Prestige Layer, Automation, Challenges, Quarks Added</p>
         <p>β0.4.3f - CSS Rework & Theme support</p>
         <p>β0.4.3e - Modal Window Fix</p>
         <p>β0.4.3d - Power Generators Added and a roadmap</p>

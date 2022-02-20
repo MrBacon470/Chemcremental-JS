@@ -359,6 +359,12 @@ button {
 .muB:hover {background-color: var(--muon-color);}
 .taB {border-color: var(--tau-color); margin-bottom: 10px;}
 .taB:hover {background-color: var(--tau-color);}
+#upQuark {color: var(--upQuark-color)}
+#charmQuark {color: var(--charmQuark-color)}
+#topQuark {color: var(--topQuark-color)}
+#downQuark {color: var(--downQuark-color)}
+#strangeQuark {color: var(--strangeQuark-color)}
+#bottomQuark {color: var(--bottomQuark-color)}
 /*Radiation Styles*/
 #radB {border-color: var(--radiation-tab-color)}
 #radB:hover {background-color: var(--radiation-tab-color);}

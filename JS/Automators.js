@@ -23,13 +23,15 @@ function automate() {
         buyCompound(4)
         buyCompound(3)
         buyCompound(0)
-        buyCompound(2)
+        if(!data.research[9])
+            buyCompound(2)
         buyCompound(1)
         
     }
     if(data.research[2] && data.autoActive[2]) {
         purchasePowerUp(2)
-        purchasePowerUp(1)
+        if(!data.research[9])
+            purchasePowerUp(1)
         purchasePowerUp(0)
     }
     if(data.research[3] && data.autoActive[3]) {
@@ -76,13 +78,13 @@ function automate() {
             buyLepton(0)
     }
     if(data.research[10] && data.autoActive[6]) {
-        if(data.fuel[0].gt(D(0)))
+        if(data.fuels[0].gt(D(0)))
             fuelGenerator(0)
-        if(data.fuel[1].gt(D(0)) && data.leptonUnlocks[0])
+        if(data.fuels[1].gt(D(0)) && data.leptonUnlocks[0])
             fuelGenerator(1)
-        if(data.fuel[2].gt(D(0)) && data.leptonUnlocks[1])
+        if(data.fuels[2].gt(D(0)) && data.leptonUnlocks[1])
             fuelGenerator(2)
-        if(data.fuel[3].gt(D(0)) && data.leptonUnlocks[2])
+        if(data.fuels[3].gt(D(0)) && data.leptonUnlocks[2])
             fuelGenerator(3)
     }
 }

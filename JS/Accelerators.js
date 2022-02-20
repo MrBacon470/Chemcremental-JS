@@ -1,6 +1,7 @@
 let augmentCosts = [D(2.5e4),D(5e4),D(1.5e5)]
 let unlockCosts = [D(0),D(0),D(0)]
 let augmentBoosts = [{boost:[D(0),D(0),D(0)]},{boost:[D(0),D(0),D(0)]},{boost:[D(0),D(0),D(0)]}]
+let quarkBoosts = [D(0),D(0),D(0),D(0),D(0),D(0)]
 let leptonsToGet = [D(0),D(0)]
 const particleGains = [D(1),D(6),D(8),D(9),D(16),D(17),D(26),D(82)]
 let sumOfLevels = data.elements[0].level.plus(data.elements[1].level).plus(data.elements[2].level).plus(data.elements[3].level).plus(data.elements[4].level).plus(data.elements[5].level).plus(data.elements[6].level).plus(data.elements[7].level)
@@ -19,6 +20,11 @@ function updateAccelStuff() {
     
    leptonsToGet[0] = Decimal.sqrt(data.particles[0].electrons.divide(D(105))).multiply(D(2))
    leptonsToGet[1] = Decimal.sqrt(data.particles[0].electrons.divide(D(1776))).multiply(D(2))
+
+   for(let i = 0; i < quarkBoosts.length; i++) {
+       quarkBoosts[i] = Decimal.sqrt(((Decimal.sqrt(data.particles[2].quarks[i]))))
+       quarkBoosts[i] = quarkBoosts[i].sub(quarkBoosts[i].times(D(.8)))
+   }
 }
 const particleDivisor = [D(1e3),D(1e2),D(1e1)]
 function calculateAugmentBoost() {
@@ -89,15 +95,27 @@ function buyLepton(a) {
             data.particles[0].electrons = data.particles[0].electrons.sub(D(2.5e5))
             data.leptonUnlocks[a] = true
             break
-        case 0:
+        case 1:
             if(data.particles[1].muons.lt(D(250)) || data.leptonUnlocks[a] === true) return 
             data.particles[1].muons = data.particles[1].muons.sub(D(250))
             data.leptonUnlocks[a] = true
             break
-        case 0:
+        case 2:
             if(data.particles[1].taus.lt(D(200)) || data.leptonUnlocks[a] === true) return 
             data.particles[1].taus = data.particles[1].taus.sub(D(2.5e5))
             data.leptonUnlocks[a] = true
             break
     }
+}
+
+function rip() {
+    let sum = data.particles[0].protons.plus(data.particles[0].neutrons)
+    sum = sum.divide(D(8))
+    for(let i = 0; i <= sum; i++) {
+        let random = getRandomInt(6)
+        data.particles[2].quarks[random] = data.particles[2].quarks[random].plus(D(1))
+    }
+
+    data.particles[0].protons = D(0)
+    data.particles[0].neutrons = D(0)
 }

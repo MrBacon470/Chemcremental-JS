@@ -13,7 +13,7 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[2])
             data.elementGain[i] = data.elementGain[i].times(D(1).plus(Decimal.sqrt(data.isotopes[0].max)))
             if(data.research[7])
-                data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.20))
+                data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
             if(data.research[8])
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
         }
@@ -26,21 +26,20 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
             data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[0])
             if(data.research[6] && i < 4)
-                data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.15))
+                data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.05))
             if(data.research[7] && i > 3)
-                data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.20))
-            if(data.research[14] && i === 0)
-                data.elementGain[i] = Decimal.pow(data.elementGain, D(2.00))
+                data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
+            
         }
 
         if(i === 7) {
             //data.elementGain[i] = (data.elements[i].level.times(compoundBoosts[0].add(compoundBoosts[3]).add(powerBoosts[0]).add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax))))
-            data.isotopeGain[i] = data.isotopes[i].level.times(D(1).add(Decimal.sqrt(data.coriumMax)))
+            data.isotopeGain[i] = data.isotopes[i].level
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
             data.isotopeGain[i] = data.isotopes[i].level.times(D(1).add(Decimal.sqrt(data.isotopes[i + 1].max)))
-            data.isotopeGain[i] = data.isotopeGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
+            data.isotopeGain[i] = data.isotopeGain[i]
         }
     }
     //for(let i = 0; i < 8; i++)
@@ -62,27 +61,47 @@ function increaseIsotopes(x,i) {
 }
 
 function increasePower(i) {
+    let fuelLoss = D(1)
+    if(data.research[10]) fuelLoss = fuelLoss.divide(D(2))
     if(data.fuelStored[i].gt(D(0))) {
-        switch(i) {
-            case 0:
-                data.powerStored = data.powerStored.plus((D(1).times(augmentBoosts[2].boost[2])).times(diff))
-                break
-            case 1:
-                data.powerStored = data.powerStored.plus((D(10).times(augmentBoosts[2].boost[2])).times(diff))
-                break
-            case 2:
-                data.powerStored = data.powerStored.plus((D(100).times(augmentBoosts[2].boost[2])).times(diff))
-                break
-            case 3:
-                data.powerStored = data.powerStored.plus((D(1e3).times(augmentBoosts[2].boost[2])).times(diff))
-                break
+        if(!data.research[9]) {
+            switch(i) {
+                case 0:
+                    data.powerStored = data.powerStored.plus((D(1).times(augmentBoosts[2].boost[2])).times(diff))
+                    break
+                case 1:
+                    data.powerStored = data.powerStored.plus((D(10).times(augmentBoosts[2].boost[2])).times(diff))
+                    break
+                case 2:
+                    data.powerStored = data.powerStored.plus((D(100).times(augmentBoosts[2].boost[2])).times(diff))
+                    break
+                case 3:
+                    data.powerStored = data.powerStored.plus((D(1e3).times(augmentBoosts[2].boost[2])).times(diff))
+                    break
+            }
+        }
+        else {
+            switch(i) {
+                case 0:
+                    data.power = data.power.plus((D(1).times(augmentBoosts[2].boost[2])).times(diff))
+                    break
+                case 1:
+                    data.power = data.power.plus((D(10).times(augmentBoosts[2].boost[2])).times(diff))
+                    break
+                case 2:
+                    data.power = data.power.plus((D(100).times(augmentBoosts[2].boost[2])).times(diff))
+                    break
+                case 3:
+                    data.power = data.power.plus((D(1e3).times(augmentBoosts[2].boost[2])).times(diff))
+                    break
+            }
         }
     }
 
      //Fuel consumption logic
      for(let i = 0; i < 4; i++) {
         if(data.fuelStored[i].gt(D(0))) 
-            data.fuelStored[i] = data.fuelStored[i].sub(D(1).times(diff))
+            data.fuelStored[i] = data.fuelStored[i].sub(fuelLoss.times(diff))
         
         if(data.fuelStored[i].lt(D(0)))
             data.fuelStored[i] = D(0)
@@ -140,6 +159,10 @@ function mainLoop(){
     coriumToGet = D(1).add(Decimal.sqrt(sumOfElements / D(1e6)).times(coriumMultBoosts[2]))
     coriumToGet = coriumToGet.times(compoundBoosts[4])
     coriumToGet = coriumToGet.times(augmentBoosts[1].boost[0])
+    if(data.research[11] && sumOfElements.gte(D(1e8))) {
+        data.corium = data.corium.plus((coriumToGet.times(D(0.01))).times(diff))
+        data.coriumMax = data.coriumMax.plus((coriumToGet.times(D(0.01))).times(diff))
+    }
     //Misc stuff
     if(data.elements[0].amt.lt(D(10)) && data.elements[0].level.lt(D(1)))
         data.elements[0].amt = D(10)

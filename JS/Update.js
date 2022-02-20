@@ -51,14 +51,18 @@ function updateHTML(){
     }
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Power Text
-    if(data.power.gte(D(1e3)) && data.powerStored.gte(D(1e3)))
-        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts | Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`
-    else if(data.power.gte(D(1e3)) && data.powerStored.lt(D(1e3)))
-        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts | Excess: ${format(data.powerStored)} Watts`
-    else if(data.power.lt(D(1e3)) && data.powerStored.gte(D(1e3)))
-        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power)} / ${format(powerLimit)} Watts | Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`
-    else 
-        DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power)} / ${format(powerLimit)} Watts | Excess: ${format(data.powerStored)} Watts`
+    if(!data.research[9]) {
+            if(data.power.gte(D(1e3)) && data.powerStored.gte(D(1e3)))
+            DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts | Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`
+        else if(data.power.gte(D(1e3)) && data.powerStored.lt(D(1e3)))
+            DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power.divide(1e3))} / ${format(powerLimit.divide(1e3))} Kilowatts | Excess: ${format(data.powerStored)} Watts`
+        else if(data.power.lt(D(1e3)) && data.powerStored.gte(D(1e3)))
+            DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power)} / ${format(powerLimit)} Watts | Excess: ${format(data.powerStored.divide(1e3))} Kilowatts`
+        else 
+            DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power)} / ${format(powerLimit)} Watts | Excess: ${format(data.powerStored)} Watts`
+    }
+    else
+        DOMCacheGetOrSet('powerText').innerHTML = data.power.gte(D(1e3)) ? `${format(data.power.divide(D(1e3)))} Kilowatts` : `${format(data.power)} Watts`
     //Corium
     DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)} [${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x]`
     
@@ -167,7 +171,7 @@ function updateHTML(){
         particleTexts[1].innerHTML = `${format(data.particles[0].neutrons)} ${particleNames[1]}(0)`
         particleTexts[2].innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color:${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
         DOMCacheGetOrSet('lpA').style.display = data.augments[2].unlocked[0] === true ? 'inline' : 'none'
-        DOMCacheGetOrSet('quA').style.display = data.research[13] ? 'inline' : 'none'
+        DOMCacheGetOrSet('quA').style.display = data.research[13] ? 'inline' : 'inline'
         if(data.currentSubTab[1] === 0) {
             DOMCacheGetOrSet('gainMult').innerHTML = `${format(gainMult)}x more to gain`
             protonGainText.innerHTML = `+${format(data.particlesToGet[0])} Protons`
@@ -198,13 +202,15 @@ function updateHTML(){
         }
         else if(data.currentSubTab[1] === 3) {
             //row1
-                DOMCacheGetOrSet('upQuarkText').innerHTML = `${format(data.particles[2].quarks[0])} Up Quarks`
-                DOMCacheGetOrSet('charmQuarkText').innerHTML = `${format(data.particles[2].quarks[1])} Charm Quarks`
-                DOMCacheGetOrSet('topQuarkText').innerHTML = `${format(data.particles[2].quarks[2])} Top Quarks`
+                DOMCacheGetOrSet('upQuark').innerHTML = `${format(data.particles[2].quarks[0])} Up Quarks (^${format(quarkBoosts[0])})`
+                DOMCacheGetOrSet('charmQuark').innerHTML = `${format(data.particles[2].quarks[1])} Charm Quarks (^${format(quarkBoosts[1])})`
+                DOMCacheGetOrSet('topQuark').innerHTML = `${format(data.particles[2].quarks[2])} Top Quarks (^${format(quarkBoosts[2])})`
             //row2
-                DOMCacheGetOrSet('downQuarkText').innerHTML = `${format(data.particles[2].quarks[3])} Down Quarks`
-                DOMCacheGetOrSet('strangeQuarkText').innerHTML = `${format(data.particles[2].quarks[4])} Strange Quarks`
-                DOMCacheGetOrSet('bottomQuarkText').innerHTML = `${format(data.particles[2].quarks[5])} Bottom Quarks`
+                DOMCacheGetOrSet('downQuark').innerHTML = `${format(data.particles[2].quarks[3])} Down Quarks (^${format(quarkBoosts[3])})`
+                DOMCacheGetOrSet('strangeQuark').innerHTML = `${format(data.particles[2].quarks[4])} Strange Quarks (^${format(quarkBoosts[4])})`
+                DOMCacheGetOrSet('bottomQuark').innerHTML = `${format(data.particles[2].quarks[5])} Bottom Quarks (^${format(quarkBoosts[5])})`
+                
+                DOMCacheGetOrSet('ripperImage').style.backgroundColor = (data.particles[0].protons.plus(data.particles[0].neutrons)).gte(D(1e5)) ? '#379337' : '#934237'
         }
     }
     else if(data.currentTab === 8) {

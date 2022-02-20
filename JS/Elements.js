@@ -1,5 +1,5 @@
 const elementBase = [D(10), D(1e2), D(1e3), D(1e4), D(1e5), D(1e6), D(1e7), D(1e8)]
-const isotopeBase = [D(1e25),D(1e26),D(1e27),D(1e28),D(1e29),D(1e30),D(1e31),D(1e32)]
+const isotopeBase = [D(1e25),D(1e2),D(1e3),D(1e4),D(1e5),D(1e6),D(1e7),D(1e8)]
 const elementScale = [D(1.25), D(1.3), D(1.35), D(1.4), D(1.45), D(1.5), D(1.6), D(1.7)]
 let elementCost = []
 let isotopeCost = []
