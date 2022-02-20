@@ -1,5 +1,12 @@
-for(let i = 0; i < 7; i++)
-    DOMCacheGetOrSet(`Auto${i}`).addEventListener('click',)
+for(let i = 0; i < 7; i++) {
+    DOMCacheGetOrSet(`Auto${i}`).addEventListener('click', toggleAuto(i))
+}
+
+function toggleAuto(i) {
+    data.autoActive[i] = !data.autoActive[i]
+}
+
+
 
 function automate() {
     let timePassed = 0
