@@ -11,6 +11,10 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
             data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[0])
             data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[2])
+            if(data.research[7])
+                data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.20))
+            if(data.research[8])
+                data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
@@ -20,6 +24,12 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(D(1).add(coriumMultBoosts[0]))
             data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
             data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[0])
+            if(data.research[6] && i < 4)
+                data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.15))
+            if(data.research[7] && i > 3)
+                data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.20))
+            if(data.research[14] && i === 0)
+                data.elementGain[i] = Decimal.pow(data.elementGain, D(2.00))
         }
 
         if(i === 7) {

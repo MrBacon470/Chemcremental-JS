@@ -86,6 +86,10 @@ function updateHTML(){
                 else
                     elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${format(elementCost[i])} ${data.elements[i - 1].name} | Level:${format(data.elements[i].level)}`
             }
+
+            DOMCacheGetOrSet('Auto0').style.display = data.research[0] ? 'inline' : 'none'
+            DOMCacheGetOrSet('Auto0').innerHTML = data.autoActive[0] ? `Automators: [ON]` : `Automators: [OFF]`
+            DOMCacheGetOrSet('Auto0').style.borderColor = data.autoActive[0] ? '#438043' : '#963a2e'
         }
         else if(data.currentSubTab[0] === 1) {
             for(let i = 0;i < 8;i++) {
@@ -103,6 +107,9 @@ function updateHTML(){
         for(let i = 0; i < 5; i++) {
             compoundButtons[i].innerHTML = `${data.compounds[i].name}<br>${compoundCostStr[i]}<br>Total: ${format(data.compounds[i].amt)}<br>${compoundBoost[i]} ${format(compoundBoosts[i])}x`
         }
+        DOMCacheGetOrSet('Auto1').style.display = data.research[1] ? 'inline' : 'none'
+        DOMCacheGetOrSet('Auto1').innerHTML = data.autoActive[1] ? `Automators: [ON]` : `Automators: [OFF]`
+        DOMCacheGetOrSet('Auto1').style.borderColor = data.autoActive[1] ? '#438043' : '#963a2e'
     }
     else if(data.currentTab === 4) {
         DOMCacheGetOrSet('gA').style.display = data.coriumSingUps[0] === true ? 'inline' : 'none'
@@ -114,6 +121,10 @@ function updateHTML(){
             powerUpButton[0].innerHTML = powerCosts[0].gte(D(1e3)) ? `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0].divide(D(1e3)))} Kilowatts<br>Level: ${format(data.powerUps[0])}` : `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Watts<br>Level: ${format(data.powerUps[0])}`
             powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
             powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 1.5x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
+
+            DOMCacheGetOrSet('Auto2').style.display = data.research[2] ? 'inline' : 'none'
+            DOMCacheGetOrSet('Auto2').innerHTML = data.autoActive[2] ? `Automators: [ON]` : `Automators: [OFF]`
+            DOMCacheGetOrSet('Auto2').style.borderColor = data.autoActive[2] ? '#438043' : '#963a2e'
         }
         else if(data.currentSubTab[3] === 1) {
             DOMCacheGetOrSet('coalGenHolder').style.display = data.leptonUnlocks[0] === true ? 'flex' : 'none'
@@ -124,6 +135,10 @@ function updateHTML(){
             DOMCacheGetOrSet('coalFuel').innerHTML = data.fuelStored[1].gt(D(0)) ? `Fuel: ${format(data.fuelStored[1])} Coal<br>Watts/s ${format(D(10).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[1])} Coal<br>Watts/s 0.00`
             DOMCacheGetOrSet('petroleumFuel').innerHTML = data.fuelStored[2].gt(D(0)) ? `Fuel: ${format(data.fuelStored[2])} Petroleum<br>Watts/s ${format(D(100).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[2])} Petroleum<br>Watts/s 0.00`
             DOMCacheGetOrSet('gasFuel').innerHTML = data.fuelStored[3].gt(D(0)) ? `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>Watts/s ${format(D(1e3).times(augmentBoosts[2].boost[2]))}` : `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>Watts/s 0.00`
+
+            DOMCacheGetOrSet('Auto6').style.display = data.research[10] ? 'inline' : 'none'
+            DOMCacheGetOrSet('Auto6').innerHTML = data.autoActive[6] ? `Automators: [ON]` : `Automators: [OFF]`
+            DOMCacheGetOrSet('Auto6').style.borderColor = data.autoActive[6] ? '#438043' : '#963a2e'
         }
     }
     else if(data.currentTab === 5) {
@@ -133,12 +148,19 @@ function updateHTML(){
             DOMCacheGetOrSet(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${format(coriumMultCosts[i])} Corium<br>Level: ${format(data.coriumMultUps[i])}`
             DOMCacheGetOrSet(`cs${i+1}`).innerHTML = data.coriumSingUps[i] ? 'Unlocked' : `${coriumSingDesc[i]}`
         }
+        DOMCacheGetOrSet('Auto3').style.display = data.research[3] ? 'inline' : 'none'
+        DOMCacheGetOrSet('Auto3').innerHTML = data.autoActive[3] ? `Automators: [ON]` : `Automators: [OFF]`
+        DOMCacheGetOrSet('Auto3').style.borderColor = data.autoActive[3] ? '#438043' : '#963a2e'
     }
     else if(data.currentTab === 6) {
        DOMCacheGetOrSet('Methane').innerHTML = `Methane<br>C-H4<br>Total ${format(data.fuels[0])}`
        DOMCacheGetOrSet('Coal').innerHTML = `Coal<br>C12-H6-O<br>Total ${format(data.fuels[1])}`
        DOMCacheGetOrSet('Petroleum').innerHTML = `Petroleum<br>C15-H28<br>Total ${format(data.fuels[2])}`
        DOMCacheGetOrSet('Natural Gas').innerHTML = `Natural Gas<br>C10-H28-O2-S<br>Total ${format(data.fuels[3])}`
+
+       DOMCacheGetOrSet('Auto4').style.display = data.research[4] ? 'inline' : 'none'
+       DOMCacheGetOrSet('Auto4').innerHTML = data.autoActive[4] ? `Automators: [ON]` : `Automators: [OFF]`
+       DOMCacheGetOrSet('Auto4').style.borderColor = data.autoActive[4] ? '#438043' : '#963a2e'
     }
     else if(data.currentTab === 7) {
         particleTexts[0].innerHTML = `${format(data.particles[0].protons)} ${particleNames[0]}(+)`
@@ -160,6 +182,9 @@ function updateHTML(){
                     DOMCacheGetOrSet(`neuAug${i+1}`).innerHTML = data.augments[1].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${format(augmentCosts[i])} Neutrons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[1].name[i]} Boost: ${format(augmentBoosts[1].boost[i])}x`
                     DOMCacheGetOrSet(`eleAug${i+1}`).innerHTML = data.augments[2].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${format(augmentCosts[i])} Electrons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[2].name[i]} Boost: ${format(augmentBoosts[2].boost[i])}x`
                 }
+                DOMCacheGetOrSet('Auto5').style.display = data.research[5] ? 'inline' : 'none'
+                DOMCacheGetOrSet('Auto5').innerHTML = data.autoActive[5] ? `Automators: [ON]` : `Automators: [OFF]`
+                DOMCacheGetOrSet('Auto5').style.borderColor = data.autoActive[5] ? '#438043' : '#963a2e'
         }
         else if(data.currentSubTab[1] === 2) {
                 DOMCacheGetOrSet('muonsText').innerHTML = `${format(data.particles[1].muons)} Muons(μ<sup style="color: ${bodyStyles.getPropertyValue(`--muon-color`)}">-</sup>)`

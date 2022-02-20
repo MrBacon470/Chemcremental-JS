@@ -95,6 +95,7 @@
                 Lead Generator<br>Cost: 10 Hydrogen | Level: 0
             </button>
         </div>
+        <button id="Auto0">Automators: [OFF]</button>
         </div>
         <div id="isotopeElementsHolder" class="flexBox" style="margin-top: 2em;">
             <button onclick="toggleBuyAmount(2)" id="bA2" class="buyAmount">Buy Amount: 1</button>
@@ -147,6 +148,7 @@
             <button id="Chlorine Trifluoride" onclick="buyCompound(4)" class="compoundButton compound">
                 Propane<br>Cost: C<sub>3</sub>H<sub>8</sub><br>Total:0.00<br>Boost: 0.00x<br>Used for fuel
             </button>
+            <button id="Auto1">Automators: [OFF]</button>
         </div>
             <div>Use Hotkeys [1]-[5] to purchase things</div>
     </div>
@@ -159,7 +161,7 @@
             <div id="powerArea" style="display: flex; flex-direction: row; align-items: center;">
                 <button onclick="toggleBuyAmount(3)" id="bA3" class="buyAmount">Buy Amount: 1</button>
                 <button id="generator" onclick="generatePower()" class="pcB">Generate Power<br>Requires 3 Propane & 1 Water<br>+0.00 Power</button>
-                <div style="display:flex; flex-direction: column;">
+                <div style="display:flex; flex-direction: column; margin-right: 10px;">
                     <div style="display: flex; flex-direction: row; margin-left: 30px; margin-top: 40px;">
                         <button onclick="purchasePowerUp(0)" id="pu1" class="pcB powerUp">Super Charge<br>Increase atom production by 2x<br>Cost: 5.00 Power<br>Level: 0.00</button>
                     </div>
@@ -170,6 +172,7 @@
                         <button onclick="purchasePowerUp(2)" id="pu3" class="pcB powerUp">Heat Shields<br>Increase power production by 0.1x<br>Cost: 5 Lead Gens<br>Level: 0.00</button>
                     </div>
                 </div>
+                <button id="Auto2">Automators: [OFF]</button>
             </div>
         </div>
         <div id="generatorArea" style="display: flex; flex-direction: row; align-items: center; text-align: center; margin-top: 40px;">
@@ -194,6 +197,7 @@
                 <div id="gasFuel">Fuel: 0.00 Natural Gas<br>Watts/s: 0.00</div>
                 <button onclick="fuelGenerator(3)" class="pcB" style="border: 2px solid #b0b835">Fuel Up</button>
             </div>
+            <button id="Auto6">Automators: [OFF]</button>
         </div>
         
     </div>
@@ -222,6 +226,7 @@
                 <button onclick="purchaseMeltUp('s3')" id="cs3" class="melt powerUp">Currently Offline</button>
             </div>
         </div>
+        <button id="Auto3">Automators: [OFF]</button>
     </div>
     <div id="refineryHolder" class="flexBox holder" style="flex-direction: column;">
         <div style="display: flex; flex-direction: row; align-items: center; margin-bottom: 5px;">
@@ -238,6 +243,7 @@
             <button id="Natural Gas" onclick="purchaseFuel(3)" class="compoundButton refinery">
                 Natural Gas<br>C10-H28-O2-S<br>Total 1.00
             </button>
+            <button id="Auto4">Automators: [OFF]</button>
         </div>
         <div>Use Hotkeys [1]-[4] to purchase things</div>
     </div>
@@ -296,6 +302,7 @@
                     <button id="eleAug3" onclick="buyAugment(2,2)" class="elB">Augment III</button>
                 </div>
             </div>
+            <button id="Auto5">Automators: [OFF]</button>
         </div>
         <div id="leptonsHolder" style="display:flex; flex-direction: row;">
             <div style="display: flex; flex-direction: column; align-items: center;">
@@ -699,5 +706,6 @@
 <script defer src="JS/Melting.js"></script>
 <script defer src="JS/Accelerators.js"></script>
 <script defer src="JS/Radiation.js"></script>
+<script defer src="JS/Automators.js"></script>
 </html>
 

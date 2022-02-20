@@ -79,11 +79,6 @@ function buyAugment(a,b) {
             data.particles[0].electrons = data.particles[0].electrons.sub(augmentCosts[b])
             data.augments[a].unlocked[b] = true
             break
-        case 3:
-            if(data.particles[0].electrons.lt(augmentCosts[b]) || data.augments[a].unlocked[b] === true) return
-            data.particles[0].electrons = data.particles[0].electrons.sub(augmentCosts[b])
-            data.augments[a].unlocked[b] = true
-            break
     }
 }
 

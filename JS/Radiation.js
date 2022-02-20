@@ -57,10 +57,21 @@ const researchDescs = ['[1x1] - Unlock Element Purchase Automators','[1x2] - Unl
 
 for(let i = 0; i < researchDescs.length; i++) {
     DOMCacheGetOrSet(`Re${i+1}`).addEventListener('mouseover', () => changeResearchDescription(i))
+    DOMCacheGetOrSet(`Re${i+1}`).addEventListener('click', () => purchaseResearch(i))
 }
 
 function changeResearchDescription(i) {
     DOMCacheGetOrSet('researchDescText').innerHTML = `<hr>${researchDescs[i]}`
     DOMCacheGetOrSet('researchDescText').style.color = data.research[i] ? `#5b9042` : `#ac3232`
     DOMCacheGetOrSet('researchCostText').innerHTML = `Research Cost<hr>Alpha: ${format(researchCosts[i].alpha)}<br>Beta: ${format(researchCosts[i].beta)}<br>Gamma: ${format(researchCosts[i].gamma)}`
+}
+
+function purchaseResearch(i) {
+    if(data.research[i] || data.radiationParticles[0].lt(researchCosts[i].alpha) || data.radiationParticles[1].lt(researchCosts[i].beta) || data.radiationParticles[2].lt(researchCosts[i].gamma)) return
+
+    data.radiationParticles[0] = data.radiationParticles[0].sub(researchCosts[i].alpha)
+    data.radiationParticles[1] = data.radiationParticles[1].sub(researchCosts[i].beta)
+    data.radiationParticles[2] = data.radiationParticles[2].sub(researchCosts[i].gamma)
+
+    data.research[i] = true
 }
