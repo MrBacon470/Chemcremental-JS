@@ -1,5 +1,5 @@
 for(let i = 0; i < 7; i++) {
-    DOMCacheGetOrSet(`Auto${i}`).addEventListener('click', toggleAuto(i))
+    DOMCacheGetOrSet(`Auto${i}`).addEventListener('click', () => toggleAuto(i))
 }
 
 function toggleAuto(i) {
@@ -9,9 +9,6 @@ function toggleAuto(i) {
 
 
 function automate() {
-    let timePassed = 0
-    timePassed += diff
-    if(timePassed < 1) return
     if(data.research[0] && data.autoActive[0]) {
         purchaseElement(7)
         purchaseElement(6)
@@ -25,9 +22,10 @@ function automate() {
     if(data.research[1] && data.autoActive[1]) {
         buyCompound(4)
         buyCompound(3)
+        buyCompound(0)
         buyCompound(2)
         buyCompound(1)
-        buyCompound(0)
+        
     }
     if(data.research[2] && data.autoActive[2]) {
         purchasePowerUp(2)

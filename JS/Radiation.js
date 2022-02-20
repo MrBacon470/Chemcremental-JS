@@ -45,6 +45,7 @@ function irridiate() {
         data.elements[i].amt = D(0)
         data.elementGain[i] = D(0)
     }
+    data.hasIrridiated = true;
 }
 const researchCosts = [{alpha:D(10),beta:D(5),gamma:D(1)},{alpha:D(25),beta:D(10),gamma:D(5)},{alpha:D(50),beta:D(25),gamma:D(10)},{alpha:D(100),beta:D(75),gamma:D(25)},
 {alpha:D(25),beta:D(10),gamma:D(5)},{alpha:D(125),beta:D(85),gamma:D(35)},{alpha:D(50),beta:D(25),gamma:D(10)},{alpha:D(100),beta:D(75),gamma:D(25)},
