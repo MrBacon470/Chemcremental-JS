@@ -78,6 +78,7 @@ function updateHTML(){
         DOMCacheGetOrSet('toggle3').innerHTML = data.settingsToggles[2] ? 'Splitter Confirmation [ON]' : 'Splitter Confirmation [OFF]'
         DOMCacheGetOrSet('toggle4').innerHTML = data.settingsToggles[3] ? 'Shatter Confirmation [ON]' : 'Shatter Confirmation [OFF]'
         DOMCacheGetOrSet('toggle5').innerHTML = data.settingsToggles[4] ? 'Irridiate Confirmation [ON]' : 'Irridiate Confirmation [OFF]'
+        DOMCacheGetOrSet('toggle6').innerHTML = data.settingsToggles[5] ? 'Ripper Confirmation [ON]' : 'Ripper Confirmation [OFF]'
     }
     else if (data.currentTab === 1) {
         document.getElementById('RaE').style.display = data.hasIrridiated ? 'inline' : 'none'
@@ -203,15 +204,15 @@ function updateHTML(){
         }
         else if(data.currentSubTab[1] === 3) {
             //row1
-                DOMCacheGetOrSet('upQuark').innerHTML = `${format(data.particles[2].quarks[0])} Up Quarks (^${format(quarkBoosts[0])})`
-                DOMCacheGetOrSet('charmQuark').innerHTML = `${format(data.particles[2].quarks[1])} Charm Quarks (^${format(quarkBoosts[1])})`
-                DOMCacheGetOrSet('topQuark').innerHTML = `${format(data.particles[2].quarks[2])} Top Quarks (^${format(quarkBoosts[2])})`
+                DOMCacheGetOrSet('upQuark').innerHTML = `${format(data.particles[2].quarks[0])} Up Quarks (Hydrogen ${format(quarkBoosts[0])}x)`
+                DOMCacheGetOrSet('charmQuark').innerHTML = `${format(data.particles[2].quarks[1])} Charm Quarks (Compound Boost ${format(quarkBoosts[1])}x)`
+                DOMCacheGetOrSet('topQuark').innerHTML = `${format(data.particles[2].quarks[2])} Top Quarks (Particle Gain ${format(quarkBoosts[2])}x)`
             //row2
-                DOMCacheGetOrSet('downQuark').innerHTML = `${format(data.particles[2].quarks[3])} Down Quarks (^${format(quarkBoosts[3])})`
-                DOMCacheGetOrSet('strangeQuark').innerHTML = `${format(data.particles[2].quarks[4])} Strange Quarks (^${format(quarkBoosts[4])})`
-                DOMCacheGetOrSet('bottomQuark').innerHTML = `${format(data.particles[2].quarks[5])} Bottom Quarks (^${format(quarkBoosts[5])})`
+                DOMCacheGetOrSet('downQuark').innerHTML = `${format(data.particles[2].quarks[3])} Down Quarks (Lead ${format(quarkBoosts[3])}x)`
+                DOMCacheGetOrSet('strangeQuark').innerHTML = `${format(data.particles[2].quarks[4])} Strange Quarks (Refinery Gain ${format(quarkBoosts[4])}x)`
+                DOMCacheGetOrSet('bottomQuark').innerHTML = `${format(data.particles[2].quarks[5])} Bottom Quarks (Lepton Gain ${format(quarkBoosts[5])}x)`
                 
-                DOMCacheGetOrSet('ripperImage').style.backgroundColor = (data.particles[0].protons.plus(data.particles[0].neutrons)).gte(D(1e5)) ? '#379337' : '#934237'
+                DOMCacheGetOrSet('ripperImage').style.backgroundColor = (data.particles[0].protons.plus(data.particles[0].neutrons)).gte(D(5e4)) ? '#379337' : '#934237'
         }
     }
     else if(data.currentTab === 8) {

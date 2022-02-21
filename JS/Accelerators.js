@@ -17,13 +17,19 @@ function updateAccelStuff() {
         
             data.particlesToGet[2] = data.particlesToGet[2].plus(particleGains[i].times(data.elements[i].level))
    }
+   for(let i = 0; i < 3; i++) {
+       data.particlesToGet[i] = data.particlesToGet[i].times(quarkBoosts[2])
+   }
     
    leptonsToGet[0] = Decimal.sqrt(data.particles[0].electrons.divide(D(105))).multiply(D(2))
    leptonsToGet[1] = Decimal.sqrt(data.particles[0].electrons.divide(D(1776))).multiply(D(2))
+   for(let i = 0; i < 2; i++)
+    leptonsToGet[i] = leptonsToGet[i].times(quarkBoosts[5])
 
    for(let i = 0; i < quarkBoosts.length; i++) {
        quarkBoosts[i] = Decimal.sqrt(((Decimal.sqrt(data.particles[2].quarks[i]))))
-       quarkBoosts[i] = quarkBoosts[i].sub(quarkBoosts[i].times(D(.8)))
+       quarkBoosts[i] = quarkBoosts[i].sub(quarkBoosts[i].times(D(.5)))
+       quarkBoosts[i] = D(1).plus(quarkBoosts[i])
    }
 }
 const particleDivisor = [D(1e3),D(1e2),D(1e1)]
@@ -66,6 +72,7 @@ function shatterElectrons() {
     data.particles[1].muons = data.particles[1].muons.add(leptonsToGet[0])
     data.particles[1].taus = data.particles[1].taus.add(leptonsToGet[1])
     data.particles[0].electrons = D(0)
+    data.previousSum = D(1)
 }
 
 function buyAugment(a,b) {
@@ -111,11 +118,17 @@ function buyLepton(a) {
 function rip() {
     let sum = data.particles[0].protons.plus(data.particles[0].neutrons)
     sum = sum.divide(D(8))
+    let ripParticleGain = [D(0),D(0)]
+
     for(let i = 0; i <= sum; i++) {
-        let random = getRandomInt(6)
-        data.particles[2].quarks[random] = data.particles[2].quarks[random].plus(D(1))
+        let random = getRandomInt(8)
+        if(random < 6)
+            data.particles[2].quarks[random] = data.particles[2].quarks[random].plus(D(1))
+        else 
+            ripParticleGain[random - 6] = ripParticleGain[random - 6].plus(D(1))
     }
 
-    data.particles[0].protons = D(0)
-    data.particles[0].neutrons = D(0)
+    data.particles[0].protons = ripParticleGain[0]
+    data.particles[0].neutrons = ripParticleGain[1]
+    data.previousSum = D(1)
 }

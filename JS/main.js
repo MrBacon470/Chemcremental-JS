@@ -16,6 +16,7 @@ function calculateElementGain() {
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
             if(data.research[8])
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
+            data.elementGain[i] = data.elementGain[i].times(quarkBoosts[3])
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
@@ -29,7 +30,8 @@ function calculateElementGain() {
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.05))
             if(data.research[7] && i > 3)
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
-            
+            if(i === 0) 
+                data.elementGain[i] = data.elementGain[i].times(quarkBoosts[0])
         }
 
         if(i === 7) {
@@ -175,6 +177,7 @@ function updateBoosts() {
         compoundBoosts[i] = D(1)
 
         compoundBoosts[i] = compoundBoosts[i].times(augmentBoosts[0].boost[2])
+        compoundBoosts[i] = compoundBoosts[i].times(quarkBoosts[1])
     }
     for(let i = 0; i < 3; i++) {
         let boosts = [D(2), D(10), D(0.1)]
@@ -240,7 +243,7 @@ function purchaseFuel(x) {
                 if(data.elements[1].level.gte(D(1)) && data.elements[0].level.gte(D(4))) {
                     data.elements[1].level = data.elements[1].level.sub(D(1))
                     data.elements[0].level = data.elements[0].level.sub(D(4))
-                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
+                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]))
                 }
             }
             break;
@@ -250,7 +253,7 @@ function purchaseFuel(x) {
                     data.elements[1].level = data.elements[1].level.sub(D(12))
                     data.elements[0].level = data.elements[0].level.sub(D(6))
                     data.elements[2].level = data.elements[2].level.sub(D(1))
-                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
+                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]))
                 }
             }
             break;
@@ -259,7 +262,7 @@ function purchaseFuel(x) {
                 if(data.elements[1].level.gte(D(15)) && data.elements[0].level.gte(D(28))) {
                     data.elements[1].level = data.elements[1].level.sub(D(15))
                     data.elements[0].level = data.elements[0].level.sub(D(28))
-                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
+                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]))
                 }
             }
             break;
@@ -270,7 +273,7 @@ function purchaseFuel(x) {
                     data.elements[0].level = data.elements[0].level.sub(D(28))
                     data.elements[2].level = data.elements[2].level.sub(D(2))
                     data.elements[4].level = data.elements[4].level.sub(D(1))
-                    data.fuels[x] = data.fuels[x].add(D(1).times(augmentBoosts[2].boost[1]))
+                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]))
                 }
             }
             break;
@@ -332,6 +335,16 @@ function createConfirmation(a) {
             document.getElementById('modalContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             document.getElementById('yesConfirm').addEventListener('click', () => {irridiate(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            break
+        case 'rip':
+            document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--particle-tab-color`)}`
+            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to Rip?'
+            document.getElementById('confirmContent').innerHTML = 'This will reset Protons and Neutrons in a lootb.. system<br>I mean.. Surprise mechanic to gain quarks, protons & neutrons back randomly'
+            document.getElementById('confirm').style.display = 'block'
+            document.getElementById('modalContainer').style.display = 'block'
+            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('yesConfirm').addEventListener('click', () => {rip(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            break
     }
 }
 
@@ -375,11 +388,19 @@ function prestigeConfirmation(i) {
             else
                 irridiate()
             break
+        case 'rip':
+            if((data.particles[0].protons.plus(data.particles[0].neutrons)).lt(D(5e4))) return
+            if(data.settingsToggles[5])
+                createConfirmation('rip')
+            else
+                rip()
+            break
     }
 }
 
 function openThemePicker() {
     document.getElementById('modalContainer').style.display = 'block'
+    document.getElementById('modalContainer').style.border = `4px solid gray`
     document.getElementById('themeSelector').style.display = 'block'
     document.getElementById('buttonHolder').style.display = 'flex'
 }

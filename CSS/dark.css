@@ -24,6 +24,12 @@
     --electron-color: #934237;
     --muon-color: #8f6945;
     --tau-color: #8d9337;
+    --upQuark-color: #4fc72b;
+    --charmQuark-color: #c72ba0;
+    --topQuark-color: #962bc7;
+    --downQuark-color: #2b62c7;
+    --strangeQuark-color: #c7892b;
+    --bottomQuark-color: #a5c72b;
     /*Element & Isotope Colors*/
     --hydrogen-color: #adadad;
     --hydrogen3-color: #636363;
@@ -113,11 +119,7 @@ button {
     font-size: 30px;
 }
 .textOutline {
-    text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 .tabButton {
     margin-left: 5px;
@@ -205,7 +207,7 @@ button {
     border-color: var(--isotope-subtab-color);
 }
 #RaE:hover {
-    border-color: var(--isotope-subtab-color);
+    background-color: var(--isotope-subtab-color);
 }
 #Hydrogen {
     border-color: var(--hydrogen-color);
@@ -357,9 +359,15 @@ button {
 .muB:hover {background-color: var(--muon-color);}
 .taB {border-color: var(--tau-color); margin-bottom: 10px;}
 .taB:hover {background-color: var(--tau-color);}
+#upQuark {color: var(--upQuark-color)}
+#charmQuark {color: var(--charmQuark-color)}
+#topQuark {color: var(--topQuark-color)}
+#downQuark {color: var(--downQuark-color)}
+#strangeQuark {color: var(--strangeQuark-color)}
+#bottomQuark {color: var(--bottomQuark-color)}
 /*Radiation Styles*/
 #radB {border-color: var(--radiation-tab-color)}
-#radB:hover {border-color: var(--radiation-tab-color);}
+#radB:hover {background-color: var(--radiation-tab-color);}
 .radB {border-color: var(--radiation-tab-color);}
 .radB:hover {background-color: var(--radiation-tab-color);}
 #alphaGainText, #alphaText {

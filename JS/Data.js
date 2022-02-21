@@ -55,7 +55,7 @@ function getDefaultObject() {
         currentTab: 1,
         currentSubTab: [0,0,0,0,0],
         currentElement: 0,
-        settingsToggles: [true,true,true,true,true],
+        settingsToggles: [true,true,true,true,true,true],
         currentUpdate: 'v0.4.3f',
         devSpeed: 1,
     }
