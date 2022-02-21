@@ -400,7 +400,7 @@ function prestigeConfirmation(i) {
 
 function openThemePicker() {
     document.getElementById('modalContainer').style.display = 'block'
-    document.getElementById('modalContainer').style.border = `4px solid gray`
+    document.getElementById('modalContainer').style.border = `4px solid grayr`
     document.getElementById('themeSelector').style.display = 'block'
     document.getElementById('buttonHolder').style.display = 'flex'
 }
