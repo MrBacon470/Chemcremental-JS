@@ -109,7 +109,7 @@ function buyLepton(a) {
             break
         case 2:
             if(data.particles[1].taus.lt(D(200)) || data.leptonUnlocks[a] === true) return 
-            data.particles[1].taus = data.particles[1].taus.sub(D(2.5e5))
+            data.particles[1].taus = data.particles[1].taus.sub(D(200))
             data.leptonUnlocks[a] = true
             break
     }
