@@ -22,12 +22,11 @@ function irridiate() {
     data.particles[1].taus = D(0)
     for(let i = 0; i < 3; i++) {
         for(let j = 0; j < 3; j++) {
-            if(j === 0 && !data.research[8])
                 data.augments[i].unlocked[j] = false
-            else if(j !== 0) 
-                data.augments[i].unlocked[j] = false
+                
         }
-            
+        if(data.research[8])
+            data.augments[i].unlocked[0] = true
         data.leptonUnlocks[i] = false
     }
     for(let i = 0; i < 4; i++) {

@@ -32,8 +32,8 @@ function updateAccelStuff() {
        quarkBoosts[i] = D(1).plus(quarkBoosts[i])
    }
 }
-const particleDivisor = [D(5e3),D(1e3),D(5e2)]
 function calculateAugmentBoost() {
+    let particleDivisor = data.hasIrridiated ? [D(1e3),D(5e2),D(1e2)] : [D(5e3),D(1e3),D(5e2)]
     for(let i = 0; i < 3; i++) {
         for(let j = 0; j < 3; j++) {
             if(i === 0)
