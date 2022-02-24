@@ -173,7 +173,7 @@ function updateHTML(){
         particleTexts[1].innerHTML = `${format(data.particles[0].neutrons)} ${particleNames[1]}(0)`
         particleTexts[2].innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color:${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
         DOMCacheGetOrSet('lpA').style.display = data.augments[2].unlocked[0] === true ? 'inline' : 'none'
-        DOMCacheGetOrSet('quA').style.display = data.research[13] ? 'inline' : 'inline'
+        DOMCacheGetOrSet('quA').style.display = data.research[13] ? 'inline' : 'none'
         if(data.currentSubTab[1] === 0) {
             DOMCacheGetOrSet('gainMult').innerHTML = `${format(gainMult)}x more to gain`
             protonGainText.innerHTML = `+${format(data.particlesToGet[0])} Protons`
