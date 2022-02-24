@@ -32,7 +32,7 @@ function updateAccelStuff() {
        quarkBoosts[i] = D(1).plus(quarkBoosts[i])
    }
 }
-const particleDivisor = [D(1e3),D(1e2),D(1e1)]
+const particleDivisor = [D(1e4),D(5e3),D(1e3)]
 function calculateAugmentBoost() {
     for(let i = 0; i < 3; i++) {
         for(let j = 0; j < 3; j++) {

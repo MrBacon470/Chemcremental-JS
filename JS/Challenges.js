@@ -5,6 +5,7 @@ const challengeInfo = [{name:'Crushed Compounds',desc:'You\'ve become too depend
 {name:'Elemental Decay',desc:'The worst challenge returns',effect:'Lose 1% of your Element Generators per second'}]
 const challengeRewards = []
 let currentChallengeDisplay = -1
+
 function changeChallengeDisplay(i) {
     currentChallengeDisplay = i
 }
