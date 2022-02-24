@@ -135,6 +135,7 @@ function mainLoop(){
     updateRadiation()
     updateHTML()
     updateAchievementHTML()
+    updateChallengeHTML()
     updateCosts()
     updateMeltCost()
     updatePowerCosts()

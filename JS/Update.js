@@ -296,6 +296,7 @@ const generatorArea = DOMCacheGetOrSet('generatorArea')
 //Radiation Subs
 const irridiatorArea = DOMCacheGetOrSet('irridiatorArea')
 const researchArea = DOMCacheGetOrSet('researchArea')
+const challengeArea = DOMCacheGetOrSet('challengeArea')
 function subTabChangeHTML() {
         regularElementHolder.style.display = data.currentSubTab[0] === 0  && data.currentTab === 1 ? 'flex' : 'none'
         isotopeElementHolder.style.display = data.currentSubTab[0] === 1  && data.currentTab === 1 ? 'flex' : 'none'
@@ -314,4 +315,5 @@ function subTabChangeHTML() {
         
         irridiatorArea.style.display = data.currentSubTab[4] === 0 && data.currentTab === 8 ? 'flex' : 'none'
         researchArea.style.display = data.currentSubTab[4] === 1  && data.currentTab === 8 ? 'flex' : 'none'
+        challengeArea.style.display = data.currentSubTab[4] === 2  && data.currentTab === 8 ? 'flex' : 'none'
 }
