@@ -6,6 +6,15 @@ const challengeInfo = [{name:'Crushed Compounds',desc:'You\'ve become too depend
 const challengeRewards = []
 let currentChallengeDisplay = -1
 
+for(let i = 0; i < 5; i++)
+    DOMCacheGetOrSet(`chal${i+1}Img`).addEventListener('mouseover', () => changeChallengeDisplay(i))
+
 function changeChallengeDisplay(i) {
     currentChallengeDisplay = i
+}
+
+function updateChallengeHTML() {
+    if(data.currentTab === 8 && data.currentSubTab[4] === 2) {
+        
+    }
 }
