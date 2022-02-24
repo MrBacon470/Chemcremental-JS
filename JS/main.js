@@ -14,8 +14,6 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(D(1).plus(Decimal.sqrt(data.isotopes[0].max)))
             if(data.research[7])
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
-            if(data.research[8])
-                data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
             data.elementGain[i] = data.elementGain[i].times(quarkBoosts[3])
         }
         else {

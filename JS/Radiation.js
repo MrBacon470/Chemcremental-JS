@@ -21,8 +21,13 @@ function irridiate() {
     data.particles[1].muons = D(0)
     data.particles[1].taus = D(0)
     for(let i = 0; i < 3; i++) {
-        for(let j = 0; j < 3; j++)
-            data.augments[i].unlocked[j] = false
+        for(let j = 0; j < 3; j++) {
+            if(j === 0 && !data.research[8])
+                data.augments[i].unlocked[j] = false
+            else if(j !== 0) 
+                data.augments[i].unlocked[j] = false
+        }
+            
         data.leptonUnlocks[i] = false
     }
     for(let i = 0; i < 4; i++) {
@@ -57,7 +62,7 @@ const researchCosts = [{alpha:D(10),beta:D(5),gamma:D(1)},{alpha:D(25),beta:D(10
 {alpha:D(1.15e4),beta:D(1.3e3),gamma:D(950)},{alpha:D(1.5e4),beta:D(1.6e3),gamma:D(1.15e3)},{alpha:D(1.3e4),beta:D(1.15e3),gamma:D(1.05e3)},{alpha:D(2e4),beta:D(3.5e3),gamma:D(1.35e3)},]
 const researchDescs = ['[1x1] - Unlock Element Purchase Automators','[1x2] - Unlock Compound Purchase Automators','[1x3] - Unlock Power Upgrade Purchase Automators','[1x4] - Unlock Melt Upgrade Automators',
 '[1x5] - Unlock Refinery Purchase Automators', '[1x6] - Unlock Auto Augment & Lepton Purchase Automators', '[1x7] - Boost Hydrogen - Fluorine by ^1.05', '[1x8] - Boost Sulfur - Lead by ^1.10',
-'[2x1] - Boost Lead by an additional ^1.10', '[2x2] - Remove the Power Limit Entirely', '[2x3] - Generator Fueling Automator / 2x Less Fuel Consumption', '[2x4] - Generate 1% of Corium Per Second',
+'[2x1] - Keep the first row of Augments Unlocked on Reset', '[2x2] - Remove the Power Limit Entirely', '[2x3] - Generator Fueling Automator / 2x Less Fuel Consumption', '[2x4] - Generate 1% of Corium Per Second',
 '[2x5] - AAA not enough Radiation increase gain by 2x', '[2x6] - Unlock Quarks', '[2x7] - Hydrogen is the source of all boost it by ^2.00', '[2x8] - Unlock Challenges']
 
 for(let i = 0; i < researchDescs.length; i++) {
