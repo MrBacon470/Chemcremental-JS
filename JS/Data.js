@@ -40,6 +40,7 @@ function getDefaultObject() {
         radiationParticles: [D(0),D(0),D(0)],
         autoActive: [false,false,false,false,false,false,false],
         research: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+        challengeCompletions: [D(0),D(0),D(0),D(0),D(0)],
         //Achievements
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
