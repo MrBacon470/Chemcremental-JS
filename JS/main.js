@@ -8,7 +8,7 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(compoundBoosts[3])
             data.elementGain[i] = data.elementGain[i].times(powerBoosts[0])
             data.elementGain[i] = data.elementGain[i].times(coriumMultBoosts[0])
-            data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
+            data.elementGain[i] = data.elementGain[i].times(coriumBoost)
             data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[0])
             data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[2])
             data.elementGain[i] = data.elementGain[i].times(D(1).plus(Decimal.sqrt(data.isotopes[0].max)))
@@ -22,7 +22,7 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(compoundBoosts[0])
             data.elementGain[i] = data.elementGain[i].times(D(1).add(powerBoosts[0]))
             data.elementGain[i] = data.elementGain[i].times(D(1).add(coriumMultBoosts[0]))
-            data.elementGain[i] = data.elementGain[i].times(D(1).add(Decimal.sqrt(data.coriumMax)))
+            data.elementGain[i] = data.elementGain[i].times(coriumBoost)
             data.elementGain[i] = data.elementGain[i].times(augmentBoosts[0].boost[0])
             if(data.research[6] && i < 4)
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.05))
@@ -169,6 +169,10 @@ function mainLoop(){
         data.elements[0].amt = D(10)
 }
 function updateBoosts() {
+    coriumBoost = D(1).plus(Decimal.sqrt(data.coriumMax))
+    leptonBoost[0] = !data.leptonUnlocks[1] || data.activeChallenge[3] ? D(1) : D(1).plus(Decimal.sqrt(data.particles[1].muons))
+    leptonBoost[1] = !data.leptonUnlocks[1] || data.activeChallenge[3] ? D(1) : D(1).plus(Decimal.sqrt(data.particles[1].taus))
+
     for(let i = 0; i < 5; i++) {
         if(data.compounds[i].amt.gt(D(0)))
             compoundBoosts[i] = D(1).add(Decimal.sqrt(data.compounds[i].amt / 8)) 
@@ -193,7 +197,8 @@ function updateBoosts() {
     powerBoosts[1] = D(10).times(data.powerUps[1])
     powerBoosts[2] = D(0.1).times(data.powerUps[2])
     */
-    powerLimit = D(100).plus(powerBoosts[1] * (compoundBoosts[2]))
+    powerLimit = D(100).plus(powerBoosts[1].times(compoundBoosts[2]))
+    powerLimit = powerLimit.times(leptonBoost[0])
     for(let i = 0; i < 3; i++) {
         let boosts = [D(4),D(1.25),D(0.5)]
         if(data.coriumMultUps[i].gt(D(0)))
@@ -242,7 +247,7 @@ function purchaseFuel(x) {
                 if(data.elements[1].level.gte(D(1)) && data.elements[0].level.gte(D(4))) {
                     data.elements[1].level = data.elements[1].level.sub(D(1))
                     data.elements[0].level = data.elements[0].level.sub(D(4))
-                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]))
+                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]).times(leptonBoost[1]))
                 }
             }
             break;
@@ -252,7 +257,7 @@ function purchaseFuel(x) {
                     data.elements[1].level = data.elements[1].level.sub(D(12))
                     data.elements[0].level = data.elements[0].level.sub(D(6))
                     data.elements[2].level = data.elements[2].level.sub(D(1))
-                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]))
+                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]).times(leptonBoost[1]))
                 }
             }
             break;
@@ -261,7 +266,7 @@ function purchaseFuel(x) {
                 if(data.elements[1].level.gte(D(15)) && data.elements[0].level.gte(D(28))) {
                     data.elements[1].level = data.elements[1].level.sub(D(15))
                     data.elements[0].level = data.elements[0].level.sub(D(28))
-                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]))
+                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]).times(leptonBoost[1]))
                 }
             }
             break;
@@ -272,7 +277,7 @@ function purchaseFuel(x) {
                     data.elements[0].level = data.elements[0].level.sub(D(28))
                     data.elements[2].level = data.elements[2].level.sub(D(2))
                     data.elements[4].level = data.elements[4].level.sub(D(1))
-                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]))
+                    data.fuels[x] = data.fuels[x].add((D(1).times(augmentBoosts[2].boost[1])).times(quarkBoosts[4]).times(leptonBoost[1]))
                 }
             }
             break;
