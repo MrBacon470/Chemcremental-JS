@@ -22,7 +22,6 @@ for(let i=0; i < 5; i++) {
 }
 const tabNames = ['Compounds','Power','Melting','Refinery','Particles']
 //Power & Melting
-let coriumBoost = D(0)
 const powerUpButton = []
 for(let i=0; i < 3; i++)
     powerUpButton[i] = DOMCacheGetOrSet(`pu${i+1}`)
@@ -66,7 +65,7 @@ function updateHTML(){
     else
         DOMCacheGetOrSet('powerText').innerHTML = data.power.gte(D(1e3)) ? `${format(data.power.divide(D(1e3)))} Kilowatts` : `${format(data.power)} Watts`
     //Corium
-    DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)} [${format(coriumBoost)}x]`
+    DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)} [${format(D(1).plus(Decimal.sqrt(data.coriumMax)))}x]`
     
     for(let i = 0; i < data.buyAmounts.length; i++)
         DOMCacheGetOrSet(`bA${i}`).innerHTML = i !== 6 ? `Buy Amount<br>${data.buyAmounts[i]}` : `Fuel Percent Used<br>${data.buyAmounts[i]*100.0}%`
@@ -200,8 +199,8 @@ function updateHTML(){
                 DOMCacheGetOrSet('shatterGainText').innerHTML = `+${format(leptonsToGet[0])} Muons<br>+${format(leptonsToGet[1])} Taus<br><br>`
 
                 DOMCacheGetOrSet('lepUnlock1').innerHTML = data.leptonUnlocks[0] === true ? `Unlocked<br>No Extra Boost` : `Unlock Coal Generator<br>Cost: 250,000 Electrons`
-                DOMCacheGetOrSet('lepUnlock2').innerHTML = data.leptonUnlocks[1] === true ? `Unlocked<br>Power Capacity Buff: ${format(leptonBoosts[0])}x` : `Unlock Petroleum Generator<br>Cost: 250 Muons`
-                DOMCacheGetOrSet('lepUnlock3').innerHTML = data.leptonUnlocks[2] === true ? `Unlocked<br>Fuel Production Buff: ${format(leptonsBoosts[1])}x` : `Unlock Natural Gas Generator<br>Cost: 200 Taus`
+                DOMCacheGetOrSet('lepUnlock2').innerHTML = data.leptonUnlocks[1] === true ? `Unlocked<br>Power Capacity Buff: ${format(D(1).plus(Decimal.sqrt(data.particles[1].muons)))}x` : `Unlock Petroleum Generator<br>Cost: 250 Muons`
+                DOMCacheGetOrSet('lepUnlock3').innerHTML = data.leptonUnlocks[2] === true ? `Unlocked<br>Fueling Cost Decrease: ${format(D(1).plus(Decimal.sqrt(data.particles[1].taus.divide(D(1000)))))}x` : `Unlock Natural Gas Generator<br>Cost: 200 Taus`
         }
         else if(data.currentSubTab[1] === 3) {
             //row1

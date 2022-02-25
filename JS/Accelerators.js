@@ -2,7 +2,6 @@ let augmentCosts = [D(2.5e4),D(5e4),D(1.5e5)]
 let unlockCosts = [D(0),D(0),D(0)]
 let augmentBoosts = [{boost:[D(0),D(0),D(0)]},{boost:[D(0),D(0),D(0)]},{boost:[D(0),D(0),D(0)]}]
 let quarkBoosts = [D(0),D(0),D(0),D(0),D(0),D(0)]
-let leptonBoosts = [D(0),D(0)]
 let leptonsToGet = [D(0),D(0)]
 const particleGains = [D(1),D(6),D(8),D(9),D(16),D(17),D(26),D(82)]
 let sumOfLevels = data.elements[0].level.plus(data.elements[1].level).plus(data.elements[2].level).plus(data.elements[3].level).plus(data.elements[4].level).plus(data.elements[5].level).plus(data.elements[6].level).plus(data.elements[7].level)
@@ -32,8 +31,6 @@ function updateAccelStuff() {
        quarkBoosts[i] = quarkBoosts[i].sub(quarkBoosts[i].times(D(.5)))
        quarkBoosts[i] = D(1).plus(quarkBoosts[i])
    }
-   leptonBoosts[0] = data.leptonUnlocks[1] ? D(1).plus(Decimal.sqrt(data.particles[2].muons)) : D(1)
-   leptonBoosts[1] = data.leptonUnlocks[2] ? D(1).plus(Decimal.sqrt(data.particles[2].taus)) : D(1)
 }
 function calculateAugmentBoost() {
     let particleDivisor = data.hasIrridiated ? [D(1e3),D(5e2),D(1e2)] : [D(5e3),D(1e3),D(5e2)]
