@@ -57,8 +57,8 @@ function irridiate() {
 }
 const researchCosts = [{alpha:D(10),beta:D(5),gamma:D(1)},{alpha:D(25),beta:D(10),gamma:D(5)},{alpha:D(50),beta:D(25),gamma:D(10)},{alpha:D(100),beta:D(75),gamma:D(25)},
 {alpha:D(25),beta:D(10),gamma:D(5)},{alpha:D(125),beta:D(85),gamma:D(35)},{alpha:D(50),beta:D(25),gamma:D(10)},{alpha:D(100),beta:D(75),gamma:D(25)},
-{alpha:D(500),beta:D(350),gamma:D(225)},{alpha:D(1.5e3),beta:D(550),gamma:D(325)},{alpha:D(1.25e3),beta:D(450),gamma:D(210)},{alpha:D(1e4),beta:D(1.25e3),gamma:D(500)},
-{alpha:D(1.15e4),beta:D(1.3e3),gamma:D(950)},{alpha:D(1.5e4),beta:D(1.6e3),gamma:D(1.15e3)},{alpha:D(1.3e4),beta:D(1.15e3),gamma:D(1.05e3)},{alpha:D(2e4),beta:D(3.5e3),gamma:D(1.35e3)},]
+{alpha:D(500),beta:D(350),gamma:D(225)},{alpha:D(1.5e3),beta:D(550),gamma:D(325)},{alpha:D(1.25e3),beta:D(450),gamma:D(210)},{alpha:D(1.5e3),beta:D(700),gamma:D(375)},
+{alpha:D(2e3),beta:D(950),gamma:D(425)},{alpha:D(3e3),beta:D(1.35e3),gamma:D(750)},{alpha:D(7.5e3),beta:D(2.5e3),gamma:D(1.25e3)},{alpha:D(1e4),beta:D(4.5e3),gamma:D(1.45e3)},]
 const researchDescs = ['[1x1] - Unlock Element Purchase Automators','[1x2] - Unlock Compound Purchase Automators','[1x3] - Unlock Power Upgrade Purchase Automators','[1x4] - Unlock Melt Upgrade Automators',
 '[1x5] - Unlock Refinery Purchase Automators', '[1x6] - Unlock Auto Augment & Lepton Purchase Automators', '[1x7] - Boost Hydrogen - Fluorine by ^1.05', '[1x8] - Boost Sulfur - Lead by ^1.10',
 '[2x1] - Keep the first row of Augments Unlocked on Reset', '[2x2] - Remove the Power Limit Entirely', '[2x3] - Generator Fueling Automator / 2x Less Fuel Consumption', '[2x4] - Generate 1% of Corium Per Second',

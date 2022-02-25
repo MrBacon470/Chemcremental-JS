@@ -34,17 +34,27 @@ function updateAccelStuff() {
    }
 }
 function calculateAugmentBoost() {
-    let particleDivisor = data.hasIrridiated ? [D(1e3),D(5e2),D(1e2)] : [D(5e3),D(1e3),D(5e2)]
-    for(let i = 0; i < 3; i++) {
-        for(let j = 0; j < 3; j++) {
-            if(i === 0)
-                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].protons.divide(particleDivisor[j]))) : D(1)
-            if(i === 1)
-                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].neutrons.divide(particleDivisor[j]))) : D(1)
-            if(i === 2)
-                augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].electrons.divide(particleDivisor[j]))) : D(1)
+    if(!data.activeChallenge[3]) {
+        let particleDivisor = data.hasIrridiated ? [D(1e3),D(5e2),D(1e2)] : [D(5e3),D(1e3),D(5e2)]
+        for(let i = 0; i < 3; i++) {
+            for(let j = 0; j < 3; j++) {
+                if(i === 0)
+                    augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].protons.divide(particleDivisor[j]))) : D(1)
+                if(i === 1)
+                    augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].neutrons.divide(particleDivisor[j]))) : D(1)
+                if(i === 2)
+                    augmentBoosts[i].boost[j] = data.augments[i].unlocked[j] === true ? D(1).add(Decimal.sqrt(data.particles[0].electrons.divide(particleDivisor[j]))) : D(1)
+            }
         }
     }
+    else {
+        for(let i = 0; i < 3; i++) {
+            for(let j = 0; j < 3; j++) {
+                augmentBoosts[i].boost[j] = D(1)
+            }
+        }
+    }
+    
 }
 
 function splitElements() {

@@ -37,3 +37,29 @@ function updateChallengeHTML() {
         DOMCacheGetOrSet(`chal${i+1}Img`).style.backgroundColor = data.activeChallenge[i] ? '#ffffff' : 'rgba(0,0,0,0)'
     }
 }
+
+function runChallenge() {
+    let currentChallengeIndex;
+    for(let i = 0; i < 5; i++)  
+        if(data.activeChallenge[i]) currentChallengeIndex = i;
+    
+    switch(currentChallengeIndex) {
+        case 0:
+            for(let i = 0; i < 5; i++) {
+                compoundBoosts[i] = D(1)
+            }
+            break
+        case 1:
+            DOMCacheGetOrSet('pB').style.display = 'none'
+            break
+        //Chal 3 in Main.js
+        //Chal 4 in Main.js & Accelerators.js
+        case 4:
+            for(let i = 0; i < 8; i++) {
+                if(data.elements[i].level.gt(D(0)))
+                data.elements[i].level = data.elements[i].level.sub((data.elements[i].level.times(D(0.01))).times(diff))
+                if(data.elements[i].level.lt(D(0)))
+                    data.elements[i].level = D(0)
+            }
+    }
+}

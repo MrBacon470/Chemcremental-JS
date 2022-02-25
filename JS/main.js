@@ -160,6 +160,7 @@ function mainLoop(){
     coriumToGet = D(1).add(Decimal.sqrt(sumOfElements / D(1e6)).times(coriumMultBoosts[2]))
     coriumToGet = coriumToGet.times(compoundBoosts[4])
     coriumToGet = coriumToGet.times(augmentBoosts[1].boost[0])
+    if(data.activeChallenge[2]) coriumToGet = Decimal.sqrt(coriumToGet)
     if(data.research[11] && sumOfElements.gte(D(1e8))) {
         data.corium = data.corium.plus((coriumToGet.times(D(0.01))).times(diff))
         data.coriumMax = data.coriumMax.plus((coriumToGet.times(D(0.01))).times(diff))
@@ -170,8 +171,16 @@ function mainLoop(){
 }
 function updateBoosts() {
     coriumBoost = D(1).plus(Decimal.sqrt(data.coriumMax))
-    leptonBoost[0] = !data.leptonUnlocks[1] || data.activeChallenge[3] ? D(1) : D(1).plus(Decimal.sqrt(data.particles[1].muons))
-    leptonBoost[1] = !data.leptonUnlocks[1] || data.activeChallenge[3] ? D(1) : D(1).plus(Decimal.sqrt(data.particles[1].taus))
+    if(data.activeChallenge[2]) coriumBoost = Decimal.sqrt(coriumBoost)
+    if(!data.activeChallenge[3]) {
+        leptonBoost[0] = !data.leptonUnlocks[1] || data.activeChallenge[3] ? D(1) : D(1).plus(Decimal.sqrt(data.particles[1].muons))
+        leptonBoost[1] = !data.leptonUnlocks[1] || data.activeChallenge[3] ? D(1) : D(1).plus(Decimal.sqrt(data.particles[1].taus))
+    }
+    else {
+        for(let i = 0; i < 2; i++)
+            leptonBoost[i] = D(1)
+    }
+    
 
     for(let i = 0; i < 5; i++) {
         if(data.compounds[i].amt.gt(D(0)))
