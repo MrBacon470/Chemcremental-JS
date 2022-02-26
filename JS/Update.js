@@ -63,7 +63,12 @@ function updateHTML(){
             DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power)} / ${format(powerLimit)} Watts | Excess: ${format(data.powerStored)} Watts`
     }
     else
-        DOMCacheGetOrSet('powerText').innerHTML = data.power.gte(D(1e3)) ? `${format(data.power.divide(D(1e3)))} Kilowatts` : `${format(data.power)} Watts`
+        if(data.power.lt(D(1e6)))
+            DOMCacheGetOrSet('powerText').innerHTML = data.power.gte(D(1e3)) ? `${format(data.power.divide(D(1e3)))} Kilowatts` : `${format(data.power)} Watts`
+        else if(data.power.lt(D(1e12)))
+            DOMCacheGetOrSet('powerText').innerHTML = data.power.gte(D(1e9)) ? `${format(data.power.divide(D(1e9)))} Gigawatts` : `${format(data.power.divide(D(1e6)))} Megawatts`
+        else
+            DOMCacheGetOrSet('powerText').innerHTML = `${format(data.power.divide(D(1e12)))} Terawatts`
     //Corium
     DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)} [${format(coriumBoost)}x]`
     DOMCacheGetOrSet('challengeStatusHolder').style.display = data.hasIrridiated ? 'flex' : 'none'
@@ -122,9 +127,22 @@ function updateHTML(){
         if(data.currentSubTab[3] === 0) {
             if(powerGain.lt(D(1e3)))
                 DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain)} Watts` : "Generate Power<br>Req: 3 Propane + 1 Water"
+            else {
+                if(powerGain.lt(D(1e6)))
+                    DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain.divide(D(1e3)))} Kilowatts` : "Generate Power<br>Req: 3 Propane + 1 Water"
+                else if(powerGain.lt(D(1e9)))
+                    DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain.divide(D(1e6)))} Megawatts` : "Generate Power<br>Req: 3 Propane + 1 Water"
+                else if(powerGain.lt(D(1e12)))
+                    DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain.divide(D(1e9)))} Gigawatts` : "Generate Power<br>Req: 3 Propane + 1 Water"
+                else
+                    DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain.divide(D(1e12)))} Terawatts` : "Generate Power<br>Req: 3 Propane + 1 Water"
+            }
+            if(powerCosts[0].lt(D(1e6)))
+                powerUpButton[0].innerHTML = powerCosts[0].gte(D(1e3)) ? `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0].divide(D(1e3)))} Kilowatts<br>Level: ${format(data.powerUps[0])}` : `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Watts<br>Level: ${format(data.powerUps[0])}`
+            else if(powerCosts[0].lt(D(1e12)))  
+                powerUpButton[0].innerHTML = powerCosts[0].gte(D(1e9)) ? `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0].divide(D(1e9)))} Gigawatts<br>Level: ${format(data.powerUps[0])}` : `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0].divide(D(1e6)))} Megawatts<br>Level: ${format(data.powerUps[0])}`
             else
-                DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${format(powerGain.divide(D(1e3)))} Kilowatts` : "Generate Power<br>Req: 3 Propane + 1 Water"
-            powerUpButton[0].innerHTML = powerCosts[0].gte(D(1e3)) ? `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0].divide(D(1e3)))} Kilowatts<br>Level: ${format(data.powerUps[0])}` : `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0])} Watts<br>Level: ${format(data.powerUps[0])}`
+                powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${format(powerCosts[0].divide(D(1e12)))} Terawatts<br>Level: ${format(data.powerUps[0])}`
             powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
             powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 1.5x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
 
