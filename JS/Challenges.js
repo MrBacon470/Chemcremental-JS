@@ -87,6 +87,10 @@ function startChallenge(a) {
 }
 
 function exitChallenge() {
+    let count = 0
+    for(let i = 0; i < 5; i++)
+        if(data.activeChallenge[i] === false) count++;
+    if(count === 5) return
     for(let i = 0; i < 5; i++)
         data.activeChallenge[i] = false
     irridiate()
