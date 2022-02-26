@@ -1,8 +1,8 @@
 const challengeInfo = [{name:'Crushed Compounds',desc:'You\'ve become too dependent on them',effect:'Compounds no longer have an effect',reward:''},
-{name:'Renewable Energy',desc:'Think green energy is so good now',effect:'Get locked out of all power production methods',reward:''},
-{name:'Advanced Reactors',desc:'Chernobyl-B-Gon',effect:'Corium Production and Boost is decreased significantly',reward:''},
-{name:'Anti-Challenge',desc:'Say hello to Anti-Particles',effect:'Augments have no effect now along with Lepton Buffs',reward:''},
-{name:'Elemental Decay',desc:'The worst challenge returns',effect:'Lose 1% of your Element Generators per second',reward:''}]
+{name:'Renewable Energy',desc:'Think green energy is so good now',effect:'Get locked out of all<br>power production methods',reward:''},
+{name:'Advanced Reactors',desc:'Chernobyl-B-Gon',effect:'Corium Production and Boost<br>is decreased significantly',reward:''},
+{name:'Anti-Challenge',desc:'Say hello to Anti-Particles',effect:'Augments have no effect now<br>along with Lepton Buffs',reward:''},
+{name:'Elemental Decay',desc:'The worst challenge returns',effect:'Lose 1% of your Element<br>Generators per second',reward:''}]
 const challengeGoalBases = [D(0),D(0),D(0),D(0),D(0)]
 let challengeGoals = [D(0),D(0),D(0),D(0),D(0)]
 let currentChallengeDisplay = -1
@@ -34,6 +34,9 @@ function updateChallengeHTML() {
             DOMCacheGetOrSet('challengeEffectText').innerHTML = `${challengeInfo[currentChallengeDisplay].effect}`
             DOMCacheGetOrSet('challengeGoalText').innerHTML = `Goal: ${format(challengeGoals[currentChallengeDisplay])} ${challengeResourceNames[currentChallengeDisplay]}`
             DOMCacheGetOrSet('challengeRewardText').innerHTML = `${challengeInfo[currentChallengeDisplay].reward}`
+        }
+        for(let i = 0; i < 5; i++) {
+            DOMCacheGetOrSet(`challenge${i+1}Text`).innerHTML = `${toPlaces(data.challengeCompletions[i], 0, 28)}/25`
         }
     }
     let count = 0
