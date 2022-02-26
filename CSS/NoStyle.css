@@ -59,6 +59,7 @@ img {
 }
 #powerText {color: var(--power-tab-color)}
 #coriumText {color: var(--melt-tab-color)}
+#challengeStatusText {color: var(--radiation-tab-color)}
 /*Custom Modal Styles*/
 #modalContainer {
     display: none;
