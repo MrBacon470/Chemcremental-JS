@@ -20,6 +20,7 @@ function irridiate() {
     data.particles[0].electrons = D(0)
     data.particles[1].muons = D(0)
     data.particles[1].taus = D(0)
+    data.previousSum = D(1)
     for(let i = 0; i < 3; i++) {
         for(let j = 0; j < 3; j++) {
                 data.augments[i].unlocked[j] = false
