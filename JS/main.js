@@ -120,6 +120,9 @@ function switchSubTab(i,x){
     //if (i >= 0) data.hasTab[x] ? data.currentSubTab[x]=i : data.currentSubTab[x] = 1
     subTabChangeHTML()
 }
+
+
+
 let sumOfElements = D(0)
 let diff
 function mainLoop(){

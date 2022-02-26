@@ -17,6 +17,8 @@ function changeChallengeDisplay(i) {
     document.getElementById("challengeButton").addEventListener('click', () => startChallenge(i))
 }
 
+
+
 function updateChallengeHTML() {
     for(let i = 0; i < 5; i++) {
         challengeGoals[i] = challengeGoalBases[i].times(Decimal.pow(D(1.75), data.challengeCompletions[i]))
@@ -61,9 +63,7 @@ function updateChallengeHTML() {
 
 function startChallenge(a) {
     if(data.challengeCompletions[a].eq(D(25))) return
-    clearExitListener()
     irridiate() 
-    document.getElementById("challengeStatusImg").addEventListener('click', () => exitChallenge(a))
     for(let i = 0; i < 5; i++) {
         if(i == a)
             data.activeChallenge[i] = true
@@ -86,9 +86,9 @@ function startChallenge(a) {
         data.autoActive[5] = false
 }
 
-function exitChallenge(a) {
-    clearExitListener()
-    data.activeChallenge[a] = false
+function exitChallenge() {
+    for(let i = 0; i < 5; i++)
+        data.activeChallenge[i] = false
     irridiate()
 }
 
@@ -103,11 +103,6 @@ function completeChallenge(a) {
 
 function clearStartListener() {
     let old_element = document.getElementById("challengeButton");
-    let new_element = old_element.cloneNode(true);
-    old_element.parentNode.replaceChild(new_element, old_element);
-}
-function clearExitListener() {
-    let old_element = document.getElementById("challengeStatusImg")
     let new_element = old_element.cloneNode(true);
     old_element.parentNode.replaceChild(new_element, old_element);
 }
