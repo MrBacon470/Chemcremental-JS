@@ -36,7 +36,7 @@ function updateChallengeHTML() {
             DOMCacheGetOrSet('challengeDescText').innerHTML = `${challengeInfo[currentChallengeDisplay].desc}`
             DOMCacheGetOrSet('challengeEffectText').innerHTML = `${challengeInfo[currentChallengeDisplay].effect}`
             DOMCacheGetOrSet('challengeGoalText').innerHTML = `Goal: ${format(challengeGoals[currentChallengeDisplay])} ${challengeResourceNames[currentChallengeDisplay]}`
-            DOMCacheGetOrSet('challengeRewardText').innerHTML = `${challengeInfo[currentChallengeDisplay].reward}`
+            DOMCacheGetOrSet('challengeRewardText').innerHTML = `The Reward is [REDACTED]`
         }
         for(let i = 0; i < 5; i++) {
             DOMCacheGetOrSet(`challenge${i+1}Text`).innerHTML = `${toPlaces(data.challengeCompletions[i], 0, 28)}/25`
@@ -55,18 +55,9 @@ function updateChallengeHTML() {
         document.getElementById('challengeStatusImg').style.backgroundColor = 'rgba(0,0,0,0)'
         DOMCacheGetOrSet('challengeStatusText').innerHTML = 'Not in a Challenge'
     }
-    
+    DOMCacheGetOrSet('pB').style.display = data.activeChallenge[1] ? 'none' : 'inline'
 }
 
-function runChallenge() {
-    let currentChallengeIndex = -1;
-    for(let i = 0; i < 5; i++)  
-        if(data.activeChallenge[i]) currentChallengeIndex = i;
-    if(data.activeChallenge[1]) 
-        DOMCacheGetOrSet('pB').style.display = 'none'
-    for(let i = 0; i < 5; i++)
-        if(data.activeChallenge[i]) completeChallenge[i]
-}
 
 function startChallenge(a) {
     if(data.challengeCompletions[a].eq(D(25))) return
@@ -79,46 +70,35 @@ function startChallenge(a) {
         else
             data.activeChallenge[i] = false
     }
-    switch(a) {
-        case 0:
-            data.autoActive[1] = false
-            break
-        case 1:
-            data.autoActive[2] = false
+    if(data.activeChallenge[0] === true)
+        data.autoActive[1] = false
+    if(data.activeChallenge[1] === true) {
+        data.autoActive[2] = false
             data.autoActive[6] = false
-            DOMCacheGetOrSet('pB').style.display = 'none'
             data.power = D(0)
             data.powerStored = D(0)
             for(let i = 0; i < 4; i++) {
                 data.fuels[i] = D(0)
                 data.fuelStored[i] = D(0)
             }
-            break
-        //No things needed for Chal 3
-        case 3:
-            data.autoActive[5] = false
-            break
-        //No Things needed for Chal 5
     }
+    if(data.activeChallenge[3] === true)   
+        data.autoActive[5] = false
 }
 
 function exitChallenge(a) {
     clearExitListener()
     data.activeChallenge[a] = false
     irridiate()
-    if(a === 1)
-        DOMCacheGetOrSet('pB').style.display = inline
 }
 
 function completeChallenge(a) {
-    if(challengeGoalResources[a].gte(challengeGoals[a])) {
-        clearExitListener()
+    if(challengeGoalResources[a].lt(challengeGoals[a])) return
         data.challengeCompletions[a] = data.challengeCompletions[a].plus(D(1))
         data.activeChallenge[a] = false
-        if(a === 1)
-            DOMCacheGetOrSet('pB').style.display = inline
         irridiate()
-    }
+        clearExitListener()
+    
 }
 
 function clearStartListener() {

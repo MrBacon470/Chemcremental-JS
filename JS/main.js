@@ -148,8 +148,8 @@ function mainLoop(){
     for(let i = 0; i < 4; i++) {
         increasePower(i)
     }
-    if(data.corium.gte(D(1e38)) && data.alerted === false) {
-        createAlert('You\'ve Reached the End Game for Now', 'Congrats! You\'ve either now hit or past 1.00e38 Corium<br>Which is the marker for the next layer, be patient 2? is coming soon')
+    if(data.research[15] === true && data.alerted === false) {
+        createAlert('You\'ve Reached the End Game for Now', 'Congrats! You\'ve now unlocked challenges<br>Which is the final point for the second prestige<br>I hope you enjoyed the new content')
         data.alerted = true
     }
     powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
@@ -181,6 +181,13 @@ function mainLoop(){
                 data.elements[i].level = D(0)
         }
     }
+    for(let i = 0; i < 5; i++) {
+        if(data.activeChallenge[i] === true) {
+            completeChallenge(i)
+        }
+    }
+    if(data.activeChallenge[1]) 
+        DOMCacheGetOrSet('pB').style.display = 'none'
 }
 function updateBoosts() {
     coriumBoost = D(1).plus(Decimal.sqrt(data.coriumMax))
