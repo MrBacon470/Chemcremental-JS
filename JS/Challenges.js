@@ -3,7 +3,7 @@ const challengeInfo = [{name:'Crushed Compounds',desc:'You\'ve become too depend
 {name:'Advanced Reactors',desc:'Chernobyl-B-Gon',effect:'Corium Production and Boost<br>is decreased significantly',reward:''},
 {name:'Anti-Challenge',desc:'Say hello to Anti-Particles',effect:'Augments have no effect now<br>along with Lepton Buffs',reward:''},
 {name:'Elemental Decay',desc:'The worst challenge returns',effect:'Lose 10% of your Element<br>Generators per second',reward:''}]
-const challengeGoalBases = [D(1e10),D(1e3),D(1e15),D(1e5),D(1e15)]
+const challengeGoalBases = [D(1e10),D(1e3),D(1e6),D(1e5),D(1e15)]
 let challengeGoals = [D(0),D(0),D(0),D(0),D(0)]
 let currentChallengeDisplay = -1
 let challengeGoalResources = [D(0),D(0),D(0),D(0),D(0)]
