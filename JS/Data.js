@@ -35,6 +35,13 @@ function getDefaultObject() {
         previousSum: D(1),
         augments: [{unlocked:[false,false,false]},{unlocked:[false,false,false]},{unlocked:[false,false,false]}],
         leptonUnlocks: [false,false,false],
+        //Radiation Vars
+        hasIrridiated: false,
+        radiationParticles: [D(0),D(0),D(0)],
+        autoActive: [false,false,false,false,false,false,false],
+        research: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+        challengeCompletions: [D(0),D(0),D(0),D(0),D(0)],
+        activeChallenge: [false,false,false,false,false],
         //Achievements
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
@@ -45,13 +52,13 @@ function getDefaultObject() {
         //Settings things
         currentTheme: 0,
         alerted: false,
-        hasTab: [false, false, false, false, false],
+        hasTab: [false, false, false, false, false, false],
         time: Date.now(),
         currentTab: 1,
-        currentSubTab: [0,0,0,0],
+        currentSubTab: [0,0,0,0,0],
         currentElement: 0,
-        settingsToggles: [true,true,true,true],
-        currentUpdate: 'v0.4.3f',
+        settingsToggles: [true,true,true,true,true,true],
+        currentUpdate: 'v0.5.0',
         devSpeed: 1,
     }
 }
@@ -64,13 +71,15 @@ function load() {
     let savedata = JSON.parse(window.localStorage.getItem('chemJSSave'))
     if (savedata !== undefined) fixSave(data, savedata)
     if(data.currentUpdate === 'v0.1.0' || data.currentUpdate === 'v0.1.1' || data.currentUpdate === 'v0.1.2' || data.currentUpdate === 'v0.1.3' || data.currentUpdate === 'v0.1.4') {
-        alert(`Welcome Back! The Current Version is v0.4.3b, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
+        alert(`Welcome Back! The Current Version is v0.5.0, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
         createAlert('Welcome Back!','I detected your save is older than Beta 2.0 so it has been deleted because of major changes in newer updates')
         noConfirmDelete()
     }
-    else if(data.currentUpdate !== 'v0.4.3f') {
-        createAlert('Welcome Back!','The current version is Beta 4.3f<br>Check the changelog for more details')
-        data.currentUpdate = 'v0.4.3f' 
+    else if(data.currentUpdate !== 'v0.5.0') {
+        createAlert('Welcome Back!','The current version is Beta 5.0 (Major Update)<br>Check the changelog for more details')
+        data.currentUpdate = 'v0.5.0' 
+        if(data.alerted === true) 
+            data.alerted === false
     }
     //fixOldSaves()
 }

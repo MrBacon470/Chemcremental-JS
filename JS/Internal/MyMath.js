@@ -1,7 +1,7 @@
-//aquired from flamemaster
-function getRandom(min, max) {
-    return Math.floor(Math.random() * (max - min) ) + min
-}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
 function minimum(value, min){
     if (value.lt(min)) value = D(min)
     return value

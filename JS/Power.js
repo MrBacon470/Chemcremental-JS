@@ -7,25 +7,35 @@ function generatePower() {
     if(data.compounds[0].amt.lt(3) || data.compounds[1].amt.lt(1)) return
 
     data.power = data.power.plus(powerGain)
-    if(powerGain.gt(powerLimit))
-        data.powerStored = data.powerStored.plus(powerGain.minus(powerLimit))
+    if(data.research[9] === false)
+        if(powerGain.gt(powerLimit))
+            data.powerStored = data.powerStored.plus(powerGain.minus(powerLimit))
     data.compounds[0].amt = D(0)
     data.compounds[1].amt = D(0)
 
-    if(data.power.gt(powerLimit))
+    if(data.power.gt(powerLimit) && data.research[9] === false)
         data.power = powerLimit
 }
 let percentUse = D(0)
 function updatePowerCosts() {
-    if(data.power.lt(powerLimit) && data.powerStored.gt(D(0))) {
-        let powerNeeded = powerLimit.minus(data.power)
-        data.power = data.power.plus(data.powerStored)
-        if(data.power.gt(powerLimit))
-            data.power = powerLimit
-        data.powerStored = data.powerStored.minus(powerNeeded)
+    if(data.research[9] === false) {
+        if(data.power.lt(powerLimit) && data.powerStored.gt(D(0))) {
+            let powerNeeded = powerLimit.minus(data.power)
+            data.power = data.power.plus(data.powerStored)
+            if(data.power.gt(powerLimit))
+                data.power = powerLimit
+            data.powerStored = data.powerStored.minus(powerNeeded)
+        }
+        if(data.powerStored.lt(D(0)))
+            data.powerStored = D(0)
     }
-    if(data.powerStored.lt(D(0)))
-        data.powerStored = D(0)
+    else {
+        if(data.powerStored.gt(D(0))) {
+            data.power = data.power.plus(data.powerStored)
+            data.powerStored = D(0)
+        }
+            
+    }
     for(let x = 0; x < 3; x++) {
         powerCosts[x] = D(5).plus(Decimal.pow(D(2), data.powerUps[x]) - 1)
     }

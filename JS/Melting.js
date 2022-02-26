@@ -72,6 +72,9 @@ function purchaseMeltUp(x) {
             data.coriumSingUps[1] = true
             break;
         case 's3':
+            if(data.corium.lt(coriumSingCost[2]) || data.coriumSingUps[2] === true) return
+            data.corium = data.corium.minus(coriumSingCost[2])
+            data.coriumSingUps[2] = true
             break;
     }
 }
