@@ -2,8 +2,8 @@ const challengeInfo = [{name:'Crushed Compounds',desc:'You\'ve become too depend
 {name:'Renewable Energy',desc:'Think green energy is so good now',effect:'Get locked out of all<br>power production methods',reward:''},
 {name:'Advanced Reactors',desc:'Chernobyl-B-Gon',effect:'Corium Production and Boost<br>is decreased significantly',reward:''},
 {name:'Anti-Challenge',desc:'Say hello to Anti-Particles',effect:'Augments have no effect now<br>along with Lepton Buffs',reward:''},
-{name:'Elemental Decay',desc:'The worst challenge returns',effect:'Lose 1% of your Element<br>Generators per second',reward:''}]
-const challengeGoalBases = [D(0),D(0),D(0),D(0),D(0)]
+{name:'Elemental Decay',desc:'The worst challenge returns',effect:'Lose 10% of your Element<br>Generators per second',reward:''}]
+const challengeGoalBases = [D(1e10),D(1e3),D(1e15),D(1e5),D(1e15)]
 let challengeGoals = [D(0),D(0),D(0),D(0),D(0)]
 let currentChallengeDisplay = -1
 let challengeGoalResources = [D(0),D(0),D(0),D(0),D(0)]
@@ -12,12 +12,15 @@ for(let i = 0; i < 5; i++)
     DOMCacheGetOrSet(`chal${i+1}Img`).addEventListener('mouseover', () => changeChallengeDisplay(i))
 
 function changeChallengeDisplay(i) {
-    clearChallengeListeners(0)
+    clearStartListener
     currentChallengeDisplay = i
     document.getElementById("challengeButton").addEventListener('click', () => startChallenge(i))
 }
 
 function updateChallengeHTML() {
+    for(let i = 0; i < 5; i++) {
+        challengeGoals[i] = challengeGoalBases[i].times(Decimal.pow(D(1.75), data.challengeCompletions[i]))
+    }
     if(data.currentTab === 8 && data.currentSubTab[4] === 2) {
         document.getElementById('challengeButton').style.display = currentChallengeDisplay === -1 ? 'none' : 'inline'
         if(currentChallengeDisplay === -1) {
@@ -56,35 +59,20 @@ function updateChallengeHTML() {
 }
 
 function runChallenge() {
-    let currentChallengeIndex;
+    let currentChallengeIndex = -1;
     for(let i = 0; i < 5; i++)  
         if(data.activeChallenge[i]) currentChallengeIndex = i;
-    
-    switch(currentChallengeIndex) {
-        case 0:
-            for(let i = 0; i < 5; i++) {
-                compoundBoosts[i] = D(1)
-            }
-            break
-        case 1:
-            DOMCacheGetOrSet('pB').style.display = 'none'
-            break
-        //Chal 3 in Main.js
-        //Chal 4 in Main.js & Accelerators.js
-        case 4:
-            for(let i = 0; i < 8; i++) {
-                if(data.elements[i].level.gt(D(0)))
-                data.elements[i].level = data.elements[i].level.sub((data.elements[i].level.times(D(0.01))).times(diff))
-                if(data.elements[i].level.lt(D(0)))
-                    data.elements[i].level = D(0)
-            }
-    }
+    if(data.activeChallenge[1]) 
+        DOMCacheGetOrSet('pB').style.display = 'none'
+    for(let i = 0; i < 5; i++)
+        if(data.activeChallenge[i]) completeChallenge[i]
 }
 
 function startChallenge(a) {
-    clearChallengeListeners(1)
-    document.getElementById("challengeStatusImg").addEventListener('click', () => exitChallenge(a))
+    if(data.challengeCompletions[a].eq(D(25))) return
+    clearExitListener()
     irridiate() 
+    document.getElementById("challengeStatusImg").addEventListener('click', () => exitChallenge(a))
     for(let i = 0; i < 5; i++) {
         if(i == a)
             data.activeChallenge[i] = true
@@ -115,11 +103,31 @@ function startChallenge(a) {
 }
 
 function exitChallenge(a) {
-
+    clearExitListener()
+    data.activeChallenge[a] = false
+    irridiate()
+    if(a === 1)
+        DOMCacheGetOrSet('pB').style.display = inline
 }
 
-function clearChallengeListeners(a) {
-    let old_element = a === 1 ? document.getElementById("challengeStatusImg") : document.getElementById("challengeButton");
+function completeChallenge(a) {
+    if(challengeGoalResources[a].gte(challengeGoals[a])) {
+        clearExitListener()
+        data.challengeCompletions[a] = data.challengeCompletions[a].plus(D(1))
+        data.activeChallenge[a] = false
+        if(a === 1)
+            DOMCacheGetOrSet('pB').style.display = inline
+        irridiate()
+    }
+}
+
+function clearStartListener() {
+    let old_element = document.getElementById("challengeButton");
+    let new_element = old_element.cloneNode(true);
+    old_element.parentNode.replaceChild(new_element, old_element);
+}
+function clearExitListener() {
+    let old_element = document.getElementById("challengeStatusImg")
     let new_element = old_element.cloneNode(true);
     old_element.parentNode.replaceChild(new_element, old_element);
 }

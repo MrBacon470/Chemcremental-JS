@@ -77,7 +77,7 @@ function load() {
     }
     else if(data.currentUpdate !== 'v0.5.0') {
         createAlert('Welcome Back!','The current version is Beta 5.0 (Major Update)<br>Check the changelog for more details')
-        data.currentUpdate = 'v0.4.3f' 
+        data.currentUpdate = 'v0.5.0' 
     }
     //fixOldSaves()
 }

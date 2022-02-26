@@ -168,6 +168,19 @@ function mainLoop(){
     //Misc stuff
     if(data.elements[0].amt.lt(D(10)) && data.elements[0].level.lt(D(1)))
         data.elements[0].amt = D(10)
+    challengeGoalResources[0] = data.corium
+    challengeGoalResources[1] = data.particles[1].muons
+    challengeGoalResources[2] = data.corium
+    challengeGoalResources[3] = data.particles[0].protons
+    challengeGoalResources[4] = data.elements[0].amt
+    if(data.activeChallenge[4]) {
+        for(let i = 0; i < 8; i++) {
+            if(data.elements[i].level.gt(D(0)))
+            data.elements[i].level = data.elements[i].level.sub((data.elements[i].level.times(D(0.1))).times(diff))
+            if(data.elements[i].level.lt(D(0)))
+                data.elements[i].level = D(0)
+        }
+    }
 }
 function updateBoosts() {
     coriumBoost = D(1).plus(Decimal.sqrt(data.coriumMax))
@@ -190,6 +203,8 @@ function updateBoosts() {
 
         compoundBoosts[i] = compoundBoosts[i].times(augmentBoosts[0].boost[2])
         compoundBoosts[i] = compoundBoosts[i].times(quarkBoosts[1])
+        if(data.activeChallenge[0])
+            compoundBoosts[i] = D(1)
     }
     for(let i = 0; i < 3; i++) {
         let boosts = [D(2), D(10), D(0.1)]
