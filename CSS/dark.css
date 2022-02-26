@@ -391,3 +391,7 @@ button {
 }
 #betaGainText, #betaText {color: var(--electron-color)}
 #gammaGainText, #gammaText {color: var(--radiation-tab-color)}
+#challengeButton { border-color: #5b9042}
+#challengeDescText {color: rgb(90, 90, 201)}
+#challengeEffectText {color: #964040}
+#challengeGoalText {color: rgb(255, 237, 138)}

@@ -19,7 +19,7 @@ function changeChallengeDisplay(i) {
 
 function updateChallengeHTML() {
     if(data.currentTab === 8 && data.currentSubTab[4] === 2) {
-        DOMCacheGetOrSet('challengeButton').style.display = currentChallengeDisplay === -1 ? 'none' : 'inline'
+        document.getElementById('challengeButton').style.display = currentChallengeDisplay === -1 ? 'none' : 'inline'
         if(currentChallengeDisplay === -1) {
             DOMCacheGetOrSet('challengeNameText').innerHTML = ''
             DOMCacheGetOrSet('challengeDescText').innerHTML = ''
@@ -28,11 +28,11 @@ function updateChallengeHTML() {
             DOMCacheGetOrSet('challengeRewardText').innerHTML = ''
         }
         else {
-            DOMCacheGetOrSet('challengeButton').innerHTML = `Start [${challengeInfo[currentChallengeDisplay].name}]`
+            document.getElementById('challengeButton').innerHTML = `Start [${challengeInfo[currentChallengeDisplay].name}]`
             DOMCacheGetOrSet('challengeNameText').innerHTML = `${challengeInfo[currentChallengeDisplay].name} | ${toPlaces(data.challengeCompletions[currentChallengeDisplay], 0, 28)}/25`
             DOMCacheGetOrSet('challengeDescText').innerHTML = `${challengeInfo[currentChallengeDisplay].desc}`
             DOMCacheGetOrSet('challengeEffectText').innerHTML = `${challengeInfo[currentChallengeDisplay].effect}`
-            DOMCacheGetOrSet('challengeGoalText').innerHTML = `Goal: ${format(challengeGoals[i])} ${challengeResourceNames[i]}`
+            DOMCacheGetOrSet('challengeGoalText').innerHTML = `Goal: ${format(challengeGoals[currentChallengeDisplay])} ${challengeResourceNames[currentChallengeDisplay]}`
             DOMCacheGetOrSet('challengeRewardText').innerHTML = `${challengeInfo[currentChallengeDisplay].reward}`
         }
     }

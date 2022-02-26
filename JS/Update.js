@@ -218,7 +218,7 @@ function updateHTML(){
 
                 DOMCacheGetOrSet('lepUnlock1').innerHTML = data.leptonUnlocks[0] === true ? `Unlocked<br>No Extra Boost` : `Unlock Coal Generator<br>Cost: 250,000 Electrons`
                 DOMCacheGetOrSet('lepUnlock2').innerHTML = data.leptonUnlocks[1] === true ? `Unlocked<br>Power Capacity Buff: ${format(leptonBoost[0])}x` : `Unlock Petroleum Generator<br>Cost: 250 Muons`
-                DOMCacheGetOrSet('lepUnlock3').innerHTML = data.leptonUnlocks[2] === true ? `Unlocked<br>Fuel Production Buff: ${format(leptonBoost[1])}x` : `Unlock Natural Gas Generator<br>Cost: 200 Taus`
+                DOMCacheGetOrSet('lepUnlock3').innerHTML = data.leptonUnlocks[2] === true ? `Unlocked<br>Fuel Production Buff: ${format(leptonBoost[1])}x` : `Unlock Natural Gas Generator<br>Cost: 100 Taus`
         }
         else if(data.currentSubTab[1] === 3) {
             //row1
