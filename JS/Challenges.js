@@ -41,12 +41,12 @@ function updateChallengeHTML() {
         DOMCacheGetOrSet(`chal${i+1}Img`).style.backgroundColor = data.activeChallenge[i] ? '#ffffff' : 'rgba(0,0,0,0)'
         if(data.activeChallenge[i]) {
             count++;
-            DOMCacheGetOrSet('challengeStatusImg').style.backgroundColor = '#ffffff'
+            document.getElementById('challengeStatusImg').style.backgroundColor = '#ffffff'
             DOMCacheGetOrSet('challengeStatusText').innerHTML = `Goal: ${format(challengeGoalResources[i])}/${format(challengeGoals[i])} ${challengeResourceNames[i]}`
         }
     }
     if(count === 0) {
-        DOMCacheGetOrSet('challengeStatusImg').style.backgroundColor = 'rgba(0,0,0,0)'
+        document.getElementById('challengeStatusImg').style.backgroundColor = 'rgba(0,0,0,0)'
         DOMCacheGetOrSet('challengeStatusText').innerHTML = 'Not in a Challenge'
     }
     
