@@ -528,7 +528,14 @@ document.addEventListener('keydown', (event) => {
         if(key === "5") buyCompound(4)
         
     }
+    if(data.currentTab === 6) {
+        if(key === "1") purchaseFuel(0)
+        if(key === "2") purchaseFuel(1)
+        if(key === "3") purchaseFuel(2)
+        if(key === "4") purchaseFuel(3)
+    }
 }, false);
+
 
 window.setInterval(function(){
     mainLoop()
