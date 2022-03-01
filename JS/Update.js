@@ -113,7 +113,7 @@ function updateHTML(){
     else if(data.currentTab === 4) {
         DOMCacheGetOrSet('gA').style.display = data.coriumSingUps[0] === true ? 'inline' : 'none'
         if(data.currentSubTab[3] === 0) {
-            DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${formatPrefix(powerGain), 'Watts'}` : "Generate Power<br>Req: 3 Propane + 1 Water"
+            DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${formatPrefix(powerGain, 'Watts')}` : "Generate Power<br>Req: 3 Propane + 1 Water"
             powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${formatPrefix(powerCosts[0], 'Watts')}<br>Level: ${format(data.powerUps[0])}`
             powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
             powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 1.5x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
