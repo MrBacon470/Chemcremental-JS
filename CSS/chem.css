@@ -50,7 +50,8 @@
 }
 /*Main Styles*/
 * {
-    background-color: #444444;
+    background-color: #2b2a2a;
+    /*background-color: #444444;*/
     font-family: 'Monospace Typewriter';
     color: whitesmoke;
 }

@@ -155,7 +155,7 @@ function mainLoop(){
         createAlert('You\'ve Reached the End Game for Now', 'Congrats! You\'ve now unlocked challenges<br>Which is the final point for the second prestige<br>I hope you enjoyed the new content')
         data.alerted = true
     }
-    powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1] + powerBoosts[2]))
+    powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1].plus(powerBoosts[2])))
     powerGain = powerGain.times(augmentBoosts[2].boost[0])
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Corium
@@ -217,7 +217,7 @@ function updateBoosts() {
             compoundBoosts[i] = D(1)
     }
     for(let i = 0; i < 3; i++) {
-        let boosts = [D(2), D(10), D(0.1)]
+        let boosts = [D(2), D(10), D(0.5)]
         if(i !== 0)
             powerBoosts[i] = boosts[i].times(data.powerUps[i])
         else
@@ -475,6 +475,29 @@ f1()
 
 document.addEventListener('keydown', (event) => {
     let key = event.key;
+    /*
+    if(key === "ArrowRight") {
+        if((data.currentTab + 1) === 3 ||(data.currentTab + 1) ===  4 ||(data.currentTab + 1) ===  5 ||(data.currentTab + 1) ===  6 ||(data.currentTab + 1) ===  7 ||(data.currentTab + 1) ===  8 && !data.hasTab[(data.currentTab + 1) - 3]) {
+            if(data.currentTab === 2) data.currentTab = 0
+            else data.currentTab += 1
+            console.log(data.currentTab)
+        } 
+        else {
+            if(data.currentTab === 8) data.currentTab = 0
+            else data.currentTab += 1
+        }
+    }
+    if(key === "ArrowRight") {
+        if((data.currentTab - 1) === 3 ||(data.currentTab - 1) ===  4 ||(data.currentTab - 1) ===  5 ||(data.currentTab - 1) ===  6 ||(data.currentTab - 1) ===  7 ||(data.currentTab - 1) ===  8 && !data.hasTab[(data.currentTab - 1) - 3]) {
+            if(data.currentTab === 2) data.currentTab = 0
+            else data.currentTab -= 1
+        } 
+        else {
+            if(data.currentTab === 0) data.currentTab = 8
+            else data.currentTab -= 1
+        }
+    }
+    */
     if(data.currentTab === 1) {
         if(data.currentSubTab[0] === 0) {
             if(key === "1") purchaseElement(0)
