@@ -68,6 +68,9 @@ button {
     border: var(--border-width) solid;
     border-radius: var(--border-radius);
 }
+button:hover {
+    transition-duration: 0.2s;
+}
 #powerText {color: var(--power-tab-color)}
 #coriumText {color: var(--melt-tab-color)}
 #challengeStatusText {color: var(--radiation-tab-color)}
