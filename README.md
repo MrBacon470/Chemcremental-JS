@@ -9,5 +9,5 @@ Different Number Library<br>
 New Areas and Features
 # Known Problems/Notes
 There's nothing here
-# Wanna make a custom theme for the game
+# Want to make a custom theme for the game?
 Look no further find the help file [here](https://github.com/MrBacon470/Chemcremental-JS/blob/main/ThemeCreationHelp.md)
