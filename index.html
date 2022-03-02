@@ -162,7 +162,7 @@
             <button id="pA`" class="subTabButton pcB" onclick="switchSubTab(0,3)">Power</button>
             <button id="gA" class="subTabButton pcB" onclick="switchSubTab(1,3)">Generators</button>
         </div>
-        <div id="powerArea" class="flexBox">
+        <div id="powerArea" class="flexBox" style="flex-direction: column;">
             <div id="powerArea" style="display: flex; flex-direction: row; align-items: center;">
                 <button onclick="toggleBuyAmount(3)" id="bA3" class="buyAmount">Buy Amount: 1</button>
                 <button id="generator" onclick="generatePower()" class="pcB">Generate Power<br>Requires 3 Propane & 1 Water<br>+0.00 Power</button>
@@ -179,6 +179,7 @@
                 </div>
                 <button id="Auto2">Automators: [OFF]</button>
             </div>
+            <div style="color: #c52424; text-align: center; margin-top: 20px;">Power Generation is a 'Micro-Prestige'<br>The amount of power you make depends on the total amount of both<br>Propane & Water you have and both will be reset on generating</div>
         </div>
         <div id="generatorArea" style="display: flex; flex-direction: row; align-items: center; text-align: center; margin-top: 40px;">
             <button onclick="toggleBuyAmount(6)" id="bA6" class="buyAmount">Buy Amount: 1</button>
