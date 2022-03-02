@@ -18,6 +18,8 @@
     --refinery-tab-color: #583793;
     --particle-tab-color: #37936d;
     --radiation-tab-color: #5b9042;
+    --matter-tab-color: #008cff;
+    --quantum-tab-color: #7a3b80;
     /*Particle Colors*/
     --proton-color: #379337;
     --neutron-color: #45568f;
@@ -399,3 +401,9 @@ button:hover {
 #challengeEffectText {color: #964040}
 #challengeGoalText {color: rgb(255, 237, 138)}
 #challengeRewardText {color: #7a3b80;}
+/*Matter Styles*/
+#matB {border-color: var(--matter-tab-color); background-color: #424242;}
+#matB:hover {color:#424242; background-color: var(--matter-tab-color);}
+/*Quantum Styles*/
+#quanB {border-color: var(--quantum-tab-color); background-color: #424242;}
+#quanB:hover {color:#424242; background-color: var(--quantum-tab-color);}

@@ -16,6 +16,8 @@
     --refinery-tab-color: #583793;
     --particle-tab-color: #37936d;
     --radiation-tab-color: #5b9042;
+    --matter-tab-color: #008cff;
+    --quantum-tab-color: #7a3b80;
     /*Particle Colors*/
     --proton-color: #379337;
     --neutron-color: #45568f;
@@ -372,3 +374,9 @@ img {
 }
 #betaGainText, #betaText {color: var(--electron-color)}
 #gammaGainText, #gammaText {color: var(--radiation-tab-color)}
+/*Matter Styles*/
+#matB {border-color: var(--matter-tab-color); background-color: #000;}
+#matB:hover {color:#000; background-color: var(--matter-tab-color);}
+/*Quantum Styles*/
+#quanB {border-color: var(--quantum-tab-color); background-color: #000;}
+#quanB:hover {color:#000; background-color: var(--quantum-tab-color);}
