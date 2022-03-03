@@ -52,10 +52,10 @@ function getDefaultObject() {
         //Settings things
         currentTheme: 0,
         alerted: false,
-        hasTab: [false, false, false, false, false, false],
+        hasTab: [false, false, false, false, false, false, false],
         time: Date.now(),
         currentTab: 1,
-        currentSubTab: [0,0,0,0,0],
+        currentSubTab: [0,0,0,0,0,0],
         currentElement: 0,
         settingsToggles: [true,true,true,true,true,true],
         currentUpdate: 'v0.5.0',

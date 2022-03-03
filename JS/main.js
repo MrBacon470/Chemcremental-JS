@@ -1,4 +1,5 @@
-
+//αβγδεζηθικλμνξοπρστυφχψω
+//ABΓΔEZHΘΙKΛMNΞOΠPΣTYΦΧΨΩ
 function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
         

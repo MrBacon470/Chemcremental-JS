@@ -236,6 +236,11 @@ function unlockTabs(){
     data.hasTab[3] = data.coriumSingUps[0] === true || data.hasTab[3]
     data.hasTab[4] = data.coriumSingUps[1] === true || data.hasTab[4]
     data.hasTab[5] = data.coriumSingUps[2] === true || data.hasTab[5]
+    /*
+    data.hasTab[6] = (data.challengeCompletions[0].eq(D(5)) && data.challengeCompletions[1].eq(D(5)) && 
+    data.challengeCompletions[2].eq(D(5)) && data.challengeCompletions[3].eq(D(5)) && 
+    data.challengeCompletions[4].eq(D(5))) || data.hasTab[6]
+    */
 }
 const seperator = DOMCacheGetOrSet('tabSeperator')
 const elementTab = DOMCacheGetOrSet("elementHolder")
@@ -247,8 +252,11 @@ const refineryTab = DOMCacheGetOrSet("refineryHolder")
 const achievementTab = DOMCacheGetOrSet("achievementHolder")
 const acceleratorTab = DOMCacheGetOrSet("acceleratorHolder")
 const radiationTab = DOMCacheGetOrSet("radiationHolder")
+const matterTab = DOMCacheGetOrSet("matterHolder")
+const quantumTab = DOMCacheGetOrSet("quantumHolder")
 let bodyStyles = window.getComputedStyle(document.body)
-const colorVariableIDs = ['settings','element','achievement','compound','power','melt','refinery','particle','radiation']
+const colorVariableIDs = ['settings','element','achievement','compound','power','melt','refinery','particle','radiation',
+'matter','quantum']
 let seperatorColors = []
 
 
@@ -265,6 +273,8 @@ function tabChangeHTML(){
     refineryTab.style.display = data.currentTab === 6 ? 'flex' : 'none'
     acceleratorTab.style.display = data.currentTab === 7 ? 'flex' : 'none'
     radiationTab.style.display = data.currentTab === 8 ? 'flex' : 'none'
+    matterTab.style.display = data.currentTab === 9 ? 'flex' : 'none'
+    quantumTab.style.display = data.currentTab === 10 ? 'flex' : 'none'
     seperator.style.color = `${seperatorColors[data.currentTab]}`
     DOMCacheGetOrSet('particleTextHolder').style.display = data.coriumSingUps[1] === true ? 'flex' : 'none'
 }

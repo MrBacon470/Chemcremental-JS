@@ -55,7 +55,7 @@
     </div>
     <div id="tabHolder" class="flexBox" style="flex-direction: row; margin-top: 20px; ">
         <button id="quanB" style="display:none" class="tabButton" onclick="">Quantum</button>
-        <button id="matB" style="display:none" class="tabButton" onclick="">Matter</button>
+        <button id="matB" style="display:none" class="tabButton" onclick="switchTab(9)">Matter</button>
         <button id="radB" class="tabButton" onclick="switchTab(8)">Radiation</button>
         <button id="eB" class="tabButton" onclick="switchTab(1)">Elements</button>
         <button id="cB" class="tabButton" onclick="switchTab(3)">Compounds</button>
@@ -484,6 +484,15 @@
                 <div>Stuck in a challenge? Click the Green C icon to quit</div>
             </div>
         </div>
+    </div>
+    <div id="matterHolder" class="flexBox holder" style="flex-direction: column">
+        <div id="subTabHolder">
+            <button id="matA" class="subTabButton" onclick="switchSubTab(0,5)">Matter</button>
+            <button id="darA" class="subTabButton" onclick="switchSubTab(1,5)">Dark</button>
+            <button id="strA" class="subTabButton" onclick="switchSubTab(2,5)">Strange</button>
+        </div>
+    </div>
+    <div id="quantumHolder" class="flexBox holder" style="flex-direction: column">
     </div>
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
         <div id="percentageText">Achievements Unlocked: 42/64 (22.22%)</div>
