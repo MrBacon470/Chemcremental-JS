@@ -408,8 +408,8 @@ button:hover {
 #challengeGoalText {color: rgb(255, 237, 138)}
 #challengeRewardText {color: #7a3b80;}
 /*Matter Styles*/
-#matB {color: var(--matter-tab-color);border-color: var(--matter-tab-color); background-color: #000;}
-#matB:hover {color:#000; background-color: var(--matter-tab-color);}
+#matB, #matA {color: var(--matter-tab-color);border-color: var(--matter-tab-color); background-color: #000;}
+#matB:hover, #matA:hover {color:#000; background-color: var(--matter-tab-color);}
 #darA {color: #8400ff;border-color: #8400ff; background-color: #000;}
 #darA:hover {color:#000; background-color: #8400ff;}
 #strA {color: #c7892b; border-color: #c7892b; background-color: #000;}
