@@ -69,6 +69,7 @@ img {
 button {
     border: var(--border-width) solid;
     border-radius: var(--border-radius);
+    transition-duration: 0.2s;
 }
 button:hover {
     transition-duration: 0.2s;

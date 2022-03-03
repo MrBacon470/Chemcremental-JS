@@ -69,6 +69,7 @@ button {
     border-width: var(--border-radius);
     border-radius: var(--border-radius);
     border-style: solid;
+    transition-duration: 0.2s;
 }
 button:hover {
     transition-duration: 0.2s;
