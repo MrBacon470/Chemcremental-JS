@@ -407,8 +407,8 @@ button:hover {
 #challengeGoalText {color: rgb(255, 237, 138)}
 #challengeRewardText {color: #7a3b80;}
 /*Matter Styles*/
-#matB {border-color: var(--matter-tab-color); background-color: #424242;}
-#matB:hover {color:#424242; background-color: var(--matter-tab-color);}
+#matB {color:var(--matter-tab-color);border-color: var(--matter-tab-color); background-color: #000;}
+#matB:hover {color:#000; background-color: var(--matter-tab-color);}
 /*Quantum Styles*/
-#quanB {border-color: var(--quantum-tab-color); background-color: #424242;}
-#quanB:hover {color:#424242; background-color: var(--quantum-tab-color);}
+#quanB {color:var(--quantum-tab-color);border-color: var(--quantum-tab-color); background-color: #000;}
+#quanB:hover {color:#000; background-color: var(--quantum-tab-color);}
