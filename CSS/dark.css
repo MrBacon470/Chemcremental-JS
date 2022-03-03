@@ -3,6 +3,10 @@
     font-family: 'Monospace Typewriter';
     src: url('MonospaceTypewriter.ttf');
 }
+@font-face {
+    font-family: 'Ubuntu';
+    src: url(Ubuntu-Medium.ttf);
+}
 :root {
     --border-width: 4px;
     --border-radius: 0px;
@@ -53,7 +57,7 @@
 /*Main Styles*/
 * {
     background-color: black;
-    font-family: 'Monospace Typewriter';
+    font-family: 'Monospace Typewriter','Ubuntu';
     color: whitesmoke;
 }
 hr {
