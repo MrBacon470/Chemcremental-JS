@@ -412,8 +412,8 @@ button:hover {
 #matB:hover, #matA:hover {color:#000; background-color: var(--matter-tab-color);}
 #darA {color: #8400ff;border-color: #8400ff; background-color: #000;}
 #darA:hover {color:#000; background-color: #8400ff;}
-#strA {color: #c7892b; border-color: #c7892b; background-color: #000;}
-#strA:hover {color:#000; background-color: #c7892b;}
+#strA {color: var(--strangeQuark-color); border-color: var(--strangeQuark-color); background-color: #000;}
+#strA:hover {color:#000; background-color: var(--strangeQuark-color);}
 /*Quantum Styles*/
 #quanB {color: var(--quantum-tab-color);border-color: var(--quantum-tab-color); background-color: #000;}
 #quanB:hover {color:#000; background-color: var(--quantum-tab-color);}
