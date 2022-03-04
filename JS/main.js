@@ -1,6 +1,6 @@
 //αβγδεζηθικλμνξοπρστυφχψω
 //ABΓΔEZHΘΙKΛMNΞOΠPΣTYΦΧΨΩ
-createAlert('<h3 style="color: red;">!Major Alert!<h3>','Export your save and store it somewhere safe<br>Beta 6.0 will change how saves are stored but not how they are imported<br>You will lose your save if you do not do so.')
+
 function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
         
