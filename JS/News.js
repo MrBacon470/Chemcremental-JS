@@ -6,7 +6,7 @@ newsArray = [//always true
 ];}
 
 let s = DOMCacheGetOrSet('news');
-document.addEventListener("visibilitychange", function() {if (!document.hidden) {scrollNextMessage();}}, false);
+document.addEventListener('visibilitychange', function() {if (!document.hidden) {scrollNextMessage();}}, false);
 let scrollTimeouts = [];
 let nextMsgIndex;
 function scrollNextMessage() {
