@@ -11,7 +11,7 @@
 </head>
 <body>
     <img src="VoidBG.png" id="hider" style="position: fixed; background-color: black; height: 100vh; width: 100vw; top:0; left:0; text-align: center; justify-content: center;">
-    <div style="position: fixed; bottom: 0; right: 0;">Beta 5.1</div>
+    <div style="position: fixed; bottom: 0; right: 0;">Beta 6.0 - Dev Build</div>
     <div id="modalContainer">
         <div id="alert">
             <h3 id="alertTitle">Welcome back gamer!</h3>
@@ -491,6 +491,32 @@
             <button id="darA" class="subTabButton" onclick="switchSubTab(1,5)">Dark</button>
             <button id="strA" class="subTabButton" onclick="switchSubTab(2,5)">Strange</button>
         </div>
+        <div id="matterArea" class="flexBox holder">
+            <div style="flex-direction: column; margin-right: 4em; align-items: center; text-align: center;">
+                <img src="CHEM Achieves/Matter/Matter.png" style="height: 72px; width: 72px;">
+                <div style="color: var(--matter-tab-color);">You have 0 Matter</div>
+            </div>
+            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center;">
+                <img src="CHEM Achieves/Matter/Antimatter.png" style="height: 72px; width: 72px;">
+                <div style="color: var(--antimatter-color);">You have 0 Antimatter</div>
+            </div>
+        </div>
+        <div id="darkMatterArea" class="flexBox holder">
+            <div style="flex-direction: column; margin-right: 4em; align-items: center; text-align: center;">
+                <img src="CHEM Achieves/Matter/Darkmatter.png" style="height: 72px; width: 72px;">
+                <div style="color: var(--darkmatter-color);">You have 0 Darkmatter</div>
+            </div>
+            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center;">
+                <img src="CHEM Achieves/Matter/Darkenergy.png" style="height: 72px; width: 72px;">
+                <div style="color: var(--darkmatter-color);">You have 0 Dark Energy</div>
+            </div>
+        </div>
+        <div id="strangeMatterArea" class="flexBox holder">
+            <div style="flex-direction: column; margin-right: 4em; align-items: center; text-align: center;">
+                <img src="CHEM Achieves/Matter/Strangematter.png" style="height: 72px; width: 72px;">
+                <div style="color: var(--strangeQuark-color);">You have 0 Strangematter</div>
+            </div>
+        </div>
     </div>
     <div id="quantumHolder" class="flexBox holder" style="flex-direction: column">
     </div>
@@ -648,6 +674,7 @@
     <div id="settingsHolder" class="flexBox holder" style="display:flex; flex-direction: column;">
         <div id="subTabHolder">
             <button id="settB" class="subTabButton settings" onclick="switchSubTab(0,2)">Settings</button>
+            <button id="settB" class="subTabButton settings" onclick="switchSubTab(3,2)">Help</button>
             <button id="credB" class="subTabButton settings" onclick="switchSubTab(1,2)">Credits</button>
             <button id="roadB" class="subTabButton settings" onclick="switchSubTab(2,2)">Roadmap</button>
         </div>
@@ -687,8 +714,8 @@
         <h3>Early Access Beta</h3>
         <br>
         <p></p>
-        <p>β0.6.0 - Adds brand new area and secret achievements</p>
-        <p>β0.5.1 - Reworked Classic Background Color for Better Contrast, New Custom SI formatting, Added Missing Refinery Hotkeys, Tab Hotkeys in Dev Still</p>
+        <p>β0.6.0 - Adds brand new area and Secret Achievements</p>
+        <p>β0.5.1 - Reworked Classic Background Color for Better Contrast, New Custom SI formatting, Added Missing Refinery Hotkeys</p>
         <p>β0.5.0 - 2nd Prestige Layer, Automation, Challenges, Quarks Added</p>
         <p>β0.4.3f - CSS Rework & Theme support</p>
         <p>β0.4.3e - Modal Window Fix</p>
@@ -775,7 +802,49 @@
             <p>Compounds & Their Boosts</p>
             <p>Elements & Element Production</p>
             </div>
+        </div>
+        <div id="helpArea" class="flexBox holder" style="display: flex; flex-direction: column;">
+            <div style="display:inline;">
+            <h1>Need some help?</h1>
+            <h2 style="color: red;">!Warning Spoilers!</h2>
+            <hr>
+            <h2 style="color: rgb(47, 151, 47);"><br>Early Game Info</h2>
+            <h3 style="color: var(--element-tab-color)">Elements</h3>
+            <p>Elements are your first unlockable tab and the first in game currencies.</p>
+            <p>Element generators cost the currency below them ex: Carbon requires Hydrogen.</p>
+            <p>Each element also boosts the production of the one below it.</p>
+            <h3 style="color: var(--compound-tab-color)">Compounds</h3>
+            <p>Compounds are special resources that boost certain aspects of the game.</p>
+            <p>They aren't cheap though requiring the generator levels to purchase.</p>
+            <h3 style="color: var(--power-tab-color)">Power</h3>
+            <p>Power is a micro reset layer that uses your Propane and Water to reward power.</p>
+            <p>Power can be used to boost production of your elements.</p>
+            <h3 style="color: var(--melt-tab-color)">Melting</h3>
+            <p>Melting is the first prestige layer, it resets all of your progress in exchange for Corium</p>
+            <p>Corium can be used to unlock new areas and buy special upgrades.</p>
+            <hr>
+            <h2 style="color: rgb(211, 211, 46);"><br>Mid Game Info</h2>
+            <h3 style="color: var(--refinery-tab-color)">Refinery</h3>
+            <p>Refinery is a another set of compounds except these are used to fuel generators.</p>
+            <p>You can unlock more generators in another in game area to produce more power per second.</p>
+            <h3 style="color: var(--particle-tab-color)">Particles</h3>
+            <p>Particles are the second corium unlock layer and this area has many different micro resets.</p>
+            <p>There are many different particles created from reset from fundamentals to quarks and all of them have some associated boost.</p>
+            <h3 style="color: var(--radiation-tab-color)">Radiation</h3>
+            <p>Radiation is the second prestige layer of the game, it resets all past areas in exchange for three types of radiation.</p>
+            <p>Research is the only consumer of radiation researches are special upgrades which include automation to new areas.</p>
+            <p>Challenges are the only other area in the radiation tab these have special effects on how you play the game.</p>
+            <hr>
+            <h2 style="color: rgb(168, 42, 42);"><br>Late Game Info</h2>
+            <h3 style="color: var(--matter-tab-color)">Matter</h3>
+            <p>Matter is a non purchasable layer it is unlocked when completing at least 5 of all challenges.</p>
+            <p>Matter & Consolidation - Consolidation resets all elements,compounds and corium in exchange for regular matter.</p>
+            <p>Antimatter - This is slowly created over time it slows your production down and has some other effects.</p>
+            <p>Darkmatter - ???</p>
+            <p>Darkenergy - ???</p>
+            <p>Strangematter - ???</p>
             </div>
+        </div>
     </div>
     
 </body>

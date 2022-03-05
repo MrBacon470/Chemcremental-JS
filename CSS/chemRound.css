@@ -24,6 +24,9 @@
     --radiation-tab-color: #5b9042;
     --matter-tab-color: #008cff;
     --quantum-tab-color: #7a3b80;
+    /*Matter Colors*/
+    --antimatter-color: #ff0000;
+    --darkmatter-color: #8400ff;
     /*Particle Colors*/
     --proton-color: #379337;
     --neutron-color: #45568f;
@@ -410,8 +413,8 @@ button:hover {
 /*Matter Styles*/
 #matB, #matA {color: var(--matter-tab-color);border-color: var(--matter-tab-color); background-color: #000;}
 #matB:hover, #matA:hover {color:#000; background-color: var(--matter-tab-color);}
-#darA {color: #8400ff;border-color: #8400ff; background-color: #000;}
-#darA:hover {color:#000; background-color: #8400ff;}
+#darA {color: var(--darkmatter-color);border-color: var(--darkmatter-color); background-color: #000;}
+#darA:hover {color:#000; background-color: var(--darkmatter-color);}
 #strA {color: var(--strangeQuark-color); border-color: var(--strangeQuark-color); background-color: #000;}
 #strA:hover {color:#000; background-color: var(--strangeQuark-color);}
 /*Quantum Styles*/

@@ -473,30 +473,38 @@ function hideResolver(x) {
   }
 changeTheme(data.currentTheme)
 f1()
-
+/*
+const tabOrder = [10,9,8,1,3,4,5,6,7,2,0]
+let tabOrderIndex = 0
+*/
 document.addEventListener('keydown', (event) => {
     let key = event.key;
     /*
-    if(key === "ArrowRight") {
-        if((data.currentTab + 1) === 3 ||(data.currentTab + 1) ===  4 ||(data.currentTab + 1) ===  5 ||(data.currentTab + 1) ===  6 ||(data.currentTab + 1) ===  7 ||(data.currentTab + 1) ===  8 && !data.hasTab[(data.currentTab + 1) - 3]) {
-            if(data.currentTab === 2) data.currentTab = 0
-            else data.currentTab += 1
-            console.log(data.currentTab)
-        } 
-        else {
-            if(data.currentTab === 8) data.currentTab = 0
-            else data.currentTab += 1
-        }
+    for(let i = 0; i < tabOrder.length; i++) {
+        if(data.currentTab === tabOrder[i])
+            tabOrderIndex = i;
+    }
+    if(key === "ArrowLeft") {
+        if(tabOrderIndex - 1 === -1)
+            tabOrderIndex = tabOrder.length - 1
+        else
+            tabOrderIndex -= 1
+        
+        if((tabOrder[tabOrderIndex] >= 3 && data.hasTab[tabOrder[tabOrderIndex] - 3]) || tabOrder[tabOrderIndex] <= 2)
+            data.currentTab = tabOrder[tabOrderIndex]
+        else if(tabOrder[tabOrderIndex] >= 3 && data.hasTab[tabOrder[tabOrderIndex] - 3] === false)
+            switchTab(tabOrder[tabOrderIndex])
     }
     if(key === "ArrowRight") {
-        if((data.currentTab - 1) === 3 ||(data.currentTab - 1) ===  4 ||(data.currentTab - 1) ===  5 ||(data.currentTab - 1) ===  6 ||(data.currentTab - 1) ===  7 ||(data.currentTab - 1) ===  8 && !data.hasTab[(data.currentTab - 1) - 3]) {
-            if(data.currentTab === 2) data.currentTab = 0
-            else data.currentTab -= 1
-        } 
-        else {
-            if(data.currentTab === 0) data.currentTab = 8
-            else data.currentTab -= 1
-        }
+        if(tabOrderIndex + 1 > 9)
+            tabOrderIndex = 0
+        else
+            tabOrderIndex += 1
+        
+        if((tabOrder[tabOrderIndex] >= 3 && data.hasTab[tabOrder[tabOrderIndex] - 3]) || tabOrder[tabOrderIndex] <= 2)
+            data.currentTab = tabOrder[tabOrderIndex]
+        else if(tabOrder[tabOrderIndex] >= 3 && data.hasTab[tabOrder[tabOrderIndex] - 3] === false)
+            switchTab(tabOrder[tabOrderIndex])
     }
     */
     if(data.currentTab === 1) {
