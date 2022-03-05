@@ -2,7 +2,7 @@ var newsArray;
 
 function updateNewsArray() {
 newsArray = [//always true
-['This news ticker sucks',true,'a1'],['Why ain\'t this working',true,'a2']
+['This news ticker sucks',true,'a1'],['Why ain\'t this working',true,'a2'],['Why did I even add this garbage',true,'a3']
 ];}
 
 var s = document.getElementById('news');
