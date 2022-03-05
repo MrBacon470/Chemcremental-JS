@@ -123,23 +123,6 @@ button:hover {
 #yesConfirm:hover {
     background-color: green;
 }
-#news {
-    transition: transform 1s;
-    position: relative;
-    display: inline-block;
-    font-size: 15px;
-    white-space: nowrap;
-    font-weight: bold;
-}
-#game {
-    border: 2px solid whitesmoke;
-    border-radius: 2px;
-    padding: 2px;
-    width: 75%;
-    overflow: hidden;
-    margin: auto;
-    text-align: left;
-}
 /*Major Style Classes*/
 
 .header {
