@@ -84,7 +84,6 @@ function load() {
         //if(data.alerted === true) 
             //data.alerted === false
     }
-    //fixOldSaves()
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {
@@ -101,13 +100,6 @@ function fixSave(main=getDefaultObject(), data) {
         return main
     }
     else return getDefaultObject()
-}
-function fixOldSaves(){
-    //fix important things from old versions
-    if (data.currentUpdate!=='v0.2.0') data.currentUpdate='v0.1.1'
-    if (data.currentUpdate==='v0.0.0'){
-        //deleteSave()
-    }
 }
 function exportSave(){
     save()
