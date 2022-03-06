@@ -20,12 +20,16 @@ function updateAccelStuff() {
    }
    for(let i = 0; i < 3; i++) {
        data.particlesToGet[i] = data.particlesToGet[i].times(quarkBoosts[2])
+       data.particlesToGet[i] = data.particlesToGet[i].times(matterBoosts[2])
    }
     
    leptonsToGet[0] = Decimal.sqrt(data.particles[0].electrons.divide(D(105))).multiply(D(2))
    leptonsToGet[1] = Decimal.sqrt(data.particles[0].electrons.divide(D(1776))).multiply(D(2))
-   for(let i = 0; i < 2; i++)
-    leptonsToGet[i] = leptonsToGet[i].times(quarkBoosts[5])
+   for(let i = 0; i < 2; i++) {
+        leptonsToGet[i] = leptonsToGet[i].times(quarkBoosts[5])
+        leptonsToGet[i] = leptonsToGet[i].times(matterBoosts[2])
+   }
+    
 
    for(let i = 0; i < quarkBoosts.length; i++) {
        quarkBoosts[i] = Decimal.sqrt(((Decimal.sqrt(data.particles[2].quarks[i]))))

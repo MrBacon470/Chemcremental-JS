@@ -73,6 +73,11 @@ function updateHTML(){
         DOMCacheGetOrSet('toggle4').innerHTML = data.settingsToggles[3] ? 'Shatter Confirmation [ON]' : 'Shatter Confirmation [OFF]'
         DOMCacheGetOrSet('toggle5').innerHTML = data.settingsToggles[4] ? 'Irridiate Confirmation [ON]' : 'Irridiate Confirmation [OFF]'
         DOMCacheGetOrSet('toggle6').innerHTML = data.settingsToggles[5] ? 'Ripper Confirmation [ON]' : 'Ripper Confirmation [OFF]'
+        DOMCacheGetOrSet('toggle7').innerHTML = data.settingsToggles[6] ? 'Consolidate Confirmation [ON]' : 'Consolidate Confirmation [OFF]'
+        if(data.currentSubTab[2] === 3) {
+            DOMCacheGetOrSet('midGameHelp').style.display = data.hasTab[3] ? 'block' : 'none'
+            DOMCacheGetOrSet('lateGameHelp').style.display = data.research[15] ? 'block' : 'none'
+        }
     }
     else if (data.currentTab === 1) {
         document.getElementById('RaE').style.display = data.hasIrridiated ? 'inline' : 'none'
@@ -220,6 +225,23 @@ function updateHTML(){
         if(data.currentSubTab[4] === 1) {
             for(let i = 0; i < researchDescs.length; i++)
                 DOMCacheGetOrSet(`Re${i+1}`).style.backgroundColor = data.research[i] ? '#ffffff' : 'none'
+        }
+    }
+    else if(data.currentTab === 9) {
+        if(data.currentSubTab[5] === 0) {
+            DOMCacheGetOrSet('matterText').innerHTML = `You have ${formatPrefix(data.matter[0],'Grams')} of Matter`
+            DOMCacheGetOrSet('matterGainText').innerHTML = `Consolidate your materials and gain ${formatPrefix(matterGain,'Grams')} of Matter`
+            DOMCacheGetOrSet('matterEffectText').innerHTML = `Due to matter you have these effects<br>${format(matterBoosts[0])}x Element/Isotope Production<br>${format(matterBoosts[1])}x More Corium<br>${format(matterBoosts[2])}x More Particles`
+            DOMCacheGetOrSet('antiMatterText').innerHTML = `You have ${formatPrefix(data.matter[1],'Grams')} of Antimatter`
+            DOMCacheGetOrSet('antiGainText').innerHTML = `Due to your production you are gaining<br>${formatPrefix(antimatterGain,'Grams')} of Antimatter/s`
+            DOMCacheGetOrSet('antiEffectText').innerHTML = `Antimatter is effecting these things<br>${format(antimatterEffects[0])}x Less Element Production<br>${format(antimatterEffects[1])}x Less Compound Boost<br>${format(antimatterEffects[2])}x Less Quark Boost`
+        }
+        else if(data.currentSubTab[5] === 1) {
+            DOMCacheGetOrSet('darkMatterText').innerHTML = `You have ${formatPrefix(data.matter[2],'Grams')} of Dark Matter`
+            DOMCacheGetOrSet('darkEnergyText').innerHTML = `You have ${formatPrefix(data.darkEnergy,'Joules')} of Dark Energy`
+        }
+        if(data.currentSubTab[5] === 2) {
+            DOMCacheGetOrSet('strangeMatterText').innerHTML = `You have ${formatPrefix(data.matter[3],'Grams')} of Strange Matter`
         }
     }
     unlockTabs()

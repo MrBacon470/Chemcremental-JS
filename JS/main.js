@@ -36,11 +36,12 @@ function calculateElementGain() {
         if(i === 7) {
             //data.elementGain[i] = (data.elements[i].level.times(compoundBoosts[0].add(compoundBoosts[3]).add(powerBoosts[0]).add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax))))
             data.isotopeGain[i] = data.isotopes[i].level
+            data.isotopeGain[i] = data.isotopeGain[i].times(matterBoosts[0])
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
             data.isotopeGain[i] = data.isotopes[i].level.times(D(1).add(Decimal.sqrt(data.isotopes[i + 1].max)))
-            data.isotopeGain[i] = data.isotopeGain[i]
+            data.isotopeGain[i] = data.isotopeGain[i].times(matterBoosts[0])
         }
     }
     //for(let i = 0; i < 8; i++)
@@ -144,6 +145,7 @@ function mainLoop(){
     calculateElementGain()
     unlockAchieves()
     automate()
+    updateMatter()
     //Misc Stuff Here
     for(let i = 0; i < 8; i++) {
         increaseElements(data.elementGain[i].times(diff), i)
@@ -156,14 +158,16 @@ function mainLoop(){
         createAlert('You\'ve Reached the End Game for Now', 'Congrats! You\'ve now unlocked challenges<br>Which is the final point for the second prestige<br>I hope you enjoyed the new content')
         data.alerted = true
     }
-    powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1].plus(powerBoosts[2])))
-    powerGain = powerGain.times(augmentBoosts[2].boost[0])
+    powerGain = (Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1])
+    powerGain = powerGain.times(D(1).plus(powerBoosts[2]))
+    powerGain = Decimal.ceil(powerGain.times(augmentBoosts[2].boost[0]))
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Corium
     coriumToGet = D(0)
     coriumToGet = D(1).add(Decimal.sqrt(sumOfElements / D(1e6)).times(coriumMultBoosts[2]))
     coriumToGet = coriumToGet.times(compoundBoosts[4])
     coriumToGet = coriumToGet.times(augmentBoosts[1].boost[0])
+    coriumToGet = coriumToGet.times(matterBoosts[1])
     if(data.activeChallenge[2]) coriumToGet = Decimal.sqrt(coriumToGet)
     if(data.research[11] && sumOfElements.gte(D(1e8))) {
         data.corium = data.corium.plus((coriumToGet.times(D(0.01))).times(diff))
@@ -384,6 +388,15 @@ function createConfirmation(a) {
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             document.getElementById('yesConfirm').addEventListener('click', () => {rip(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             break
+        case 'consolidate':
+            document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--matter-tab-color`)}`
+            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to Consolidate?'
+            document.getElementById('confirmContent').innerHTML = 'This will reset Compounds, Elements & Corium in exchange for matter.'
+            document.getElementById('confirm').style.display = 'block'
+            document.getElementById('modalContainer').style.display = 'block'
+            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('yesConfirm').addEventListener('click', () => {consolidate(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            break
     }
 }
 
@@ -433,6 +446,12 @@ function prestigeConfirmation(i) {
                 createConfirmation('rip')
             else
                 rip()
+            break
+        case 'consolidate':
+            if(data.settingsToggles[6])
+                createConfirmation('consolidate')
+            else
+                consolidate()
             break
     }
 }

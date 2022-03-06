@@ -411,8 +411,8 @@ button:hover {
 #challengeGoalText {color: rgb(255, 237, 138)}
 #challengeRewardText {color: #7a3b80;}
 /*Matter Styles*/
-#matB, #matA {color: var(--matter-tab-color);border-color: var(--matter-tab-color); background-color: #000;}
-#matB:hover, #matA:hover {color:#000; background-color: var(--matter-tab-color);}
+#matB, #matA, #consolidateButton {color: var(--matter-tab-color);border-color: var(--matter-tab-color); background-color: #000;}
+#matB:hover, #matA:hover, #consolidateButton:hover {color:#000; background-color: var(--matter-tab-color);}
 #darA {color: var(--darkmatter-color);border-color: var(--darkmatter-color); background-color: #000;}
 #darA:hover {color:#000; background-color: var(--darkmatter-color);}
 #strA {color: var(--strangeQuark-color); border-color: var(--strangeQuark-color); background-color: #000;}
