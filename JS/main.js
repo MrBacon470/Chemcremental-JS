@@ -16,6 +16,7 @@ function calculateElementGain() {
             if(data.research[7])
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
             data.elementGain[i] = data.elementGain[i].times(quarkBoosts[3])
+            data.elementGain[i] = data.elementGain[i].divide(antimatterEffects[0])
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
@@ -31,6 +32,7 @@ function calculateElementGain() {
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
             if(i === 0) 
                 data.elementGain[i] = data.elementGain[i].times(quarkBoosts[0])
+            data.elementGain[i] = data.elementGain[i].divide(antimatterEffects[0])
         }
 
         if(i === 7) {
@@ -218,6 +220,7 @@ function updateBoosts() {
 
         compoundBoosts[i] = compoundBoosts[i].times(augmentBoosts[0].boost[2])
         compoundBoosts[i] = compoundBoosts[i].times(quarkBoosts[1])
+        compoundBoosts[i] = compoundBoosts[i].divide(antimatterEffects[1])
         if(data.activeChallenge[0])
             compoundBoosts[i] = D(1)
     }
