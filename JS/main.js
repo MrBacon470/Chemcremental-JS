@@ -136,7 +136,6 @@ function mainLoop(){
     data.time = Date.now()
     changeTheme(data.currentTheme)
     //Functions Here
-    
     updateBoosts()
     updateAccelStuff()
     calculateAugmentBoost()
@@ -183,7 +182,7 @@ function mainLoop(){
         data.elements[0].amt = D(10)
     challengeGoalResources[0] = data.corium
     challengeGoalResources[1] = data.particles[1].muons
-    challengeGoalResources[2] = data.corium
+    challengeGoalResources[2] = challengeGoalResources[0]
     challengeGoalResources[3] = data.particles[0].protons
     challengeGoalResources[4] = data.elements[0].amt
     if(data.activeChallenge[4]) {

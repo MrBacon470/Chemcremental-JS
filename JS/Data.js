@@ -134,10 +134,8 @@ function fullReset(){
     location.reload()
 }
 function deleteSave(){
-    if(confirm("Are you sure you want to delete your save? (This doesn't export)")) {
         window.localStorage.removeItem('chemJSSave')
         location.reload()
-    } 
 }
 
 function noConfirmDelete(){
