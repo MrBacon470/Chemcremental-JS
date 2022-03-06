@@ -16,7 +16,8 @@ function calculateElementGain() {
             if(data.research[7])
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
             data.elementGain[i] = data.elementGain[i].times(quarkBoosts[3])
-            data.elementGain[i] = data.elementGain[i].divide(antimatterEffects[0])
+            if(antimatterEffects[0].gt(D(1)) && data.elementGain[i].gt(D(0)))
+                data.elementGain[i] = data.elementGain[i].divide(antimatterEffects[0])
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
@@ -32,7 +33,8 @@ function calculateElementGain() {
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
             if(i === 0) 
                 data.elementGain[i] = data.elementGain[i].times(quarkBoosts[0])
-            data.elementGain[i] = data.elementGain[i].divide(antimatterEffects[0])
+            if(antimatterEffects[0].gt(D(1)) && data.elementGain[i].gt(D(0)))
+                data.elementGain[i] = data.elementGain[i].divide(antimatterEffects[0])
         }
 
         if(i === 7) {
@@ -134,6 +136,7 @@ function mainLoop(){
     data.time = Date.now()
     changeTheme(data.currentTheme)
     //Functions Here
+    
     updateBoosts()
     updateAccelStuff()
     calculateAugmentBoost()
@@ -226,13 +229,7 @@ function updateBoosts() {
     }
     for(let i = 0; i < 3; i++) {
         let boosts = [D(2), D(10), D(0.5)]
-        if(i !== 0)
-            powerBoosts[i] = boosts[i].times(data.powerUps[i])
-        else
-            if(data.powerUps[i].gt(D(0)))
-                powerBoosts[0] = boosts[i].times(data.powerUps[i])
-            else
-                powerBoosts[0] = D(1)
+        powerBoosts[i] = data.powerUps[i].gt(D(0)) ? boosts[i].times(data.powerUps[i]) : D(1)
     }
     /*
     powerBoosts[0] = data.powerUps[0] === D(0) ? D(1) : D(2).times(data.powerUps[0])
@@ -251,7 +248,12 @@ function updateBoosts() {
         
     }
     coriumMultBoosts[0] = coriumMultBoosts[0].times(augmentBoosts[1].boost[1])
-        coriumMultBoosts[1] = coriumMultBoosts[1].times(augmentBoosts[1].boost[2])
+    coriumMultBoosts[1] = coriumMultBoosts[1].times(augmentBoosts[1].boost[2])
+
+    for(let i = 0; i < 3; i++) {
+        antimatterEffects[i] = data.matter[1].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[1]).divide(boostDivisors[i])) : D(1)
+        matterBoosts[i] = data.matter[0].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[i]).divide(boostDivisors[i])) : D(1)
+    }
 }
 
 function toggleBuyAmount(i) {
@@ -394,7 +396,7 @@ function createConfirmation(a) {
         case 'consolidate':
             document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--matter-tab-color`)}`
             document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to Consolidate?'
-            document.getElementById('confirmContent').innerHTML = 'This will reset Compounds, Elements & Corium in exchange for matter.'
+            document.getElementById('confirmContent').innerHTML = 'This will reset Elements, Compounds and Corium to Gain Matter.'
             document.getElementById('confirm').style.display = 'block'
             document.getElementById('modalContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
@@ -451,6 +453,7 @@ function prestigeConfirmation(i) {
                 rip()
             break
         case 'consolidate':
+            if(sumOfElements.lt(D(1e130))) return
             if(data.settingsToggles[6])
                 createConfirmation('consolidate')
             else
