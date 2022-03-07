@@ -37,6 +37,17 @@ function updateAccelStuff() {
        quarkBoosts[i] = quarkBoosts[i].times(antimatterEffects[2])
        quarkBoosts[i] = D(1).plus(quarkBoosts[i])
    }
+   let sum = data.particles[0].protons.plus(data.particles[0].neutrons)
+   if(sum.gt(D(1e10))) {
+       if(diff >= 1) {
+        let random = getRandomInt(8)
+        if(random < 6)
+            data.particles[2].quarks[random] = data.particles[2].quarks[random].plus(D(1))
+        else 
+            ripParticleGain[random - 6] = ripParticleGain[random - 6].plus(D(1))
+       }
+   }
+   
 }
 function calculateAugmentBoost() {
     if(!data.activeChallenge[3]) {
@@ -133,7 +144,8 @@ function buyLepton(a) {
 
 function rip() {
     let sum = data.particles[0].protons.plus(data.particles[0].neutrons)
-    sum = sum.divide(sum.times(D(0.75)))
+    if(sum.gt(D(1e10)))
+    sum = sum.divide(D(8))
     let ripParticleGain = [D(0),D(0)]
 
     for(let i = 0; i <= sum; i++) {

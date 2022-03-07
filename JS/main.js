@@ -451,6 +451,7 @@ function prestigeConfirmation(i) {
             break
         case 'rip':
             if((data.particles[0].protons.plus(data.particles[0].neutrons)).lt(D(5e4))) return
+            if((data.particles[0].protons.plus(data.particles[0].neutrons)).gte(D(1e10))) return
             if(data.settingsToggles[5])
                 createConfirmation('rip')
             else
