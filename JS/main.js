@@ -179,6 +179,8 @@ function mainLoop(){
         data.corium = data.corium.plus((coriumToGet.times(D(0.01))).times(diff))
         data.coriumMax = data.coriumMax.plus((coriumToGet.times(D(0.01))).times(diff))
     }
+    if(!data.matterUnlocked[0] && data.matter[1].gt(D(1e3))) 
+        data.matterUnlocked[0] = true
     //Misc stuff
     if(data.elements[0].amt.lt(D(10)) && data.elements[0].level.lt(D(1)))
         data.elements[0].amt = D(10)

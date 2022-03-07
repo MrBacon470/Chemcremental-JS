@@ -230,6 +230,8 @@ function updateHTML(){
         }
     }
     else if(data.currentTab === 9) {
+        DOMCacheGetOrSet('darA').style.display = data.matterUnlocked[0] ? `inline` : `none`
+        DOMCacheGetOrSet('strA').style.display = data.matterUnlocked[1] ? `inline` : `none`
         if(data.currentSubTab[5] === 0) {
             DOMCacheGetOrSet('matterText').innerHTML = `You have ${formatPrefix(data.matter[0],'Grams')} of Matter`
             DOMCacheGetOrSet('matterGainText').innerHTML = sumOfElements.gt(D(1e120)) ? `Consolidate your materials and gain ${formatPrefix(matterGain,'Grams')} of Matter` : `You need 1.00e120 Total Elements to Consolidate<br>You have ${format(sumOfElements)} Total Elements Currently`
