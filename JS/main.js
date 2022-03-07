@@ -254,9 +254,8 @@ function updateBoosts() {
 
     for(let i = 0; i < 3; i++) {
         const boostDivisors = [D(10),D(100),D(1e3)]
-        const boostDivisorsMatter = [D(2.5),D(25),D(250)]
         antiDisplayEffects[i] = data.matter[1].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[1]).divide(boostDivisors[i])) : D(1)
-        matterBoosts[i] = data.matter[0].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[0]).divide(boostDivisorsMatter[i])) : D(1)
+        matterBoosts[i] = data.matter[0].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[0]).divide(boostDivisors[i])) : D(1)
         antimatterEffects[i] = data.matter[1].gt(D(0)) ? D(1).divide(antiDisplayEffects[i]) : D(1)
     }
 }
