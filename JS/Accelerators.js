@@ -34,7 +34,6 @@ function updateAccelStuff() {
    for(let i = 0; i < quarkBoosts.length; i++) {
        quarkBoosts[i] = Decimal.sqrt(((Decimal.sqrt(data.particles[2].quarks[i]))))
        quarkBoosts[i] = quarkBoosts[i].sub(quarkBoosts[i].times(D(.5)))
-       quarkBoosts[i] = quarkBoosts[i].times(antimatterEffects[2])
        quarkBoosts[i] = D(1).plus(quarkBoosts[i])
    }
    

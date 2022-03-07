@@ -205,6 +205,7 @@ function mainLoop(){
 }
 function updateBoosts() {
     coriumBoost = D(1).plus(Decimal.sqrt(data.coriumMax))
+    coriumBoost = coriumBoost.times(antimatterEffects[2])
     if(data.activeChallenge[2]) coriumBoost = Decimal.sqrt(coriumBoost)
     if(!data.activeChallenge[3]) {
         leptonBoost[0] = !data.leptonUnlocks[1] || data.activeChallenge[3] ? D(1) : D(1).plus(Decimal.sqrt(data.particles[1].muons))
