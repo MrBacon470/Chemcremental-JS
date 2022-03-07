@@ -16,6 +16,9 @@ function calculateElementGain() {
             if(data.research[7])
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
             data.elementGain[i] = data.elementGain[i].times(quarkBoosts[3])
+            data.elementGain[i] = data.elementGain[i].times(matterBoosts[0])
+            if(data.matter[1].gt(D(0)))
+                data.elementGain[i] = data.elementGain[i].times(antimatterEffects[0])
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
@@ -31,6 +34,9 @@ function calculateElementGain() {
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
             if(i === 0) 
                 data.elementGain[i] = data.elementGain[i].times(quarkBoosts[0])
+            data.elementGain[i] = data.elementGain[i].times(matterBoosts[0])
+            if(data.matter[1].gt(D(0)))
+                data.elementGain[i] = data.elementGain[i].times(antimatterEffects[0])
         }
 
         if(i === 7) {
@@ -218,7 +224,8 @@ function updateBoosts() {
 
         compoundBoosts[i] = compoundBoosts[i].times(augmentBoosts[0].boost[2])
         compoundBoosts[i] = compoundBoosts[i].times(quarkBoosts[1])
-        compoundBoosts[i] = compoundBoosts[i].divide(antimatterEffects[1])
+        if(data.matter[1].gt(D(0)))
+            compoundBoosts[i] = compoundBoosts[i].times(antimatterEffects[1])
         if(data.activeChallenge[0])
             compoundBoosts[i] = D(1)
     }
@@ -246,8 +253,11 @@ function updateBoosts() {
     coriumMultBoosts[1] = coriumMultBoosts[1].times(augmentBoosts[1].boost[2])
 
     for(let i = 0; i < 3; i++) {
-        antimatterEffects[i] = data.matter[1].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[1]).divide(boostDivisors[i])) : D(1)
-        matterBoosts[i] = data.matter[0].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[i]).divide(boostDivisors[i])) : D(1)
+        const boostDivisors = [D(10),D(100),D(1e3)]
+        const boostDivisorsMatter = [D(2.5),D(25),D(250)]
+        antiDisplayEffects[i] = data.matter[1].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[1]).divide(boostDivisors[i])) : D(1)
+        matterBoosts[i] = data.matter[0].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[0]).divide(boostDivisorsMatter[i])) : D(1)
+        antimatterEffects[i] = data.matter[1].gt(D(0)) ? D(1).divide(antiDisplayEffects[i]) : D(1)
     }
 }
 
@@ -448,7 +458,7 @@ function prestigeConfirmation(i) {
                 rip()
             break
         case 'consolidate':
-            if(sumOfElements.lt(D(1e130))) return
+            if(sumOfElements.lt(D(1e120))) return
             if(data.settingsToggles[6])
                 createConfirmation('consolidate')
             else
