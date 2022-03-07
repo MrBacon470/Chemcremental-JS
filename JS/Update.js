@@ -210,7 +210,7 @@ function updateHTML(){
                 
                 DOMCacheGetOrSet('ripperImage').style.backgroundColor = (data.particles[0].protons.plus(data.particles[0].neutrons)).gte(D(5e4)) ? '#379337' : '#934237'
                 let sum = data.particles[0].protons.plus(data.particles[0].neutrons)
-                DOMCacheGetOrSet('ripInfo').innerHTML = sum.lt(D(1e10)) ? `Ripper<br>Requires at least<br>50,000 Protons and Neutrons combined<br><i style="font-size:xx-small;">This is definitely not scientifically accurate</i>` : `You have too many particles<br>You now gain quarks per second`
+                DOMCacheGetOrSet('ripInfo').innerHTML = sum.lt(D(1e10)) ? `Ripper<br>Requires at least<br>50,000 Protons and Neutrons combined<br><i style="font-size:xx-small;">This is definitely not scientifically accurate</i>` : `Ripper<br>Requires at least<br>50,000 Protons and Neutrons combined<br>Due to your particle amount Quark Gain has been Softcapped<br><i style="font-size:xx-small;">This is definitely not scientifically accurate</i>`
         }
     }
     else if(data.currentTab === 8) {
