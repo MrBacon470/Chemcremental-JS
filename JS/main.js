@@ -67,42 +67,17 @@ function increaseIsotopes(x,i) {
     data.isotopes[i].max = data.isotopes[i].max.plus(x);
 
 }
-
+let genGain = [D(0),D(0),D(0),D(0)]
 function increasePower(i) {
+    const genConst = [D(1),D(10),D(100),D(1e3)]
     let fuelLoss = D(1)
     if(data.research[10]) fuelLoss = fuelLoss.divide(D(2))
     if(data.fuelStored[i].gt(D(0))) {
         if(!data.research[9]) {
-            switch(i) {
-                case 0:
-                    data.powerStored = data.powerStored.plus((D(1).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 1:
-                    data.powerStored = data.powerStored.plus((D(10).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 2:
-                    data.powerStored = data.powerStored.plus((D(100).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 3:
-                    data.powerStored = data.powerStored.plus((D(1e3).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-            }
+            data.powerStored = data.powerStored.plus((genConst[i].times(augmentBoosts[2].boost[2])).times(diff))
         }
         else {
-            switch(i) {
-                case 0:
-                    data.power = data.power.plus((D(1).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 1:
-                    data.power = data.power.plus((D(10).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 2:
-                    data.power = data.power.plus((D(100).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 3:
-                    data.power = data.power.plus((D(1e3).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-            }
+            data.power = data.power.plus((genConst[i].times(augmentBoosts[2].boost[2])).times(diff))
         }
     }
 
@@ -114,6 +89,10 @@ function increasePower(i) {
         if(data.fuelStored[i].lt(D(0)))
             data.fuelStored[i] = D(0)
     }
+    if(data.fuelStored[i].eq(D(0))) 
+        genGain[i] = D(0)
+    else   
+        genGain[i] = genConst[i].times(augmentBoosts[2].boost[2])
 }
 
 function switchTab(i){
@@ -166,6 +145,7 @@ function mainLoop(){
     }
     powerGain = (Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1])
     powerGain = powerGain.times(D(1).plus(powerBoosts[2]))
+    powerGain = powerGain.times(darkEnergyEffects[0])
     powerGain = Decimal.ceil(powerGain.times(augmentBoosts[2].boost[0]))
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Corium
@@ -236,6 +216,7 @@ function updateBoosts() {
         let boosts = [D(2), D(10), D(0.5)]
         powerBoosts[i] = data.powerUps[i].gt(D(0)) ? boosts[i].times(data.powerUps[i]) : D(1)
     }
+    powerBoosts[0] = powerBoosts[0].times(darkEnergyEffects[1])
     /*
     powerBoosts[0] = data.powerUps[0] === D(0) ? D(1) : D(2).times(data.powerUps[0])
     powerBoosts[1] = D(10).times(data.powerUps[1])
@@ -257,9 +238,13 @@ function updateBoosts() {
 
     for(let i = 0; i < 3; i++) {
         const boostDivisors = [D(10),D(100),D(1e3)]
-        antiDisplayEffects[i] = data.matter[1].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[1]).divide(boostDivisors[i])) : D(1)
+        antiDisplayEffects[i] = data.matter[1].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[1]).divide(boostDivisors[i].divide(D(2)))) : D(1)
         matterBoosts[i] = data.matter[0].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[0]).divide(boostDivisors[i])) : D(1)
         antimatterEffects[i] = data.matter[1].gt(D(0)) ? D(1).divide(antiDisplayEffects[i]) : D(1)
+    }
+    for(let i = 0; i < 2; i++) {
+        const boostDivisors = [D(10),D(100),D(1e3)]
+        darkEnergyEffects[i] = data.darkEnergy.gt(D(0)) ? D(1).plus(Decimal.sqrt(data.darkEnergy).divide(boostDivisors[i].divide(D(2)))) : D(1)
     }
 }
 
@@ -409,6 +394,15 @@ function createConfirmation(a) {
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             document.getElementById('yesConfirm').addEventListener('click', () => {consolidate(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             break
+        case 'darken':
+            document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--darkmatter-color`)}`
+            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to Darken?'
+            document.getElementById('confirmContent').innerHTML = 'This will reset Matter, Antimatter and Dark Energy in exchange for Dark Matter'
+            document.getElementById('confirm').style.display = 'block'
+            document.getElementById('modalContainer').style.display = 'block'
+            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            document.getElementById('yesConfirm').addEventListener('click', () => {darken(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
+            break
     }
 }
 
@@ -466,6 +460,13 @@ function prestigeConfirmation(i) {
                 createConfirmation('consolidate')
             else
                 consolidate()
+            break
+        case 'darken':
+            if(data.darkEnergy.lte(D(0))) return
+            if(data.settingsToggles[7])
+                createConfirmation('darken')
+            else
+                darken()
             break
     }
 }

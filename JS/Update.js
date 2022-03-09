@@ -54,10 +54,10 @@ function updateHTML(){
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Power Text
     if(!data.research[9]) {
-        DOMCacheGetOrSet('powerText').innerHTML = `${formatPrefix(data.power,'Watts')} / ${formatPrefix(powerLimit,'Watts')} | Excess: ${formatPrefix(data.powerStored, 'Watts')}`
+        DOMCacheGetOrSet('powerText').innerHTML = `${formatPrefix(data.power,'Watts')} / ${formatPrefix(powerLimit,'Watts')} | Excess: ${formatPrefix(data.powerStored, 'Watts')}<br>${formatPrefix(genGain[0].plus(genGain[1]).plus(genGain[2]).plus(genGain[3]),'Watts')}/s`
     }
     else
-        DOMCacheGetOrSet('powerText').innerHTML = `${formatPrefix(data.power, 'Watts')}`
+        DOMCacheGetOrSet('powerText').innerHTML = `${formatPrefix(data.power, 'Watts')} | ${formatPrefix(genGain[0].plus(genGain[1]).plus(genGain[2]).plus(genGain[3]),'Watts')}/s`
     //Corium
     DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)} [${format(coriumBoost)}x]`
     DOMCacheGetOrSet('challengeStatusHolder').style.display = data.hasIrridiated ? 'flex' : 'none'
@@ -74,6 +74,7 @@ function updateHTML(){
         DOMCacheGetOrSet('toggle5').innerHTML = data.settingsToggles[4] ? 'Irridiate Confirmation [ON]' : 'Irridiate Confirmation [OFF]'
         DOMCacheGetOrSet('toggle6').innerHTML = data.settingsToggles[5] ? 'Ripper Confirmation [ON]' : 'Ripper Confirmation [OFF]'
         DOMCacheGetOrSet('toggle7').innerHTML = data.settingsToggles[6] ? 'Consolidate Confirmation [ON]' : 'Consolidate Confirmation [OFF]'
+        DOMCacheGetOrSet('toggle8').innerHTML = data.settingsToggles[7] ? 'Darken Confirmation [ON]' : 'Darken Confirmation [OFF]'
         if(data.currentSubTab[2] === 3) {
             DOMCacheGetOrSet('midGameHelp').style.display = data.hasTab[3] ? 'block' : 'none'
             DOMCacheGetOrSet('lateGameHelp').style.display = data.research[15] ? 'block' : 'none'
@@ -120,7 +121,7 @@ function updateHTML(){
         DOMCacheGetOrSet('gA').style.display = data.coriumSingUps[0] === true ? 'inline' : 'none'
         if(data.currentSubTab[3] === 0) {
             DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${formatPrefix(powerGain, 'Watts')}` : "Generate Power<br>Req: 3 Propane + 1 Water"
-            powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${formatPrefix(powerCosts[0], 'Watts')}<br>Level: ${format(data.powerUps[0])}`
+            powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by ${format(D(2).times(darkEnergyEffects[1]))}x<br>Cost: ${formatPrefix(powerCosts[0], 'Watts')}<br>Level: ${format(data.powerUps[0])}`
             powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
             powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 1.5x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
 
@@ -242,7 +243,10 @@ function updateHTML(){
         }
         else if(data.currentSubTab[5] === 1) {
             DOMCacheGetOrSet('darkMatterText').innerHTML = `You have ${formatPrefix(data.matter[2],'Grams')} of Dark Matter`
+            DOMCacheGetOrSet('darkMatGainText').innerHTML = data.darkEnergy.gt(D(0)) ? `Darken and Gain ${formatPrefix(darkMatterGain, 'Grams')} of Dark Matter` : `You Need Dark Energy for This`
             DOMCacheGetOrSet('darkEnergyText').innerHTML = `You have ${formatPrefix(data.darkEnergy,'Joules')} of Dark Energy`
+            DOMCacheGetOrSet('darkEnGainText').innerHTML = `Condense Watts into Dark Energy<br>Gain +${formatPrefix(darkEnergyGain,'Joules')}`
+            DOMCacheGetOrSet('darkEnEffectText').innerHTML = data.darkEnergy.gt(D(0)) ? `Dark Energy Effects<br>${format(darkEnergyEffects[0])}x More Power Generation<br>${format(darkEnergyEffects[1])}x Boost to 2x Upgrade` : ``
         }
         if(data.currentSubTab[5] === 2) {
             DOMCacheGetOrSet('strangeMatterText').innerHTML = `You have ${formatPrefix(data.matter[3],'Grams')} of Strange Matter`

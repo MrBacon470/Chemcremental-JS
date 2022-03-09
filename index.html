@@ -510,12 +510,15 @@
             <div style="flex-direction: column; margin-right: 4em; align-items: center; text-align: center;">
                 <img src="CHEM Achieves/Matter/Darkmatter.png" style="height: 72px; width: 72px;">
                 <div id="darkMatterText" style="color: var(--darkmatter-color);">You have 0.00 Grams of Darkmatter</div>
-                <button id="darkenButton" style="margin: 10px" onclick="prestigeConfirmation('consolidate')">Darken</button>
+                <div id="darkMatGainText" style="color: var(--darkmatter-color);">You have 0.00 Grams of Darkmatter</div>
+                <button id="darkenButton" style="margin: 10px" onclick="prestigeConfirmation('darken')">Darken</button>
             </div>
             <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center;">
                 <img src="CHEM Achieves/Matter/Darkenergy.png" style="height: 72px; width: 72px;">
                 <div id="darkEnergyText" style="color: var(--darkmatter-color);">You have 0.00 Joules of Dark Energy</div>
-                <button id="condenseButton" style="margin: 10px" onclick="prestigeConfirmation('consolidate')">Condense</button>
+                <div id="darkEnGainText" style="color: var(--darkmatter-color);">Condense Watts into Dark Energy<br>Gain +</div>
+                <button id="condenseButton" style="margin: 10px" onclick="condense()">Condense</button>
+                <div id="darkEnEffectText" style="color: var(--darkmatter-color);">Dark Energy Effects<br></div>
             </div>
         </div>
         <div id="strangeMatterArea" class="flexBox holder">
@@ -703,6 +706,7 @@
         </div>
         <div style="margin-top: 5px; align-items: center;">
             <button onclick="toggleButton(6)" id="toggle7" class="settings">Ripper Confirmation [ON]</button>
+            <button onclick="toggleButton(7)" id="toggle8" class="settings">Ripper Confirmation [ON]</button>
             <button onclick="toggleButton(1)" id="toggle2" class="settings">Enable Offline Progress [ON]</button>
         </div>
         <div style="margin-top: 5px; align-items: center;">
