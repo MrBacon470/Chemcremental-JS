@@ -134,10 +134,10 @@ function updateHTML(){
             DOMCacheGetOrSet('petroleumGenHolder').style.display = data.leptonUnlocks[1] === true ? 'flex' : 'none'
             DOMCacheGetOrSet('gasGenHolder').style.display = data.leptonUnlocks[2] === true ? 'flex' : 'none'
 
-            DOMCacheGetOrSet('methaneFuel').innerHTML = data.fuelStored[0].gt(D(0)) ? `Fuel: ${format(data.fuelStored[0])} Methane<br>${formatPrefix(D(1).times(augmentBoosts[2].boost[2]), 'Watts')}/s` : `Fuel: ${format(data.fuelStored[0])} Methane<br>0.00 Watts/s`
-            DOMCacheGetOrSet('coalFuel').innerHTML = data.fuelStored[1].gt(D(0)) ? `Fuel: ${format(data.fuelStored[1])} Coal<br>${formatPrefix(D(10).times(augmentBoosts[2].boost[2]), 'Watts')}/s` : `Fuel: ${format(data.fuelStored[1])} Coal<br>0.00 Watts/s`
-            DOMCacheGetOrSet('petroleumFuel').innerHTML = data.fuelStored[2].gt(D(0)) ? `Fuel: ${format(data.fuelStored[2])} Petroleum<br>${formatPrefix(D(100).times(augmentBoosts[2].boost[2]), 'Watts')}/s` : `Fuel: ${format(data.fuelStored[2])} Petroleum<br>0.00 Watts/s`
-            DOMCacheGetOrSet('gasFuel').innerHTML = data.fuelStored[3].gt(D(0)) ? `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>${formatPrefix(D(1e3).times(augmentBoosts[2].boost[2]), 'Watts')}/s` : `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>0.00 Watts/s`
+            DOMCacheGetOrSet('methaneFuel').innerHTML = data.fuelStored[0].gt(D(0)) ? `Fuel: ${format(data.fuelStored[0])} Methane<br>${formatPrefix(genGain[0], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[0])} Methane<br>0.00 Watts/s`
+            DOMCacheGetOrSet('coalFuel').innerHTML = data.fuelStored[1].gt(D(0)) ? `Fuel: ${format(data.fuelStored[1])} Coal<br>${formatPrefix(genGain[1], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[1])} Coal<br>0.00 Watts/s`
+            DOMCacheGetOrSet('petroleumFuel').innerHTML = data.fuelStored[2].gt(D(0)) ? `Fuel: ${format(data.fuelStored[2])} Petroleum<br>${formatPrefix(genGain[2], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[2])} Petroleum<br>0.00 Watts/s`
+            DOMCacheGetOrSet('gasFuel').innerHTML = data.fuelStored[3].gt(D(0)) ? `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>${formatPrefix(genGain[3], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>0.00 Watts/s`
 
             DOMCacheGetOrSet('Auto6').style.display = data.research[10] ? 'inline' : 'none'
             DOMCacheGetOrSet('Auto6').innerHTML = data.autoActive[6] ? `Automators: [ON]` : `Automators: [OFF]`
@@ -245,7 +245,7 @@ function updateHTML(){
             DOMCacheGetOrSet('darkMatterText').innerHTML = `You have ${formatPrefix(data.matter[2],'Grams')} of Dark Matter`
             DOMCacheGetOrSet('darkMatGainText').innerHTML = data.darkEnergy.gt(D(0)) ? `Darken and Gain ${formatPrefix(darkMatterGain, 'Grams')} of Dark Matter` : `You Need Dark Energy for This`
             DOMCacheGetOrSet('darkEnergyText').innerHTML = `You have ${formatPrefix(data.darkEnergy,'Joules')} of Dark Energy`
-            DOMCacheGetOrSet('darkEnGainText').innerHTML = `Condense Watts into Dark Energy<br>Gain +${formatPrefix(darkEnergyGain,'Joules')}`
+            DOMCacheGetOrSet('darkEnGainText').innerHTML = `Due to how much power you have<br>Gain +${formatPrefix(darkEnergyGain,'Joules')}/s`
             DOMCacheGetOrSet('darkEnEffectText').innerHTML = data.darkEnergy.gt(D(0)) ? `Dark Energy Effects<br>${format(darkEnergyEffects[0])}x More Power Generation<br>${format(darkEnergyEffects[1])}x Boost to 2x Upgrade` : ``
         }
         if(data.currentSubTab[5] === 2) {

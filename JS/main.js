@@ -91,8 +91,12 @@ function increasePower(i) {
     }
     if(data.fuelStored[i].eq(D(0))) 
         genGain[i] = D(0)
-    else   
+    else {
         genGain[i] = genConst[i].times(augmentBoosts[2].boost[2])
+        if(data.darkEnergy.gt(D(0)))
+            genGain[i] = genGain[i].times(darkEnergyEffects[0])
+    }
+        
 }
 
 function switchTab(i){
@@ -397,7 +401,7 @@ function createConfirmation(a) {
         case 'darken':
             document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--darkmatter-color`)}`
             document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to Darken?'
-            document.getElementById('confirmContent').innerHTML = 'This will reset Matter, Antimatter and Dark Energy in exchange for Dark Matter'
+            document.getElementById('confirmContent').innerHTML = 'This will consolidate first. Then will reset Matter, Antimatter and Dark Energy in exchange for Dark Matter'
             document.getElementById('confirm').style.display = 'block'
             document.getElementById('modalContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
