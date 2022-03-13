@@ -316,6 +316,9 @@ const splitterHolder = DOMCacheGetOrSet('splitterHolder')
 const fundamentalHolder = DOMCacheGetOrSet('fundamentalHolder')
 const leptonsHolder = DOMCacheGetOrSet('leptonsHolder')
 const quarksHolder = DOMCacheGetOrSet('quarksHolder')
+//Achievement Subs
+const achieveArea = DOMCacheGetOrSet('achArea')
+const scrtArea = DOMCacheGetOrSet('scrtArea')
 //Settings Subs
 const settingsArea = DOMCacheGetOrSet("settingsArea")
 const creditsArea = DOMCacheGetOrSet("creditsArea")
@@ -333,27 +336,30 @@ const matterArea = DOMCacheGetOrSet('matterArea')
 const darkMatterArea = DOMCacheGetOrSet('darkMatterArea')
 const strangeMatterArea = DOMCacheGetOrSet('strangeMatterArea')
 function subTabChangeHTML() {
-        regularElementHolder.style.display = data.currentSubTab[0] === 0  && data.currentTab === 1 ? 'flex' : 'none'
-        isotopeElementHolder.style.display = data.currentSubTab[0] === 1  && data.currentTab === 1 ? 'flex' : 'none'
+        regularElementHolder.style.display = data.currentSubTab[0] === 0 ? 'flex' : 'none'
+        isotopeElementHolder.style.display = data.currentSubTab[0] === 1? 'flex' : 'none'
 
-        splitterHolder.style.display = data.currentSubTab[1] === 0 && data.currentTab === 7 ? 'flex' : 'none'
-        fundamentalHolder.style.display = data.currentSubTab[1] === 1 && data.currentTab === 7 ? 'flex' : 'none'
-        leptonsHolder.style.display = data.currentSubTab[1] === 2 && data.currentTab === 7 ? 'flex' : 'none'
-        quarksHolder.style.display = data.currentSubTab[1] === 3 && data.currentTab === 7 ? 'flex' : 'none'
+        splitterHolder.style.display = data.currentSubTab[1] === 0 ? 'flex' : 'none'
+        fundamentalHolder.style.display = data.currentSubTab[1] === 1 ? 'flex' : 'none'
+        leptonsHolder.style.display = data.currentSubTab[1] === 2 ? 'flex' : 'none'
+        quarksHolder.style.display = data.currentSubTab[1] === 3 ? 'flex' : 'none'
 
-        settingsArea.style.display = data.currentSubTab[2] === 0 && data.currentTab === 0 ? 'flex' : 'none'
-        creditsArea.style.display = data.currentSubTab[2] === 1  && data.currentTab === 0 ? 'flex' : 'none'
-        roadmapArea.style.display = data.currentSubTab[2] === 2 && data.currentTab === 0 ? 'flex' : 'none'
-        helpArea.style.display = data.currentSubTab[2] === 3 && data.currentTab === 0 ? 'flex' : 'none'
+        achieveArea.style.display = data.currentSubTab[6] === 0 ? 'flex' : 'none'
+        scrtArea.style.display = data.currentSubTab[6] === 1 ? 'flex' : 'none'
 
-        powerArea.style.display = data.currentSubTab[3] === 0 && data.currentTab === 4 ? 'flex' : 'none'
-        generatorArea.style.display = data.currentSubTab[3] === 1  && data.currentTab === 4 ? 'flex' : 'none'
+        settingsArea.style.display = data.currentSubTab[2] === 0 ? 'flex' : 'none'
+        creditsArea.style.display = data.currentSubTab[2] === 1  ? 'flex' : 'none'
+        roadmapArea.style.display = data.currentSubTab[2] === 2 ? 'flex' : 'none'
+        helpArea.style.display = data.currentSubTab[2] === 3  ? 'flex' : 'none'
+
+        powerArea.style.display = data.currentSubTab[3] === 0 ? 'flex' : 'none'
+        generatorArea.style.display = data.currentSubTab[3] === 1 ? 'flex' : 'none'
         
-        irridiatorArea.style.display = data.currentSubTab[4] === 0 && data.currentTab === 8 ? 'flex' : 'none'
-        researchArea.style.display = data.currentSubTab[4] === 1  && data.currentTab === 8 ? 'flex' : 'none'
-        challengeArea.style.display = data.currentSubTab[4] === 2  && data.currentTab === 8 ? 'flex' : 'none'
+        irridiatorArea.style.display = data.currentSubTab[4] === 0 ? 'flex' : 'none'
+        researchArea.style.display = data.currentSubTab[4] === 1 ? 'flex' : 'none'
+        challengeArea.style.display = data.currentSubTab[4] === 2 ? 'flex' : 'none'
 
-        matterArea.style.display = data.currentSubTab[5] === 0 && data.currentTab === 9 ? 'flex' : 'none'
-        darkMatterArea.style.display = data.currentSubTab[5] === 1  && data.currentTab === 9 ? 'flex' : 'none'
-        strangeMatterArea.style.display = data.currentSubTab[5] === 2  && data.currentTab === 9 ? 'flex' : 'none'
+        matterArea.style.display = data.currentSubTab[5] === 0 ? 'flex' : 'none'
+        darkMatterArea.style.display = data.currentSubTab[5] === 1 ? 'flex' : 'none'
+        strangeMatterArea.style.display = data.currentSubTab[5] === 2 ? 'flex' : 'none'
 }

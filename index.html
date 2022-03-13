@@ -530,7 +530,12 @@
     <div id="quantumHolder" class="flexBox holder" style="flex-direction: column">
     </div>
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
-        <div id="percentageText">Achievements Unlocked: 42/64 (22.22%)</div>
+        <div style="display:flex; flex-direction:row;margin-bottom:20px">
+            <button id="achButton" class="subTabButton" onclick="switchSubTab(0,6)">Regular</button>
+            <button id="achButton" class="subTabButton" onclick="switchSubTab(1,6)">Secret</button>
+        </div>
+        <div id="achArea" class="flexBox" style="flex-direction:column;align-items: center;">
+            <div id="percentageText">Achievements Unlocked: 42/64 (22.22%)</div>
         <div>Current Endgame: Max Challenges</div>
         <div style="display:flex;flex-direction: row;">
             <div style="display:flex;flex-direction: column;">
@@ -679,6 +684,32 @@
         <br>
         <div id="achieveText" style="text-align: center;"><hr>Hover over achievements to see a description<br></div>
         <div style="text-align: center;"><p style="color: #23a338;">Green Background = Unlocked</p>No background = Locked</div>
+        </div>
+        <div id="scrtArea" class="flexBox" style="flex-direction:column;align-items: center;">
+            <div>The Secret Zone</div>
+            <div>The Void Reliquary</div>
+            <div style="display:flex;flex-direction:row">
+                <div style="display:flex;flex-direction:column">
+                    <img id="secret1" style="width:32px;height:32px" src="CHEM Achieves/Secrets/V.png">
+                    <img id="secret2" style="width:32px;height:32px" src="CHEM Achieves/Secrets/V Quantum.png">
+                    <img id="secret3" style="width:32px;height:32px" src="CHEM Achieves/Secrets/V Radioactive.png">
+                    <img id="secret4" style="width:32px;height:32px" src="CHEM Achieves/Secrets/V Power.png">
+                </div>
+                <div style="display:flex;flex-direction:column">
+                    <img id="secret5" style="width:32px;height:32px" src="CHEM Achieves/Secrets/V Fire.png">
+                    <img id="secret6" style="width:32px;height:32px" src="CHEM Achieves/Secrets/V Air.png">
+                    <img id="secret7" style="width:32px;height:32px" src="CHEM Achieves/Secrets/V Dark To Light.png">
+                </div>
+                <div style="display:flex;flex-direction:column">
+                    <img id="secret8" style="width:32px;height:32px" src="CHEM Achieves/Secrets/V Up.png">
+                    <img id="secret9" style="width:32px;height:32px" src="CHEM Achieves/Secrets/V Down.png">
+                </div>
+                <img id="secret10" style="width:32px;height:32px" src="CHEM Achieves/Secrets/Not V.png">
+                <hr style="margin: 10px">
+                <img id="secret11" style="width:32px;height:32px" src="CHEM Achieves/Secrets/V Golden.png">
+            </div>
+            <div id="scrtAchieveText" style="text-align: center;"><hr>Hover over secrets to see a description<br></div>
+        </div>
     </div>
     <div id="settingsHolder" class="flexBox holder" style="display:flex; flex-direction: column;">
         <div id="subTabHolder">
@@ -725,7 +756,7 @@
         <h3>Early Access Beta</h3>
         <br>
         <p></p>
-        <p>β0.6.0 - Adds brand new area and Secret Achievements</p>
+        <p>β0.6.0 - Adds Matter and Secret Achieves</p>
         <p>β0.5.1 - Reworked Classic Background Color for Better Contrast, New Custom SI formatting, Added Missing Refinery Hotkeys</p>
         <p>β0.5.0 - 2nd Prestige Layer, Automation, Challenges, Quarks Added</p>
         <p>β0.4.3f - CSS Rework & Theme support</p>

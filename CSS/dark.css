@@ -193,8 +193,8 @@ button:hover {
     margin-right: 5px;
 }
 /*Achievement Area Styles*/
-#aB {border-color: var(--achievement-tab-color); text-align: center;}
-#aB:hover {background-color: var(--achievement-tab-color);}
+#aB, #achButton {border-color: var(--achievement-tab-color); text-align: center;}
+#aB:hover, #achButton:hover {background-color: var(--achievement-tab-color);}
 /*Settings Area styles*/
 #sB {border-color: var(--settings-tab-color)}
 #sB:hover {background-color: var(--settings-tab-color);}

@@ -26,7 +26,11 @@ const NeuAchieves = []
 const EleAchieves = []
 const MuoAchieves = []
 const TauAchieves = []
-
+//Secrets
+const secretSrcs = ['V','V Quantum','V Radioactive','V Power','V Fire','V Air','V Dark To Light','V Up','V Down','Not V','V Golden']
+const SecretAchieves = []
+for(let i = 0; i < 11; i++) 
+    SecretAchieves[i] = DOMCacheGetOrSet(`secret${i+1}`)
 for(let i = 0; i < 8; i++) {
     HAchieves[i] = DOMCacheGetOrSet(`H${i+1}`)
     CAchieves[i] = DOMCacheGetOrSet(`C${i+1}`)
@@ -51,7 +55,9 @@ for(let i = 0; i < 4; i++) {
     MuoAchieves[i] = DOMCacheGetOrSet(`Muo${i+1}`)
     TauAchieves[i] = DOMCacheGetOrSet(`Tau${i+1}`)
 }
-
+for(let i = 0; i < 11; i++) {
+    SecretAchieves[i].addEventListener('mouseover', () => changeScrtDesc(i))
+}
 let unlockReqs = [D(1),D(10),D(50),D(100),D(500),D(1000),D(10000),D(1000000)]
 let prevAmount = D(0)
 //Add event listeners
@@ -165,7 +171,7 @@ function unlockAchieves() {
 }
 
 function updateAchievementHTML() {
-    if(data.currentTab === 2) {
+    if(data.currentTab === 2 && data.currentSubTab[6] === 0) {
         for(let i = 0; i < 8; i++) {
             if((HAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[0].unlocked[i] === false) || (HAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[0].unlocked[i] === true))
                 HAchieves[i].style.backgroundColor = data.achievements[0].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
@@ -243,8 +249,16 @@ function updateAchievementHTML() {
             if((TauAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[19].unlocked[i] === false) || (TauAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[19].unlocked[i] === true))
                 TauAchieves[i].style.backgroundColor = data.achievements[19].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
         }
-    }
         DOMCacheGetOrSet('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 113)}/112 (${format((prevAmount.divide(D(112)).times(D(100))))}%)`
+    }
+    else if(data.currentTab === 2 && data.currentSubTab[6] === 1) {
+        for(let i = 0; i < 11; i++) {
+            if(SecretAchieves[i].getAttribute('src') !== `CHEM Achieves/Secrets/${secretSrcs[i]}.png` && data.scrtAchievements[i])
+                SecretAchieves[i].setAttribute('src', `CHEM Achieves/Secrets/${secretSrcs[i]}.png`)
+            else if(SecretAchieves[i].getAttribute('src') !== 'CHEM Achieves/Secrets/Question.png' && !data.scrtAchievements[i])
+                SecretAchieves[i].setAttribute('src', 'CHEM Achieves/Secrets/Question.png')
+        }
+    } 
 }
 
 const descriptionText = DOMCacheGetOrSet("achieveText")
@@ -278,4 +292,9 @@ const achieveDescriptions = ['<hr>[H-1] - Hydrogenated<br>Buy your first Hydroge
     '<hr>[Tau-3] - Its an even bigger electron<br>Split for 50 Taus','<hr>[Pro-1] - τττ<br>Split for 100 Taus']
 function changeDescription(id) {
     descriptionText.innerHTML = achieveDescriptions[id]
+}
+const secretDescriptions = ['Void - Unlocked All Regular Achievements', 'Void Quantum - TBD', 'Void Radioactive - Max Out All Challenges', 'Void Power - Get 1 Yottawatt',
+'Void Fire - Reach 1.00e308 Corium', 'Void Air - Unlock all Elemental Voids', 'Dark into Light - TBD', 'UpVoid - TBD', 'DownVoid - TBD', 'Not Void - TBD', 'Void Golden - Unlock Everything']
+function changeScrtDesc(id) {
+    DOMCacheGetOrSet('scrtAchieveText').innerHTML = data.scrtAchievements[id] ? `<hr>${secretDescriptions[i]}` : '<hr>???'
 }
