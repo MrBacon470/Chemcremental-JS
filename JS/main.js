@@ -133,6 +133,7 @@ function mainLoop(){
     updatePowerCosts()
     calculateElementGain()
     unlockAchieves()
+    unlockSecrets()
     automate()
     updateMatter()
     //Misc Stuff Here

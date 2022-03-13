@@ -169,7 +169,103 @@ function unlockAchieves() {
        
     }
 }
-
+function unlockSecrets() {
+    if(!data.scrtAchievements[0] && prevAmount.eq(D(112)))
+        data.scrtAchievements[0] = true
+    //Quantum TBD
+    let challengeNum = 0
+    for(let i = 0; i < 5; i++)
+        if(data.challengeCompletions[i].eq(D(25))) challengeNum += 1
+    if(!data.scrtAchievements[2] && challengeNum === 5)
+        data.scrtAchievements[2] = true
+    if(!data.scrtAchievements[3] && data.power.gte(D(1e24)))
+        data.scrtAchievements[3] = true
+    if(!data.scrtAchievements[4] && data.corium.gte(D(1e308)))
+        data.scrtAchievements[4] = true
+    let secretsComplete = 0
+    for(let i = 0; i < 5; i++)
+        if(data.scrtAchievements[i]) secretsComplete += 1
+    if(!data.scrtAchievements[5] && secretsComplete === 5)
+        data.scrtAchievements[5] = true
+    //Dark To Light TBD
+    let hasNum = false
+    if(!data.scrtAchievements[7]) {
+        for(let i = 0; i < 8; i++) {
+            if(data.elements[i].amt.eq(D(69))) hasNum = true
+            if(data.elements[i].level.eq(D(69))) hasNum = true
+            if(data.isotopes[i].amt.eq(D(69))) hasNum = true
+            if(data.isotopes[i].level.eq(D(69))) hasNum = true
+        }
+        for(let i = 0; i < 5; i++) {
+            if(data.compounds[i].amt.eq(D(69))) hasNum = true
+        }
+        if(data.power.eq(D(69))) hasNum = true
+        if(data.powerStored.eq(D(69))) hasNum = true
+        for(let i = 0; i < 3; i++)
+            if(data.powerUps[i].eq(D(69))) hasNum = true
+        if(data.corium.eq(D(69))) hasNum = true
+        for(let i = 0; i < 3; i++)
+            if(data.coriumMultUps[i].eq(D(69))) hasNum = true
+        for(let i = 0; i < 4; i++)
+            if(data.fuels[i].eq(D(69)) || data.fuelStored[i].eq(D(69))) hasNum = true
+        if(data.particles[0].protons.eq(D(69))) hasNum = true
+        if(data.particles[0].neutrons.eq(D(69))) hasNum = true
+        if(data.particles[0].electrons.eq(D(69))) hasNum = true
+        if(data.particles[1].muons.eq(D(69))) hasNum = true
+        if(data.particles[1].taus.eq(D(69))) hasNum = true
+        for(let i = 0; i < 6; i++)
+            if(data.particles[2].quarks[i].eq(D(69))) hasNum = true
+        for(let i = 0; i < 3; i++) 
+            if(data.radiationParticles[i].eq(D(69))) hasNum = true
+        for(let i = 0; i < data.matter.length; i++)
+            if(data.matter[i].eq(D(69))) hasNum = true
+        if(data.darkEnergy.eq(D(69))) hasNum = true
+    }
+    if(!data.scrtAchievements[7] && hasNum)
+        data.scrtAchievements[7] = true
+    
+    hasNum = false
+    if(!data.scrtAchievements[8]) {
+        for(let i = 0; i < 8; i++) {
+            if(data.elements[i].amt.eq(D(420))) hasNum = true
+            if(data.elements[i].level.eq(D(420))) hasNum = true
+            if(data.isotopes[i].amt.eq(D(420))) hasNum = true
+            if(data.isotopes[i].level.eq(D(420))) hasNum = true
+        }
+        for(let i = 0; i < 5; i++) {
+            if(data.compounds[i].amt.eq(D(420))) hasNum = true
+        }
+        if(data.power.eq(D(420))) hasNum = true
+        if(data.powerStored.eq(D(420))) hasNum = true
+        for(let i = 0; i < 3; i++)
+            if(data.powerUps[i].eq(D(420))) hasNum = true
+        if(data.corium.eq(D(420))) hasNum = true
+        for(let i = 0; i < 3; i++)
+            if(data.coriumMultUps[i].eq(D(420))) hasNum = true
+        for(let i = 0; i < 4; i++)
+            if(data.fuels[i].eq(D(420)) || data.fuelStored[i].eq(D(420))) hasNum = true
+        if(data.particles[0].protons.eq(D(420))) hasNum = true
+        if(data.particles[0].neutrons.eq(D(420))) hasNum = true
+        if(data.particles[0].electrons.eq(D(420))) hasNum = true
+        if(data.particles[1].muons.eq(D(420))) hasNum = true
+        if(data.particles[1].taus.eq(D(420))) hasNum = true
+        for(let i = 0; i < 6; i++)
+            if(data.particles[2].quarks[i].eq(D(420))) hasNum = true
+        for(let i = 0; i < 3; i++) 
+            if(data.radiationParticles[i].eq(D(420))) hasNum = true
+        for(let i = 0; i < data.matter.length; i++)
+            if(data.matter[i].eq(D(420))) hasNum = true
+        if(data.darkEnergy.eq(D(420))) hasNum = true
+    }
+    if(!data.scrtAchievements[8] && hasNum)
+        data.scrtAchievements[8] = true
+    //Not Void TBD
+    secretsComplete = 0
+    for(let i = 0; i < 10; i++)
+        if(data.scrtAchievements[i]) secretsComplete += 1
+    if(!data.scrtAchievements[10] && secretsComplete === 10)
+        data.scrtAchievements[10] = true
+}
 function updateAchievementHTML() {
     if(data.currentTab === 2 && data.currentSubTab[6] === 0) {
         for(let i = 0; i < 8; i++) {
@@ -294,7 +390,7 @@ function changeDescription(id) {
     descriptionText.innerHTML = achieveDescriptions[id]
 }
 const secretDescriptions = ['Void - Unlocked All Regular Achievements', 'Void Quantum - TBD', 'Void Radioactive - Max Out All Challenges', 'Void Power - Get 1 Yottawatt',
-'Void Fire - Reach 1.00e308 Corium', 'Void Air - Unlock all Elemental Voids', 'Dark into Light - TBD', 'UpVoid - TBD', 'DownVoid - TBD', 'Not Void - TBD', 'Void Golden - Unlock Everything']
+'Void Fire - Reach 1.00e308 Corium', 'Void Air - Unlock all Elemental Voids', 'Dark into Light - TBD', 'UpVoid - Get 69 of Anything', 'DownVoid - Get 420 of Anything', 'Not Void - TBD', 'Void Golden - Unlock Everything']
 function changeScrtDesc(id) {
-    DOMCacheGetOrSet('scrtAchieveText').innerHTML = data.scrtAchievements[id] ? `<hr>${secretDescriptions[i]}` : '<hr>???'
+    DOMCacheGetOrSet('scrtAchieveText').innerHTML = data.scrtAchievements[id] ? `<hr>${secretDescriptions[id]}` : '<hr>???'
 }
