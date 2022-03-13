@@ -243,7 +243,10 @@ function updateHTML(){
         }
         else if(data.currentSubTab[5] === 1) {
             DOMCacheGetOrSet('darkMatterText').innerHTML = `You have ${formatPrefix(data.matter[2],'Grams')} of Dark Matter`
-            DOMCacheGetOrSet('darkMatGainText').innerHTML = data.darkEnergy.gt(D(0)) ? `Darken and Gain ${formatPrefix(darkMatterGain, 'Grams')} of Dark Matter` : `You Need Dark Energy for This`
+            if(data.matter[1].gt(D(0)))
+                DOMCacheGetOrSet('darkMatGainText').innerHTML = data.darkEnergy.gt(D(0)) ? `Darken and Gain ${formatPrefix(darkMatterGain, 'Grams')} of Dark Matter` : `You Need Dark Energy for This`
+            else
+                DOMCacheGetOrSet('darkMatGainText').innerHTML = `You need Anti Matter To Gain`
             DOMCacheGetOrSet('darkEnergyText').innerHTML = `You have ${formatPrefix(data.darkEnergy,'Joules')} of Dark Energy`
             DOMCacheGetOrSet('darkEnGainText').innerHTML = `Due to how much power you have<br>Gain +${formatPrefix(darkEnergyGain,'Joules')}/s`
             DOMCacheGetOrSet('darkEnEffectText').innerHTML = data.darkEnergy.gt(D(0)) ? `Dark Energy Effects<br>${format(darkEnergyEffects[0])}x More Power Generation<br>${format(darkEnergyEffects[1])}x Boost to 2x Upgrade` : ``
