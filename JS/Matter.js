@@ -6,6 +6,7 @@ let matterBoosts = [D(0),D(0),D(0)]
 let darkEnergyGain = D(0)
 let darkEnergyEffects = D(0)
 let darkMatterGain = D(0)
+const darkMatterUpDesc = ['Decrease Antimatter Gain','Boost Dark Energy Gain','Boost Dark Matter Gain','','']
 function updateMatter() {
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     antimatterGain = data.hasTab[6] && sumOfElements.gte(D(1e145)) ? Decimal.sqrt(Decimal.sqrt(Decimal.sqrt(sumOfElements.divide(D(1e145))))) : D(0)

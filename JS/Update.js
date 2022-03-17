@@ -250,6 +250,8 @@ function updateHTML(){
             DOMCacheGetOrSet('darkEnergyText').innerHTML = `You have ${formatPrefix(data.darkEnergy,'Joules')} of Dark Energy`
             DOMCacheGetOrSet('darkEnGainText').innerHTML = `Due to how much power you have<br>Gain +${formatPrefix(darkEnergyGain,'Joules')}/s`
             DOMCacheGetOrSet('darkEnEffectText').innerHTML = data.darkEnergy.gt(D(0)) ? `Dark Energy Effects<br>${format(darkEnergyEffects[0])}x More Power Generation<br>${format(darkEnergyEffects[1])}x Boost to 2x Upgrade` : ``
+            for(let i = 0; i < 5; i++) 
+                DOMCacheGetOrSet(`darkUp${i+1}`).innerHTML = data.darkUpUnlocked[i] ? `${romanNumerals[i]}` : `${romanNumerals[i]}<br>${darkMatterUpDesc[i]}`
         }
         if(data.currentSubTab[5] === 2) {
             DOMCacheGetOrSet('strangeMatterText').innerHTML = `You have ${formatPrefix(data.matter[3],'Grams')} of Strange Matter`

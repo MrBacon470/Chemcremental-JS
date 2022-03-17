@@ -46,6 +46,7 @@ function getDefaultObject() {
         matter: [D(0),D(0),D(0),D(0)],
         darkEnergy: D(0),
         matterUnlocked: [false,false],
+        darkUpUnlocked: [false,false,false,false,false],
         //Achievements
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
