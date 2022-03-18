@@ -1,7 +1,7 @@
 /*Fonts & Variables*/
 @font-face {
-    font-family: 'Monospace Typewriter';
-    src: url('MonospaceTypewriter.ttf');
+    font-family: 'Ubuntu';
+    src: url(Ubuntu-Medium.ttf);
 }
 :root {
     /*Colors*/
@@ -51,7 +51,7 @@
 /*Main Styles*/
 
 * {
-    background-color: #ebebeb;
+    font-family: 'Ubuntu';
 }
 img {
     margin-left: 3px;
