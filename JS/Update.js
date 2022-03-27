@@ -237,9 +237,9 @@ function updateHTML(){
             DOMCacheGetOrSet('matterText').innerHTML = `You have ${formatPrefix(data.matter[0],'Grams')} of Matter`
             DOMCacheGetOrSet('matterGainText').innerHTML = sumOfElements.gt(D(1e120)) ? `Consolidate your materials and gain ${formatPrefix(matterGain,'Grams')} of Matter` : `You need 1.00e120 Total Elements to Consolidate<br>You have ${format(sumOfElements)} Total Elements Currently`
             DOMCacheGetOrSet('matterEffectText').innerHTML = data.matter[0].gt(D(0)) ? `Due to matter you have these effects<br>${format(matterBoosts[0])}x More Element/Isotope Production<br>${format(matterBoosts[1])}x More Corium<br>${format(matterBoosts[2])}x More Particles` : ``
-            DOMCacheGetOrSet('antiMatterText').innerHTML = data.matter[1].gt(D(0)) || sumOfElements.gte(D(1e145)) ? `You have ${formatPrefix(data.matter[1],'Grams')} of Antimatter` : ``
-            DOMCacheGetOrSet('antiGainText').innerHTML = data.matter[1].gt(D(0)) || sumOfElements.gte(D(1e145)) ? `Due to your production you are gaining<br>${formatPrefix(antimatterGain,'Grams')} of Antimatter/s` : `${format(sumOfElements)}/1.00e145`
-            DOMCacheGetOrSet('antiEffectText').innerHTML = data.matter[1].gt(D(0)) || sumOfElements.gte(D(1e145)) ? `Antimatter is effecting these things<br>${format(antiDisplayEffects[0])}x Less Element Production<br>${format(antiDisplayEffects[1])}x Less Compound Boost<br>${format(antiDisplayEffects[2])}x Less Corium Boost` : ``
+            DOMCacheGetOrSet('antiMatterText').innerHTML = data.matter[1].gt(D(0)) || sumOfElements.gte(D(1e140)) ? `You have ${formatPrefix(data.matter[1],'Grams')} of Antimatter` : ``
+            DOMCacheGetOrSet('antiGainText').innerHTML = data.matter[1].gt(D(0)) || sumOfElements.gte(D(1e140)) ? `Due to your production you are gaining<br>${formatPrefix(antimatterGain,'Grams')} of Antimatter/s` : `${format(sumOfElements)}/1.00e140`
+            DOMCacheGetOrSet('antiEffectText').innerHTML = data.matter[1].gt(D(0)) || sumOfElements.gte(D(1e140)) ? `Antimatter is effecting these things<br>${format(antiDisplayEffects[0])}x Less Element Production<br>${format(antiDisplayEffects[1])}x Less Compound Boost<br>${format(antiDisplayEffects[2])}x Less Corium Boost` : ``
         }
         else if(data.currentSubTab[5] === 1) {
             DOMCacheGetOrSet('darkMatterText').innerHTML = `You have ${formatPrefix(data.matter[2],'Grams')} of Dark Matter`
@@ -251,7 +251,7 @@ function updateHTML(){
             DOMCacheGetOrSet('darkEnGainText').innerHTML = `Due to how much power you have<br>Gain +${formatPrefix(darkEnergyGain,'Joules')}/s`
             DOMCacheGetOrSet('darkEnEffectText').innerHTML = data.darkEnergy.gt(D(0)) ? `Dark Energy Effects<br>${format(darkEnergyEffects[0])}x More Power Generation<br>${format(darkEnergyEffects[1])}x Boost to 2x Upgrade` : ``
             for(let i = 0; i < 5; i++) 
-                DOMCacheGetOrSet(`darkUp${i+1}`).innerHTML = data.darkUpUnlocked[i] ? `${romanNumerals[i]}` : `${romanNumerals[i]}<br>${darkMatterUpDesc[i]}`
+                DOMCacheGetOrSet(`darkUp${i+1}`).innerHTML = data.darkUpUnlocked[i] ? `${romanNumerals[i]} - Unlocked<br>Current Effect:` : `${romanNumerals[i]} - Locked<br>${darkMatterUpDesc[i]}`
         }
         if(data.currentSubTab[5] === 2) {
             DOMCacheGetOrSet('strangeMatterText').innerHTML = `You have ${formatPrefix(data.matter[3],'Grams')} of Strange Matter`

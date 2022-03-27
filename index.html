@@ -492,14 +492,14 @@
             <button id="strA" class="subTabButton" onclick="switchSubTab(2,5)">Strange</button>
         </div>
         <div id="matterArea" class="flexBox holder">
-            <div style="flex-direction: column; margin-right: 4em; align-items: center; text-align: center;">
+            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center; padding: 4px; border: 2px solid var(--matter-tab-color)">
                 <img src="CHEM Achieves/Matter/Matter.png" style="height: 72px; width: 72px;">
                 <div id="matterText" style="color: var(--matter-tab-color);">You have 0.00 Grams of Matter</div>
                 <div id="matterGainText" style="color: var(--matter-tab-color);">Consolidate your materials and gain 0.00 Grams of Matter</div>
                 <button id="consolidateButton" style="margin: 10px" onclick="prestigeConfirmation('consolidate')">Consolidate</button>
                 <div id="matterEffectText" style="color: var(--matter-tab-color);">Due to matter you have these effects<br>1.00x Element/Isotope Production<br>1.00x More Corium<br>1.00x More Particles</div>
             </div>
-            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center;">
+            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center; padding: 4px; border: 2px solid var(--antimatter-color)">
                 <img src="CHEM Achieves/Matter/Antimatter.png" style="height: 72px; width: 72px;">
                 <div id="antiMatterText" style="color: var(--antimatter-color);">You have 0.00 Grams of Antimatter</div>
                 <div id="antiGainText" style="color: var(--antimatter-color);">Due to your production you are gaining<br>0.00 Grams of Antimatter/s</div>
@@ -507,23 +507,23 @@
             </div>
         </div>
         <div id="darkMatterArea" class="flexBox holder">
-            <div style="flex-direction: column; margin-right: 4em; align-items: center; text-align: center;">
+            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center; padding: 4px; border: 2px solid var(--darkmatter-color)">
                 <img src="CHEM Achieves/Matter/Darkmatter.png" style="height: 72px; width: 72px;">
                 <div id="darkMatterText" style="color: var(--darkmatter-color);">You have 0.00 Grams of Darkmatter</div>
                 <div id="darkMatGainText" style="color: var(--darkmatter-color);">You have 0.00 Grams of Darkmatter</div>
                 <button id="darkenButton" style="margin: 10px" onclick="prestigeConfirmation('darken')">Darken</button>
                 <div>
-                    <button id="darkUp1" class="darkUp" style="margin: 10px" onclick="prestigeConfirmation('darken')">Up1</button>
-                    <button id="darkUp2" class="darkUp" style="margin: 10px" onclick="prestigeConfirmation('darken')">Up2</button>
-                    <button id="darkUp3" class="darkUp" style="margin: 10px" onclick="prestigeConfirmation('darken')">Up3</button>
+                    <button id="darkUp1" class="darkUp" style="margin: 10px" onclick="purchaseDarkUp(0)">Up1</button>
+                    <button id="darkUp2" class="darkUp" style="margin: 10px" onclick="purchaseDarkUp(1)">Up2</button>
+                    <button id="darkUp3" class="darkUp" style="margin: 10px" onclick="purchaseDarkUp(2)">Up3</button>
                     
                 </div>
                 <div>
-                    <button id="darkUp4" class="darkUp" style="margin: 10px" onclick="prestigeConfirmation('darken')">Up4</button>
-                    <button id="darkUp5" class="darkUp" style="margin: 10px" onclick="prestigeConfirmation('darken')">Up5</button>
+                    <button id="darkUp4" class="darkUp" style="margin: 10px" onclick="purchaseDarkUp(3)">Up4</button>
+                    <button id="darkUp5" class="darkUp" style="margin: 10px" onclick="purchaseDarkUp(4)">Up5</button>
                 </div>
             </div>
-            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center;">
+            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center; padding: 4px; border: 2px solid var(--darkmatter-color)">
                 <img src="CHEM Achieves/Matter/Darkenergy.png" style="height: 72px; width: 72px;">
                 <div id="darkEnergyText" style="color: var(--darkmatter-color);">You have 0.00 Joules of Dark Energy</div>
                 <div id="darkEnGainText" style="color: var(--darkmatter-color);">Due to your power you are gaining<br>+0.00 Joules/s</div>
