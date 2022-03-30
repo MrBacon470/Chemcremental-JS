@@ -1,5 +1,4 @@
 // region element declarations
-let elementSum = D(0)
 const elementButtons = []
 const isotopeButtons = []
 const elementNames = ['Hydrogen','Carbon','Oxygen','Fluorine','Sulfur','Chlorine','Iron','Lead']
@@ -28,11 +27,6 @@ for(let i=0; i < 3; i++)
 const coriumMultDesc =['Increase Atom Production by 4x','Increase Compounds Created by 1.25x','Increase Corium Produced on Melt']
 const coriumSingDesc = ['Unlock The Refinery<br>Cost: 1.00e10 Corium','Unlock Particles<br>Cost: 1.00e15 Corium','Unlock Radiation<br>Cost: 1.00e38 Corium']
 //'Unlock Passive Power Production<br>Cost: 1.00e15 Corium','Radition Not Implemented'
-// Refinery Area
-const refineryIDs = ['shard', 'mold', 'mint']
-const refineryNames = ['Sharding','Molding','Minting']
-const refineryDescriptions = ['Produces Kuaka Shards','Produces Kuaka Fragments','Produces Kuaka Coins']
-const currencyNames = ['Shards','Fragments','Coins']
 //Accelerator stuf
 const romanNumerals = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI']
 const augmentBoostNames = [{name:['Element','Lead','Compound']},{name:['Melt Gain','4x Production Upgrade','Compound Creation Upgrade']},{name:['Power Gain','Refinery Creation','Generator Production']}]
@@ -44,7 +38,6 @@ for(let i = 0; i < 3; i++)
     const protonGainText = document.getElementById('protonGain')
     const neutronGainText = document.getElementById('neutronGain')
     const electronGainText = document.getElementById('electronGain')
-let currencyDisplayIndex = 0
 function updateHTML(){
     for(let i = 0; i < 5; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? tabNames[i] : '???'
