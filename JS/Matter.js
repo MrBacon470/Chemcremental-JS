@@ -6,6 +6,7 @@ let matterBoosts = [D(0),D(0),D(0)]
 let darkEnergyGain = D(0)
 let darkEnergyEffects = D(0)
 let darkMatterGain = D(0)
+
 const darkMatterCosts = [D(1e3),D(1e6),D(1e9),D(1e12),D(1e15)]
 const darkMatterUpDesc = ['Decrease Antimatter Gain<br>Cost: 1.00 Kilogram','Boost Dark Energy Gain<br>Cost: 1.00 Megagram','Boost Dark Matter Gain<br>Cost: 1.00 Teragram','','']
 function updateMatter() {
