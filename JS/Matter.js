@@ -10,6 +10,8 @@ let darkMatterEffects = [D(1),D(1),D(1),D(1),D(1)]
 const darkMatterScales = [D(0.01),D(0.15),D(0.1),D(0.05),D(0.001)]
 const darkMatterCosts = [D(1e3),D(1e6),D(1e9),D(5e9),D(25e9)]
 const darkMatterUpDesc = ['Decrease Antimatter Gain<br>Cost: 1.00 Kilogram','Boost Dark Energy Gain<br>Cost: 1.00 Megagram','Boost Dark Matter Gain<br>Cost: 1.00 Teragram','Boost Corium Gain<br>5.00 Teragrams','Boost Element Gain<br>25.00 Teragrams']
+const strangePillarCosts = [D(0),D(100),D(1e5),D(1e9),D(1e12)]
+const strangePillarDesc = ['Activate Strange Matter Production','','','','Unlock Quantum']
 function updateMatter() {
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     antimatterGain = data.hasTab[6] && sumOfElements.gte(D(1e140)) ? Decimal.sqrt(Decimal.sqrt(Decimal.sqrt(sumOfElements.divide(D(1e140))))) : D(0)
@@ -62,4 +64,10 @@ function purchaseDarkUp(i) {
     if(data.matter[2].lt(darkMatterCosts[i]) && !data.darkUpUnlocked[i]) return
     data.matter[2] = data.matter[2].sub(darkMatterCosts[i])
     data.darkUpUnlocked[i] = true
+}
+
+function purchasePillar(i) {
+    if(data.matter[3].lt(strangePillarCosts[i]) && !data.pillarUnlocked[i]) return
+    data.matter[3] = data.matter[3].sub(strangePillarCosts[i])
+    data.pillarUnlocked[i] = true
 }
