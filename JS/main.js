@@ -168,6 +168,8 @@ function mainLoop(){
     }
     if(!data.matterUnlocked[0] && data.matter[1].gt(D(1e3))) 
         data.matterUnlocked[0] = true
+    if(!data.matterUnlocked[1] && data.darkUpUnlocked[2])
+        data.matterUnlocked[1] = true
     //Misc stuff
     if(data.elements[0].amt.lt(D(10)) && data.elements[0].level.lt(D(1)))
         data.elements[0].amt = D(10)
