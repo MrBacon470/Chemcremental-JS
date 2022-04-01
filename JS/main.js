@@ -21,6 +21,7 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(matterBoosts[0])
             if(data.matter[1].gt(D(0)))
                 data.elementGain[i] = data.elementGain[i].times(antimatterEffects[0])
+            data.elementGain[i] = data.elementGain[i].times(darkMatterEffects[4])
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
@@ -39,6 +40,7 @@ function calculateElementGain() {
             data.elementGain[i] = data.elementGain[i].times(matterBoosts[0])
             if(data.matter[1].gt(D(0)))
                 data.elementGain[i] = data.elementGain[i].times(antimatterEffects[0])
+            data.elementGain[i] = data.elementGain[i].times(darkMatterEffects[4])
         }
 
         if(i === 7) {
@@ -161,6 +163,7 @@ function mainLoop(){
     coriumToGet = coriumToGet.times(compoundBoosts[4])
     coriumToGet = coriumToGet.times(augmentBoosts[1].boost[0])
     coriumToGet = coriumToGet.times(matterBoosts[1])
+    coriumToGet = coriumToGet.times(darkMatterEffects[3])
     if(data.activeChallenge[2]) coriumToGet = Decimal.sqrt(coriumToGet)
     if(data.research[11] && sumOfElements.gte(D(1e8))) {
         data.corium = data.corium.plus((coriumToGet.times(D(0.01))).times(diff))

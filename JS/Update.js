@@ -247,6 +247,8 @@ function updateHTML(){
                 DOMCacheGetOrSet(`darkUp${i+1}`).innerHTML = data.darkUpUnlocked[i] ? `${greekLettersLower[i]} - Unlocked<br>Current Effect: x${format(darkMatterEffects[i])}` : `${greekLettersLower[i]} - Locked<br>${darkMatterUpDesc[i]}`
         }
         if(data.currentSubTab[5] === 2) {
+            for(let i = 0; i < 5; i++)
+                DOMCacheGetOrSet(`pillar${i+1}`).innerHTML = `Pillar - ${greekLettersUpper[(greekLettersUpper.length - 5)+i]}`
             DOMCacheGetOrSet('strangeMatterText').innerHTML = `You have ${formatPrefix(data.matter[3],'Grams')} of Strange Matter`
         }
     }

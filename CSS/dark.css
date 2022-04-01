@@ -418,8 +418,8 @@ button:hover {
 #matB:hover, #matA:hover {color:#000; background-color: var(--matter-tab-color);}
 #darA, #darkenButton, #condenseButton {color: var(--darkmatter-color);border-color: var(--darkmatter-color); background-color: #000;}
 #darA:hover, #darkenButton:hover, #condenseButton:hover {color:#000; background-color: var(--darkmatter-color);}
-#strA {color: var(--strangeQuark-color); border-color: var(--strangeQuark-color); background-color: #000;}
-#strA:hover {color:#000; background-color: var(--strangeQuark-color);}
+#strA, .strB {color: var(--strangeQuark-color); border-color: var(--strangeQuark-color); background-color: #000;}
+#strA:hover, .strB:hover {color:#000; background-color: var(--strangeQuark-color);}
 /*Quantum Styles*/
 #quanB {color:var(--quantum-tab-color);border-color: var(--quantum-tab-color); background-color: #000;}
 #quanB:hover {color:#000; background-color: var(--quantum-tab-color);}
