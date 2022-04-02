@@ -7,7 +7,7 @@ let darkEnergyGain = D(0)
 let darkEnergyEffects = D(0)
 let darkMatterGain = D(0)
 let darkMatterEffects = [D(1),D(1),D(1),D(1),D(1)]
-const darkMatterScales = [D(0.01),D(0.15),D(0.1),D(0.05),D(0.001)]
+const darkMatterScales = [D(0.01),D(0.15),D(0.025),D(0.015),D(0.001)]
 const darkMatterCosts = [D(1e3),D(1e6),D(1e9),D(5e9),D(25e9)]
 const darkMatterUpDesc = ['Decrease Antimatter Gain<br>Cost: 1.00 Kilogram','Boost Dark Energy Gain<br>Cost: 1.00 Megagram','Boost Dark Matter Gain<br>Cost: 1.00 Teragram','Boost Corium Gain<br>5.00 Teragrams','Boost Element Gain<br>25.00 Teragrams']
 const strangePillarCosts = [D(0),D(100),D(1e5),D(1e9),D(1e12)]
@@ -19,10 +19,13 @@ function updateMatter() {
         antimatterGain = antimatterGain.times(D(1).divide(darkMatterEffects[0]))
     }
     matterGain = sumOfElements.lt(D(1e120)) ? D(0) : Decimal.sqrt(Decimal.sqrt(sumOfElements.divide(D(1e115))))
+
     darkMatterGain = data.darkEnergy.gt(D(0)) && data.matter[1].gt(D(0)) ? (data.matter[0].sub(data.matter[1])).times((data.darkEnergy).divide((data.matter[0].sub(data.matter[1]).mul(D(0.35))))) : D(0)
     darkMatterGain = darkMatterGain.times(darkMatterEffects[2])
+
     darkEnergyGain = Decimal.sqrt(Decimal.sqrt(data.power)).times(D(0.5))
     darkEnergyGain = darkEnergyGain.times(darkMatterEffects[1])
+    
     for(let i = 0; i < 5; i++) 
         darkMatterEffects[i] = data.darkUpUnlocked[i] ? D(1).plus(Decimal.sqrt(data.matter[2]).times(darkMatterScales[i])) : D(1)
     if(data.matterUnlocked[0]) {

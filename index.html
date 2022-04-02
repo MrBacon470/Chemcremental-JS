@@ -532,15 +532,16 @@
         </div>
         <div id="strangeMatterArea" class="flexBox holder" style="flex-direction:column">
             <div style="flex-direction: row; align-items:center; margin-bottom: 3em;">
-                <button id="pillar1" class="strB">Pillar Chi</button>
-                <button id="pillar2" class="strB">Pillar Psi</button>
-                <button id="pillar3" class="strB">Pillar Omega</button>
-                <button id="pillar4" class="strB">Pillar Alpha</button>
-                <button id="pillar5" class="strB">Pillar Omega</button>
+                <button id="pillar1" onclick="purchasePillar(0)" class="strB">Pillar Chi</button>
+                <button id="pillar2" onclick="purchasePillar(1)" class="strB">Pillar Psi</button>
+                <button id="pillar3" onclick="purchasePillar(2)" class="strB">Pillar Omega</button>
+                <button id="pillar4" onclick="purchasePillar(3)" class="strB">Pillar Alpha</button>
+                <button id="pillar5" onclick="purchasePillar(4)" class="strB">Pillar Omega</button>
             </div>
             <div style="flex-direction: column; align-items: center; text-align: center;">
                 <img src="CHEM Achieves/Matter/Strangematter.png" style="height: 72px; width: 72px;">
                 <div id="strangeMatterText" style="color: var(--strangeQuark-color);">You have 0.00 Grams of Strangematter</div>
+                <div id="strangeProductionText"  style="color: var(--strangeQuark-color);">Producing 0.00 Grams/s</div>
                 <div id="strangeCorruptText" style="color: var(--strangeQuark-color);">Chance of corruption: 0.00%</div>
             </div>
         </div>
