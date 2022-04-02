@@ -31,7 +31,7 @@ function updateMatter() {
     darkEnergyGain = darkEnergyGain.times(darkMatterEffects[1])
     
     if(data.pillarUnlocked[0]) {
-        strangeMatterGain = D(1).plus(Decimal.sqrt(data.particles[2].quarks[4].times(D(1).times(D(1).divide(data.particles[2].quarks[4].times(D(0.001)))))))
+        strangeMatterGain = D(1).plus(Decimal.sqrt(data.matter[1].divide(1e15)))
         strangeMatterGain = Decimal.pow(strangeMatterGain, strangeMatterEffects[1])
         data.matter[3] = data.matter[3].plus(strangeMatterGain.times(diff))
     }
