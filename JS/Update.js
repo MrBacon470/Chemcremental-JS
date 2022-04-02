@@ -251,6 +251,8 @@ function updateHTML(){
                 DOMCacheGetOrSet(`pillar${i+1}`).innerHTML = data.pillarUnlocked[i] ? `Pillar - ${greekLettersLower[(greekLettersUpper.length - 5)+i]}<br><br>Active` : `Pillar - ${greekLettersLower[(greekLettersUpper.length - 5)+i]}<br><br>${strangePillarDesc[i]}<br><br>${formatPrefix(strangePillarCosts[i],'Grams')}`
             DOMCacheGetOrSet('strangeMatterText').innerHTML = `You have ${formatPrefix(data.matter[3],'Grams')} of Strange Matter`
             DOMCacheGetOrSet('strangeProductionText').innerHTML = `You are producing ${formatPrefix(strangeMatterGain, 'Grams')}/s`
+            DOMCacheGetOrSet('strangeCorruptText').innerHTML = `Chance of Total Corruption: ${format(corruptionChance)}%`
+            DOMCacheGetOrSet('strangeEffectText').innerHTML = data.pillarUnlocked[0] ? `-=Effects=-<br>DM & M Gain Boost: ${format(D(0))}<br>SM Gain Boost: ${format(D(0))}<br>Corruption Decrease ${format(D(0))}` : ``
         }
     }
     unlockTabs()
