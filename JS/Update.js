@@ -204,7 +204,7 @@ function updateHTML(){
                 
                 DOMCacheGetOrSet('ripperImage').style.backgroundColor = (data.particles[0].protons.plus(data.particles[0].neutrons)).gte(D(5e4)) ? '#379337' : '#934237'
                 let sum = data.particles[0].protons.plus(data.particles[0].neutrons)
-                DOMCacheGetOrSet('ripInfo').innerHTML = sum.lt(D(1e10)) ? `Ripper<br>Requires at least<br>50,000 Protons and Neutrons combined<br><i style="font-size:xx-small;">This is definitely not scientifically accurate</i>` : `Ripper<br>Requires at least<br>50,000 Protons and Neutrons combined<br>Due to your particle amount Quark Gain has been Softcapped<br><i style="font-size:xx-small;">This is definitely not scientifically accurate</i>`
+                DOMCacheGetOrSet('ripInfo').innerHTML = sum.lt(D(1e8)) ? `Ripper<br>Requires at least<br>50,000 Protons and Neutrons combined<br><i style="font-size:xx-small;">This is definitely not scientifically accurate</i>` : `Ripper<br>Requires at least<br>50,000 Protons and Neutrons combined<br>Due to your particle amount Quark Gain has been Softcapped<br><i style="font-size:xx-small;">This is definitely not scientifically accurate</i>`
         }
     }
     else if(data.currentTab === 8) {
@@ -251,8 +251,8 @@ function updateHTML(){
                 DOMCacheGetOrSet(`pillar${i+1}`).innerHTML = data.pillarUnlocked[i] ? `Pillar - ${greekLettersLower[(greekLettersUpper.length - 5)+i]}<br><br>Active` : `Pillar - ${greekLettersLower[(greekLettersUpper.length - 5)+i]}<br><br>${strangePillarDesc[i]}<br><br>${formatPrefix(strangePillarCosts[i],'Grams')}`
             DOMCacheGetOrSet('strangeMatterText').innerHTML = `You have ${formatPrefix(data.matter[3],'Grams')} of Strange Matter`
             DOMCacheGetOrSet('strangeProductionText').innerHTML = `You are producing ${formatPrefix(strangeMatterGain, 'Grams')}/s`
-            DOMCacheGetOrSet('strangeCorruptText').innerHTML = `Chance of Total Corruption: ${format(corruptionChance)}%`
-            DOMCacheGetOrSet('strangeEffectText').innerHTML = data.pillarUnlocked[0] ? `-=Effects=-<br>DM & M Gain Boost: ${format(D(0))}<br>SM Gain Boost: ${format(D(0))}<br>Corruption Decrease ${format(D(0))}` : ``
+            DOMCacheGetOrSet('strangeCorruptText').innerHTML = `Time till corruption: ${formatTime(data.corruptTimer)}`
+            DOMCacheGetOrSet('strangeEffectText').innerHTML = data.pillarUnlocked[0] ? `-=Effects=-<br>DM & M Gain Boost: ${format(strangeMatterEffects[0])}x<br>SM Gain Boost: ^${format(strangeMatterEffects[1])}<br>Corruption Interval +${formatTime(strangeMatterEffects[2])}` : ``
         }
     }
     unlockTabs()

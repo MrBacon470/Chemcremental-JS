@@ -132,9 +132,11 @@ function buyLepton(a) {
 }
 
 function rip() {
+
     let sum = data.particles[0].protons.plus(data.particles[0].neutrons)
     sum = sum.gt(D(1e8)) ? sum.sub(sum.times(0.75)) : sum.sub(sum.times(0.5))
     sum = Decimal.ceil(sum)
+    if(sum.gt(D(1e8))) sum = D(1e6)
     let ripParticleGain = [D(0),D(0)]
 
     for(let i = 0; i <= sum; i++) {
