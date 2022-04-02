@@ -7,11 +7,13 @@ let darkEnergyGain = D(0)
 let darkEnergyEffects = D(0)
 let darkMatterGain = D(0)
 let darkMatterEffects = [D(1),D(1),D(1),D(1),D(1)]
+let strangeMatterGain = D(0)
+let corruptionChance = D(0)
 const darkMatterScales = [D(0.01),D(0.15),D(0.025),D(0.015),D(0.001)]
-const darkMatterCosts = [D(1e3),D(1e6),D(1e9),D(5e9),D(25e9)]
-const darkMatterUpDesc = ['Decrease Antimatter Gain<br>Cost: 1.00 Kilogram','Boost Dark Energy Gain<br>Cost: 1.00 Megagram','Boost Dark Matter Gain<br>Cost: 1.00 Teragram','Boost Corium Gain<br>5.00 Teragrams','Boost Element Gain<br>25.00 Teragrams']
+const darkMatterCosts = [D(1e3),D(1e6),D(1e12),D(1e18),D(1e24)]
+const darkMatterUpDesc = ['Decrease Antimatter Gain<br>Cost: 1.00 Kilogram','Boost Dark Energy Gain<br>Cost: 1.00 Megagram','Boost Dark Matter Gain<br>Cost: 1.00 Teragram','Boost Corium Gain<br>1.00 Exagram','Boost Element Gain<br>1.00 Yottagram']
 const strangePillarCosts = [D(0),D(100),D(1e5),D(1e9),D(1e12)]
-const strangePillarDesc = ['Activate Strange Matter Production','','','','Unlock Quantum']
+const strangePillarDesc = ['A̵c̸t̶i̶v̴a̶t̸e̶ ̸S̸t̸r̸a̸n̶g̴e̸ ̷M̶a̵t̷t̴e̷r̶ ̷P̵r̴o̶d̷u̵c̶t̶i̸o̶n̷','B̶̟̘̎o̴̞̿͝o̶͍̿͌ş̴͔͂t̵̮͑ ̷͕͙̿M̷̼͌̅a̴̱͋ṭ̶̫̅͐t̷̬͛e̶̹̹͒r̷͚̐͝ ̸̏͛͜ȧ̸̭̒n̸̼͌d̴̠̗͒ ̵̙͊̃D̴̖̞͊̀a̶̭̱͋̐r̴͉͒̿k̴͉̲̾ ̸̧̽̒M̵͇͊á̷̲͗t̸̙̫͝t̸̗͖͊e̵̼̜͌r̴͕̀͑ ̴̳̃G̵̼̦̽̏a̶̖͖̒i̴̘͙͗n̷̜̐','B̷̼͇̐̈́̍͝ô̵͍ò̶̕͜͠͝ṣ̴͍͈̓̚t̵̳̘̥͙́̾ ̴̟̘͖͂̽̍̆S̴̬͕͉̈t̵̮̲̮͔̅̄̃͌r̶̭͗̅̂a̶̝̽͊n̸̘̔ġ̵̰̱e̶̼͖̓̐ ̶̨͍́̃̈́M̴̡͓̙̅̒͌a̸̧̯͓̬͋̾͂̚t̸͇̰̔̌͗͝t̴̠̻͍̖͂̿̇͝e̴̘͆͆r̶̳̈́̆̐ ̶̛̮̩̫̐̃͘P̴̨̠̝͚̽r̶͔̫̈́͐o̶̡̩̼͌̓̈d̶͎̯̠̭͌̓͂̓u̴̹̼̱̍̚č̶̡̺̥̣ṫ̴̻͚͍̾͌̐͜ỉ̵͚̦͑̈́̋ͅõ̷̜̙̾͑͠n̷̶̛͉̲̥̦̹̭̏͒̑̿','Ḏ̶̟̝̰̖̱̈́ẻ̶̥̮̓̈́͠c̶̻̣̿̆̔̎̀͋͜r̷͍̝̖͎̓̅ȩ̶̘̹̃a̸̻̺̘͎̤̍͛́̈́s̶̲̰̭͛̇̏̈e̷̟͗ ̷̢̳̖̺̞̲̆́͐̽̕̚C̷̢͈̈̂̑͆o̸̖̫̺̯̣͘ȓ̸̨͕̥̲̼̦r̵̦̖̥͖̓u̶̱̻̬̤̗̼͊̚p̶̧̺̥̹̥̖̽t̶̥̺̼̳̗̋͜i̵̧̟̭͎͎̼͑͐o̷̳̫̍͐͌̌̑n̸̹͙̠̹̽̆̈́̕','G̵̡̛̗͇̻̗̲͕̭̰͚͙̥̭̫̹̯̦̠͉̜̳͍̯̼̻̯̼͎͙̯̻̹̪̞̼̓͐̐̑͋̃̚̕͘͜͜ǫ̷̡̧̢̢̨̛̜̪̻̹̫̬̼̬̟̺͉̙̹̻̘̟̤̭͎̥̩̳͍͔̖̭̪͍͕̦̼̰̳̖͍͉̙̘͌͌̄̏͑̎͂̀̐̆͊͗̐̎͆̄͗̓̑̐́̑̀̈̚͝͝͠ͅ ̴̢̛̛͈̻̺͚̦̲̺͙͉̦̦̹̲̝̼̼̱͍̼̩̪̦̘̩͔̖̺̤̜̪͕̳͒͛͗͆̑̂̐̍̇͐͆́̏́́́͊̓̓́̑̇̈́͆̇́͐̀̉̈̆̂̓̚͜͝͝͠͝͝ͅQ̶̢̲̣̝̞͎̝̗͙͕̭̖͌͊̆̆͂̀͌̎̉̒̍̍̿̊͛̊̾̚͘͜ữ̴̜̫̇̆͛͌́̆̈̃͗̂͠a̵̧̡̛͉̱̭̤̹͍̼͍̳̳̬̭͉̓̓̒̍̍̍̉̆̓̐͛̎͂͌͒̄̇́̌̽͛͑̀̈́̀́͛́͑͐̚̚͘̚̕͜͝͝ͅņ̶̢̡̳͔̮̬͎͓̫͕̮͍̬͖̻͍̻̣̪̔̍͐̑́͒̆͆̎̕̚ͅt̵̰̻̐̎̊̓̆̅͠ų̸̨̛̙̪̹̼͈̹͍̟̣̥͎̈̍̈͑̏͋́̆̒͒̅̌̆̆̏͛͗̾̒̉̆̆͆̅͛̏̒̐̇̒̕͜͝͝͝͝͝m̴̧̻̰̝̯͔̙̻̰͚̯̰̭̔̉̉̽̋́̓̑̒̃͌́̈́̄̇͝͠ͅ']
 function updateMatter() {
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     antimatterGain = data.hasTab[6] && sumOfElements.gte(D(1e140)) ? Decimal.sqrt(Decimal.sqrt(Decimal.sqrt(sumOfElements.divide(D(1e140))))) : D(0)
@@ -26,6 +28,13 @@ function updateMatter() {
     darkEnergyGain = Decimal.sqrt(Decimal.sqrt(data.power)).times(D(0.5))
     darkEnergyGain = darkEnergyGain.times(darkMatterEffects[1])
     
+    if(data.pillarUnlocked[0]) {
+        strangeMatterGain = D(1).plus(Decimal.sqrt(data.particles[2].quarks[4].times(D(1).times(D(1).divide(data.particles[2].quarks[4].times(D(0.05)))))))
+        data.matter[3] = data.matter[3].plus(strangeMatterGain.times(diff))
+        corruptionChance = (data.matter[3].divide(data.particles[2].quarks[4]))
+    }
+        
+
     for(let i = 0; i < 5; i++) 
         darkMatterEffects[i] = data.darkUpUnlocked[i] ? D(1).plus(Decimal.sqrt(data.matter[2]).times(darkMatterScales[i])) : D(1)
     if(data.matterUnlocked[0]) {

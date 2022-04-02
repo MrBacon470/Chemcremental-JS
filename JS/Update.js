@@ -250,6 +250,7 @@ function updateHTML(){
             for(let i = 0; i < 5; i++)
                 DOMCacheGetOrSet(`pillar${i+1}`).innerHTML = data.pillarUnlocked[i] ? `Pillar - ${greekLettersLower[(greekLettersUpper.length - 5)+i]}<br><br>Active` : `Pillar - ${greekLettersLower[(greekLettersUpper.length - 5)+i]}<br><br>${strangePillarDesc[i]}<br><br>${formatPrefix(strangePillarCosts[i],'Grams')}`
             DOMCacheGetOrSet('strangeMatterText').innerHTML = `You have ${formatPrefix(data.matter[3],'Grams')} of Strange Matter`
+            DOMCacheGetOrSet('strangeProductionText').innerHTML = `You are producing ${formatPrefix(strangeMatterGain, 'Grams')}/s`
         }
     }
     unlockTabs()
