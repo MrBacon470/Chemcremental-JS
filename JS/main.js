@@ -18,10 +18,6 @@ function calculateElementGain() {
             if(data.research[7])
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
             data.elementGain[i] = data.elementGain[i].times(quarkBoosts[3])
-            data.elementGain[i] = data.elementGain[i].times(matterBoosts[0])
-            if(data.matter[1].gt(D(0)))
-                data.elementGain[i] = data.elementGain[i].times(antimatterEffects[0])
-            data.elementGain[i] = data.elementGain[i].times(darkMatterEffects[4])
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
@@ -37,21 +33,15 @@ function calculateElementGain() {
                 data.elementGain[i] = Decimal.pow(data.elementGain[i], D(1.10))
             if(i === 0) 
                 data.elementGain[i] = data.elementGain[i].times(quarkBoosts[0])
-            data.elementGain[i] = data.elementGain[i].times(matterBoosts[0])
-            if(data.matter[1].gt(D(0)))
-                data.elementGain[i] = data.elementGain[i].times(antimatterEffects[0])
-            data.elementGain[i] = data.elementGain[i].times(darkMatterEffects[4])
         }
 
         if(i === 7) {
             //data.elementGain[i] = (data.elements[i].level.times(compoundBoosts[0].add(compoundBoosts[3]).add(powerBoosts[0]).add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax))))
             data.isotopeGain[i] = data.isotopes[i].level
-            data.isotopeGain[i] = data.isotopeGain[i].times(matterBoosts[0])
         }
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
             data.isotopeGain[i] = data.isotopes[i].level.times(D(1).add(Decimal.sqrt(data.isotopes[i + 1].max)))
-            data.isotopeGain[i] = data.isotopeGain[i].times(matterBoosts[0])
         }
     }
     //for(let i = 0; i < 8; i++)
@@ -139,7 +129,6 @@ function mainLoop(){
     unlockAchieves()
     unlockSecrets()
     automate()
-    updateMatter()
     //Misc Stuff Here
     for(let i = 0; i < 8; i++) {
         increaseElements(data.elementGain[i].times(diff), i)
@@ -154,7 +143,6 @@ function mainLoop(){
     }
     powerGain = (Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1])
     powerGain = powerGain.times(D(1).plus(powerBoosts[2]))
-    powerGain = powerGain.times(darkEnergyEffects[0])
     powerGain = Decimal.ceil(powerGain.times(augmentBoosts[2].boost[0]))
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Corium
@@ -162,17 +150,11 @@ function mainLoop(){
     coriumToGet = D(1).add(Decimal.sqrt(sumOfElements / D(1e6)).times(coriumMultBoosts[2]))
     coriumToGet = coriumToGet.times(compoundBoosts[4])
     coriumToGet = coriumToGet.times(augmentBoosts[1].boost[0])
-    coriumToGet = coriumToGet.times(matterBoosts[1])
-    coriumToGet = coriumToGet.times(darkMatterEffects[3])
     if(data.activeChallenge[2]) coriumToGet = Decimal.sqrt(coriumToGet)
     if(data.research[11] && sumOfElements.gte(D(1e8))) {
         data.corium = data.corium.plus((coriumToGet.times(D(0.01))).times(diff))
         data.coriumMax = data.coriumMax.plus((coriumToGet.times(D(0.01))).times(diff))
     }
-    if(!data.matterUnlocked[0] && data.matter[1].gt(D(1e3))) 
-        data.matterUnlocked[0] = true
-    if(!data.matterUnlocked[1] && data.darkUpUnlocked[2])
-        data.matterUnlocked[1] = true
     //Misc stuff
     if(data.elements[0].amt.lt(D(10)) && data.elements[0].level.lt(D(1)))
         data.elements[0].amt = D(10)
@@ -199,7 +181,6 @@ function mainLoop(){
 }
 function updateBoosts() {
     coriumBoost = D(1).plus(Decimal.sqrt(data.coriumMax))
-    coriumBoost = coriumBoost.times(antimatterEffects[2])
     if(data.activeChallenge[2]) coriumBoost = Decimal.sqrt(coriumBoost)
     if(!data.activeChallenge[3]) {
         leptonBoost[0] = !data.leptonUnlocks[1] || data.activeChallenge[3] ? D(1) : D(1).plus(Decimal.sqrt(data.particles[1].muons))
@@ -219,8 +200,6 @@ function updateBoosts() {
 
         compoundBoosts[i] = compoundBoosts[i].times(augmentBoosts[0].boost[2])
         compoundBoosts[i] = compoundBoosts[i].times(quarkBoosts[1])
-        if(data.matter[1].gt(D(0)))
-            compoundBoosts[i] = compoundBoosts[i].times(antimatterEffects[1])
         if(data.activeChallenge[0])
             compoundBoosts[i] = D(1)
     }
@@ -228,7 +207,6 @@ function updateBoosts() {
         let boosts = [D(2), D(10), D(0.5)]
         powerBoosts[i] = data.powerUps[i].gt(D(0)) ? boosts[i].times(data.powerUps[i]) : D(1)
     }
-    powerBoosts[0] = powerBoosts[0].times(darkEnergyEffects[1])
     /*
     powerBoosts[0] = data.powerUps[0] === D(0) ? D(1) : D(2).times(data.powerUps[0])
     powerBoosts[1] = D(10).times(data.powerUps[1])
@@ -247,17 +225,6 @@ function updateBoosts() {
     }
     coriumMultBoosts[0] = coriumMultBoosts[0].times(augmentBoosts[1].boost[1])
     coriumMultBoosts[1] = coriumMultBoosts[1].times(augmentBoosts[1].boost[2])
-
-    for(let i = 0; i < 3; i++) {
-        const boostDivisors = [D(10),D(100),D(1e3)]
-        antiDisplayEffects[i] = data.matter[1].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[1]).divide(boostDivisors[i].divide(D(2)))) : D(1)
-        matterBoosts[i] = data.matter[0].gt(D(0)) ? D(1).plus(Decimal.sqrt(data.matter[0]).divide(boostDivisors[i])) : D(1)
-        antimatterEffects[i] = data.matter[1].gt(D(0)) ? D(1).divide(antiDisplayEffects[i]) : D(1)
-    }
-    for(let i = 0; i < 2; i++) {
-        const boostDivisors = [D(10),D(100),D(1e3)]
-        darkEnergyEffects[i] = data.darkEnergy.gt(D(0)) ? D(1).plus(Decimal.sqrt(data.darkEnergy).divide(boostDivisors[i].divide(D(2)))) : D(1)
-    }
 }
 
 function toggleBuyAmount(i) {
@@ -397,24 +364,6 @@ function createConfirmation(a) {
             document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             document.getElementById('yesConfirm').addEventListener('click', () => {rip(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
             break
-        case 'consolidate':
-            document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--matter-tab-color`)}`
-            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to Consolidate?'
-            document.getElementById('confirmContent').innerHTML = 'This will reset Elements, Compounds and Corium to Gain Matter.'
-            document.getElementById('confirm').style.display = 'block'
-            document.getElementById('modalContainer').style.display = 'block'
-            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
-            document.getElementById('yesConfirm').addEventListener('click', () => {consolidate(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
-            break
-        case 'darken':
-            document.getElementById('modalContainer').style.border = `4px solid ${bodyStyles.getPropertyValue(`--darkmatter-color`)}`
-            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to Darken?'
-            document.getElementById('confirmContent').innerHTML = 'This will consolidate first. Then will reset Matter, Antimatter and Dark Energy in exchange for Dark Matter'
-            document.getElementById('confirm').style.display = 'block'
-            document.getElementById('modalContainer').style.display = 'block'
-            document.getElementById('noConfirm').addEventListener('click', () => {DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
-            document.getElementById('yesConfirm').addEventListener('click', () => {darken(); DOMCacheGetOrSet('confirm').style.display = 'none'; DOMCacheGetOrSet('modalContainer').style.display = 'none';})
-            break
     }
 }
 
@@ -465,20 +414,6 @@ function prestigeConfirmation(i) {
                 createConfirmation('rip')
             else
                 rip()
-            break
-        case 'consolidate':
-            if(sumOfElements.lt(D(1e120))) return
-            if(data.settingsToggles[6])
-                createConfirmation('consolidate')
-            else
-                consolidate()
-            break
-        case 'darken':
-            if(data.darkEnergy.lte(D(0))) return
-            if(data.settingsToggles[7])
-                createConfirmation('darken')
-            else
-                darken()
             break
     }
 }

@@ -223,38 +223,6 @@ function updateHTML(){
                 DOMCacheGetOrSet(`Re${i+1}`).style.backgroundColor = data.research[i] ? '#ffffff' : 'none'
         }
     }
-    else if(data.currentTab === 9) {
-        DOMCacheGetOrSet('darA').style.display = data.matterUnlocked[0] ? `inline` : `none`
-        DOMCacheGetOrSet('strA').style.display = data.matterUnlocked[1] ? `inline` : `none`
-        if(data.currentSubTab[5] === 0) {
-            DOMCacheGetOrSet('matterText').innerHTML = `You have ${formatPrefix(data.matter[0],'Grams')} of Matter`
-            DOMCacheGetOrSet('matterGainText').innerHTML = sumOfElements.gt(D(1e120)) ? `Consolidate your materials and gain ${formatPrefix(matterGain,'Grams')} of Matter` : `You need 1.00e120 Total Elements to Consolidate<br>You have ${format(sumOfElements)} Total Elements Currently`
-            DOMCacheGetOrSet('matterEffectText').innerHTML = data.matter[0].gt(D(0)) ? `Due to matter you have these effects<br>${format(matterBoosts[0])}x More Element/Isotope Production<br>${format(matterBoosts[1])}x More Corium<br>${format(matterBoosts[2])}x More Particles` : ``
-            DOMCacheGetOrSet('antiMatterText').innerHTML = data.matter[1].gt(D(0)) || sumOfElements.gte(D(1e140)) ? `You have ${formatPrefix(data.matter[1],'Grams')} of Antimatter` : ``
-            DOMCacheGetOrSet('antiGainText').innerHTML = data.matter[1].gt(D(0)) || sumOfElements.gte(D(1e140)) ? `Due to your production you are gaining<br>${formatPrefix(antimatterGain,'Grams')} of Antimatter/s` : `${format(sumOfElements)}/1.00e140`
-            DOMCacheGetOrSet('antiEffectText').innerHTML = data.matter[1].gt(D(0)) || sumOfElements.gte(D(1e140)) ? `Antimatter is effecting these things<br>${format(antiDisplayEffects[0])}x Less Element Production<br>${format(antiDisplayEffects[1])}x Less Compound Boost<br>${format(antiDisplayEffects[2])}x Less Corium Boost` : ``
-        }
-        else if(data.currentSubTab[5] === 1) {
-            DOMCacheGetOrSet('darkMatterText').innerHTML = `You have ${formatPrefix(data.matter[2],'Grams')} of Dark Matter`
-            if(data.matter[1].gt(D(0)))
-                DOMCacheGetOrSet('darkMatGainText').innerHTML = data.darkEnergy.gt(D(0)) ? `Darken and Gain ${formatPrefix(darkMatterGain, 'Grams')} of Dark Matter` : `You Need Dark Energy for This`
-            else
-                DOMCacheGetOrSet('darkMatGainText').innerHTML = `You need Anti Matter To Gain`
-            DOMCacheGetOrSet('darkEnergyText').innerHTML = `You have ${formatPrefix(data.darkEnergy,'Joules')} of Dark Energy`
-            DOMCacheGetOrSet('darkEnGainText').innerHTML = `Due to how much power you have<br>Gain +${formatPrefix(darkEnergyGain,'Joules')}/s`
-            DOMCacheGetOrSet('darkEnEffectText').innerHTML = data.darkEnergy.gt(D(0)) ? `Dark Energy Effects<br>${format(darkEnergyEffects[0])}x More Power Generation<br>${format(darkEnergyEffects[1])}x Boost to 2x Upgrade` : ``
-            for(let i = 0; i < 5; i++) 
-                DOMCacheGetOrSet(`darkUp${i+1}`).innerHTML = data.darkUpUnlocked[i] ? `${greekLettersLower[i]} - Unlocked<br>Current Effect: x${format(darkMatterEffects[i])}` : `${greekLettersLower[i]} - Locked<br>${darkMatterUpDesc[i]}`
-        }
-        if(data.currentSubTab[5] === 2) {
-            for(let i = 0; i < 5; i++)
-                DOMCacheGetOrSet(`pillar${i+1}`).innerHTML = data.pillarUnlocked[i] ? `Pillar - ${greekLettersLower[(greekLettersUpper.length - 5)+i]}<br><br>Active` : `Pillar - ${greekLettersLower[(greekLettersUpper.length - 5)+i]}<br><br>${strangePillarDesc[i]}<br><br>${formatPrefix(strangePillarCosts[i],'Grams')}`
-            DOMCacheGetOrSet('strangeMatterText').innerHTML = `You have ${formatPrefix(data.matter[3],'Grams')} of Strange Matter`
-            DOMCacheGetOrSet('strangeProductionText').innerHTML = `You are producing ${formatPrefix(strangeMatterGain, 'Grams')}/s`
-            DOMCacheGetOrSet('strangeCorruptText').innerHTML = `Time till corruption: ${formatTime(data.corruptTimer)}`
-            DOMCacheGetOrSet('strangeEffectText').innerHTML = data.pillarUnlocked[0] ? `-=Effects=-<br>DM & M Gain Boost: ${format(strangeMatterEffects[0])}x<br>SM Gain Boost: ^${format(strangeMatterEffects[1])}<br>Corruption Interval +${formatTime(strangeMatterEffects[2])}` : ``
-        }
-    }
     unlockTabs()
     tabChangeHTML()
     subTabChangeHTML()
@@ -270,9 +238,6 @@ function unlockTabs(){
     data.hasTab[3] = data.coriumSingUps[0] === true || data.hasTab[3]
     data.hasTab[4] = data.coriumSingUps[1] === true || data.hasTab[4]
     data.hasTab[5] = data.coriumSingUps[2] === true || data.hasTab[5]
-    data.hasTab[6] = (data.challengeCompletions[0].eq(D(5)) && data.challengeCompletions[1].eq(D(5)) && 
-    data.challengeCompletions[2].eq(D(5)) && data.challengeCompletions[3].eq(D(5)) && 
-    data.challengeCompletions[4].eq(D(5))) || data.hasTab[6]
     
 }
 const seperator = DOMCacheGetOrSet('tabSeperator')
@@ -306,7 +271,6 @@ function tabChangeHTML(){
     refineryTab.style.display = data.currentTab === 6 ? 'flex' : 'none'
     acceleratorTab.style.display = data.currentTab === 7 ? 'flex' : 'none'
     radiationTab.style.display = data.currentTab === 8 ? 'flex' : 'none'
-    matterTab.style.display = data.currentTab === 9 ? 'flex' : 'none'
     quantumTab.style.display = data.currentTab === 10 ? 'flex' : 'none'
     seperator.style.color = `${seperatorColors[data.currentTab]}`
     DOMCacheGetOrSet('particleTextHolder').style.display = data.coriumSingUps[1] === true ? 'flex' : 'none'
@@ -334,10 +298,6 @@ const generatorArea = DOMCacheGetOrSet('generatorArea')
 const irridiatorArea = DOMCacheGetOrSet('irridiatorArea')
 const researchArea = DOMCacheGetOrSet('researchArea')
 const challengeArea = DOMCacheGetOrSet('challengeArea')
-//Matter Subs
-const matterArea = DOMCacheGetOrSet('matterArea')
-const darkMatterArea = DOMCacheGetOrSet('darkMatterArea')
-const strangeMatterArea = DOMCacheGetOrSet('strangeMatterArea')
 function subTabChangeHTML() {
         regularElementHolder.style.display = data.currentSubTab[0] === 0 ? 'flex' : 'none'
         isotopeElementHolder.style.display = data.currentSubTab[0] === 1? 'flex' : 'none'
@@ -361,8 +321,4 @@ function subTabChangeHTML() {
         irridiatorArea.style.display = data.currentSubTab[4] === 0 ? 'flex' : 'none'
         researchArea.style.display = data.currentSubTab[4] === 1 ? 'flex' : 'none'
         challengeArea.style.display = data.currentSubTab[4] === 2 ? 'flex' : 'none'
-
-        matterArea.style.display = data.currentSubTab[5] === 0 ? 'flex' : 'none'
-        darkMatterArea.style.display = data.currentSubTab[5] === 1 ? 'flex' : 'none'
-        strangeMatterArea.style.display = data.currentSubTab[5] === 2 ? 'flex' : 'none'
 }

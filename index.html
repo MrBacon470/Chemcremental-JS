@@ -485,69 +485,6 @@
             </div>
         </div>
     </div>
-    <div id="matterHolder" class="flexBox holder" style="flex-direction: column">
-        <div id="subTabHolder">
-            <button id="matA" class="subTabButton" onclick="switchSubTab(0,5)">Matter</button>
-            <button id="darA" class="subTabButton" onclick="switchSubTab(1,5)">Dark</button>
-            <button id="strA" class="subTabButton" onclick="switchSubTab(2,5)">Strange</button>
-        </div>
-        <div id="matterArea" class="flexBox holder">
-            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center; padding: 4px; border: 2px solid var(--matter-tab-color)">
-                <img src="CHEM Achieves/Matter/Matter.png" style="height: 72px; width: 72px;">
-                <div id="matterText" style="color: var(--matter-tab-color);">You have 0.00 Grams of Matter</div>
-                <div id="matterGainText" style="color: var(--matter-tab-color);">Consolidate your materials and gain 0.00 Grams of Matter</div>
-                <button id="consolidateButton" style="margin: 10px" onclick="prestigeConfirmation('consolidate')">Consolidate</button>
-                <div id="matterEffectText" style="color: var(--matter-tab-color);">Due to matter you have these effects<br>1.00x Element/Isotope Production<br>1.00x More Corium<br>1.00x More Particles</div>
-            </div>
-            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center; padding: 4px; border: 2px solid var(--antimatter-color)">
-                <img src="CHEM Achieves/Matter/Antimatter.png" style="height: 72px; width: 72px;">
-                <div id="antiMatterText" style="color: var(--antimatter-color);">You have 0.00 Grams of Antimatter</div>
-                <div id="antiGainText" style="color: var(--antimatter-color);">Due to your production you are gaining<br>0.00 Grams of Antimatter/s</div>
-                <div id="antiEffectText" style="margin: 10px; color: var(--antimatter-color);">Antimatter is affecting these things<br>1.00x Less Element Production<br>1.00x Less Compound Boost<br>1.00x Less Quark Boosts</div>
-            </div>
-        </div>
-        <div id="darkMatterArea" class="flexBox holder">
-            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center; padding: 4px; border: 2px solid var(--darkmatter-color)">
-                <img src="CHEM Achieves/Matter/Darkmatter.png" style="height: 72px; width: 72px;">
-                <div id="darkMatterText" style="color: var(--darkmatter-color);">You have 0.00 Grams of Darkmatter</div>
-                <div id="darkMatGainText" style="color: var(--darkmatter-color);">You have 0.00 Grams of Darkmatter</div>
-                <button id="darkenButton" style="margin: 10px" onclick="prestigeConfirmation('darken')">Darken</button>
-                <div>
-                    <button id="darkUp1" class="darkUp" style="margin: 10px" onclick="purchaseDarkUp(0)">Up1</button>
-                    <button id="darkUp2" class="darkUp" style="margin: 10px" onclick="purchaseDarkUp(1)">Up2</button>
-                    <button id="darkUp3" class="darkUp" style="margin: 10px" onclick="purchaseDarkUp(2)">Up3</button>
-                    
-                </div>
-                <div>
-                    <button id="darkUp4" class="darkUp" style="margin: 10px" onclick="purchaseDarkUp(3)">Up4</button>
-                    <button id="darkUp5" class="darkUp" style="margin: 10px" onclick="purchaseDarkUp(4)">Up5</button>
-                </div>
-            </div>
-            <div style="flex-direction: column; margin-left: 4em; align-items: center; text-align: center; padding: 4px; border: 2px solid var(--darkmatter-color)">
-                <img src="CHEM Achieves/Matter/Darkenergy.png" style="height: 72px; width: 72px;">
-                <div id="darkEnergyText" style="color: var(--darkmatter-color);">You have 0.00 Joules of Dark Energy</div>
-                <div id="darkEnGainText" style="color: var(--darkmatter-color);">Due to your power you are gaining<br>+0.00 Joules/s</div>
-                <div id="darkEnEffectText" style="color: var(--darkmatter-color);">Dark Energy Effects<br></div>
-            </div>
-        </div>
-        <div id="strangeMatterArea" class="flexBox holder" style="flex-direction:column">
-            <div style="color: var(--strangeQuark-color);margin-bottom: 3em;">Power does truly c̴o̵r̶r̶u̴p̸t̴ how far are you willing to go to get it</div>
-            <div style="flex-direction: row; align-items:center; margin-bottom: 3em;">
-                <button id="pillar1" onclick="purchasePillar(0)" class="strB">Pillar Chi</button>
-                <button id="pillar2" onclick="purchasePillar(1)" class="strB">Pillar Psi</button>
-                <button id="pillar3" onclick="purchasePillar(2)" class="strB">Pillar Omega</button>
-                <button id="pillar4" onclick="purchasePillar(3)" class="strB">Pillar Alpha</button>
-                <button id="pillar5" onclick="purchasePillar(4)" class="strB">Pillar Omega</button>
-            </div>
-            <div style="flex-direction: column; align-items: center; text-align: center;">
-                <img src="CHEM Achieves/Matter/Strangematter.png" style="height: 72px; width: 72px;">
-                <div id="strangeMatterText" style="color: var(--strangeQuark-color);">You have 0.00 Grams of Strangematter</div>
-                <div id="strangeProductionText"  style="color: var(--strangeQuark-color);">Producing 0.00 Grams/s</div>
-                <div id="strangeCorruptText" style="color: var(--strangeQuark-color);">Chance of corruption: 0.00%</div>
-                <div id="strangeEffectText" style="color: var(--strangeQuark-color);"></div>
-            </div>
-        </div>
-    </div>
     <div id="quantumHolder" class="flexBox holder" style="flex-direction: column">
     </div>
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
@@ -932,6 +869,5 @@
 <script defer src="JS/Radiation.js"></script>
 <script defer src="JS/Automators.js"></script>
 <script defer src="JS/Challenges.js"></script>
-<script defer src="JS/Matter.js"></script>
 </html>
 
