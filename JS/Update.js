@@ -43,7 +43,6 @@ function updateHTML(){
         tabs[i].innerHTML = data.hasTab[i] ? tabNames[i] : '???'
     }
     DOMCacheGetOrSet('radB').style.display = !data.coriumSingUps[2] ? 'none' : 'inline'
-    DOMCacheGetOrSet('matB').style.display = !data.hasTab[6] ? 'none' : 'inline'
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Power Text
     if(!data.research[9]) {
