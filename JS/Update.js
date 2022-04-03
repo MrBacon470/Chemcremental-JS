@@ -1,5 +1,4 @@
 // region element declarations
-let elementSum = D(0)
 const elementButtons = []
 const isotopeButtons = []
 const elementNames = ['Hydrogen','Carbon','Oxygen','Fluorine','Sulfur','Chlorine','Iron','Lead']
@@ -28,11 +27,6 @@ for(let i=0; i < 3; i++)
 const coriumMultDesc =['Increase Atom Production by 4x','Increase Compounds Created by 1.25x','Increase Corium Produced on Melt']
 const coriumSingDesc = ['Unlock The Refinery<br>Cost: 1.00e10 Corium','Unlock Particles<br>Cost: 1.00e15 Corium','Unlock Radiation<br>Cost: 1.00e38 Corium']
 //'Unlock Passive Power Production<br>Cost: 1.00e15 Corium','Radition Not Implemented'
-// Refinery Area
-const refineryIDs = ['shard', 'mold', 'mint']
-const refineryNames = ['Sharding','Molding','Minting']
-const refineryDescriptions = ['Produces Kuaka Shards','Produces Kuaka Fragments','Produces Kuaka Coins']
-const currencyNames = ['Shards','Fragments','Coins']
 //Accelerator stuf
 const romanNumerals = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI']
 const augmentBoostNames = [{name:['Element','Lead','Compound']},{name:['Melt Gain','4x Production Upgrade','Compound Creation Upgrade']},{name:['Power Gain','Refinery Creation','Generator Production']}]
@@ -44,7 +38,6 @@ for(let i = 0; i < 3; i++)
     const protonGainText = document.getElementById('protonGain')
     const neutronGainText = document.getElementById('neutronGain')
     const electronGainText = document.getElementById('electronGain')
-let currencyDisplayIndex = 0
 function updateHTML(){
     for(let i = 0; i < 5; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? tabNames[i] : '???'
@@ -53,10 +46,10 @@ function updateHTML(){
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Power Text
     if(!data.research[9]) {
-        DOMCacheGetOrSet('powerText').innerHTML = `${formatPrefix(data.power,'Watts')} / ${formatPrefix(powerLimit,'Watts')} | Excess: ${formatPrefix(data.powerStored, 'Watts')}`
+        DOMCacheGetOrSet('powerText').innerHTML = `${formatPrefix(data.power,'Watts')} / ${formatPrefix(powerLimit,'Watts')} | Excess: ${formatPrefix(data.powerStored, 'Watts')}<br>${formatPrefix(genGain[0].plus(genGain[1]).plus(genGain[2]).plus(genGain[3]),'Watts')}/s`
     }
     else
-        DOMCacheGetOrSet('powerText').innerHTML = `${formatPrefix(data.power, 'Watts')}`
+        DOMCacheGetOrSet('powerText').innerHTML = `${formatPrefix(data.power, 'Watts')} | ${formatPrefix(genGain[0].plus(genGain[1]).plus(genGain[2]).plus(genGain[3]),'Watts')}/s`
     //Corium
     DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)} [${format(coriumBoost)}x]`
     DOMCacheGetOrSet('challengeStatusHolder').style.display = data.hasIrridiated ? 'flex' : 'none'
@@ -72,6 +65,12 @@ function updateHTML(){
         DOMCacheGetOrSet('toggle4').innerHTML = data.settingsToggles[3] ? 'Shatter Confirmation [ON]' : 'Shatter Confirmation [OFF]'
         DOMCacheGetOrSet('toggle5').innerHTML = data.settingsToggles[4] ? 'Irridiate Confirmation [ON]' : 'Irridiate Confirmation [OFF]'
         DOMCacheGetOrSet('toggle6').innerHTML = data.settingsToggles[5] ? 'Ripper Confirmation [ON]' : 'Ripper Confirmation [OFF]'
+        DOMCacheGetOrSet('toggle7').innerHTML = data.settingsToggles[6] ? 'Consolidate Confirmation [ON]' : 'Consolidate Confirmation [OFF]'
+        DOMCacheGetOrSet('toggle8').innerHTML = data.settingsToggles[7] ? 'Darken Confirmation [ON]' : 'Darken Confirmation [OFF]'
+        if(data.currentSubTab[2] === 3) {
+            DOMCacheGetOrSet('midGameHelp').style.display = data.hasTab[3] ? 'block' : 'none'
+            DOMCacheGetOrSet('lateGameHelp').style.display = data.research[15] ? 'block' : 'none'
+        }
     }
     else if (data.currentTab === 1) {
         document.getElementById('RaE').style.display = data.hasIrridiated ? 'inline' : 'none'
@@ -114,7 +113,7 @@ function updateHTML(){
         DOMCacheGetOrSet('gA').style.display = data.coriumSingUps[0] === true ? 'inline' : 'none'
         if(data.currentSubTab[3] === 0) {
             DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${formatPrefix(powerGain, 'Watts')}` : "Generate Power<br>Req: 3 Propane + 1 Water"
-            powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by 2x<br>Cost: ${formatPrefix(powerCosts[0], 'Watts')}<br>Level: ${format(data.powerUps[0])}`
+            powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by ${format(D(2).times(darkEnergyEffects[1]))}x<br>Cost: ${formatPrefix(powerCosts[0], 'Watts')}<br>Level: ${format(data.powerUps[0])}`
             powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
             powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 1.5x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
 
@@ -127,10 +126,10 @@ function updateHTML(){
             DOMCacheGetOrSet('petroleumGenHolder').style.display = data.leptonUnlocks[1] === true ? 'flex' : 'none'
             DOMCacheGetOrSet('gasGenHolder').style.display = data.leptonUnlocks[2] === true ? 'flex' : 'none'
 
-            DOMCacheGetOrSet('methaneFuel').innerHTML = data.fuelStored[0].gt(D(0)) ? `Fuel: ${format(data.fuelStored[0])} Methane<br>${formatPrefix(D(1).times(augmentBoosts[2].boost[2]), 'Watts')}/s` : `Fuel: ${format(data.fuelStored[0])} Methane<br>0.00 Watts/s`
-            DOMCacheGetOrSet('coalFuel').innerHTML = data.fuelStored[1].gt(D(0)) ? `Fuel: ${format(data.fuelStored[1])} Coal<br>${formatPrefix(D(10).times(augmentBoosts[2].boost[2]), 'Watts')}/s` : `Fuel: ${format(data.fuelStored[1])} Coal<br>0.00 Watts/s`
-            DOMCacheGetOrSet('petroleumFuel').innerHTML = data.fuelStored[2].gt(D(0)) ? `Fuel: ${format(data.fuelStored[2])} Petroleum<br>${formatPrefix(D(100).times(augmentBoosts[2].boost[2]), 'Watts')}/s` : `Fuel: ${format(data.fuelStored[2])} Petroleum<br>0.00 Watts/s`
-            DOMCacheGetOrSet('gasFuel').innerHTML = data.fuelStored[3].gt(D(0)) ? `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>${formatPrefix(D(1e3).times(augmentBoosts[2].boost[2]), 'Watts')}/s` : `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>0.00 Watts/s`
+            DOMCacheGetOrSet('methaneFuel').innerHTML = data.fuelStored[0].gt(D(0)) ? `Fuel: ${format(data.fuelStored[0])} Methane<br>${formatPrefix(genGain[0], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[0])} Methane<br>0.00 Watts/s`
+            DOMCacheGetOrSet('coalFuel').innerHTML = data.fuelStored[1].gt(D(0)) ? `Fuel: ${format(data.fuelStored[1])} Coal<br>${formatPrefix(genGain[1], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[1])} Coal<br>0.00 Watts/s`
+            DOMCacheGetOrSet('petroleumFuel').innerHTML = data.fuelStored[2].gt(D(0)) ? `Fuel: ${format(data.fuelStored[2])} Petroleum<br>${formatPrefix(genGain[2], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[2])} Petroleum<br>0.00 Watts/s`
+            DOMCacheGetOrSet('gasFuel').innerHTML = data.fuelStored[3].gt(D(0)) ? `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>${formatPrefix(genGain[3], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>0.00 Watts/s`
 
             DOMCacheGetOrSet('Auto6').style.display = data.research[10] ? 'inline' : 'none'
             DOMCacheGetOrSet('Auto6').innerHTML = data.autoActive[6] ? `Automators: [ON]` : `Automators: [OFF]`
@@ -203,6 +202,8 @@ function updateHTML(){
                 DOMCacheGetOrSet('bottomQuark').innerHTML = `${format(data.particles[2].quarks[5])} Bottom Quarks (Lepton Gain ${format(quarkBoosts[5])}x)`
                 
                 DOMCacheGetOrSet('ripperImage').style.backgroundColor = (data.particles[0].protons.plus(data.particles[0].neutrons)).gte(D(5e4)) ? '#379337' : '#934237'
+                let sum = data.particles[0].protons.plus(data.particles[0].neutrons)
+                DOMCacheGetOrSet('ripInfo').innerHTML = sum.lt(D(1e8)) ? `Ripper<br>Requires at least<br>50,000 Protons and Neutrons combined<br><i style="font-size:xx-small;">This is definitely not scientifically accurate</i>` : `Ripper<br>Requires at least<br>50,000 Protons and Neutrons combined<br>Due to your particle amount Quark Gain has been Softcapped<br><i style="font-size:xx-small;">This is definitely not scientifically accurate</i>`
         }
     }
     else if(data.currentTab === 8) {
@@ -236,11 +237,7 @@ function unlockTabs(){
     data.hasTab[3] = data.coriumSingUps[0] === true || data.hasTab[3]
     data.hasTab[4] = data.coriumSingUps[1] === true || data.hasTab[4]
     data.hasTab[5] = data.coriumSingUps[2] === true || data.hasTab[5]
-    /*
-    data.hasTab[6] = (data.challengeCompletions[0].eq(D(5)) && data.challengeCompletions[1].eq(D(5)) && 
-    data.challengeCompletions[2].eq(D(5)) && data.challengeCompletions[3].eq(D(5)) && 
-    data.challengeCompletions[4].eq(D(5))) || data.hasTab[6]
-    */
+    
 }
 const seperator = DOMCacheGetOrSet('tabSeperator')
 const elementTab = DOMCacheGetOrSet("elementHolder")
@@ -273,7 +270,6 @@ function tabChangeHTML(){
     refineryTab.style.display = data.currentTab === 6 ? 'flex' : 'none'
     acceleratorTab.style.display = data.currentTab === 7 ? 'flex' : 'none'
     radiationTab.style.display = data.currentTab === 8 ? 'flex' : 'none'
-    matterTab.style.display = data.currentTab === 9 ? 'flex' : 'none'
     quantumTab.style.display = data.currentTab === 10 ? 'flex' : 'none'
     seperator.style.color = `${seperatorColors[data.currentTab]}`
     DOMCacheGetOrSet('particleTextHolder').style.display = data.coriumSingUps[1] === true ? 'flex' : 'none'
@@ -286,10 +282,14 @@ const splitterHolder = DOMCacheGetOrSet('splitterHolder')
 const fundamentalHolder = DOMCacheGetOrSet('fundamentalHolder')
 const leptonsHolder = DOMCacheGetOrSet('leptonsHolder')
 const quarksHolder = DOMCacheGetOrSet('quarksHolder')
+//Achievement Subs
+const achieveArea = DOMCacheGetOrSet('achArea')
+const scrtArea = DOMCacheGetOrSet('scrtArea')
 //Settings Subs
 const settingsArea = DOMCacheGetOrSet("settingsArea")
 const creditsArea = DOMCacheGetOrSet("creditsArea")
 const roadmapArea = DOMCacheGetOrSet("roadmapArea")
+const helpArea = DOMCacheGetOrSet("helpArea")
 //Power Subs
 const powerArea = DOMCacheGetOrSet('powerArea')
 const generatorArea = DOMCacheGetOrSet('generatorArea')
@@ -298,22 +298,26 @@ const irridiatorArea = DOMCacheGetOrSet('irridiatorArea')
 const researchArea = DOMCacheGetOrSet('researchArea')
 const challengeArea = DOMCacheGetOrSet('challengeArea')
 function subTabChangeHTML() {
-        regularElementHolder.style.display = data.currentSubTab[0] === 0  && data.currentTab === 1 ? 'flex' : 'none'
-        isotopeElementHolder.style.display = data.currentSubTab[0] === 1  && data.currentTab === 1 ? 'flex' : 'none'
+        regularElementHolder.style.display = data.currentSubTab[0] === 0 ? 'flex' : 'none'
+        isotopeElementHolder.style.display = data.currentSubTab[0] === 1? 'flex' : 'none'
 
-        splitterHolder.style.display = data.currentSubTab[1] === 0 && data.currentTab === 7 ? 'flex' : 'none'
-        fundamentalHolder.style.display = data.currentSubTab[1] === 1 && data.currentTab === 7 ? 'flex' : 'none'
-        leptonsHolder.style.display = data.currentSubTab[1] === 2 && data.currentTab === 7 ? 'flex' : 'none'
-        quarksHolder.style.display = data.currentSubTab[1] === 3 && data.currentTab === 7 ? 'flex' : 'none'
+        splitterHolder.style.display = data.currentSubTab[1] === 0 ? 'flex' : 'none'
+        fundamentalHolder.style.display = data.currentSubTab[1] === 1 ? 'flex' : 'none'
+        leptonsHolder.style.display = data.currentSubTab[1] === 2 ? 'flex' : 'none'
+        quarksHolder.style.display = data.currentSubTab[1] === 3 ? 'flex' : 'none'
 
-        settingsArea.style.display = data.currentSubTab[2] === 0 && data.currentTab === 0 ? 'flex' : 'none'
-        creditsArea.style.display = data.currentSubTab[2] === 1  && data.currentTab === 0 ? 'flex' : 'none'
-        roadmapArea.style.display = data.currentSubTab[2] === 2 && data.currentTab === 0 ? 'flex' : 'none'
+        achieveArea.style.display = data.currentSubTab[6] === 0 ? 'flex' : 'none'
+        scrtArea.style.display = data.currentSubTab[6] === 1 ? 'flex' : 'none'
 
-        powerArea.style.display = data.currentSubTab[3] === 0 && data.currentTab === 4 ? 'flex' : 'none'
-        generatorArea.style.display = data.currentSubTab[3] === 1  && data.currentTab === 4 ? 'flex' : 'none'
+        settingsArea.style.display = data.currentSubTab[2] === 0 ? 'flex' : 'none'
+        creditsArea.style.display = data.currentSubTab[2] === 1  ? 'flex' : 'none'
+        roadmapArea.style.display = data.currentSubTab[2] === 2 ? 'flex' : 'none'
+        helpArea.style.display = data.currentSubTab[2] === 3  ? 'flex' : 'none'
+
+        powerArea.style.display = data.currentSubTab[3] === 0 ? 'flex' : 'none'
+        generatorArea.style.display = data.currentSubTab[3] === 1 ? 'flex' : 'none'
         
-        irridiatorArea.style.display = data.currentSubTab[4] === 0 && data.currentTab === 8 ? 'flex' : 'none'
-        researchArea.style.display = data.currentSubTab[4] === 1  && data.currentTab === 8 ? 'flex' : 'none'
-        challengeArea.style.display = data.currentSubTab[4] === 2  && data.currentTab === 8 ? 'flex' : 'none'
+        irridiatorArea.style.display = data.currentSubTab[4] === 0 ? 'flex' : 'none'
+        researchArea.style.display = data.currentSubTab[4] === 1 ? 'flex' : 'none'
+        challengeArea.style.display = data.currentSubTab[4] === 2 ? 'flex' : 'none'
 }

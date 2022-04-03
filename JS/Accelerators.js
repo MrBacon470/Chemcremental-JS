@@ -24,14 +24,17 @@ function updateAccelStuff() {
     
    leptonsToGet[0] = Decimal.sqrt(data.particles[0].electrons.divide(D(105))).multiply(D(2))
    leptonsToGet[1] = Decimal.sqrt(data.particles[0].electrons.divide(D(1776))).multiply(D(2))
-   for(let i = 0; i < 2; i++)
-    leptonsToGet[i] = leptonsToGet[i].times(quarkBoosts[5])
+   for(let i = 0; i < 2; i++) {
+        leptonsToGet[i] = leptonsToGet[i].times(quarkBoosts[5])
+   }
+    
 
    for(let i = 0; i < quarkBoosts.length; i++) {
        quarkBoosts[i] = Decimal.sqrt(((Decimal.sqrt(data.particles[2].quarks[i]))))
        quarkBoosts[i] = quarkBoosts[i].sub(quarkBoosts[i].times(D(.5)))
        quarkBoosts[i] = D(1).plus(quarkBoosts[i])
    }
+   
 }
 function calculateAugmentBoost() {
     if(!data.activeChallenge[3]) {
@@ -128,18 +131,12 @@ function buyLepton(a) {
 
 function rip() {
     let sum = data.particles[0].protons.plus(data.particles[0].neutrons)
-    sum = sum.divide(D(8))
-    let ripParticleGain = [D(0),D(0)]
+    sum = sum.gt(1e8) ? sum.sub(sum.times(0.75)) : sum.sub(sum.times(0.5))
+    data.particles[0].protons = sum.times(0.05)
+    data.particles[0].neutrons = sum.times(0.05)
+    //90 %
+    for(let i = 0; i < 6; i++)
+        data.particles[0].quarks[i] = data.particles[0].quarks[i].plus(sum.times(0.15))
 
-    for(let i = 0; i <= sum; i++) {
-        let random = getRandomInt(8)
-        if(random < 6)
-            data.particles[2].quarks[random] = data.particles[2].quarks[random].plus(D(1))
-        else 
-            ripParticleGain[random - 6] = ripParticleGain[random - 6].plus(D(1))
-    }
-
-    data.particles[0].protons = ripParticleGain[0]
-    data.particles[0].neutrons = ripParticleGain[1]
     data.previousSum = D(1)
 }

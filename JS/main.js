@@ -1,5 +1,7 @@
 //αβγδεζηθικλμνξοπρστυφχψω
 //ABΓΔEZHΘΙKΛMNΞOΠPΣTYΦΧΨΩ
+const greekLettersLower = ['α','β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ','ν','ξ','ο','π','ρ','σ','τ','υ','φ','χ','ψ','ω']
+const greekLettersUpper = ['A','B','Γ','Δ','E','Z','H','Θ','Ι','K','Λ','M','N','Ξ','O','Π','P','Σ','T','Y','Φ','Χ','Ψ','Ω']
 
 function calculateElementGain() {
     for(let i = 0; i < 8; i++) {
@@ -41,7 +43,6 @@ function calculateElementGain() {
         else {
             //data.elementGain[i] = ((data.elements[i].level.times((compoundBoosts[0].add(powerBoosts[0].add(coriumMultBoosts[0]).add(Decimal.sqrt(data.coriumMax)).add(Decimal.sqrt(data.elements[i + 1].max)))))))
             data.isotopeGain[i] = data.isotopes[i].level.times(D(1).add(Decimal.sqrt(data.isotopes[i + 1].max)))
-            data.isotopeGain[i] = data.isotopeGain[i]
         }
     }
     //for(let i = 0; i < 8; i++)
@@ -61,42 +62,17 @@ function increaseIsotopes(x,i) {
     data.isotopes[i].max = data.isotopes[i].max.plus(x);
 
 }
-
+let genGain = [D(0),D(0),D(0),D(0)]
 function increasePower(i) {
+    const genConst = [D(1),D(10),D(100),D(1e3)]
     let fuelLoss = D(1)
     if(data.research[10]) fuelLoss = fuelLoss.divide(D(2))
     if(data.fuelStored[i].gt(D(0))) {
         if(!data.research[9]) {
-            switch(i) {
-                case 0:
-                    data.powerStored = data.powerStored.plus((D(1).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 1:
-                    data.powerStored = data.powerStored.plus((D(10).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 2:
-                    data.powerStored = data.powerStored.plus((D(100).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 3:
-                    data.powerStored = data.powerStored.plus((D(1e3).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-            }
+            data.powerStored = data.powerStored.plus((genConst[i].times(augmentBoosts[2].boost[2])).times(diff))
         }
         else {
-            switch(i) {
-                case 0:
-                    data.power = data.power.plus((D(1).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 1:
-                    data.power = data.power.plus((D(10).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 2:
-                    data.power = data.power.plus((D(100).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-                case 3:
-                    data.power = data.power.plus((D(1e3).times(augmentBoosts[2].boost[2])).times(diff))
-                    break
-            }
+            data.power = data.power.plus((genConst[i].times(augmentBoosts[2].boost[2])).times(diff))
         }
     }
 
@@ -108,6 +84,14 @@ function increasePower(i) {
         if(data.fuelStored[i].lt(D(0)))
             data.fuelStored[i] = D(0)
     }
+    if(data.fuelStored[i].eq(D(0))) 
+        genGain[i] = D(0)
+    else {
+        genGain[i] = genConst[i].times(augmentBoosts[2].boost[2])
+        if(data.darkEnergy.gt(D(0)))
+            genGain[i] = genGain[i].times(darkEnergyEffects[0])
+    }
+        
 }
 
 function switchTab(i){
@@ -144,6 +128,7 @@ function mainLoop(){
     updatePowerCosts()
     calculateElementGain()
     unlockAchieves()
+    unlockSecrets()
     automate()
     //Misc Stuff Here
     for(let i = 0; i < 8; i++) {
@@ -157,8 +142,9 @@ function mainLoop(){
         createAlert('You\'ve Reached the End Game for Now', 'Congrats! You\'ve now unlocked challenges<br>Which is the final point for the second prestige<br>I hope you enjoyed the new content')
         data.alerted = true
     }
-    powerGain = Decimal.ceil((Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1].plus(powerBoosts[2])))
-    powerGain = powerGain.times(augmentBoosts[2].boost[0])
+    powerGain = (Decimal.sqrt(data.compounds[0].amt / 4).plus(Decimal.sqrt(data.compounds[1].amt / 4))).times(compoundBoosts[1])
+    powerGain = powerGain.times(D(1).plus(powerBoosts[2]))
+    powerGain = Decimal.ceil(powerGain.times(augmentBoosts[2].boost[0]))
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Corium
     coriumToGet = D(0)
@@ -175,7 +161,7 @@ function mainLoop(){
         data.elements[0].amt = D(10)
     challengeGoalResources[0] = data.corium
     challengeGoalResources[1] = data.particles[1].muons
-    challengeGoalResources[2] = data.corium
+    challengeGoalResources[2] = challengeGoalResources[0]
     challengeGoalResources[3] = data.particles[0].protons
     challengeGoalResources[4] = data.elements[0].amt
     if(data.activeChallenge[4]) {
@@ -220,13 +206,7 @@ function updateBoosts() {
     }
     for(let i = 0; i < 3; i++) {
         let boosts = [D(2), D(10), D(0.5)]
-        if(i !== 0)
-            powerBoosts[i] = boosts[i].times(data.powerUps[i])
-        else
-            if(data.powerUps[i].gt(D(0)))
-                powerBoosts[0] = boosts[i].times(data.powerUps[i])
-            else
-                powerBoosts[0] = D(1)
+        powerBoosts[i] = data.powerUps[i].gt(D(0)) ? boosts[i].times(data.powerUps[i]) : D(1)
     }
     /*
     powerBoosts[0] = data.powerUps[0] === D(0) ? D(1) : D(2).times(data.powerUps[0])
@@ -245,7 +225,7 @@ function updateBoosts() {
         
     }
     coriumMultBoosts[0] = coriumMultBoosts[0].times(augmentBoosts[1].boost[1])
-        coriumMultBoosts[1] = coriumMultBoosts[1].times(augmentBoosts[1].boost[2])
+    coriumMultBoosts[1] = coriumMultBoosts[1].times(augmentBoosts[1].boost[2])
 }
 
 function toggleBuyAmount(i) {
@@ -430,6 +410,7 @@ function prestigeConfirmation(i) {
             break
         case 'rip':
             if((data.particles[0].protons.plus(data.particles[0].neutrons)).lt(D(5e4))) return
+            if((data.particles[0].protons.plus(data.particles[0].neutrons)).gte(D(1e10))) return
             if(data.settingsToggles[5])
                 createConfirmation('rip')
             else
@@ -474,30 +455,38 @@ function hideResolver(x) {
   }
 changeTheme(data.currentTheme)
 f1()
-
+/*
+const tabOrder = [10,9,8,1,3,4,5,6,7,2,0]
+let tabOrderIndex = 0
+*/
 document.addEventListener('keydown', (event) => {
     let key = event.key;
     /*
-    if(key === "ArrowRight") {
-        if((data.currentTab + 1) === 3 ||(data.currentTab + 1) ===  4 ||(data.currentTab + 1) ===  5 ||(data.currentTab + 1) ===  6 ||(data.currentTab + 1) ===  7 ||(data.currentTab + 1) ===  8 && !data.hasTab[(data.currentTab + 1) - 3]) {
-            if(data.currentTab === 2) data.currentTab = 0
-            else data.currentTab += 1
-            console.log(data.currentTab)
-        } 
-        else {
-            if(data.currentTab === 8) data.currentTab = 0
-            else data.currentTab += 1
-        }
+    for(let i = 0; i < tabOrder.length; i++) {
+        if(data.currentTab === tabOrder[i])
+            tabOrderIndex = i;
+    }
+    if(key === "ArrowLeft") {
+        if(tabOrderIndex - 1 === -1)
+            tabOrderIndex = tabOrder.length - 1
+        else
+            tabOrderIndex -= 1
+        
+        if((tabOrder[tabOrderIndex] >= 3 && data.hasTab[tabOrder[tabOrderIndex] - 3]) || tabOrder[tabOrderIndex] <= 2)
+            data.currentTab = tabOrder[tabOrderIndex]
+        else if(tabOrder[tabOrderIndex] >= 3 && data.hasTab[tabOrder[tabOrderIndex] - 3] === false)
+            switchTab(tabOrder[tabOrderIndex])
     }
     if(key === "ArrowRight") {
-        if((data.currentTab - 1) === 3 ||(data.currentTab - 1) ===  4 ||(data.currentTab - 1) ===  5 ||(data.currentTab - 1) ===  6 ||(data.currentTab - 1) ===  7 ||(data.currentTab - 1) ===  8 && !data.hasTab[(data.currentTab - 1) - 3]) {
-            if(data.currentTab === 2) data.currentTab = 0
-            else data.currentTab -= 1
-        } 
-        else {
-            if(data.currentTab === 0) data.currentTab = 8
-            else data.currentTab -= 1
-        }
+        if(tabOrderIndex + 1 > 9)
+            tabOrderIndex = 0
+        else
+            tabOrderIndex += 1
+        
+        if((tabOrder[tabOrderIndex] >= 3 && data.hasTab[tabOrder[tabOrderIndex] - 3]) || tabOrder[tabOrderIndex] <= 2)
+            data.currentTab = tabOrder[tabOrderIndex]
+        else if(tabOrder[tabOrderIndex] >= 3 && data.hasTab[tabOrder[tabOrderIndex] - 3] === false)
+            switchTab(tabOrder[tabOrderIndex])
     }
     */
     if(data.currentTab === 1) {

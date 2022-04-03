@@ -26,7 +26,11 @@ const NeuAchieves = []
 const EleAchieves = []
 const MuoAchieves = []
 const TauAchieves = []
-
+//Secrets
+const secretSrcs = ['V','V Quantum','V Radioactive','V Power','V Fire','V Air','V Dark To Light','V Up','V Down','Not V','V Golden']
+const SecretAchieves = []
+for(let i = 0; i < 11; i++) 
+    SecretAchieves[i] = DOMCacheGetOrSet(`secret${i+1}`)
 for(let i = 0; i < 8; i++) {
     HAchieves[i] = DOMCacheGetOrSet(`H${i+1}`)
     CAchieves[i] = DOMCacheGetOrSet(`C${i+1}`)
@@ -51,7 +55,9 @@ for(let i = 0; i < 4; i++) {
     MuoAchieves[i] = DOMCacheGetOrSet(`Muo${i+1}`)
     TauAchieves[i] = DOMCacheGetOrSet(`Tau${i+1}`)
 }
-
+for(let i = 0; i < 11; i++) {
+    SecretAchieves[i].addEventListener('mouseover', () => changeScrtDesc(i))
+}
 let unlockReqs = [D(1),D(10),D(50),D(100),D(500),D(1000),D(10000),D(1000000)]
 let prevAmount = D(0)
 //Add event listeners
@@ -163,9 +169,105 @@ function unlockAchieves() {
        
     }
 }
-
+function unlockSecrets() {
+    if(!data.scrtAchievements[0] && prevAmount.eq(D(112)))
+        data.scrtAchievements[0] = true
+    //Quantum TBD
+    let challengeNum = 0
+    for(let i = 0; i < 5; i++)
+        if(data.challengeCompletions[i].eq(D(25))) challengeNum += 1
+    if(!data.scrtAchievements[2] && challengeNum === 5)
+        data.scrtAchievements[2] = true
+    if(!data.scrtAchievements[3] && data.power.gte(D(1e24)))
+        data.scrtAchievements[3] = true
+    if(!data.scrtAchievements[4] && data.corium.gte(D(1e308)))
+        data.scrtAchievements[4] = true
+    let secretsComplete = 0
+    for(let i = 0; i < 5; i++)
+        if(data.scrtAchievements[i]) secretsComplete += 1
+    if(!data.scrtAchievements[5] && secretsComplete === 5)
+        data.scrtAchievements[5] = true
+    //Dark To Light TBD
+    let hasNum = false
+    if(!data.scrtAchievements[7]) {
+        for(let i = 0; i < 8; i++) {
+            if(data.elements[i].amt.eq(D(69))) hasNum = true
+            if(data.elements[i].level.eq(D(69))) hasNum = true
+            if(data.isotopes[i].amt.eq(D(69))) hasNum = true
+            if(data.isotopes[i].level.eq(D(69))) hasNum = true
+        }
+        for(let i = 0; i < 5; i++) {
+            if(data.compounds[i].amt.eq(D(69))) hasNum = true
+        }
+        if(data.power.eq(D(69))) hasNum = true
+        if(data.powerStored.eq(D(69))) hasNum = true
+        for(let i = 0; i < 3; i++)
+            if(data.powerUps[i].eq(D(69))) hasNum = true
+        if(data.corium.eq(D(69))) hasNum = true
+        for(let i = 0; i < 3; i++)
+            if(data.coriumMultUps[i].eq(D(69))) hasNum = true
+        for(let i = 0; i < 4; i++)
+            if(data.fuels[i].eq(D(69)) || data.fuelStored[i].eq(D(69))) hasNum = true
+        if(data.particles[0].protons.eq(D(69))) hasNum = true
+        if(data.particles[0].neutrons.eq(D(69))) hasNum = true
+        if(data.particles[0].electrons.eq(D(69))) hasNum = true
+        if(data.particles[1].muons.eq(D(69))) hasNum = true
+        if(data.particles[1].taus.eq(D(69))) hasNum = true
+        for(let i = 0; i < 6; i++)
+            if(data.particles[2].quarks[i].eq(D(69))) hasNum = true
+        for(let i = 0; i < 3; i++) 
+            if(data.radiationParticles[i].eq(D(69))) hasNum = true
+        for(let i = 0; i < data.matter.length; i++)
+            if(data.matter[i].eq(D(69))) hasNum = true
+        if(data.darkEnergy.eq(D(69))) hasNum = true
+    }
+    if(!data.scrtAchievements[7] && hasNum)
+        data.scrtAchievements[7] = true
+    
+    hasNum = false
+    if(!data.scrtAchievements[8]) {
+        for(let i = 0; i < 8; i++) {
+            if(data.elements[i].amt.eq(D(420))) hasNum = true
+            if(data.elements[i].level.eq(D(420))) hasNum = true
+            if(data.isotopes[i].amt.eq(D(420))) hasNum = true
+            if(data.isotopes[i].level.eq(D(420))) hasNum = true
+        }
+        for(let i = 0; i < 5; i++) {
+            if(data.compounds[i].amt.eq(D(420))) hasNum = true
+        }
+        if(data.power.eq(D(420))) hasNum = true
+        if(data.powerStored.eq(D(420))) hasNum = true
+        for(let i = 0; i < 3; i++)
+            if(data.powerUps[i].eq(D(420))) hasNum = true
+        if(data.corium.eq(D(420))) hasNum = true
+        for(let i = 0; i < 3; i++)
+            if(data.coriumMultUps[i].eq(D(420))) hasNum = true
+        for(let i = 0; i < 4; i++)
+            if(data.fuels[i].eq(D(420)) || data.fuelStored[i].eq(D(420))) hasNum = true
+        if(data.particles[0].protons.eq(D(420))) hasNum = true
+        if(data.particles[0].neutrons.eq(D(420))) hasNum = true
+        if(data.particles[0].electrons.eq(D(420))) hasNum = true
+        if(data.particles[1].muons.eq(D(420))) hasNum = true
+        if(data.particles[1].taus.eq(D(420))) hasNum = true
+        for(let i = 0; i < 6; i++)
+            if(data.particles[2].quarks[i].eq(D(420))) hasNum = true
+        for(let i = 0; i < 3; i++) 
+            if(data.radiationParticles[i].eq(D(420))) hasNum = true
+        for(let i = 0; i < data.matter.length; i++)
+            if(data.matter[i].eq(D(420))) hasNum = true
+        if(data.darkEnergy.eq(D(420))) hasNum = true
+    }
+    if(!data.scrtAchievements[8] && hasNum)
+        data.scrtAchievements[8] = true
+    //Not Void TBD
+    secretsComplete = 0
+    for(let i = 0; i < 10; i++)
+        if(data.scrtAchievements[i]) secretsComplete += 1
+    if(!data.scrtAchievements[10] && secretsComplete === 10)
+        data.scrtAchievements[10] = true
+}
 function updateAchievementHTML() {
-    if(data.currentTab === 2) {
+    if(data.currentTab === 2 && data.currentSubTab[6] === 0) {
         for(let i = 0; i < 8; i++) {
             if((HAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[0].unlocked[i] === false) || (HAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[0].unlocked[i] === true))
                 HAchieves[i].style.backgroundColor = data.achievements[0].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
@@ -243,8 +345,16 @@ function updateAchievementHTML() {
             if((TauAchieves[i].style.backgroundColor !== 'rgba(0,0,0,0)' && data.achievements[19].unlocked[i] === false) || (TauAchieves[i].style.backgroundColor !== '#23a338' && data.achievements[19].unlocked[i] === true))
                 TauAchieves[i].style.backgroundColor = data.achievements[19].unlocked[i] === false ? 'rgba(0,0,0,0)' : '#23a338'
         }
-    }
         DOMCacheGetOrSet('percentageText').innerHTML = `Achievements Unlocked: ${toPlaces(prevAmount, 0, 113)}/112 (${format((prevAmount.divide(D(112)).times(D(100))))}%)`
+    }
+    else if(data.currentTab === 2 && data.currentSubTab[6] === 1) {
+        for(let i = 0; i < 11; i++) {
+            if(SecretAchieves[i].getAttribute('src') !== `CHEM Achieves/Secrets/${secretSrcs[i]}.png` && data.scrtAchievements[i])
+                SecretAchieves[i].setAttribute('src', `CHEM Achieves/Secrets/${secretSrcs[i]}.png`)
+            else if(SecretAchieves[i].getAttribute('src') !== 'CHEM Achieves/Secrets/Question.png' && !data.scrtAchievements[i])
+                SecretAchieves[i].setAttribute('src', 'CHEM Achieves/Secrets/Question.png')
+        }
+    } 
 }
 
 const descriptionText = DOMCacheGetOrSet("achieveText")
@@ -278,4 +388,9 @@ const achieveDescriptions = ['<hr>[H-1] - Hydrogenated<br>Buy your first Hydroge
     '<hr>[Tau-3] - Its an even bigger electron<br>Split for 50 Taus','<hr>[Pro-1] - τττ<br>Split for 100 Taus']
 function changeDescription(id) {
     descriptionText.innerHTML = achieveDescriptions[id]
+}
+const secretDescriptions = ['Void - Unlocked All Regular Achievements', 'Void Quantum - TBD', 'Void Radioactive - Max Out All Challenges', 'Void Power - Get 1 Yottawatt',
+'Void Fire - Reach 1.00e308 Corium', 'Void Air - Unlock all Elemental Voids', 'Dark into Light - TBD', 'UpVoid - Get 69 of Anything', 'DownVoid - Get 420 of Anything', 'Not Void - TBD', 'Void Golden - Unlock Everything']
+function changeScrtDesc(id) {
+    DOMCacheGetOrSet('scrtAchieveText').innerHTML = data.scrtAchievements[id] ? `<hr>${secretDescriptions[id]}` : '<hr>???'
 }

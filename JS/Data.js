@@ -42,6 +42,14 @@ function getDefaultObject() {
         research: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
         challengeCompletions: [D(0),D(0),D(0),D(0),D(0)],
         activeChallenge: [false,false,false,false,false],
+        //Matter
+        matter: [D(0),D(0),D(0),D(0)],
+        darkEnergy: D(0),
+        matterUnlocked: [false,false],
+        darkUpUnlocked: [false,false,false,false,false],
+        pillarUnlocked: [false,false,false,false,false],
+        corruptTimer: D(0),
+        corruptIndex: -1,
         //Achievements
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
@@ -49,16 +57,17 @@ function getDefaultObject() {
         {name:"Pr",unlocked:[false,false,false,false]},{name:"Wt",unlocked:[false,false,false,false]},{name:"Sa",unlocked:[false,false,false,false]},{name:"Sl",unlocked:[false,false,false,false]},{name:"Cf",unlocked:[false,false,false,false]},
         {name:"Pw",unlocked:[false,false,false,false]},{name:"Co",unlocked:[false,false,false,false]},{name:"Pro",unlocked:[false,false,false,false]},{name:"Neu",unlocked:[false,false,false,false]},
         {name:"Ele",unlocked:[false,false,false,false]},{name:"Muo",unlocked:[false,false,false,false]},{name:"Tau",unlocked:[false,false,false,false]}],
+        scrtAchievements: [false,false,false,false,false,false,false,false,false,false,false],
         //Settings things
         currentTheme: 0,
         alerted: false,
         hasTab: [false, false, false, false, false, false, false],
         time: Date.now(),
         currentTab: 1,
-        currentSubTab: [0,0,0,0,0,0],
+        currentSubTab: [0,0,0,0,0,0,0],
         currentElement: 0,
-        settingsToggles: [true,true,true,true,true,true],
-        currentUpdate: 'v0.5.1',
+        settingsToggles: [true,true,true,true,true,true,true,true],
+        currentUpdate: 'v0.6.0',
         devSpeed: 1,
     }
 }
@@ -71,17 +80,16 @@ function load() {
     let savedata = JSON.parse(window.localStorage.getItem('chemJSSave'))
     if (savedata !== undefined) fixSave(data, savedata)
     if(data.currentUpdate === 'v0.1.0' || data.currentUpdate === 'v0.1.1' || data.currentUpdate === 'v0.1.2' || data.currentUpdate === 'v0.1.3' || data.currentUpdate === 'v0.1.4') {
-        alert(`Welcome Back! The Current Version is v0.5.1, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
+        alert(`Welcome Back! The Current Version is v0.6.0, If you are seeing this message this update reset all saves older than Beta 2.0 due to major changes that affect all gameplay.`)
         createAlert('Welcome Back!','I detected your save is older than Beta 2.0 so it has been deleted because of major changes in newer updates')
         noConfirmDelete()
     }
-    else if(data.currentUpdate !== 'v0.5.1') {
-        createAlert('Welcome Back!','The current version is Beta 5.1<br>Check the changelog for more details')
-        data.currentUpdate = 'v0.5.1' 
+    else if(data.currentUpdate !== 'v0.6.0') {
+        createAlert('Welcome Back!','The current version is Beta 6.0<br>Check the changelog for more details')
+        data.currentUpdate = 'v0.6.0' 
         //if(data.alerted === true) 
             //data.alerted === false
     }
-    //fixOldSaves()
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {
@@ -98,13 +106,6 @@ function fixSave(main=getDefaultObject(), data) {
         return main
     }
     else return getDefaultObject()
-}
-function fixOldSaves(){
-    //fix important things from old versions
-    if (data.currentUpdate!=='v0.2.0') data.currentUpdate='v0.1.1'
-    if (data.currentUpdate==='v0.0.0'){
-        //deleteSave()
-    }
 }
 function exportSave(){
     save()
@@ -139,10 +140,8 @@ function fullReset(){
     location.reload()
 }
 function deleteSave(){
-    if(confirm("Are you sure you want to delete your save? (This doesn't export)")) {
         window.localStorage.removeItem('chemJSSave')
         location.reload()
-    } 
 }
 
 function noConfirmDelete(){
