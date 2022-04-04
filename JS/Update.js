@@ -65,8 +65,6 @@ function updateHTML(){
         DOMCacheGetOrSet('toggle4').innerHTML = data.settingsToggles[3] ? 'Shatter Confirmation [ON]' : 'Shatter Confirmation [OFF]'
         DOMCacheGetOrSet('toggle5').innerHTML = data.settingsToggles[4] ? 'Irridiate Confirmation [ON]' : 'Irridiate Confirmation [OFF]'
         DOMCacheGetOrSet('toggle6').innerHTML = data.settingsToggles[5] ? 'Ripper Confirmation [ON]' : 'Ripper Confirmation [OFF]'
-        DOMCacheGetOrSet('toggle7').innerHTML = data.settingsToggles[6] ? 'Consolidate Confirmation [ON]' : 'Consolidate Confirmation [OFF]'
-        DOMCacheGetOrSet('toggle8').innerHTML = data.settingsToggles[7] ? 'Darken Confirmation [ON]' : 'Darken Confirmation [OFF]'
         if(data.currentSubTab[2] === 3) {
             DOMCacheGetOrSet('midGameHelp').style.display = data.hasTab[3] ? 'block' : 'none'
             DOMCacheGetOrSet('lateGameHelp').style.display = data.research[15] ? 'block' : 'none'
@@ -113,7 +111,7 @@ function updateHTML(){
         DOMCacheGetOrSet('gA').style.display = data.coriumSingUps[0] === true ? 'inline' : 'none'
         if(data.currentSubTab[3] === 0) {
             DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${formatPrefix(powerGain, 'Watts')}` : "Generate Power<br>Req: 3 Propane + 1 Water"
-            powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by ${format(D(2).times(darkEnergyEffects[1]))}x<br>Cost: ${formatPrefix(powerCosts[0], 'Watts')}<br>Level: ${format(data.powerUps[0])}`
+            powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by ${format(D(2))}x<br>Cost: ${formatPrefix(powerCosts[0], 'Watts')}<br>Level: ${format(data.powerUps[0])}`
             powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
             powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 1.5x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
 
@@ -249,11 +247,10 @@ const refineryTab = DOMCacheGetOrSet("refineryHolder")
 const achievementTab = DOMCacheGetOrSet("achievementHolder")
 const acceleratorTab = DOMCacheGetOrSet("acceleratorHolder")
 const radiationTab = DOMCacheGetOrSet("radiationHolder")
-const matterTab = DOMCacheGetOrSet("matterHolder")
 const quantumTab = DOMCacheGetOrSet("quantumHolder")
 let bodyStyles = window.getComputedStyle(document.body)
 const colorVariableIDs = ['settings','element','achievement','compound','power','melt','refinery','particle','radiation',
-'matter','quantum']
+'quantum']
 let seperatorColors = []
 
 
@@ -270,7 +267,7 @@ function tabChangeHTML(){
     refineryTab.style.display = data.currentTab === 6 ? 'flex' : 'none'
     acceleratorTab.style.display = data.currentTab === 7 ? 'flex' : 'none'
     radiationTab.style.display = data.currentTab === 8 ? 'flex' : 'none'
-    quantumTab.style.display = data.currentTab === 10 ? 'flex' : 'none'
+    quantumTab.style.display = data.currentTab === 9 ? 'flex' : 'none'
     seperator.style.color = `${seperatorColors[data.currentTab]}`
     DOMCacheGetOrSet('particleTextHolder').style.display = data.coriumSingUps[1] === true ? 'flex' : 'none'
 }
