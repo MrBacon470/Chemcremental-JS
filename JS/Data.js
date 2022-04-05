@@ -68,6 +68,7 @@ function getDefaultObject() {
         currentElement: 0,
         settingsToggles: [true,true,true,true,true,true,true,true],
         currentUpdate: 'v0.6.0',
+        notationIndex: 0,
         devSpeed: 1,
     }
 }

@@ -88,8 +88,6 @@ function increasePower(i) {
         genGain[i] = D(0)
     else {
         genGain[i] = genConst[i].times(augmentBoosts[2].boost[2])
-        if(data.darkEnergy.gt(D(0)))
-            genGain[i] = genGain[i].times(darkEnergyEffects[0])
     }
         
 }
