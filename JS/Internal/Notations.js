@@ -41,9 +41,8 @@ function toSuperscript(value) {
       .map((x) => x === "-" ? "₋" : SUPERSCRIPT_NUMBERS[parseInt(x, 10)])
       .join("");
 }
-const greek = "βζλψΣΘΨω"
+const greek = "αβγδεζηθικλμνξοπρστυφχψω"
 const infinity = "Ω"
-
 function formatOmg(value) {
     const step = Decimal.floor(value.div(1000));
     const omegaAmount = Decimal.floor(step.div(greek.length));
