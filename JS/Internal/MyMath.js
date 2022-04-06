@@ -23,9 +23,9 @@ function formatPrefix(a,b) {
         }
     }
     if(index === -1) {
-        return `${format(a)} ${b}`
+        return `${notate(a)} ${b}`
     }
     else {
-        return `${format(a.divide(amts[index]))} ${prefixes[index]}${b.toLowerCase()}`
+        return `${notate(a.divide(amts[index]))} ${prefixes[index]}${b.toLowerCase()}`
     }
 }

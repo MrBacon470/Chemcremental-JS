@@ -51,7 +51,7 @@ function updateHTML(){
     else
         DOMCacheGetOrSet('powerText').innerHTML = `${formatPrefix(data.power, 'Watts')} | ${formatPrefix(genGain[0].plus(genGain[1]).plus(genGain[2]).plus(genGain[3]),'Watts')}/s`
     //Corium
-    DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${format(data.corium)} [${format(coriumBoost)}x]`
+    DOMCacheGetOrSet('coriumText').innerHTML = `Corium: ${notate(data.corium)} [${notate(coriumBoost)}x]`
     DOMCacheGetOrSet('challengeStatusHolder').style.display = data.hasIrridiated ? 'flex' : 'none'
     for(let i = 0; i < data.buyAmounts.length; i++)
         DOMCacheGetOrSet(`bA${i}`).innerHTML = i !== 6 ? `Buy Amount<br>${data.buyAmounts[i]}` : `Fuel Percent Used<br>${data.buyAmounts[i]*100.0}%`
@@ -76,11 +76,11 @@ function updateHTML(){
         if(data.currentSubTab[0] === 0) {
             for(let i = 0;i < 8;i++) {
                 if(i == 0)
-                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]})<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
+                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${notate(data.elements[i].amt)} ${shortElement[i]})<br>Cost: ${notate(elementCost[i])} Hydrogen | Level:${notate(data.elements[i].level)}`
                 else if(i == 1)
-                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${format(elementCost[i])} Hydrogen | Level:${format(data.elements[i].level)}`
+                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${notate(data.elements[i].amt)} ${shortElement[i]} | ${notate(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${notate(elementCost[i])} Hydrogen | Level:${notate(data.elements[i].level)}`
                 else
-                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${format(data.elements[i].amt)} ${shortElement[i]} | ${format(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${format(elementCost[i])} ${data.elements[i - 1].name} | Level:${format(data.elements[i].level)}`
+                    elementButtons[i].innerHTML = `${data.elements[i].name}  Generator (${notate(data.elements[i].amt)} ${shortElement[i]} | ${notate(D(1).add(Decimal.sqrt(data.elements[i].max)))}x)<br>Cost: ${notate(elementCost[i])} ${data.elements[i - 1].name} | Level:${notate(data.elements[i].level)}`
             }
 
             DOMCacheGetOrSet('Auto0').style.display = data.research[0] ? 'inline' : 'none'
@@ -90,9 +90,9 @@ function updateHTML(){
         else if(data.currentSubTab[0] === 1) {
             for(let i = 0;i < 8;i++) {
                 if(i == 0)
-                    isotopeButtons[i].innerHTML = `${data.isotopes[i].name}  Generator (${format(data.isotopes[i].amt)} ${data.isotopes[i].name} | ${format(D(1).add(Decimal.sqrt(data.isotopes[i].max)))}x)<br>Cost: ${format(isotopeCost[i])} Lead | Level:${format(data.isotopes[i].level)}`
+                    isotopeButtons[i].innerHTML = `${data.isotopes[i].name}  Generator (${notate(data.isotopes[i].amt)} ${data.isotopes[i].name} | ${notate(D(1).add(Decimal.sqrt(data.isotopes[i].max)))}x)<br>Cost: ${notate(isotopeCost[i])} Lead | Level:${notate(data.isotopes[i].level)}`
                 else
-                isotopeButtons[i].innerHTML = `${data.isotopes[i].name}  Generator (${format(data.isotopes[i].amt)} ${data.isotopes[i].name} | ${format(D(1).add(Decimal.sqrt(data.isotopes[i].max)))}x)<br>Cost: ${format(isotopeCost[i])} ${data.isotopes[i - 1].name} | Level:${format(data.isotopes[i].level)}`
+                isotopeButtons[i].innerHTML = `${data.isotopes[i].name}  Generator (${notate(data.isotopes[i].amt)} ${data.isotopes[i].name} | ${notate(D(1).add(Decimal.sqrt(data.isotopes[i].max)))}x)<br>Cost: ${notate(isotopeCost[i])} ${data.isotopes[i - 1].name} | Level:${notate(data.isotopes[i].level)}`
             }
         }
     }
@@ -101,7 +101,7 @@ function updateHTML(){
     }
     else if(data.currentTab === 3) {
         for(let i = 0; i < 5; i++) {
-            compoundButtons[i].innerHTML = `${data.compounds[i].name}<br>${compoundCostStr[i]}<br>Total: ${format(data.compounds[i].amt)}<br>${compoundBoost[i]} ${format(compoundBoosts[i])}x`
+            compoundButtons[i].innerHTML = `${data.compounds[i].name}<br>${compoundCostStr[i]}<br>Total: ${notate(data.compounds[i].amt)}<br>${compoundBoost[i]} ${notate(compoundBoosts[i])}x`
         }
         DOMCacheGetOrSet('Auto1').style.display = data.research[1] ? 'inline' : 'none'
         DOMCacheGetOrSet('Auto1').innerHTML = data.autoActive[1] ? `Automators: [ON]` : `Automators: [OFF]`
@@ -111,9 +111,9 @@ function updateHTML(){
         DOMCacheGetOrSet('gA').style.display = data.coriumSingUps[0] === true ? 'inline' : 'none'
         if(data.currentSubTab[3] === 0) {
             DOMCacheGetOrSet('generator').innerHTML = data.compounds[1].amt.gte(1) && data.compounds[0].amt.gte(3) ? `Generate Power<br>+${formatPrefix(powerGain, 'Watts')}` : "Generate Power<br>Req: 3 Propane + 1 Water"
-            powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by ${format(D(2))}x<br>Cost: ${formatPrefix(powerCosts[0], 'Watts')}<br>Level: ${format(data.powerUps[0])}`
-            powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${format(powerCosts[1])} Sulfuric Acid<br>Level: ${format(data.powerUps[1])}`
-            powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 1.5x<br>Cost: ${format(powerCosts[2])} Lead Gens<br>Level: ${format(data.powerUps[2])}`
+            powerUpButton[0].innerHTML = `Super Charge<br>Increase Atom Production by ${notate(D(2))}x<br>Cost: ${formatPrefix(powerCosts[0], 'Watts')}<br>Level: ${notate(data.powerUps[0])}`
+            powerUpButton[1].innerHTML = `Battery<br>Increase Power Capacity by 10<br>Cost: ${notate(powerCosts[1])} Sulfuric Acid<br>Level: ${notate(data.powerUps[1])}`
+            powerUpButton[2].innerHTML = `Heat Shields<br>Increase Power Production by 1.5x<br>Cost: ${notate(powerCosts[2])} Lead Gens<br>Level: ${notate(data.powerUps[2])}`
 
             DOMCacheGetOrSet('Auto2').style.display = data.research[2] ? 'inline' : 'none'
             DOMCacheGetOrSet('Auto2').innerHTML = data.autoActive[2] ? `Automators: [ON]` : `Automators: [OFF]`
@@ -124,10 +124,10 @@ function updateHTML(){
             DOMCacheGetOrSet('petroleumGenHolder').style.display = data.leptonUnlocks[1] === true ? 'flex' : 'none'
             DOMCacheGetOrSet('gasGenHolder').style.display = data.leptonUnlocks[2] === true ? 'flex' : 'none'
 
-            DOMCacheGetOrSet('methaneFuel').innerHTML = data.fuelStored[0].gt(D(0)) ? `Fuel: ${format(data.fuelStored[0])} Methane<br>${formatPrefix(genGain[0], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[0])} Methane<br>0.00 Watts/s`
-            DOMCacheGetOrSet('coalFuel').innerHTML = data.fuelStored[1].gt(D(0)) ? `Fuel: ${format(data.fuelStored[1])} Coal<br>${formatPrefix(genGain[1], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[1])} Coal<br>0.00 Watts/s`
-            DOMCacheGetOrSet('petroleumFuel').innerHTML = data.fuelStored[2].gt(D(0)) ? `Fuel: ${format(data.fuelStored[2])} Petroleum<br>${formatPrefix(genGain[2], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[2])} Petroleum<br>0.00 Watts/s`
-            DOMCacheGetOrSet('gasFuel').innerHTML = data.fuelStored[3].gt(D(0)) ? `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>${formatPrefix(genGain[3], 'Watts')}/s` : `Fuel: ${format(data.fuelStored[3])} Natural Gas<br>0.00 Watts/s`
+            DOMCacheGetOrSet('methaneFuel').innerHTML = data.fuelStored[0].gt(D(0)) ? `Fuel: ${notate(data.fuelStored[0])} Methane<br>${formatPrefix(genGain[0], 'Watts')}/s` : `Fuel: ${notate(data.fuelStored[0])} Methane<br>0.00 Watts/s`
+            DOMCacheGetOrSet('coalFuel').innerHTML = data.fuelStored[1].gt(D(0)) ? `Fuel: ${notate(data.fuelStored[1])} Coal<br>${formatPrefix(genGain[1], 'Watts')}/s` : `Fuel: ${notate(data.fuelStored[1])} Coal<br>0.00 Watts/s`
+            DOMCacheGetOrSet('petroleumFuel').innerHTML = data.fuelStored[2].gt(D(0)) ? `Fuel: ${notate(data.fuelStored[2])} Petroleum<br>${formatPrefix(genGain[2], 'Watts')}/s` : `Fuel: ${notate(data.fuelStored[2])} Petroleum<br>0.00 Watts/s`
+            DOMCacheGetOrSet('gasFuel').innerHTML = data.fuelStored[3].gt(D(0)) ? `Fuel: ${notate(data.fuelStored[3])} Natural Gas<br>${formatPrefix(genGain[3], 'Watts')}/s` : `Fuel: ${notate(data.fuelStored[3])} Natural Gas<br>0.00 Watts/s`
 
             DOMCacheGetOrSet('Auto6').style.display = data.research[10] ? 'inline' : 'none'
             DOMCacheGetOrSet('Auto6').innerHTML = data.autoActive[6] ? `Automators: [ON]` : `Automators: [OFF]`
@@ -136,9 +136,9 @@ function updateHTML(){
     }
     else if(data.currentTab === 5) {
         
-        DOMCacheGetOrSet('meltDown').innerHTML = sumOfElements >= 1e8 ? `Melt Down<br>Create +${format(coriumToGet)}<br>Corium` : "Melt Down<br>Requires 1e8<br>Total Elements"
+        DOMCacheGetOrSet('meltDown').innerHTML = sumOfElements >= 1e8 ? `Melt Down<br>Create +${notate(coriumToGet)}<br>Corium` : "Melt Down<br>Requires 1e8<br>Total Elements"
         for(let i = 0; i < 3; i++) {
-            DOMCacheGetOrSet(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${format(coriumMultCosts[i])} Corium<br>Level: ${format(data.coriumMultUps[i])}`
+            DOMCacheGetOrSet(`cm${i+1}`).innerHTML = `${coriumMultDesc[i]}<br>Cost: ${notate(coriumMultCosts[i])} Corium<br>Level: ${notate(data.coriumMultUps[i])}`
             DOMCacheGetOrSet(`cs${i+1}`).innerHTML = data.coriumSingUps[i] ? 'Unlocked' : `${coriumSingDesc[i]}`
         }
         DOMCacheGetOrSet('Auto3').style.display = data.research[3] ? 'inline' : 'none'
@@ -146,58 +146,58 @@ function updateHTML(){
         DOMCacheGetOrSet('Auto3').style.borderColor = data.autoActive[3] ? '#438043' : '#963a2e'
     }
     else if(data.currentTab === 6) {
-       DOMCacheGetOrSet('Methane').innerHTML = `Methane<br>C-H4<br>Total ${format(data.fuels[0])}`
-       DOMCacheGetOrSet('Coal').innerHTML = `Coal<br>C12-H6-O<br>Total ${format(data.fuels[1])}`
-       DOMCacheGetOrSet('Petroleum').innerHTML = `Petroleum<br>C15-H28<br>Total ${format(data.fuels[2])}`
-       DOMCacheGetOrSet('Natural Gas').innerHTML = `Natural Gas<br>C10-H28-O2-S<br>Total ${format(data.fuels[3])}`
+       DOMCacheGetOrSet('Methane').innerHTML = `Methane<br>C-H4<br>Total ${notate(data.fuels[0])}`
+       DOMCacheGetOrSet('Coal').innerHTML = `Coal<br>C12-H6-O<br>Total ${notate(data.fuels[1])}`
+       DOMCacheGetOrSet('Petroleum').innerHTML = `Petroleum<br>C15-H28<br>Total ${notate(data.fuels[2])}`
+       DOMCacheGetOrSet('Natural Gas').innerHTML = `Natural Gas<br>C10-H28-O2-S<br>Total ${notate(data.fuels[3])}`
 
        DOMCacheGetOrSet('Auto4').style.display = data.research[4] ? 'inline' : 'none'
        DOMCacheGetOrSet('Auto4').innerHTML = data.autoActive[4] ? `Automators: [ON]` : `Automators: [OFF]`
        DOMCacheGetOrSet('Auto4').style.borderColor = data.autoActive[4] ? '#438043' : '#963a2e'
     }
     else if(data.currentTab === 7) {
-        particleTexts[0].innerHTML = `${format(data.particles[0].protons)} ${particleNames[0]}(+)`
-        particleTexts[1].innerHTML = `${format(data.particles[0].neutrons)} ${particleNames[1]}(0)`
-        particleTexts[2].innerHTML = `${format(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color:${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
+        particleTexts[0].innerHTML = `${notate(data.particles[0].protons)} ${particleNames[0]}(+)`
+        particleTexts[1].innerHTML = `${notate(data.particles[0].neutrons)} ${particleNames[1]}(0)`
+        particleTexts[2].innerHTML = `${notate(data.particles[0].electrons)} ${particleNames[2]}(e<sup style="color:${bodyStyles.getPropertyValue(`--electron-color`)}">-</sup>)`
         DOMCacheGetOrSet('lpA').style.display = data.augments[2].unlocked[0] === true ? 'inline' : 'none'
         DOMCacheGetOrSet('quA').style.display = data.research[13] ? 'inline' : 'none'
         if(data.currentSubTab[1] === 0) {
-            DOMCacheGetOrSet('gainMult').innerHTML = `${format(gainMult)}x more to gain`
-            protonGainText.innerHTML = `+${format(data.particlesToGet[0])} Protons`
-            neutronGainText.innerHTML = `+${format(data.particlesToGet[1])} Neutrons`
-            electronGainText.innerHTML = `+${format(data.particlesToGet[2])} Electrons`
+            DOMCacheGetOrSet('gainMult').innerHTML = `${notate(gainMult)}x more to gain`
+            protonGainText.innerHTML = `+${notate(data.particlesToGet[0])} Protons`
+            neutronGainText.innerHTML = `+${notate(data.particlesToGet[1])} Neutrons`
+            electronGainText.innerHTML = `+${notate(data.particlesToGet[2])} Electrons`
             DOMCacheGetOrSet('splitImage').style.backgroundColor = gainMult.gt(D(1)) ? '#379337' : '#934237'
         }
         else if(data.currentSubTab[1] === 1) {
                 
                 for(let i = 0; i < 3; i++) {
-                    DOMCacheGetOrSet(`proAug${i+1}`).innerHTML = data.augments[0].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${format(augmentCosts[i])} Protons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[0].name[i]} Boost: ${format(augmentBoosts[0].boost[i])}x`
-                    DOMCacheGetOrSet(`neuAug${i+1}`).innerHTML = data.augments[1].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${format(augmentCosts[i])} Neutrons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[1].name[i]} Boost: ${format(augmentBoosts[1].boost[i])}x`
-                    DOMCacheGetOrSet(`eleAug${i+1}`).innerHTML = data.augments[2].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${format(augmentCosts[i])} Electrons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[2].name[i]} Boost: ${format(augmentBoosts[2].boost[i])}x`
+                    DOMCacheGetOrSet(`proAug${i+1}`).innerHTML = data.augments[0].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${notate(augmentCosts[i])} Protons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[0].name[i]} Boost: ${notate(augmentBoosts[0].boost[i])}x`
+                    DOMCacheGetOrSet(`neuAug${i+1}`).innerHTML = data.augments[1].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${notate(augmentCosts[i])} Neutrons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[1].name[i]} Boost: ${notate(augmentBoosts[1].boost[i])}x`
+                    DOMCacheGetOrSet(`eleAug${i+1}`).innerHTML = data.augments[2].unlocked[i] === false ? `Augment ${romanNumerals[i]}<br><br>Cost: ${notate(augmentCosts[i])} Electrons` : `Augment ${romanNumerals[i]}<br><br>${augmentBoostNames[2].name[i]} Boost: ${notate(augmentBoosts[2].boost[i])}x`
                 }
                 DOMCacheGetOrSet('Auto5').style.display = data.research[5] ? 'inline' : 'none'
                 DOMCacheGetOrSet('Auto5').innerHTML = data.autoActive[5] ? `Automators: [ON]` : `Automators: [OFF]`
                 DOMCacheGetOrSet('Auto5').style.borderColor = data.autoActive[5] ? '#438043' : '#963a2e'
         }
         else if(data.currentSubTab[1] === 2) {
-                DOMCacheGetOrSet('muonsText').innerHTML = `${format(data.particles[1].muons)} Muons(μ<sup style="color: ${bodyStyles.getPropertyValue(`--muon-color`)}">-</sup>)`
-                DOMCacheGetOrSet('tausText').innerHTML = `${format(data.particles[1].taus)} Taus(τ<sup style="color: ${bodyStyles.getPropertyValue(`--tau-color`)}">-</sup>)`
+                DOMCacheGetOrSet('muonsText').innerHTML = `${notate(data.particles[1].muons)} Muons(μ<sup style="color: ${bodyStyles.getPropertyValue(`--muon-color`)}">-</sup>)`
+                DOMCacheGetOrSet('tausText').innerHTML = `${notate(data.particles[1].taus)} Taus(τ<sup style="color: ${bodyStyles.getPropertyValue(`--tau-color`)}">-</sup>)`
                 DOMCacheGetOrSet('shatterImage').style.backgroundColor = data.particles[0].electrons.gte(D(1e5)) ? '#379337' : '#934237'
-                DOMCacheGetOrSet('shatterGainText').innerHTML = `+${format(leptonsToGet[0])} Muons<br>+${format(leptonsToGet[1])} Taus<br><br>`
+                DOMCacheGetOrSet('shatterGainText').innerHTML = `+${notate(leptonsToGet[0])} Muons<br>+${notate(leptonsToGet[1])} Taus<br><br>`
 
                 DOMCacheGetOrSet('lepUnlock1').innerHTML = data.leptonUnlocks[0] === true ? `Unlocked<br>No Extra Boost` : `Unlock Coal Generator<br>Cost: 250,000 Electrons`
-                DOMCacheGetOrSet('lepUnlock2').innerHTML = data.leptonUnlocks[1] === true ? `Unlocked<br>Power Capacity Buff: ${format(leptonBoost[0])}x` : `Unlock Petroleum Generator<br>Cost: 250 Muons`
-                DOMCacheGetOrSet('lepUnlock3').innerHTML = data.leptonUnlocks[2] === true ? `Unlocked<br>Fuel Production Buff: ${format(leptonBoost[1])}x` : `Unlock Natural Gas Generator<br>Cost: 100 Taus`
+                DOMCacheGetOrSet('lepUnlock2').innerHTML = data.leptonUnlocks[1] === true ? `Unlocked<br>Power Capacity Buff: ${notate(leptonBoost[0])}x` : `Unlock Petroleum Generator<br>Cost: 250 Muons`
+                DOMCacheGetOrSet('lepUnlock3').innerHTML = data.leptonUnlocks[2] === true ? `Unlocked<br>Fuel Production Buff: ${notate(leptonBoost[1])}x` : `Unlock Natural Gas Generator<br>Cost: 100 Taus`
         }
         else if(data.currentSubTab[1] === 3) {
             //row1
-                DOMCacheGetOrSet('upQuark').innerHTML = `${format(data.particles[2].quarks[0])} Up Quarks (Hydrogen ${format(quarkBoosts[0])}x)`
-                DOMCacheGetOrSet('charmQuark').innerHTML = `${format(data.particles[2].quarks[1])} Charm Quarks (Compound Boost ${format(quarkBoosts[1])}x)`
-                DOMCacheGetOrSet('topQuark').innerHTML = `${format(data.particles[2].quarks[2])} Top Quarks (Particle Gain ${format(quarkBoosts[2])}x)`
+                DOMCacheGetOrSet('upQuark').innerHTML = `${notate(data.particles[2].quarks[0])} Up Quarks (Hydrogen ${notate(quarkBoosts[0])}x)`
+                DOMCacheGetOrSet('charmQuark').innerHTML = `${notate(data.particles[2].quarks[1])} Charm Quarks (Compound Boost ${notate(quarkBoosts[1])}x)`
+                DOMCacheGetOrSet('topQuark').innerHTML = `${notate(data.particles[2].quarks[2])} Top Quarks (Particle Gain ${notate(quarkBoosts[2])}x)`
             //row2
-                DOMCacheGetOrSet('downQuark').innerHTML = `${format(data.particles[2].quarks[3])} Down Quarks (Lead ${format(quarkBoosts[3])}x)`
-                DOMCacheGetOrSet('strangeQuark').innerHTML = `${format(data.particles[2].quarks[4])} Strange Quarks (Refinery Gain ${format(quarkBoosts[4])}x)`
-                DOMCacheGetOrSet('bottomQuark').innerHTML = `${format(data.particles[2].quarks[5])} Bottom Quarks (Lepton Gain ${format(quarkBoosts[5])}x)`
+                DOMCacheGetOrSet('downQuark').innerHTML = `${notate(data.particles[2].quarks[3])} Down Quarks (Lead ${notate(quarkBoosts[3])}x)`
+                DOMCacheGetOrSet('strangeQuark').innerHTML = `${notate(data.particles[2].quarks[4])} Strange Quarks (Refinery Gain ${notate(quarkBoosts[4])}x)`
+                DOMCacheGetOrSet('bottomQuark').innerHTML = `${notate(data.particles[2].quarks[5])} Bottom Quarks (Lepton Gain ${notate(quarkBoosts[5])}x)`
                 
                 DOMCacheGetOrSet('ripperImage').style.backgroundColor = (data.particles[0].protons.plus(data.particles[0].neutrons)).gte(D(5e4)) ? '#379337' : '#934237'
                 let sum = data.particles[0].protons.plus(data.particles[0].neutrons)
@@ -206,14 +206,14 @@ function updateHTML(){
     }
     else if(data.currentTab === 8) {
         DOMCacheGetOrSet('chlA').style.display = data.research[15] ? 'inline' : 'none'
-        DOMCacheGetOrSet('alphaText').innerHTML = `${format(data.radiationParticles[0])} Alpha Radiation`
-        DOMCacheGetOrSet('betaText').innerHTML = `${format(data.radiationParticles[1])} Beta Radiation`
-        DOMCacheGetOrSet('gammaText').innerHTML = `${format(data.radiationParticles[2])} Gamma Radiation`
+        DOMCacheGetOrSet('alphaText').innerHTML = `${notate(data.radiationParticles[0])} Alpha Radiation`
+        DOMCacheGetOrSet('betaText').innerHTML = `${notate(data.radiationParticles[1])} Beta Radiation`
+        DOMCacheGetOrSet('gammaText').innerHTML = `${notate(data.radiationParticles[2])} Gamma Radiation`
         if(data.currentSubTab[4] === 0) {
             DOMCacheGetOrSet('irridiateImage').style.backgroundColor = data.corium.gte(D(1e38)) ? '#438043' : '#963a2e'
-            DOMCacheGetOrSet('alphaGainText').innerHTML = `+${format(radiationGain[0])} Alpha Radiation` 
-            DOMCacheGetOrSet('betaGainText').innerHTML = `+${format(radiationGain[1])} Beta Radiation` 
-            DOMCacheGetOrSet('gammaGainText').innerHTML = `+${format(radiationGain[2])} Gamma Radiation` 
+            DOMCacheGetOrSet('alphaGainText').innerHTML = `+${notate(radiationGain[0])} Alpha Radiation` 
+            DOMCacheGetOrSet('betaGainText').innerHTML = `+${notate(radiationGain[1])} Beta Radiation` 
+            DOMCacheGetOrSet('gammaGainText').innerHTML = `+${notate(radiationGain[2])} Gamma Radiation` 
         }
         if(data.currentSubTab[4] === 1) {
             for(let i = 0; i < researchDescs.length; i++)
