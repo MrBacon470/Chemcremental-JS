@@ -14,11 +14,11 @@ function notate(x) {
 }
 //All below notations are modified versions of MrRedShark's Incremental Mass Rewritten Game's Notations
 //https://mrredshark77.github.io/incremental-mass-rewritten/
-const SUBSCRIPT_NUMBERS = "0123456789"
-const SUPERSCRIPT_NUMBERS = "012346789"
+//const SUBSCRIPT_NUMBERS = "0123456789"
+//const SUPERSCRIPT_NUMBERS = "012346789"
 
-//const SUBSCRIPT_NUMBERS = "₀₁₂₃₄₅₆₇₈₉"
-//const SUPERSCRIPT_NUMBERS = "⁰¹²³⁴⁵⁶⁷⁸⁹"
+const SUBSCRIPT_NUMBERS = "₀₁₂₃₄₅₆₇₈₉"
+const SUPERSCRIPT_NUMBERS = "⁰¹²³⁴⁵⁶⁷⁸⁹"
 
 const ST_NAMES = [
 	null, [
@@ -35,13 +35,13 @@ const ST_NAMES = [
 
 function toSubscript(value) {
     return value.toFixed(0).split("")
-      .map((x) => x === "-" ? "₋" : `<sub style="color:inherit;">${SUBSCRIPT_NUMBERS[parseInt(x, 10)]}</sub>`)
+      .map((x) => x === "-" ? "₋" : SUBSCRIPT_NUMBERS[parseInt(x, 10)])
       .join("");
 }
 
 function toSuperscript(value) {
     return value.toFixed(0).split("")
-      .map((x) => x === "-" ? "₋" : `<sup style="color:inherit;">${SUPERSCRIPT_NUMBERS[parseInt(x, 10)]}</sup>`)
+      .map((x) => x === "-" ? "₋" : SUPERSCRIPT_NUMBERS[parseInt(x, 10)])
       .join("");
 }
 const greek = "αβγδεζηθικλμνξοπρστυφχψω"
