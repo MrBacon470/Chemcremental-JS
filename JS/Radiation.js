@@ -73,7 +73,7 @@ for(let i = 0; i < researchDescs.length; i++) {
 function changeResearchDescription(i) {
     DOMCacheGetOrSet('researchDescText').innerHTML = `<hr>${researchDescs[i]}`
     DOMCacheGetOrSet('researchDescText').style.color = data.research[i] ? `#5b9042` : `#ac3232`
-    DOMCacheGetOrSet('researchCostText').innerHTML = `Research Cost<hr>Alpha: ${format(researchCosts[i].alpha)}<br>Beta: ${format(researchCosts[i].beta)}<br>Gamma: ${format(researchCosts[i].gamma)}`
+    DOMCacheGetOrSet('researchCostText').innerHTML = `Research Cost<hr>Alpha: ${notate(researchCosts[i].alpha)}<br>Beta: ${notate(researchCosts[i].beta)}<br>Gamma: ${notate(researchCosts[i].gamma)}`
 }
 
 function purchaseResearch(i) {
