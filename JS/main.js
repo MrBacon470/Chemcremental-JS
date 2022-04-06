@@ -525,13 +525,13 @@ document.addEventListener('keydown', (event) => {
     }
 }, false);
 
-if(data.notationIndex === 0) {
+if(data.notationIndex === 1) {
     DOMCacheGetOrSet('notationChanger').innerHTML = 'Notation: Omega'
 }
-else if(data.notationIndex === 1) {
+else if(data.notationIndex === 2) {
     DOMCacheGetOrSet('notationChanger').innerHTML = 'Notation: Element'
 }
-else if(data.notationIndex === 2) {
+else if(data.notationIndex === 0) {
     DOMCacheGetOrSet('notationChanger').innerHTML = 'Notation: Scientific'
 }
 
