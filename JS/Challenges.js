@@ -37,7 +37,7 @@ function updateChallengeHTML() {
             DOMCacheGetOrSet('challengeNameText').innerHTML = `${challengeInfo[currentChallengeDisplay].name} | ${toPlaces(data.challengeCompletions[currentChallengeDisplay], 0, 28)}/25`
             DOMCacheGetOrSet('challengeDescText').innerHTML = `${challengeInfo[currentChallengeDisplay].desc}`
             DOMCacheGetOrSet('challengeEffectText').innerHTML = `${challengeInfo[currentChallengeDisplay].effect}`
-            DOMCacheGetOrSet('challengeGoalText').innerHTML = `Goal: ${format(challengeGoals[currentChallengeDisplay])} ${challengeResourceNames[currentChallengeDisplay]}`
+            DOMCacheGetOrSet('challengeGoalText').innerHTML = `Goal: ${notate(challengeGoals[currentChallengeDisplay])} ${challengeResourceNames[currentChallengeDisplay]}`
             DOMCacheGetOrSet('challengeRewardText').innerHTML = `The Reward is [REDACTED]`
         }
         for(let i = 0; i < 5; i++) {
@@ -50,7 +50,7 @@ function updateChallengeHTML() {
         if(data.activeChallenge[i]) {
             count++;
             document.getElementById('challengeStatusImg').style.backgroundColor = '#ffffff'
-            DOMCacheGetOrSet('challengeStatusText').innerHTML = `Goal: ${format(challengeGoalResources[i])}/${format(challengeGoals[i])} ${challengeResourceNames[i]}`
+            DOMCacheGetOrSet('challengeStatusText').innerHTML = `Goal: ${notate(challengeGoalResources[i])}/${notate(challengeGoals[i])} ${challengeResourceNames[i]}`
         }
     }
     if(count === 0) {
