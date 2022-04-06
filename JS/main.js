@@ -525,6 +525,30 @@ document.addEventListener('keydown', (event) => {
     }
 }, false);
 
+if(data.notationIndex === 0) {
+    DOMCacheGetOrSet('notationChanger').innerHTML = 'Notation: Omega'
+}
+else if(data.notationIndex === 1) {
+    DOMCacheGetOrSet('notationChanger').innerHTML = 'Notation: Element'
+}
+else if(data.notationIndex === 2) {
+    DOMCacheGetOrSet('notationChanger').innerHTML = 'Notation: Scientific'
+}
+
+function changeNotation() {
+    if(data.notationIndex === 0) {
+        data.notationIndex = 1
+        DOMCacheGetOrSet('notationChanger').innerHTML = 'Notation: Omega'
+    }
+    else if(data.notationIndex === 1) {
+        data.notationIndex = 2
+        DOMCacheGetOrSet('notationChanger').innerHTML = 'Notation: Element'
+    }
+    else if(data.notationIndex === 2) {
+        data.notationIndex = 0
+        DOMCacheGetOrSet('notationChanger').innerHTML = 'Notation: Scientific'
+    }
+}
 
 window.setInterval(function(){
     mainLoop()
