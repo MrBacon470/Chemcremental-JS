@@ -119,6 +119,7 @@ function formatElementalPart(abbreviation, n) {
             return `${n} ${abbreviation}`;
         }
 function formatEle(value,acc) {
+            if(value.equals(0)) return "0.00";
             let log = value.log(118);
             const parts = [];
             while (log >= 1 && parts.length < 4) {
