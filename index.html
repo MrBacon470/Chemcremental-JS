@@ -485,6 +485,24 @@
         </div>
     </div>
     <div id="quantumHolder" class="flexBox holder" style="flex-direction: column">
+        <div id="shardsHolder" class="flexBox holder" style="flex-direction: column">
+            <h2 style="color:inherit">Quantum Shards</h2>
+            <p style="color:inherit">You need to collect all 5 to go Quantum</p>
+            <p id="shardCount" style="color:inherit">0/5</p>
+        </div>
+        <div id="QuantumButton" class="flexBox holder" style="flex-direction: column">
+            <button id="quantB" onclick="data.isQuantum = true">Leave this Realm Behind<br>And Go Quantum</button>
+        </div>
+        <div id="QuantumArea" class="flexBox holder" style="flex-direction:column">
+            <div id="congrats" class="flexBox holder" style="flex-direction:column">
+                <h1>Congratulations</h1>
+                <h3>I am thoroughly surprised</h3>
+                <h3>I'm not sure how you accomplished this but good job</h3>
+                <h3>You've now beaten the game nothing remains for you here except this click button so have fun I guess</h3>
+                <button id="quantumClicker" onclick="data.quantumLevel = data.quantumLevel.plus(1)">Quantum Clicks: 0</button>
+            </div>
+            
+        </div>
     </div>
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
         <div style="display:flex; flex-direction:row;margin-bottom:20px">

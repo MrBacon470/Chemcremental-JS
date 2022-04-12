@@ -217,9 +217,6 @@ function unlockSecrets() {
             if(data.particles[2].quarks[i].eq(D(69))) hasNum = true
         for(let i = 0; i < 3; i++) 
             if(data.radiationParticles[i].eq(D(69))) hasNum = true
-        for(let i = 0; i < data.matter.length; i++)
-            if(data.matter[i].eq(D(69))) hasNum = true
-        if(data.darkEnergy.eq(D(69))) hasNum = true
     }
     if(!data.scrtAchievements[7] && hasNum)
         data.scrtAchievements[7] = true
@@ -253,9 +250,6 @@ function unlockSecrets() {
             if(data.particles[2].quarks[i].eq(D(420))) hasNum = true
         for(let i = 0; i < 3; i++) 
             if(data.radiationParticles[i].eq(D(420))) hasNum = true
-        for(let i = 0; i < data.matter.length; i++)
-            if(data.matter[i].eq(D(420))) hasNum = true
-        if(data.darkEnergy.eq(D(420))) hasNum = true
     }
     if(!data.scrtAchievements[8] && hasNum)
         data.scrtAchievements[8] = true

@@ -42,7 +42,14 @@ function updateHTML(){
     for(let i = 0; i < 5; i++) {
         tabs[i].innerHTML = data.hasTab[i] ? tabNames[i] : '???'
     }
+    if(data.isQuantum) {
+        data.currentTab = 9;
+        DOMCacheGetOrSet('currenciesHolder').style.display = 'none'
+        DOMCacheGetOrSet('tabSeperator').style.display = 'none'
+        DOMCacheGetOrSet('tabHolder').style.display = 'none'
+    }
     DOMCacheGetOrSet('radB').style.display = !data.coriumSingUps[2] ? 'none' : 'inline'
+    DOMCacheGetOrSet('quanB').style.display = data.research[15] ? 'inline' : 'none'
     sumOfElements = data.elements[0].amt.plus(data.elements[1].amt.plus(data.elements[2].amt.plus(data.elements[3].amt.plus(data.elements[4].amt.plus(data.elements[5].amt.plus(data.elements[6].amt.plus(data.elements[7].amt)))))))
     //Power Text
     if(!data.research[9]) {
@@ -220,6 +227,15 @@ function updateHTML(){
                 DOMCacheGetOrSet(`Re${i+1}`).style.backgroundColor = data.research[i] ? '#ffffff' : 'none'
         }
     }
+    else if(data.currentTab === 9) {
+        DOMCacheGetOrSet('shardsHolder').style.display = data.hasTab[6] ? 'none' : 'flex'
+        if(!data.hasTab[6]) DOMCacheGetOrSet('shardCount').innerHTML = `${data.shards}/5`
+        DOMCacheGetOrSet('QuantumButton').style.display = data.isQuantum ? 'none' : 'flex'
+        if(data.isQuantum && data.quantumLevel.lt(100)) {
+            DOMCacheGetOrSet('quantumClicker').innerHTML = `Quantum Clicks: ${notate(data.quantumLevel)}`
+        }
+        
+    }
     unlockTabs()
     tabChangeHTML()
     subTabChangeHTML()
@@ -235,6 +251,7 @@ function unlockTabs(){
     data.hasTab[3] = data.coriumSingUps[0] === true || data.hasTab[3]
     data.hasTab[4] = data.coriumSingUps[1] === true || data.hasTab[4]
     data.hasTab[5] = data.coriumSingUps[2] === true || data.hasTab[5]
+    data.hasTab[6] = data.shards >= 5 || data.hasTab[6]
     
 }
 const seperator = DOMCacheGetOrSet('tabSeperator')

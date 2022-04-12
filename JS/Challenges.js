@@ -20,6 +20,12 @@ function changeChallengeDisplay(i) {
 
 
 function updateChallengeHTML() {
+    data.shards = 0
+    for(let i = 0; i < 5; i++) {
+       if(data.challengeCompletions[i].eq(25)) {
+            data.shards++
+       }
+    }
     for(let i = 0; i < 5; i++) {
         challengeGoals[i] = challengeGoalBases[i].times(Decimal.pow(D(1.75), data.challengeCompletions[i]))
     }
