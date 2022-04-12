@@ -38,7 +38,7 @@ function updateChallengeHTML() {
             DOMCacheGetOrSet('challengeDescText').innerHTML = `${challengeInfo[currentChallengeDisplay].desc}`
             DOMCacheGetOrSet('challengeEffectText').innerHTML = `${challengeInfo[currentChallengeDisplay].effect}`
             DOMCacheGetOrSet('challengeGoalText').innerHTML = `Goal: ${notate(challengeGoals[currentChallengeDisplay])} ${challengeResourceNames[currentChallengeDisplay]}`
-            DOMCacheGetOrSet('challengeRewardText').innerHTML = `The Reward is [REDACTED]`
+            DOMCacheGetOrSet('challengeRewardText').innerHTML = `Upon reaching 25/25 you recieve one Quantum Shard`
         }
         for(let i = 0; i < 5; i++) {
             DOMCacheGetOrSet(`challenge${i+1}Text`).innerHTML = `${toPlaces(data.challengeCompletions[i], 0, 28)}/25`
