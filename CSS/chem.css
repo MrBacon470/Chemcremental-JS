@@ -422,5 +422,6 @@ button:hover {
 #strA, .strB {color: var(--strangeQuark-color); border-color: var(--strangeQuark-color); background-color: #000;}
 #strA:hover, .strB:hover {color:#000; background-color: var(--strangeQuark-color);}
 /*Quantum Styles*/
-#quanB {color: var(--quantum-tab-color);border-color: var(--quantum-tab-color); background-color: #000;}
-#quanB:hover {color:#000; background-color: var(--quantum-tab-color);}
+#quanB, #quantB, #quantumClicker {color: var(--quantum-tab-color);border-color: var(--quantum-tab-color); background-color: #000;}
+#quanB:hover, #quantB:hover, #quantumClicker:hover {color:#000; background-color: var(--quantum-tab-color);}
+#shardsHolder {color:var(--quantum-tab-color);}

@@ -11,7 +11,7 @@
 </head>
 <body>
     <img src="VoidBG.png" id="hider" style="position: fixed; background-color: black; height: 100vh; width: 100vw; top:0; left:0; text-align: center; justify-content: center;">
-    <div style="position: fixed; bottom: 0; right: 0;">Beta 6.1</div>
+    <div style="position: fixed; bottom: 0; right: 0;">v1.0</div>
     <div id="modalContainer">
         <div id="alert">
             <h3 id="alertTitle">Welcome back gamer!</h3>
@@ -54,7 +54,7 @@
         </div>
     </div>
     <div id="tabHolder" class="flexBox" style="flex-direction: row; margin-top: 20px; ">
-        <button id="quanB" style="display:none" class="tabButton" onclick="">Quantum</button>
+        <button id="quanB" class="tabButton" onclick="switchTab(9)">Quantum</button>
         <button id="radB" class="tabButton" onclick="switchTab(8)">Radiation</button>
         <button id="eB" class="tabButton" onclick="switchTab(1)">Elements</button>
         <button id="cB" class="tabButton" onclick="switchTab(3)">Compounds</button>
@@ -485,6 +485,24 @@
         </div>
     </div>
     <div id="quantumHolder" class="flexBox holder" style="flex-direction: column">
+        <div id="shardsHolder" class="flexBox holder" style="flex-direction: column">
+            <h2 style="color:inherit">Quantum Shards</h2>
+            <p style="color:inherit">You need to collect all 5 to go Quantum</p>
+            <p id="shardCount" style="color:inherit">0/5</p>
+        </div>
+        <div id="QuantumButton" class="flexBox holder" style="flex-direction: column">
+            <button id="quantB" onclick="data.isQuantum = true">Leave this Realm Behind<br>And Go Quantum</button>
+        </div>
+        <div id="QuantumArea" class="flexBox holder" style="flex-direction:column">
+            <div id="congrats" class="flexBox holder" style="flex-direction:column;color:var(--quantum-tab-color)">
+                <h1 class="textOutline" style="color:inherit">Congratulations</h1>
+                <h3 class="textOutline" style="color:inherit">I am thoroughly surprised</h3>
+                <h3 class="textOutline" style="color:inherit">I'm not sure how you accomplished this but good job</h3>
+                <h3 class="textOutline" style="color:inherit">You've now beaten the game nothing remains for you here except this click button</h3>
+                <button id="quantumClicker" onclick="data.quantumLevel = data.quantumLevel.plus(1)">Quantum Clicks: 0</button>
+            </div>
+            
+        </div>
     </div>
     <div id="achievementHolder" class="flexBox holder" style="flex-direction: column;">
         <div style="display:flex; flex-direction:row;margin-bottom:20px">
@@ -706,8 +724,12 @@
         <h3>Check out more of my games on <a href="https://mrbacon470.github.io/">my website</a></h3>
         <br>
         <h1>Changelog :D</h1>
-        <h3>Current Version is β0.6.1</h3>
+        <h3>Current Version is v1.0.0</h3>
         <br>
+        <hr>
+        <h3>Full Release</h3>
+        <br>
+        <p>v1.0.0 - Adds Quantum Realm (Game End), Bug Fixes</p>
         <hr>
         <h3>Early Access Beta</h3>
         <br>

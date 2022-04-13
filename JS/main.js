@@ -95,7 +95,8 @@ function increasePower(i) {
 function switchTab(i){
     data.currentTab = i
     let x=i-3
-    if (x >= 0) data.hasTab[x] ? data.currentTab=i : data.currentTab=1
+    if(i === 9) data.currentTab=i
+    else if (x >= 0) data.hasTab[x] ? data.currentTab=i : data.currentTab=1
     tabChangeHTML()
 }
 function switchSubTab(i,x){

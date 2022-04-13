@@ -42,14 +42,10 @@ function getDefaultObject() {
         research: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
         challengeCompletions: [D(0),D(0),D(0),D(0),D(0)],
         activeChallenge: [false,false,false,false,false],
-        //Matter
-        matter: [D(0),D(0),D(0),D(0)],
-        darkEnergy: D(0),
-        matterUnlocked: [false,false],
-        darkUpUnlocked: [false,false,false,false,false],
-        pillarUnlocked: [false,false,false,false,false],
-        corruptTimer: D(0),
-        corruptIndex: -1,
+        //Quantum
+        shards: 0,
+        isQuantum: false,
+        quantumLevel: D(0),
         //Achievements
         achievements: [{name:"H",unlocked:[false,false,false,false,false,false,false,false]},{name:"C",unlocked:[false,false,false,false,false,false,false,false]},{name:"O",unlocked:[false,false,false,false,false,false,false,false]},
         {name:"F",unlocked:[false,false,false,false,false,false,false,false]},{name:"S",unlocked:[false,false,false,false,false,false,false,false]},{name:"Cl",unlocked:[false,false,false,false,false,false,false,false]},
@@ -67,7 +63,7 @@ function getDefaultObject() {
         currentSubTab: [0,0,0,0,0,0,0],
         currentElement: 0,
         settingsToggles: [true,true,true,true,true,true,true,true],
-        currentUpdate: 'v0.6.1',
+        currentUpdate: 'v1.0.0',
         notationIndex: 0,
         devSpeed: 1,
     }
@@ -87,9 +83,9 @@ function load() {
         noConfirmDelete()
     }
     */
-    else if(data.currentUpdate !== 'v0.6.1') {
-        createAlert('Welcome Back!','The current version is Beta 6.1<br>Check the changelog for more details')
-        data.currentUpdate = 'v0.6.1' 
+    else if(data.currentUpdate !== 'v1.0.0') {
+        createAlert('Welcome Back!','The current version is Release 1.0<br>Check the changelog for more details')
+        data.currentUpdate = 'v1.0.0' 
         //if(data.alerted === true) 
             //data.alerted === false
     }
