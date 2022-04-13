@@ -231,7 +231,7 @@ function updateHTML(){
         DOMCacheGetOrSet('shardsHolder').style.display = data.hasTab[6] ? 'none' : 'flex'
         if(!data.hasTab[6]) DOMCacheGetOrSet('shardCount').innerHTML = `${data.shards}/5`
         DOMCacheGetOrSet('QuantumButton').style.display = data.isQuantum ? 'none' : 'flex'
-        if(data.isQuantum && data.quantumLevel.lt(100)) {
+        if(data.isQuantum) {
             DOMCacheGetOrSet('quantumClicker').innerHTML = `Quantum Clicks: ${notate(data.quantumLevel)}`
         }
         
