@@ -83,9 +83,9 @@ function load() {
         noConfirmDelete()
     }
     */
-    else if(data.currentUpdate !== 'v1.0.0') {
+    else if(data.currentUpdate !== "v1.0.0") {
         createAlert('Welcome Back!','The current version is Release 1.0<br>Check the changelog for more details')
-        data.currentUpdate = 'v1.0.0' 
+        data.currentUpdate = "v1.0.0" 
         //if(data.alerted === true) 
             //data.alerted === false
     }
