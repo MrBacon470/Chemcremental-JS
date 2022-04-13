@@ -63,7 +63,7 @@ function getDefaultObject() {
         currentSubTab: [0,0,0,0,0,0,0],
         currentElement: 0,
         settingsToggles: [true,true,true,true,true,true,true,true],
-        currentUpdate: 'v0.6.1',
+        currentUpdate: 'v1.0.0',
         notationIndex: 0,
         devSpeed: 1,
     }
@@ -83,9 +83,9 @@ function load() {
         noConfirmDelete()
     }
     */
-    else if(data.currentUpdate !== 'v0.6.1') {
-        createAlert('Welcome Back!','The current version is Beta 6.1<br>Check the changelog for more details')
-        data.currentUpdate = 'v0.6.1' 
+    else if(data.currentUpdate !== 'v1.0.0') {
+        createAlert('Welcome Back!','The current version is Release 1.0<br>Check the changelog for more details')
+        data.currentUpdate = 'v1.0.0' 
         //if(data.alerted === true) 
             //data.alerted === false
     }
